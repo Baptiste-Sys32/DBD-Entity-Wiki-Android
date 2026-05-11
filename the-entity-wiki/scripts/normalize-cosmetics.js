@@ -14,6 +14,99 @@ const {
 
 const VALID_OUTFIT_LINK_MODES = new Set(['character_swap', 'linked', 'partially_linked', 'unlinked']);
 
+const MANUAL_FULL_SET_ENTRIES = [
+  {
+    name: 'The Hell Priest',
+    baseCharacterName: 'The Cenobite',
+    baseCharacterType: 'Killer',
+    groupKey: 'store',
+    groupLabel: 'Store',
+    collectionName: 'Hellraiser',
+    sourceKind: 'manual-wiki-store',
+    sourcePage: "Template:Cenobite's Body Store / Template:Cenobite's Weapon Store",
+    sourceBucket: 'Store',
+    pieceType: 'Outfit',
+    outfitLinkMode: 'linked',
+    boundSlots: ['Body', 'Weapon'],
+    bindSummary: 'Body + Weapon',
+    rarity: 'Very Rare',
+    assetFileTitleCandidates: ['File:K25 outfit 006.png'],
+    description: 'Explorer in the further regions of experience. Demons to some, angels to others.'
+  },
+  {
+    name: 'Garment of Torment',
+    baseCharacterName: 'The Cenobite',
+    baseCharacterType: 'Killer',
+    groupKey: 'store',
+    groupLabel: 'Store',
+    collectionName: 'Hellraiser',
+    sourceKind: 'manual-wiki-store',
+    sourcePage: "Template:Cenobite's Body Store",
+    sourceBucket: 'Store',
+    pieceType: 'Body',
+    outfitLinkMode: 'unlinked',
+    boundSlots: ['The Hell Priest'],
+    bindSummary: 'The Hell Priest',
+    rarity: 'Very Rare',
+    assetFileTitleCandidates: ['File:K25 Body006.png'],
+    description: 'Garment displaying intricate forms of body scarification to experiment with the limits of human sensations.'
+  },
+  {
+    name: 'Grappling Hook & Chain',
+    baseCharacterName: 'The Cenobite',
+    baseCharacterType: 'Killer',
+    groupKey: 'store',
+    groupLabel: 'Store',
+    collectionName: 'Hellraiser',
+    sourceKind: 'manual-wiki-store',
+    sourcePage: "Template:Cenobite's Weapon Store",
+    sourceBucket: 'Store',
+    pieceType: 'Weapon',
+    outfitLinkMode: 'unlinked',
+    boundSlots: ['The Hell Priest'],
+    bindSummary: 'The Hell Priest',
+    rarity: 'Very Rare',
+    assetFileTitleCandidates: ['File:K25 W006.png'],
+    description: 'The perverse hook & chain he wields with cruelty and satisfaction.'
+  },
+  {
+    name: "Boogeyman's Robes",
+    baseCharacterName: 'The Shape',
+    baseCharacterType: 'Killer',
+    groupKey: 'store',
+    groupLabel: 'Store',
+    collectionName: 'Haddonfield Nights',
+    sourceKind: 'manual-wiki-store',
+    sourcePage: "Template:Shape's Body Store",
+    sourceBucket: 'Store',
+    pieceType: 'Body',
+    outfitLinkMode: 'unlinked',
+    boundSlots: ['Escaped Patient'],
+    bindSummary: 'Escaped Patient',
+    rarity: 'Very Rare',
+    assetFileTitleCandidates: ['File:MM Body02.png'],
+    description: "The uniform of patients' of Smith's Grove Sanitarium, this one has been torn during a successful escape."
+  },
+  {
+    name: 'First Cut',
+    baseCharacterName: 'The Shape',
+    baseCharacterType: 'Killer',
+    groupKey: 'store',
+    groupLabel: 'Store',
+    collectionName: 'Haddonfield Nights',
+    sourceKind: 'manual-wiki-store',
+    sourcePage: "Template:Shape's Weapon Store",
+    sourceBucket: 'Store',
+    pieceType: 'Weapon',
+    outfitLinkMode: 'unlinked',
+    boundSlots: ['Escaped Patient'],
+    bindSummary: 'Escaped Patient',
+    rarity: 'Very Rare',
+    assetFileTitleCandidates: ['File:MM W02 01.png'],
+    description: 'The knife used during the 1963 murder of Judith Myers by his six-year-old brother, Michael Myers. The blade is still stained with blood.'
+  }
+];
+
 function normalizePieceType(value = '') {
   const normalized = normalizeKey(value);
   if (!normalized) return 'Cosmetic';
@@ -205,7 +298,10 @@ function main() {
   const usedIds = new Set();
 
   const characterSwaps = sortEntries((discovery.characterSwaps || []).map((entry) => mapCharacterSwap(entry, characterLookup, characterById, usedIds)));
-  const fullSets = sortEntries((discovery.fullSets || []).map((entry) => mapFullSet(entry, characterLookup, characterById, usedIds)));
+  const fullSets = sortEntries([
+    ...(discovery.fullSets || []),
+    ...MANUAL_FULL_SET_ENTRIES
+  ].map((entry) => mapFullSet(entry, characterLookup, characterById, usedIds)));
   const fullSetLinkModeCounts = fullSets.reduce((acc, entry) => {
     const key = entry.outfitLinkMode || 'unlinked';
     acc[key] = (acc[key] || 0) + 1;

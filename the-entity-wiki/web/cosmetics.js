@@ -1,21 +1,21 @@
 var COSMETICS_CATALOG = {
-  "generatedAt": "2026-04-30T18:51:40.068Z",
+  "generatedAt": "2026-05-11T06:18:30.430Z",
   "metadata": {
     "sourceDiscoveryGeneratedAt": "2026-04-30T18:51:39.702Z",
     "characterSwapCount": 103,
-    "fullSetCount": 4136,
-    "cosmeticCount": 4136,
-    "linkedFullSetCount": 56,
-    "linkedCosmeticCount": 56,
+    "fullSetCount": 4141,
+    "cosmeticCount": 4141,
+    "linkedFullSetCount": 57,
+    "linkedCosmeticCount": 57,
     "fullSetLinkModeCounts": {
-      "unlinked": 4080,
+      "unlinked": 4084,
       "partially_linked": 7,
-      "linked": 49
+      "linked": 50
     },
     "cosmeticLinkModeCounts": {
-      "unlinked": 4080,
+      "unlinked": 4084,
       "partially_linked": 7,
-      "linked": 49
+      "linked": 50
     }
   },
   "characterSwaps": [
@@ -8794,6 +8794,125 @@ var COSMETICS_CATALOG = {
         "File:K25 Weapon01 P01.png"
       ],
       "description": "The blood-dripping hook & chain he wields with thrill."
+    },
+    {
+      "id": "the-cenobite--garment-of-torment--body--k25-body006",
+      "name": "Garment of Torment",
+      "baseCharacterId": "278e5980-4f69-42a6-89e0-fed2afe0f5ed",
+      "baseCharacterName": "The Cenobite",
+      "baseCharacterType": "Killer",
+      "groupKey": "store",
+      "groupLabel": "Store",
+      "collectionName": "Hellraiser",
+      "image": "./dbd_images/cosmetics/full_sets/the-cenobite--garment-of-torment--body--k25-body006.png",
+      "aliases": [
+        "garment of torment",
+        "hellraiser",
+        "store",
+        "body",
+        "the cenobite",
+        "the hell priest",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "manual-wiki-store",
+      "sourcePage": "Template:Cenobite's Body Store",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "The Hell Priest"
+      ],
+      "bindSummary": "The Hell Priest",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Body",
+      "sourceBucket": "Store",
+      "assetFileTitleCandidates": [
+        "File:K25 Body006.png"
+      ],
+      "description": "Garment displaying intricate forms of body scarification to experiment with the limits of human sensations."
+    },
+    {
+      "id": "the-cenobite--the-hell-priest--outfit--k25-outfit-006",
+      "name": "The Hell Priest",
+      "baseCharacterId": "278e5980-4f69-42a6-89e0-fed2afe0f5ed",
+      "baseCharacterName": "The Cenobite",
+      "baseCharacterType": "Killer",
+      "groupKey": "store",
+      "groupLabel": "Store",
+      "collectionName": "Hellraiser",
+      "image": "./dbd_images/cosmetics/full_sets/the-cenobite--the-hell-priest--outfit--k25-outfit-006.png",
+      "aliases": [
+        "the hell priest",
+        "hellraiser",
+        "store",
+        "outfit",
+        "the cenobite",
+        "body",
+        "weapon",
+        "linked",
+        "linked outfit"
+      ],
+      "sourceKind": "manual-wiki-store",
+      "sourcePage": "Template:Cenobite's Body Store / Template:Cenobite's Weapon Store",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "linked",
+      "boundSlots": [
+        "Body",
+        "Weapon"
+      ],
+      "bindSummary": "Body + Weapon",
+      "isLinkedSet": true,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Store",
+      "assetFileTitleCandidates": [
+        "File:K25 outfit 006.png"
+      ],
+      "description": "Explorer in the further regions of experience. Demons to some, angels to others."
+    },
+    {
+      "id": "the-cenobite--grappling-hook-chain--weapon--k25-w006",
+      "name": "Grappling Hook & Chain",
+      "baseCharacterId": "278e5980-4f69-42a6-89e0-fed2afe0f5ed",
+      "baseCharacterName": "The Cenobite",
+      "baseCharacterType": "Killer",
+      "groupKey": "store",
+      "groupLabel": "Store",
+      "collectionName": "Hellraiser",
+      "image": "./dbd_images/cosmetics/full_sets/the-cenobite--grappling-hook-chain--weapon--k25-w006.png",
+      "aliases": [
+        "grappling hook & chain",
+        "hellraiser",
+        "store",
+        "weapon",
+        "the cenobite",
+        "the hell priest",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "manual-wiki-store",
+      "sourcePage": "Template:Cenobite's Weapon Store",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "The Hell Priest"
+      ],
+      "bindSummary": "The Hell Priest",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Weapon",
+      "sourceBucket": "Store",
+      "assetFileTitleCandidates": [
+        "File:K25 W006.png"
+      ],
+      "description": "The perverse hook & chain he wields with cruelty and satisfaction."
     },
     {
       "id": "the-clown--smell-my-flower--body--gk-body01",
@@ -50816,6 +50935,45 @@ var COSMETICS_CATALOG = {
       "description": "The blood of victims seems to pulse within the blade itself."
     },
     {
+      "id": "the-shape--boogeyman-s-robes--body--mm-body02",
+      "name": "Boogeyman's Robes",
+      "baseCharacterId": "51722e04-3f09-48ef-be67-5fe08ce61038",
+      "baseCharacterName": "The Shape",
+      "baseCharacterType": "Killer",
+      "groupKey": "store",
+      "groupLabel": "Store",
+      "collectionName": "Haddonfield Nights",
+      "image": "./dbd_images/cosmetics/full_sets/the-shape--boogeyman-s-robes--body--mm-body02.png",
+      "aliases": [
+        "boogeyman's robes",
+        "haddonfield nights",
+        "store",
+        "body",
+        "the shape",
+        "escaped patient",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "manual-wiki-store",
+      "sourcePage": "Template:Shape's Body Store",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Escaped Patient"
+      ],
+      "bindSummary": "Escaped Patient",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Body",
+      "sourceBucket": "Store",
+      "assetFileTitleCandidates": [
+        "File:MM Body02.png"
+      ],
+      "description": "The uniform of patients' of Smith's Grove Sanitarium, this one has been torn during a successful escape."
+    },
+    {
       "id": "the-shape--escaped-patient--outfit--mm-outfit-02",
       "name": "Escaped Patient",
       "baseCharacterId": "51722e04-3f09-48ef-be67-5fe08ce61038",
@@ -50849,6 +51007,45 @@ var COSMETICS_CATALOG = {
         "File:MM outfit 02.png"
       ],
       "description": "Outfit cosmetic for The Shape"
+    },
+    {
+      "id": "the-shape--first-cut--weapon--mm-w02-01",
+      "name": "First Cut",
+      "baseCharacterId": "51722e04-3f09-48ef-be67-5fe08ce61038",
+      "baseCharacterName": "The Shape",
+      "baseCharacterType": "Killer",
+      "groupKey": "store",
+      "groupLabel": "Store",
+      "collectionName": "Haddonfield Nights",
+      "image": "./dbd_images/cosmetics/full_sets/the-shape--first-cut--weapon--mm-w02-01.png",
+      "aliases": [
+        "first cut",
+        "haddonfield nights",
+        "store",
+        "weapon",
+        "the shape",
+        "escaped patient",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "manual-wiki-store",
+      "sourcePage": "Template:Shape's Weapon Store",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Escaped Patient"
+      ],
+      "bindSummary": "Escaped Patient",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Weapon",
+      "sourceBucket": "Store",
+      "assetFileTitleCandidates": [
+        "File:MM W02 01.png"
+      ],
+      "description": "The knife used during the 1963 murder of Judith Myers by his six-year-old brother, Michael Myers. The blade is still stained with blood."
     },
     {
       "id": "the-shape--flathead-skullpiercer--weapon--mm-w02-03",
