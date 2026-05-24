@@ -290,18 +290,32 @@ function sortEntries(entries) {
   );
 }
 
+function mergePreservedExistingEntries(nextEntries, existingEntries = [], usedIds) {
+  const nextIds = new Set(nextEntries.map((entry) => entry.id));
+  const preservedEntries = existingEntries.filter((entry) => {
+    if (!entry || typeof entry !== 'object' || !entry.id) return false;
+    return !nextIds.has(entry.id);
+  });
+
+  preservedEntries.forEach((entry) => usedIds.add(entry.id));
+  return sortEntries([...nextEntries, ...preservedEntries]);
+}
+
 function main() {
   const database = readJson(DATABASE_PATH);
   const discovery = readJson(DISCOVERY_PATH);
+  const existingCatalog = readJson(CONTENT_PATH);
   const characterLookup = buildCharacterLookup(database);
   const characterById = createCharacterById(database);
   const usedIds = new Set();
 
-  const characterSwaps = sortEntries((discovery.characterSwaps || []).map((entry) => mapCharacterSwap(entry, characterLookup, characterById, usedIds)));
-  const fullSets = sortEntries([
+  const discoveredCharacterSwaps = sortEntries((discovery.characterSwaps || []).map((entry) => mapCharacterSwap(entry, characterLookup, characterById, usedIds)));
+  const discoveredFullSets = sortEntries([
     ...(discovery.fullSets || []),
     ...MANUAL_FULL_SET_ENTRIES
   ].map((entry) => mapFullSet(entry, characterLookup, characterById, usedIds)));
+  const characterSwaps = mergePreservedExistingEntries(discoveredCharacterSwaps, existingCatalog.characterSwaps, usedIds);
+  const fullSets = mergePreservedExistingEntries(discoveredFullSets, existingCatalog.fullSets, usedIds);
   const fullSetLinkModeCounts = fullSets.reduce((acc, entry) => {
     const key = entry.outfitLinkMode || 'unlinked';
     acc[key] = (acc[key] || 0) + 1;

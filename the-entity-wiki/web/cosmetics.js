@@ -1,19 +1,19 @@
 var COSMETICS_CATALOG = {
-  "generatedAt": "2026-05-11T06:18:30.430Z",
+  "generatedAt": "2026-05-24T18:35:45.487Z",
   "metadata": {
-    "sourceDiscoveryGeneratedAt": "2026-04-30T18:51:39.702Z",
+    "sourceDiscoveryGeneratedAt": "2026-05-24T18:34:08.254Z",
     "characterSwapCount": 103,
-    "fullSetCount": 4141,
-    "cosmeticCount": 4141,
+    "fullSetCount": 4147,
+    "cosmeticCount": 4147,
     "linkedFullSetCount": 57,
     "linkedCosmeticCount": 57,
     "fullSetLinkModeCounts": {
-      "unlinked": 4084,
+      "unlinked": 4090,
       "partially_linked": 7,
       "linked": 50
     },
     "cosmeticLinkModeCounts": {
-      "unlinked": 4084,
+      "unlinked": 4090,
       "partially_linked": 7,
       "linked": 50
     }
@@ -68332,6 +68332,48 @@ var COSMETICS_CATALOG = {
       "description": "Outfit cosmetic for The Wraith"
     },
     {
+      "id": "the-wraith--masquerade-phantom--outfit--tw-outfit-023",
+      "name": "Masquerade Phantom",
+      "baseCharacterId": "ea0aa555-6726-46f3-ad07-a805b5429ccf",
+      "baseCharacterName": "The Wraith",
+      "baseCharacterType": "Killer",
+      "groupKey": "cosmetic",
+      "groupLabel": "Twisted Masquerade",
+      "collectionName": "Twisted Masquerade",
+      "image": "./dbd_images/cosmetics/full_sets/the-wraith--masquerade-phantom--outfit--tw-outfit-023.png",
+      "aliases": [
+        "masquerade phantom",
+        "twisted masquerade",
+        "outfit",
+        "the wraith",
+        "head",
+        "body",
+        "weapon",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Twisted Masquerade Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Weapon"
+      ],
+      "bindSummary": "Head + Body + Weapon",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Twisted Masquerade",
+      "assetFileTitleCandidates": [
+        "File:TW outfit 023.png"
+      ],
+      "description": "The dancers spun around the extravagant ballroom, laughing, unbothered by the sound of a ringing bell."
+    },
+    {
       "id": "the-wraith--sanguine-blade--weapon--tw-w03-03",
       "name": "Sanguine Blade",
       "baseCharacterId": "ea0aa555-6726-46f3-ad07-a805b5429ccf",
@@ -82647,6 +82689,48 @@ var COSMETICS_CATALOG = {
       "description": "Outfit cosmetic for Claudette Morel"
     },
     {
+      "id": "claudette-morel--nourished-on-knowledge--outfit--cm-outfit-035",
+      "name": "Nourished On Knowledge",
+      "baseCharacterId": "405e213e-cdf1-4463-895d-086fc20c02e9",
+      "baseCharacterName": "Claudette Morel",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Dark Overgrowth",
+      "collectionName": "Dark Overgrowth",
+      "image": "./dbd_images/cosmetics/full_sets/claudette-morel--nourished-on-knowledge--outfit--cm-outfit-035.png",
+      "aliases": [
+        "nourished on knowledge",
+        "dark overgrowth",
+        "outfit",
+        "claudette morel",
+        "head",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Dark Overgrowth Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Dark Overgrowth",
+      "assetFileTitleCandidates": [
+        "File:CM outfit 035.png"
+      ],
+      "description": "In her past life, she found fulfilment in botany, absorbing knowledge like a plant absorbs the sunlight."
+    },
+    {
       "id": "claudette-morel--yesteryear-event--outfit--cm-outfit-08-01",
       "name": "Yesteryear Event",
       "baseCharacterId": "405e213e-cdf1-4463-895d-086fc20c02e9",
@@ -86713,6 +86797,48 @@ var COSMETICS_CATALOG = {
         "File:DK outfit 027.png"
       ],
       "description": "David curled up on the couch and put on a documentary about a rockstar he was obsessed with as a boy."
+    },
+    {
+      "id": "david-king--masquerade-king--outfit--dk-outfit-030",
+      "name": "Masquerade King",
+      "baseCharacterId": "bf7d5108-7017-4428-a012-865b2bc8e72f",
+      "baseCharacterName": "David King",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Twisted Masquerade",
+      "collectionName": "Twisted Masquerade",
+      "image": "./dbd_images/cosmetics/full_sets/david-king--masquerade-king--outfit--dk-outfit-030.png",
+      "aliases": [
+        "masquerade king",
+        "twisted masquerade",
+        "outfit",
+        "david king",
+        "head",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Twisted Masquerade Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Twisted Masquerade",
+      "assetFileTitleCandidates": [
+        "File:DK outfit 030.png"
+      ],
+      "description": "David couldn't help but enjoy himself – the suit, the venue, the champagne. The question was: how did he get here?"
     },
     {
       "id": "david-king--heartbreaker-s-suit--outfit--dk-outfit-015",
@@ -131755,6 +131881,48 @@ var COSMETICS_CATALOG = {
       "description": "She set up her stall for the Nighttime Market, excited for the meteor shower scheduled to fill the sky."
     },
     {
+      "id": "mikaela-reid--blood-magic--outfit--s28-outfit-023",
+      "name": "Blood Magic",
+      "baseCharacterId": "c3cbdf22-6974-461a-bcf3-dd9d9037bbad",
+      "baseCharacterName": "Mikaela Reid",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Blood Moon",
+      "collectionName": "Blood Moon",
+      "image": "./dbd_images/cosmetics/full_sets/mikaela-reid--blood-magic--outfit--s28-outfit-023.png",
+      "aliases": [
+        "blood magic",
+        "blood moon",
+        "outfit",
+        "mikaela reid",
+        "head",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Blood Moon Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Blood Moon",
+      "assetFileTitleCandidates": [
+        "File:S28 outfit 023.png"
+      ],
+      "description": "Once she donned the strange vestments, the words of her wards had a primal, cathartic immediacy."
+    },
+    {
       "id": "mikaela-reid--sypha-belnades-s-robes--outfit--s28-outfit-027",
       "name": "Sypha Belnades's Robes",
       "baseCharacterId": "c3cbdf22-6974-461a-bcf3-dd9d9037bbad",
@@ -144633,6 +144801,48 @@ var COSMETICS_CATALOG = {
       "description": "The party went late into the night, moving from the pub to an abandoned construction site full of places to explore."
     },
     {
+      "id": "taurie-cain--innocuous-species--outfit--s45-outfit-015",
+      "name": "Innocuous Species",
+      "baseCharacterId": "b4cb7d83-e55b-40ae-b9d5-a767569a90cf",
+      "baseCharacterName": "Taurie Cain",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Cats & Dogs",
+      "collectionName": "Cats & Dogs",
+      "image": "./dbd_images/cosmetics/full_sets/taurie-cain--innocuous-species--outfit--s45-outfit-015.png",
+      "aliases": [
+        "innocuous species",
+        "cats & dogs",
+        "outfit",
+        "taurie cain",
+        "head",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Cats & Dogs Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Cats & Dogs",
+      "assetFileTitleCandidates": [
+        "File:S45 outfit 015.png"
+      ],
+      "description": "Taurie spotted a strange cat purring and running with ease down the hall of the compound."
+    },
+    {
       "id": "taurie-cain--ceremonial-robes--outfit--s45-outfit-006-01",
       "name": "Ceremonial Robes",
       "baseCharacterId": "b4cb7d83-e55b-40ae-b9d5-a767569a90cf",
@@ -147982,6 +148192,48 @@ var COSMETICS_CATALOG = {
         "File:S49 outfit 01 02.png"
       ],
       "description": "Before joining Axekick full-time, she answered every \"Drummers wanted\" ad, and jammed with a bunch of local bands."
+    },
+    {
+      "id": "vee-boonyasak--cats-geckos--outfit--s49-outfit-011",
+      "name": "Cats & Geckos",
+      "baseCharacterId": "63679644-dbc2-4c10-b1b8-f768e404f03d",
+      "baseCharacterName": "Vee Boonyasak",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Cats & Dogs",
+      "collectionName": "Cats & Dogs",
+      "image": "./dbd_images/cosmetics/full_sets/vee-boonyasak--cats-geckos--outfit--s49-outfit-011.png",
+      "aliases": [
+        "cats & geckos",
+        "cats & dogs",
+        "outfit",
+        "vee boonyasak",
+        "head",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Cats & Dogs Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Cats & Dogs",
+      "assetFileTitleCandidates": [
+        "File:S49 outfit 011.png"
+      ],
+      "description": "It was a warm summer evening, and Axekick's street performance brought out a couple unexpected visitors."
     },
     {
       "id": "vee-boonyasak--creative-shoot--outfit--s49-outfit-006-01",
