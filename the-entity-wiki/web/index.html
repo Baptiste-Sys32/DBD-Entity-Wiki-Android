@@ -1083,9 +1083,9 @@
       }
     };
     const META = {
-      appVersion: "5.32.0",
-      gameVersion: "9.6.0",
-      lastSynced: "April 30, 2026",
+      appVersion: "5.33.0",
+      gameVersion: "10.0.0",
+      lastSynced: "June 18, 2026",
       contact: {
         email: "hexplosions.happen@gmail.com",
         discord: "hexplosions_happen"
@@ -1100,6 +1100,15 @@
       ]
     };
     const CHANGELOG = [
+      {
+        version: "5.33.0",
+        date: "June 18, 2026",
+        changes: [
+          "UPDATE : Synced to Dead by Daylight 10.0.0 with The Slasher, Shane Wiigwaas, new perks, Slasher add-ons, portraits, perk icons, power icon, and latest cosmetics",
+          "UPDATE : Added catalog sync support for new characters, perks, powers, add-ons, and local wiki image assets",
+          "FIX : Added Worldle metadata coverage for The Slasher"
+        ]
+      },
       {
         version: "5.32.0",
         date: "May 11, 2026",
@@ -4073,6 +4082,11 @@
         powerName: "Test Subject #001",
         survivorTips: "He threatens space in layers: a direct strike, spreading vines, and fast traversal through the Upside Down. Break line of sight before he commits, avoid lingering in narrow choke points, and rotate early when he cuts off the obvious lane. If he disappears into the Upside Down, assume he is pathing to your generator or rescue and reposition before he reappears on top of you.",
         killerTips: "Use Test Subject #001 to make survivors choose between your attack and the map. Seed pressure with vines, then traverse through the Upside Down to arrive where survivors think they have time. Force movement first, then cash out on committed vaults, rescues, and generator greed. You win when survivors feel unsafe standing still anywhere."
+      },
+      "The Slasher": {
+        powerName: "Omnipresent Evil",
+        survivorTips: "When he vanishes, standing still is dangerous because Mist Clouds can reveal you, but obvious running paths leave Footprints. Break line of sight, vary your route, and be ready for Jump Scare pressure at pallets, windows, and breakable walls. If he picks up a Hook Spike, do not give him a straight lane into a wall or tight choke point.",
+        killerTips: "Use Omnipresent Evil to reposition and read survivor movement before committing. Jump Scare is strongest when it converts a tile interaction into immediate pressure, so aim for pallets, windows, and walls survivors are already planning around. Hook Spikes punish predictable lanes and can snowball when survivors are forced toward walls, hooks, or clutter."
       }
     };
     const KILLER_STATS = {
@@ -4117,7 +4131,8 @@
       "The Ghoul": { terrorRadius: "32m", speed: "4.6 m/s", height: "Average" },
       "The Animatronic": { terrorRadius: "32m", speed: "4.6 m/s", height: "Tall" },
       "The Krasue": { terrorRadius: "32m", speed: "4.6 m/s", height: "Average" },
-      "The First": { terrorRadius: "32m", speed: "4.6 m/s", height: "Average" }
+      "The First": { terrorRadius: "32m", speed: "4.6 m/s", height: "Average" },
+      "The Slasher": { terrorRadius: "32m", speed: "4.6 m/s", height: "Tall" }
     };
     const COSMETICS_FULL_SET_ASSET_PACK_NAME = 'cosmeticsfullsetpack';
     const isNativeAndroidPlatform = () => {

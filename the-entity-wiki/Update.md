@@ -1,5 +1,60 @@
 # Update
 
+Date: 2026-06-23
+
+## Timeline Sync — Chapter 40 / The Life Road
+
+Finished the 10.0.0 sync by adding the two missing timeline entries that were not included in the June 18 catalog sync.
+
+- Added `chapter-40` ("Dead by Daylight: Jason", June 16, 2026) to `content/timeline.json` with The Slasher / Jason Voorhees (licensed, K43) and the correct chapter number and fog-entry lore.
+- Added `the-life-road` ("The Life Road", June 25, 2026) to `content/timeline.json` with Shane Wiigwaas (unlicensed, S53) and a fog-entry derived from his canonical lore.
+- Rebuilt all four runtime web bundles (`web/data.js`, `web/lore.js`, `web/cosmetics.js`, `web/community-content.js`) via `node scripts/build-data.js`.
+
+Verification passed:
+
+```text
+node scripts/build-data.js --check
+node scripts/verify-data-contracts.js
+node scripts/verify-perk-descriptions.js
+node scripts/verify-teachables.js
+node scripts/verify-offline-runtime.js
+```
+
+Notes:
+
+- The 6 new perks (K43P01–K43P03, S53P01–S53P03) were already correctly stored from the June 18 catalog sync. `sync-descriptions` confirms all six are `same_as_legacy` (the API description matches the stored legacy description, so no `descriptionPost95` field is needed or added — this is the expected state for brand-new perks whose descriptions have not yet been revised by BHVR post-9.5).
+- No `releaseDate` or `chapter` fields were added to `content/database.json` — `timeline.json` is the canonical source for release history; `database.json` only tracks gameplay and lore data.
+
+---
+
+Date: 2026-06-18
+
+## 10.0.0 Jason / Catalog Sync
+
+Updated the app to the current DBD 10.0.0 data/changelog window using the local sync pipeline plus a new catalog importer for source records the old pipeline only counted but did not insert.
+
+- Added The Slasher, Shane Wiigwaas, 6 unique perks, The Slasher's power item, and 20 Slasher add-ons to the canonical database.
+- Downloaded local offline assets for new character portraits, perk icons, the Slasher power icon, and add-on icons.
+- Ran the full asset sync first, refreshing game icons and cosmetics; cosmetics now cover 110 character swaps and 4,159 full-set entries with 4,269 ready assets and 0 blocked assets.
+- Added `scripts/sync-catalog-updates.js` and wired it into `sync:all-updates` so future new API catalog records are imported before description validation.
+- Updated Worldle metadata for The Slasher and app metadata to 5.33.0 / game version 10.0.0.
+
+Validation passed:
+
+```text
+npm run sync:all-updates:full
+npm run sync:all-updates:fast
+node scripts/verify-offline-runtime.js
+```
+
+Sources checked:
+
+- Official BHVR 10.0.0 Jason Patch Notes.
+- Official BHVR PTB-to-live Slasher changes.
+- DBD public API and officially recognised DBD Wiki asset pages.
+
+---
+
 Date: 2026-04-30
 
 ## 9.6.0 Mid-Season Sync
