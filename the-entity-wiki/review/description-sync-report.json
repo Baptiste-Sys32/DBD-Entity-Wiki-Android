@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-18T03:07:07.256Z",
+  "generatedAt": "2026-08-01T17:37:47.903Z",
   "options": {
     "dryRun": false,
     "checkMode": false,
@@ -14,34 +14,54 @@
   "perks": {
     "total": 315,
     "counts": {
-      "different": 309,
-      "same_as_legacy": 6
+      "different": 310,
+      "same_as_legacy": 5
     },
     "changes": {
-      "added": 0,
-      "updated": 0,
+      "added": 1,
+      "updated": 1,
       "removed": 0,
-      "unchanged": 315,
-      "total": 0
+      "unchanged": 313,
+      "total": 2
     },
     "unresolvedCount": 0,
     "unresolved": [],
-    "sampleChanges": []
+    "sampleChanges": [
+      {
+        "name": "Bada Bada Boom",
+        "kind": "updatedPost95",
+        "matchType": "name"
+      },
+      {
+        "name": "Cross-Examination",
+        "kind": "addedPost95",
+        "matchType": "name"
+      }
+    ]
   },
   "addons": {
     "total": 926,
     "counts": {
-      "updated": 0,
-      "unchanged": 926,
+      "updated": 2,
+      "unchanged": 924,
       "unresolved": 0
     },
     "changes": {
-      "updated": 0,
-      "unchanged": 926,
-      "total": 0
+      "updated": 2,
+      "unchanged": 924,
+      "total": 2
     },
     "unresolvedCount": 0,
     "unresolved": [],
-    "sampleChanges": []
+    "sampleChanges": [
+      {
+        "name": "Coroner's Coffee",
+        "internalId": "Addon_K43_09"
+      },
+      {
+        "name": "Deputy's Badge",
+        "internalId": "Addon_K43_18"
+      }
+    ]
   }
 }
