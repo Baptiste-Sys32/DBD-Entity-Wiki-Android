@@ -1,26 +1,26 @@
 # Release Sync Summary
 
-Generated: 2026-08-01T17:47:03.557Z
-Run generatedAt: 2026-08-01T17:47:03.435Z
+Generated: 2026-09-06T00:31:17.143Z
+Run generatedAt: 2026-09-06T00:31:17.115Z
 Status: ok
 Mode: full
-Duration: 9m 26s
+Duration: 8m 55s
 
 ## File Delta Overview
 
 - Added: 0
-- Modified: 9
+- Modified: 10
 - Removed: 0
-- Total changed: 9
+- Total changed: 10
 
 ## Description Sync Overview
 
-- Perks total: 315
+- Perks total: 321
 - Perks unresolved: 0
-- Perk descriptionPost95 changes: added=1 updated=1 removed=0
-- Addons total: 926
+- Perk descriptionPost95 changes: added=1 updated=26 removed=6
+- Addons total: 946
 - Addons unresolved: 0
-- Addon description changes: updated=2 unchanged=924
+- Addon description changes: updated=7 unchanged=939
 
 ## Map Layout Sync Overview
 
@@ -32,18 +32,18 @@ Duration: 9m 26s
 
 ## Step Results
 
-- [OK] health-check-community-sources (0m 1s)
+- [OK] health-check-community-sources (0m 5s)
 - [OK] health-check-map-layout-sources (0m 0s)
-- [OK] health-check-description-sources (0m 2s)
+- [OK] health-check-description-sources (0m 1s)
 - [OK] sync-catalog-updates (0m 2s)
 - [OK] sync-community-content (0m 2s)
 - [OK] sync-map-layouts (0m 0s)
 - [OK] sync-descriptions (0m 1s)
-- [OK] sync-game-icons (0m 34s)
+- [OK] sync-game-icons (0m 37s)
 - [OK] sync-offering-fixes (0m 0s)
-- [OK] discover-cosmetics (7m 43s)
+- [OK] discover-cosmetics (7m 44s)
 - [OK] normalize-cosmetics (0m 0s)
-- [OK] sync-cosmetic-assets (0m 53s)
+- [OK] sync-cosmetic-assets (0m 14s)
 - [OK] build-data (0m 0s)
 - [OK] normalize-images-check (0m 0s)
 - [OK] build-data-check (0m 0s)
@@ -56,7 +56,7 @@ Duration: 9m 26s
 ### Added Files (0)
 - None
 
-### Modified Files (9)
+### Modified Files (10)
 - content/addon-description-report.json
 - content/community-content.json
 - content/database.json
@@ -66,6 +66,7 @@ Duration: 9m 26s
 - web/community-content.js
 - web/cosmetics.js
 - web/data.js
+- web/lore.js
 
 ### Removed Files (0)
 - None

@@ -1083,9 +1083,9 @@
       }
     };
     const META = {
-      appVersion: "5.33.0",
-      gameVersion: "10.0.0",
-      lastSynced: "June 18, 2026",
+      appVersion: "5.34.0",
+      gameVersion: "10.1.0",
+      lastSynced: "September 6, 2026",
       contact: {
         email: "hexplosions.happen@gmail.com",
         discord: "hexplosions_happen"
@@ -1100,6 +1100,15 @@
       ]
     };
     const CHANGELOG = [
+      {
+        version: "5.34.0",
+        date: "September 6, 2026",
+        changes: [
+          "UPDATE : Synced to Dead by Daylight 10.1.0 with Chapter 41: Chorus of Sin - The Judgment, Aurora Stardotter, six new perks, Will of the Gods power, twenty add-ons, portraits, perk icons, power icon, and latest cosmetics",
+          "UPDATE : Added the Chorus of Sin chapter to the Lore Timeline, including the first community-created chapter release",
+          "FIX : Restored catalog sync pipeline support and resolved the Magnetised Manacles add-on icon (British spelling on the wiki)"
+        ]
+      },
       {
         version: "5.33.0",
         date: "June 18, 2026",
@@ -3870,6 +3879,26 @@
           "Use Worldbreaker pressure to snowball when survivors hesitate in unsafe spaces",
           "Pair traversal and zoning so survivors are punished whether they hold position or panic-rotate"
         ]
+      },
+      the_slasher_950: {
+        powerName: "Omnipresent Evil",
+        mechanics: [
+          "Vanish into a Mist Cloud and reposition unseen across the map",
+          "Jump Scare from hiding spots to reveal survivors and gain early chase pressure",
+          "Plant Hook Spikes to punish predictable lanes, walls, and choke points",
+          "Use vanishing traversal to cut off rotations before survivors commit to tiles",
+          "Convert tile chaos into downs by mixing stealth pressure with basic-attack chases"
+        ]
+      },
+      the_judgment_950: {
+        powerName: "Will of the Gods",
+        mechanics: [
+          "Hold the Power button to control a column of Divine Light, then cast it forward to damage and inflict Heresy",
+          "The longer Divine Light is controlled, the shorter the cast delay and the longer the cast duration; near-misses reveal Killer Instinct",
+          "Heretics (survivors with Heresy) suffer special skill checks while repairing and can be sent to the Exile from the Dying State",
+          "Exiling a Heretic triggers Zealous for 60 seconds, increasing Divine Light's size, cast duration, and control window",
+          "Survivors repent at Shrines of Judgment to remove Heresy or rescue the Exiled, and taunting The Judgment inflicts Heresy"
+        ]
       }
     };
     const KILLER_GUIDES = {
@@ -4063,7 +4092,7 @@
         survivorTips: "The dog is a projectile threat plus a tracking tool. Watch for straight-line \"Chase\" angles and dodge off the path instead of trying to tank it at the last second. If the dog is searching, assume you can be found even without obvious info and reposition early. Do not take greedy vaults when the dog can grip you mid-commit.",
         killerTips: "Use the dog to start chases and to deny safe exits. Fire Chase down lanes that force a dodge, then punish the dodge with your own movement. Redirect to correct survivor jukes and to clip tight tiles. Mix search pressure with chase pressure so survivors never feel \"off the radar.\""
       },
-      "The Executioner (Tokyo Ghoul)": {
+      "The Ghoul": {
         powerName: "One-Eyed Terror",
         survivorTips: "He lunges with Kagune to vertical surfaces and can chain leaps. The second leap can become a grab-attack that injures, causes Deep Wound, and leaves a mark. Once he is enraged, expect more chaining and faster vault pressure. Your counter is forcing bad leap angles, using cluttered structures, and not giving him clean vertical targets.",
         killerTips: "Use Kagune Leap for burst positioning, then chain into a second leap when the survivor commits to a route. Aim your grab-attack when it will land cleanly, because it triggers marks and enables Enraged Mode pressure. While enraged, chain leaps to keep survivors locked in bad tiles and convert the mark pressure into downs. Do not waste leaps into wide-open air. Use surfaces and timing."
@@ -4087,6 +4116,11 @@
         powerName: "Omnipresent Evil",
         survivorTips: "When he vanishes, standing still is dangerous because Mist Clouds can reveal you, but obvious running paths leave Footprints. Break line of sight, vary your route, and be ready for Jump Scare pressure at pallets, windows, and breakable walls. If he picks up a Hook Spike, do not give him a straight lane into a wall or tight choke point.",
         killerTips: "Use Omnipresent Evil to reposition and read survivor movement before committing. Jump Scare is strongest when it converts a tile interaction into immediate pressure, so aim for pallets, windows, and walls survivors are already planning around. Hook Spikes punish predictable lanes and can snowball when survivors are forced toward walls, hooks, or clutter."
+      },
+      "The Judgment": {
+        powerName: "Will of the Gods",
+        survivorTips: "Do not taunt The Judgment: crouching or gesturing near it, or lingering at the exit threshold, inflicts Heresy, and Heretics who go down can be sent to the Exile instead of a hook. When hit by Divine Light you gain Heresy, so pre-heal and repent at an active Shrine of Judgment before committing to a generator - Heretic good skill checks regress the generator. If a teammate is Exiled, collect Exiled Souls with the Searcher's Pendant to extend their unhook protections, and pray at one of the two activated Shrines to rescue them early.",
+        killerTips: "Charge Divine Light as long as the lane allows - longer control means a shorter cast delay and a longer column. Cast down straight, long corridors and around jungle gyms where dodging is hard, and remember a near-miss reveals Killer Instinct. Exiling a Heretic in the dying state triggers Zealous for 60 seconds, empowering Divine Light, so plan downs near your power rather than tunneling hooks. Watch for survivors repenting at Shrines and threaten them with casts; Heretic pressure plus exit-gate blocking makes endgames very winnable."
       }
     };
     const KILLER_STATS = {
@@ -4132,7 +4166,8 @@
       "The Animatronic": { terrorRadius: "32m", speed: "4.6 m/s", height: "Tall" },
       "The Krasue": { terrorRadius: "32m", speed: "4.6 m/s", height: "Average" },
       "The First": { terrorRadius: "32m", speed: "4.6 m/s", height: "Average" },
-      "The Slasher": { terrorRadius: "32m", speed: "4.6 m/s", height: "Tall" }
+      "The Slasher": { terrorRadius: "32m", speed: "4.6 m/s", height: "Tall" },
+      "The Judgment": { terrorRadius: "32m", speed: "4.4 m/s", height: "Tall" }
     };
     const COSMETICS_FULL_SET_ASSET_PACK_NAME = 'cosmeticsfullsetpack';
     const isNativeAndroidPlatform = () => {

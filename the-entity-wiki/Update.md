@@ -1,5 +1,36 @@
 # Update
 
+Date: 2026-09-06
+
+## Full Sync — Chapter 41: Chorus of Sin (patch 10.1.0)
+
+Synced both data layers to the August 25, 2026 chapter (first community-created chapter, no new map).
+
+- `npm run sync:catalog-updates` pulled The Judgment (K44, `Item_K44Power`), Aurora Stardotter (S54), 6 perks, the Will of the Gods power item, and 20 add-ons; 28 wiki images downloaded.
+- Fixed the missing `Magnetized Manacles` add-on icon manually: the wiki hosts it under the British spelling `T_UI_iconAddon_MagnetisedManacles.png` (the add-on page is "Magnetised Manacles"). Saved locally as `iconaddon_magnetizedmanacles.png`.
+- Extended `scripts/normalize-images.js` `KILLER_POWER_ITEM_TO_KILLER` with `Item_K43Power: 'The Slasher'` and `Item_K44Power: 'The Judgment'` (the map previously ended at K42).
+- Ran `npm run sync:all-updates:full` end-to-end: descriptions (10.1.0 perk balance changes), community content, map layouts, game icons, offering fixes, full cosmetics re-sync (4,347 ready sets, 0 blocked), build-data, and every verifier green.
+- Added `chorus-of-sin` (chapter 41, Aug 25, 2026) to `content/timeline.json` with The Judgment and Aurora Stardotter fog entries.
+- Hand-maintained `web/index.html` updates: META (app 5.34.0 / game 10.1.0 / synced September 6, 2026), CHANGELOG entry, `KILLER_GUIDES` + `KILLER_STATS` + `POWER_MECHANICS` entries for The Judgment, and a `the_slasher_950` backfill for The Slasher. Updated `web/worldle-data.js` (aliases, gender, emoji clues).
+- Bumped `android/app/build.gradle` to versionCode 46 / versionName 5.34.0.
+- Legacy `api/` layer: extended `dbd_mega_scraper.py` `POWER_TO_KILLER` with K42/K43/K44 (K43+ use the new `Item_K43Power`-style convention) and added `T_UI_iconPerks` / `T_UI_iconsPerks` / `T_UI_iconAddon` / `T_UI_iconItems` wiki prefixes to the image pass (new- generation icons were invisible to the old `IconPerks`/`IconAddon`-only scan). Regenerated `api/dbd_data.json` (44 killers, 54 survivors, 321 perks, 946 add-ons) and refreshed `api/dbd_images`.
+- Mirrored everything to the site repo (`projet-perso-dbdsite-deploy`): content, bundles, images, `sync-catalog-updates.js` (was missing there entirely), the `sync-map-layouts.js` File polyfill, `package.json` script entry, META strings (was 9.6.0 / April 30), and site-side `KILLER_GUIDES`/`KILLER_STATS` additions for The Slasher + The Judgment.
+
+Verification passed (both repos):
+
+```text
+npm run check:data
+node scripts/verify-offline-runtime.js
+```
+
+Notes:
+
+- Tricky.lol counts differ slightly from the curated DB by design: 60 maps / 21 realms / 125 offerings in the API include upcoming/unreleased and alternate entries; the canonical DB keeps 57 maps / 20 realms / 123 offerings.
+- The legacy `api/dbd_data.json` layer keeps raw `{Tunable.*}` tokens and tricky.lol image URLs by its own convention (all 321 perks, old and new) — only the canonical pipeline resolves tokens.
+- No new map shipped with this chapter, so `MAP_LAYOUTS` and `scrape_map_layouts.py` were untouched.
+
+---
+
 Date: 2026-06-23
 
 ## Timeline Sync — Chapter 40 / The Life Road
