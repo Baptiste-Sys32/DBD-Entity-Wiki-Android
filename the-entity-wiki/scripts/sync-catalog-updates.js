@@ -6,6 +6,7 @@ const https = require('https');
 const crypto = require('crypto');
 const { spawnSync } = require('child_process');
 const { fetchJsonWithRetry, formatFetchError } = require('./network-resilience');
+const { writeJsonAtomic } = require('./atomic-write');
 
 const ROOT = path.resolve(__dirname, '..');
 const DATABASE_PATH = path.join(ROOT, 'content', 'database.json');
@@ -30,7 +31,7 @@ function readJson(filePath) {
 }
 
 function writeJson(filePath, value) {
-  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
+  writeJsonAtomic(filePath, value, { backup: true });
 }
 
 async function requestJson(url) {

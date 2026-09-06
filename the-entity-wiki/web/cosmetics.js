@@ -1,5 +1,5 @@
 var COSMETICS_CATALOG = {
-  "generatedAt": "2026-09-06T00:31:00.783Z",
+  "generatedAt": "2026-09-06T10:53:17.412Z",
   "metadata": {
     "sourceDiscoveryGeneratedAt": "2026-09-06T00:31:00.377Z",
     "characterSwapCount": 112,
@@ -1856,7 +1856,6 @@ var COSMETICS_CATALOG = {
       "pieceType": "Outfit",
       "sourceBucket": "Character swaps",
       "assetFileTitleCandidates": [
-        "File:Alien Theme Music.ogg",
         "File:CC107 charSelect portrait.png"
       ],
       "description": "Character swaps outfit for The Xenomorph"

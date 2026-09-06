@@ -1,24 +1,24 @@
 {
-  "generatedAt": "2026-09-06T00:31:17.115Z",
+  "generatedAt": "2026-09-06T10:54:03.834Z",
   "artifacts": {
     "reportPath": "review/sync-all-updates-report.json",
     "releaseSummaryPath": "review/release-summary.md"
   },
   "options": {
-    "includeAssets": true,
-    "mode": "full",
+    "includeAssets": false,
+    "mode": "fast",
     "rawArgs": [
-      "--include-assets"
+      "--skip-assets"
     ]
   },
-  "durationMs": 535156,
+  "durationMs": 11800,
   "status": "ok",
   "failedStep": null,
   "steps": [
     {
       "name": "health-check-community-sources",
       "command": "node scripts/sync-community-content.js --health-check",
-      "durationMs": 5634,
+      "durationMs": 545,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -26,7 +26,7 @@
     {
       "name": "health-check-map-layout-sources",
       "command": "node scripts/sync-map-layouts.js --health-check",
-      "durationMs": 680,
+      "durationMs": 505,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -34,7 +34,7 @@
     {
       "name": "health-check-description-sources",
       "command": "node scripts/sync-descriptions.js --health-check",
-      "durationMs": 1989,
+      "durationMs": 1881,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -42,7 +42,7 @@
     {
       "name": "sync-catalog-updates",
       "command": "node scripts/sync-catalog-updates.js",
-      "durationMs": 2019,
+      "durationMs": 2100,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -50,7 +50,7 @@
     {
       "name": "sync-community-content",
       "command": "node scripts/sync-community-content.js",
-      "durationMs": 2139,
+      "durationMs": 1530,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -58,7 +58,7 @@
     {
       "name": "sync-map-layouts",
       "command": "node scripts/sync-map-layouts.js --upgrade-legacy",
-      "durationMs": 711,
+      "durationMs": 514,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -66,47 +66,7 @@
     {
       "name": "sync-descriptions",
       "command": "node scripts/sync-descriptions.js",
-      "durationMs": 1935,
-      "exitCode": 0,
-      "signal": null,
-      "status": "ok"
-    },
-    {
-      "name": "sync-game-icons",
-      "command": "node scripts/sync-game-icons.js",
-      "durationMs": 37837,
-      "exitCode": 0,
-      "signal": null,
-      "status": "ok"
-    },
-    {
-      "name": "sync-offering-fixes",
-      "command": "node scripts/sync-offering-fixes.js",
-      "durationMs": 58,
-      "exitCode": 0,
-      "signal": null,
-      "status": "ok"
-    },
-    {
-      "name": "discover-cosmetics",
-      "command": "node scripts/discover-cosmetics.js",
-      "durationMs": 464917,
-      "exitCode": 0,
-      "signal": null,
-      "status": "ok"
-    },
-    {
-      "name": "normalize-cosmetics",
-      "command": "node scripts/normalize-cosmetics.js",
-      "durationMs": 367,
-      "exitCode": 0,
-      "signal": null,
-      "status": "ok"
-    },
-    {
-      "name": "sync-cosmetic-assets",
-      "command": "node scripts/sync-cosmetic-assets.js",
-      "durationMs": 14580,
+      "durationMs": 1857,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -114,7 +74,7 @@
     {
       "name": "build-data",
       "command": "node scripts/build-data.js",
-      "durationMs": 280,
+      "durationMs": 434,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -122,7 +82,7 @@
     {
       "name": "normalize-images-check",
       "command": "node scripts/normalize-images.js --check",
-      "durationMs": 113,
+      "durationMs": 149,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -130,7 +90,7 @@
     {
       "name": "build-data-check",
       "command": "node scripts/build-data.js --check",
-      "durationMs": 287,
+      "durationMs": 424,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -138,7 +98,7 @@
     {
       "name": "audit-cosmetics",
       "command": "node scripts/audit-cosmetics.js",
-      "durationMs": 164,
+      "durationMs": 263,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -146,7 +106,7 @@
     {
       "name": "verify-teachables",
       "command": "node scripts/verify-teachables.js",
-      "durationMs": 58,
+      "durationMs": 83,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -154,7 +114,7 @@
     {
       "name": "verify-perk-descriptions",
       "command": "node scripts/verify-perk-descriptions.js",
-      "durationMs": 53,
+      "durationMs": 71,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -162,7 +122,7 @@
     {
       "name": "verify-data-contracts",
       "command": "node scripts/verify-data-contracts.js",
-      "durationMs": 71,
+      "durationMs": 108,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -170,7 +130,7 @@
     {
       "name": "verify-offline-runtime",
       "command": "node scripts/verify-offline-runtime.js",
-      "durationMs": 309,
+      "durationMs": 434,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -182,142 +142,27 @@
     "modifiedFiles": [
       "content/addon-description-report.json",
       "content/community-content.json",
-      "content/database.json",
-      "content/perk-description-report.json",
       "review/description-sync-report.json",
       "review/map-layouts-audit.json",
-      "web/community-content.js",
-      "web/cosmetics.js",
-      "web/data.js",
-      "web/lore.js"
+      "web/community-content.js"
     ],
     "totals": {
       "added": 0,
       "removed": 0,
-      "modified": 10,
-      "all": 10
+      "modified": 5,
+      "all": 5
     }
   },
   "databaseDescriptionChanges": {
     "perkPost95": {
-      "added": 1,
-      "removed": 6,
-      "updated": 26,
-      "sample": [
-        {
-          "name": "Adrenaline",
-          "kind": "updated"
-        },
-        {
-          "name": "Balanced Landing",
-          "kind": "updated"
-        },
-        {
-          "name": "Coulrophobia",
-          "kind": "updated"
-        },
-        {
-          "name": "Deliverance",
-          "kind": "updated"
-        },
-        {
-          "name": "Franklin's Demise",
-          "kind": "updated"
-        },
-        {
-          "name": "Hex: Thrill of the Hunt",
-          "kind": "updated"
-        },
-        {
-          "name": "Hoarder",
-          "kind": "updated"
-        },
-        {
-          "name": "Starstruck",
-          "kind": "updated"
-        },
-        {
-          "name": "No Way Out",
-          "kind": "updated"
-        },
-        {
-          "name": "Grim Embrace",
-          "kind": "updated"
-        },
-        {
-          "name": "Call of Brine",
-          "kind": "updated"
-        },
-        {
-          "name": "Nowhere to Hide",
-          "kind": "updated"
-        },
-        {
-          "name": "Machine Learning",
-          "kind": "updated"
-        },
-        {
-          "name": "Friends ‘Til the End",
-          "kind": "updated"
-        },
-        {
-          "name": "Mad Grit",
-          "kind": "updated"
-        },
-        {
-          "name": "A Nurse's Calling",
-          "kind": "updated"
-        },
-        {
-          "name": "Repressed Alliance ",
-          "kind": "updated"
-        },
-        {
-          "name": "Moment of Glory",
-          "kind": "updated"
-        },
-        {
-          "name": "Clean Break",
-          "kind": "updated"
-        },
-        {
-          "name": "Apocalyptic Ingenuity",
-          "kind": "updated"
-        }
-      ]
+      "added": 0,
+      "removed": 0,
+      "updated": 0,
+      "sample": []
     },
     "addonDescriptions": {
-      "updated": 7,
-      "sample": [
-        {
-          "name": "Mischief List",
-          "internalId": "ADDON_Frenzy_MischiefList"
-        },
-        {
-          "name": "Sleeping Bag",
-          "internalId": "Addon_K43_05"
-        },
-        {
-          "name": "Toxic Waste",
-          "internalId": "Addon_K43_07"
-        },
-        {
-          "name": "Party Noisemaker",
-          "internalId": "Addon_K43_08"
-        },
-        {
-          "name": "Sauna Rock",
-          "internalId": "Addon_K43_10"
-        },
-        {
-          "name": "Mirror Shards",
-          "internalId": "Addon_K43_11"
-        },
-        {
-          "name": "Two Nails",
-          "internalId": "Addon_K43_13"
-        }
-      ]
+      "updated": 0,
+      "sample": []
     }
   },
   "descriptionSyncSummary": {
@@ -328,161 +173,31 @@
         "same_as_legacy": 10
       },
       "changes": {
-        "added": 1,
-        "updated": 26,
-        "removed": 6,
-        "unchanged": 288,
-        "total": 33
+        "added": 0,
+        "updated": 0,
+        "removed": 0,
+        "unchanged": 321,
+        "total": 0
       },
       "unresolvedCount": 0,
       "unresolved": [],
-      "sampleChanges": [
-        {
-          "name": "Adrenaline",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "Balanced Landing",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "Coulrophobia",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "Deliverance",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "Franklin's Demise",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "Hex: Thrill of the Hunt",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "Hoarder",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "Starstruck",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "No Way Out",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "Grim Embrace",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "Call of Brine",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "Nowhere to Hide",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "Machine Learning",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "Friends ‘Til the End",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "Mad Grit",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "A Nurse's Calling",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "Repressed Alliance ",
-          "kind": "updatedPost95",
-          "matchType": "image-token"
-        },
-        {
-          "name": "Moment of Glory",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "Clean Break",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        },
-        {
-          "name": "Apocalyptic Ingenuity",
-          "kind": "updatedPost95",
-          "matchType": "name"
-        }
-      ]
+      "sampleChanges": []
     },
     "addons": {
       "total": 946,
       "counts": {
-        "updated": 7,
-        "unchanged": 939,
+        "updated": 0,
+        "unchanged": 946,
         "unresolved": 0
       },
       "changes": {
-        "updated": 7,
-        "unchanged": 939,
-        "total": 7
+        "updated": 0,
+        "unchanged": 946,
+        "total": 0
       },
       "unresolvedCount": 0,
       "unresolved": [],
-      "sampleChanges": [
-        {
-          "name": "Mischief List",
-          "internalId": "ADDON_Frenzy_MischiefList"
-        },
-        {
-          "name": "Sleeping Bag",
-          "internalId": "Addon_K43_05"
-        },
-        {
-          "name": "Toxic Waste",
-          "internalId": "Addon_K43_07"
-        },
-        {
-          "name": "Party Noisemaker",
-          "internalId": "Addon_K43_08"
-        },
-        {
-          "name": "Sauna Rock",
-          "internalId": "Addon_K43_10"
-        },
-        {
-          "name": "Mirror Shards",
-          "internalId": "Addon_K43_11"
-        },
-        {
-          "name": "Two Nails",
-          "internalId": "Addon_K43_13"
-        }
-      ]
+      "sampleChanges": []
     }
   },
   "mapLayoutSummary": {

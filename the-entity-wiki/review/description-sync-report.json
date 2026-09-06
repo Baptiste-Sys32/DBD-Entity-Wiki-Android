@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T00:22:37.639Z",
+  "generatedAt": "2026-09-06T10:54:01.413Z",
   "options": {
     "dryRun": false,
     "checkMode": false,
@@ -18,160 +18,30 @@
       "same_as_legacy": 10
     },
     "changes": {
-      "added": 1,
-      "updated": 26,
-      "removed": 6,
-      "unchanged": 288,
-      "total": 33
+      "added": 0,
+      "updated": 0,
+      "removed": 0,
+      "unchanged": 321,
+      "total": 0
     },
     "unresolvedCount": 0,
     "unresolved": [],
-    "sampleChanges": [
-      {
-        "name": "Adrenaline",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "Balanced Landing",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "Coulrophobia",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "Deliverance",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "Franklin's Demise",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "Hex: Thrill of the Hunt",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "Hoarder",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "Starstruck",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "No Way Out",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "Grim Embrace",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "Call of Brine",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "Nowhere to Hide",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "Machine Learning",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "Friends ‘Til the End",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "Mad Grit",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "A Nurse's Calling",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "Repressed Alliance ",
-        "kind": "updatedPost95",
-        "matchType": "image-token"
-      },
-      {
-        "name": "Moment of Glory",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "Clean Break",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      },
-      {
-        "name": "Apocalyptic Ingenuity",
-        "kind": "updatedPost95",
-        "matchType": "name"
-      }
-    ]
+    "sampleChanges": []
   },
   "addons": {
     "total": 946,
     "counts": {
-      "updated": 7,
-      "unchanged": 939,
+      "updated": 0,
+      "unchanged": 946,
       "unresolved": 0
     },
     "changes": {
-      "updated": 7,
-      "unchanged": 939,
-      "total": 7
+      "updated": 0,
+      "unchanged": 946,
+      "total": 0
     },
     "unresolvedCount": 0,
     "unresolved": [],
-    "sampleChanges": [
-      {
-        "name": "Mischief List",
-        "internalId": "ADDON_Frenzy_MischiefList"
-      },
-      {
-        "name": "Sleeping Bag",
-        "internalId": "Addon_K43_05"
-      },
-      {
-        "name": "Toxic Waste",
-        "internalId": "Addon_K43_07"
-      },
-      {
-        "name": "Party Noisemaker",
-        "internalId": "Addon_K43_08"
-      },
-      {
-        "name": "Sauna Rock",
-        "internalId": "Addon_K43_10"
-      },
-      {
-        "name": "Mirror Shards",
-        "internalId": "Addon_K43_11"
-      },
-      {
-        "name": "Two Nails",
-        "internalId": "Addon_K43_13"
-      }
-    ]
+    "sampleChanges": []
   }
 }

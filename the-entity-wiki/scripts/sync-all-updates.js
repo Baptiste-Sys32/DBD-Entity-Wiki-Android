@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { writeJsonAtomic } = require('./atomic-write');
 const crypto = require('crypto');
 const { spawnSync } = require('child_process');
 
@@ -370,7 +371,7 @@ function main() {
   };
 
   fs.mkdirSync(path.dirname(REPORT_PATH), { recursive: true });
-  fs.writeFileSync(REPORT_PATH, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
+  writeJsonAtomic(REPORT_PATH, report, { backup: false });
 
   const releaseSummaryResult = spawnSync(
     'node',
