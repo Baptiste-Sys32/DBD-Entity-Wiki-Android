@@ -85,6 +85,10 @@ public class CosmeticsAssetPackPlugin extends Plugin {
         }
 
         File cachedFile = getCachedAssetFile(assetPath);
+        if (cachedFile == null) {
+            call.reject("A cosmetics asset path under dbd_images/cosmetics/full_sets/ is required.");
+            return;
+        }
         if (cachedFile.isFile() && cachedFile.length() > 0) {
             call.resolve(buildResolvedAssetPayload(assetPath, cachedFile, "cache"));
             return;
@@ -246,7 +250,19 @@ public class CosmeticsAssetPackPlugin extends Plugin {
     }
 
     private File getCachedAssetFile(String assetPath) {
-        return new File(getCacheRootDir(), assetPath);
+        File cachedFile = new File(getCacheRootDir(), assetPath);
+        try {
+            String rootPath = getCacheRootDir().getCanonicalPath();
+            String filePath = cachedFile.getCanonicalPath();
+            if (!filePath.equals(rootPath) && !filePath.startsWith(rootPath + File.separator)) {
+                Log.w(TAG, "Rejected asset path escaping the cache root: " + assetPath);
+                return null;
+            }
+        } catch (IOException error) {
+            Log.w(TAG, "Could not canonicalize asset path: " + assetPath, error);
+            return null;
+        }
+        return cachedFile;
     }
 
     private File getCacheRootDir() {

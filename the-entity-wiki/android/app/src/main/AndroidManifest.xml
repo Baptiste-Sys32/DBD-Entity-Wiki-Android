@@ -23,6 +23,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+            <!-- Deep links: com.theentity.wiki://?view=killers&profileId=... (handled by the App appUrlOpen listener in web/index.html) -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="com.theentity.wiki" />
+            </intent-filter>
+
         </activity>
 
         <provider

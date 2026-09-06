@@ -14374,6 +14374,41 @@
         });
       }, [launchContext, allCharactersById]);
       useEffect(() => {
+        let listenerHandle;
+        const setup = async () => {
+          if (window.Capacitor?.Plugins?.App?.addListener) {
+            listenerHandle = await window.Capacitor.Plugins.App.addListener('appUrlOpen', (event) => {
+              try {
+                const params = new URL(String(event?.url || '')).searchParams;
+                const view = params.get('view');
+                if (!view) return;
+                const context = {};
+                ['search', 'mode', 'tab', 'targetId', 'targetType'].forEach((key) => {
+                  const value = params.get(key);
+                  if (value) context[key] = value;
+                });
+                setView(view, context);
+                const deepProfileId = params.get('profileId') || '';
+                if (deepProfileId) {
+                  const target = allCharactersById.get(deepProfileId);
+                  if (target) {
+                    const deepCosmeticId = params.get('cosmeticId') || '';
+                    setProfileCharacter({
+                      ...target,
+                      ...(deepCosmeticId ? { cosmeticFocusId: deepCosmeticId } : {})
+                    });
+                  }
+                }
+                triggerHaptic('Light');
+              } catch (error) {
+              }
+            });
+          }
+        };
+        setup();
+        return () => { if (listenerHandle?.remove) listenerHandle.remove(); };
+      }, [allCharactersById]);
+      useEffect(() => {
         let cancelled = false;
         const timer = window.setTimeout(() => {
           if (!cancelled) window.__hideLaunchOverlay?.();

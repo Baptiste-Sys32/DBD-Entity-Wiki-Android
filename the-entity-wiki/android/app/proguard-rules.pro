@@ -1,3 +1,10 @@
+# Project rules for The Entity's Wiki (release builds use minifyEnabled + shrinkResources).
+# Keep the custom Capacitor plugin and its bridge annotations so R8 full-mode
+# upgrades cannot strip the JS bridge.
+-keep class com.theentity.wiki.CosmeticsAssetPackPlugin { *; }
+-keepattributes *Annotation*
+-keep class com.getcapacitor.** { *; }
+
 # Add project specific ProGuard rules here.
 # You can control the set of applied configuration files using the
 # proguardFiles setting in build.gradle.
