@@ -1,5 +1,5 @@
 var COMMUNITY_CONTENT = {
-  "generatedAt": "2026-09-06T00:22:34.974Z",
+  "generatedAt": "2026-09-06T06:46:46.556Z",
   "metadata": {
     "scraperVersion": 2,
     "attribution": "Data sourced from Otzdarva web properties. Keep attribution when redistributing.",
@@ -7,47 +7,47 @@ var COMMUNITY_CONTENT = {
       {
         "id": "home",
         "url": "https://otzdarva.com/",
-        "fetchedAt": "2026-09-06T00:22:34.974Z"
+        "fetchedAt": "2026-09-06T06:46:46.556Z"
       },
       {
         "id": "addonTierlist",
         "url": "https://otz-addon-tierlist.pages.dev/",
-        "fetchedAt": "2026-09-06T00:22:34.974Z"
+        "fetchedAt": "2026-09-06T06:46:46.556Z"
       },
       {
         "id": "buildsHome",
         "url": "https://otzdarva-builds.com/",
-        "fetchedAt": "2026-09-06T00:22:34.974Z"
+        "fetchedAt": "2026-09-06T06:46:46.556Z"
       },
       {
         "id": "buildsPanels",
         "url": "https://otzdarva-builds.com/assets/modules/XMLHttpRequest/returnCharacterPanels.php",
-        "fetchedAt": "2026-09-06T00:22:34.974Z"
+        "fetchedAt": "2026-09-06T06:46:46.556Z"
       },
       {
         "id": "buildsPerkDetails",
         "url": "https://otzdarva-builds.com/assets/modules/XMLHttpRequest/showPerkDetails.php",
-        "fetchedAt": "2026-09-06T00:22:34.974Z"
+        "fetchedAt": "2026-09-06T06:46:46.556Z"
       },
       {
         "id": "characterInfo",
         "url": "https://otzdarva.com/dbd/character-info",
-        "fetchedAt": "2026-09-06T00:22:34.974Z"
+        "fetchedAt": "2026-09-06T06:46:46.556Z"
       },
       {
         "id": "beginnerGuides",
         "url": "https://otzdarva.com/dbd/beginner-guides",
-        "fetchedAt": "2026-09-06T00:22:34.974Z"
+        "fetchedAt": "2026-09-06T06:46:46.556Z"
       },
       {
         "id": "tierlists",
         "url": "https://otzdarva.com/dbd/tierlists",
-        "fetchedAt": "2026-09-06T00:22:34.974Z"
+        "fetchedAt": "2026-09-06T06:46:46.556Z"
       },
       {
         "id": "killerGuides",
         "url": "https://otzdarva.com/dbd/killer-guides",
-        "fetchedAt": "2026-09-06T00:22:34.974Z"
+        "fetchedAt": "2026-09-06T06:46:46.556Z"
       }
     ],
     "stats": {
@@ -27563,7 +27563,7 @@ var COMMUNITY_CONTENT = {
         "id": "19e2c37e-823a-4bd7-89b5-e9c37fbf5eeb",
         "title": "All Tiles Explained Guide",
         "description": "All common tiles & map structures explained, useful for both sides.",
-        "imageUrl": "https://otzdarva.com/[object%20Object]",
+        "imageUrl": "",
         "url": "https://www.youtube.com/watch?v=E5QWNS14MS0",
         "sourceType": "video"
       },
@@ -27571,7 +27571,7 @@ var COMMUNITY_CONTENT = {
         "id": "3ed619f4-08b2-468c-84ec-3f35ed56f3d0",
         "title": "Survivor Beginner Guide",
         "description": "Survivor basics for every Killer & situation",
-        "imageUrl": "https://otzdarva.com/[object%20Object]",
+        "imageUrl": "",
         "url": "https://youtu.be/zbX0b8S9njQ",
         "sourceType": "video"
       },
@@ -27579,7 +27579,7 @@ var COMMUNITY_CONTENT = {
         "id": "c0752e71-2e41-4656-9625-bae7afd6a98a",
         "title": "Survivor Beginner Perks",
         "description": "Learn how to use the basic Survivor perks",
-        "imageUrl": "https://otzdarva.com/[object%20Object]",
+        "imageUrl": "",
         "url": "https://youtu.be/9dOJbQeN14w",
         "sourceType": "video"
       },
@@ -27587,7 +27587,7 @@ var COMMUNITY_CONTENT = {
         "id": "c2957d32-1413-4884-bfea-314d8a505ab8",
         "title": "Beginner Killer Guide",
         "description": "Learn the basics of playing Killer.",
-        "imageUrl": "https://otzdarva.com/[object%20Object]",
+        "imageUrl": "",
         "url": "https://www.youtube.com/watch?v=4RekOHmFzb4&t=1s",
         "sourceType": "video"
       },
@@ -27595,7 +27595,7 @@ var COMMUNITY_CONTENT = {
         "id": "c4b418f0-1fb0-47a8-ba46-10c2f7954c40",
         "title": "Intermediate Killer Guide",
         "description": "Guide with advice for intermediate or returning Killers.",
-        "imageUrl": "https://otzdarva.com/[object%20Object]",
+        "imageUrl": "",
         "url": "https://www.youtube.com/watch?v=dKQXO7yFbLA",
         "sourceType": "video"
       }
@@ -27646,7 +27646,7 @@ var COMMUNITY_CONTENT = {
         "dateIso": "2025-10-14T22:00:00.000Z",
         "category": "1",
         "categoryLabel": "Killer Focus",
-        "imageUrl": "https://otzdarva.com/[object%20Object]",
+        "imageUrl": "",
         "url": "https://youtu.be/22GLsHL1hGU",
         "sourceType": "video"
       },
@@ -27659,7 +27659,7 @@ var COMMUNITY_CONTENT = {
         "dateIso": "2024-01-18T23:00:00.000Z",
         "category": "3",
         "categoryLabel": "General",
-        "imageUrl": "https://otzdarva.com/[object%20Object]",
+        "imageUrl": "",
         "url": "https://sp-cdn.streamlabs.com/img/03b6b1234c40a1f6d76b01415ba68836/G2yyEjmIYTHhyZxukrbFg4VUkfsunBPHO0JSdpWf.jpg",
         "sourceType": "image"
       },
@@ -27672,7 +27672,7 @@ var COMMUNITY_CONTENT = {
         "dateIso": "2024-01-18T23:00:00.000Z",
         "category": "2",
         "categoryLabel": "Survivor Focus",
-        "imageUrl": "https://otzdarva.com/[object%20Object]",
+        "imageUrl": "",
         "url": "https://www.youtube.com/watch?v=NLd8oHiTfXc",
         "sourceType": "video"
       },
@@ -27685,7 +27685,7 @@ var COMMUNITY_CONTENT = {
         "dateIso": "2024-01-18T23:00:00.000Z",
         "category": "2",
         "categoryLabel": "Survivor Focus",
-        "imageUrl": "https://otzdarva.com/[object%20Object]",
+        "imageUrl": "",
         "url": "https://www.youtube.com/watch?v=NLd8oHiTfXc",
         "sourceType": "video"
       },
@@ -27698,7 +27698,7 @@ var COMMUNITY_CONTENT = {
         "dateIso": "2023-12-10T23:00:00.000Z",
         "category": "3",
         "categoryLabel": "General",
-        "imageUrl": "https://otzdarva.com/[object%20Object]",
+        "imageUrl": "",
         "url": "https://imgur.com/yZimdhM",
         "sourceType": "image"
       },
@@ -27711,7 +27711,7 @@ var COMMUNITY_CONTENT = {
         "dateIso": null,
         "category": "1",
         "categoryLabel": "Killer Focus",
-        "imageUrl": "https://otzdarva.com/[object%20Object]",
+        "imageUrl": "",
         "url": "https://otz-addon-tierlist.pages.dev/",
         "sourceType": "interactive"
       }
