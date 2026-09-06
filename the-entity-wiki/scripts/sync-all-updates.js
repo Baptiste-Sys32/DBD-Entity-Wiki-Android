@@ -60,7 +60,8 @@ function runStep(step) {
   const result = spawnSync(step.command, step.args, {
     cwd: ROOT,
     stdio: 'inherit',
-    shell: false
+    shell: false,
+    timeout: 30 * 60 * 1000
   });
 
   return {
@@ -385,7 +386,8 @@ function main() {
     {
       cwd: ROOT,
       stdio: 'inherit',
-      shell: false
+      shell: false,
+      timeout: 10 * 60 * 1000
     }
   );
 
