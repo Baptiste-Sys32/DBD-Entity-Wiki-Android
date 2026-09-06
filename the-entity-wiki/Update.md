@@ -2,6 +2,67 @@
 
 Date: 2026-09-06
 
+## Audit Fixes Pass (branch `audit-fixes-2026-09`, post-5.34.0)
+
+Implemented the approved "fix now" + "change" audit items on a feature branch.
+Every item verified in isolation (script dry-runs with output diffs, `check:data`,
+`verify:offline`, smoke 8/8) before commit; shared changes mirrored app → site.
+
+Pipeline (scripts):
+- **F1** `sync-catalog-updates.js` `hasCharacter`: exact numeric-ID compare instead of
+  substring `includes` (K1-vs-K11 class collisions). Verified 104/104 cases.
+- **F2** deleted dead `parseOpinions`/`parseFaq` in `sync-community-content.js`; fixed
+  `resolveUrl` to reject non-string hrefs (permanent fix for the recurring
+  `[object Object]` guide image URLs — no more manual cleanups).
+- **F3** retired the orphan `sync-perk-descriptions.py` manifest writer (npm script
+  removed, file marked deprecated; `sync-descriptions.js` is the single writer).
+- **F4** `api/dbd_mega_scraper.py`: fail-loud API fetch (no more silent `{}` writes),
+  atomic data write (tmp + `os.replace`), generic HTML tag strip aligned with the
+  Node cleaner. Verified in a sandbox copy first (zero leftover tags, stable counts).
+- **F5** `sync-game-icons.js`: Fandom → wiki.gg migration, per-icon fault isolation,
+  skip-if-exists, 15 s request timeouts. All 66 icons re-resolved (same dimensions,
+  ~27% smaller files).
+- **C1** new shared `scripts/atomic-write.js` (`writeFileAtomic` with fsync+rename and
+  mode preservation, `writeJsonAtomic` with rotating `.bak`); migrated all 11 writers.
+  Proven output-identical via hash-compare rebuilds. `.bak` files are gitignored.
+- **C2** deterministic stable IDs for future catalog entries (`character-K44` style,
+  matching the perk precedent). Existing IDs untouched. Zero-change sync confirms it.
+- **C3** timeouts on `requestBuffer` and orchestrator `spawnSync` (30 min / 10 min).
+- **C9** `verify-teachables`: ≠3 perks is now a loud warning; 0-perk/unknown-owner stay errors.
+- **C14** new `scripts/audit-achievements.js` (295 unique, holes 156–160, optional wiki check).
+- **C15** `sync-map-layouts --check` now fails on unresolved `MAP_LAYOUTS` keys.
+
+App runtime (`web/index.html`, mirrored to site where shared):
+- **F8** swipe navigation gated on closed overlays + scrollable/input targets; touch
+  start moved to a ref (fixes stale-state swipes).
+- **C4** global search driven by `useDeferredValue` (identical results, no keystroke jank).
+- **C5** cosmetics browser renders 120 at a time + "Show more" (group counts stay truthful).
+- **C6** worldle daily streak tracks `lastDailyDateKey` (resets on >1-day gaps; old
+  profiles adopt today and keep their streak).
+- **C7** `homeTiles` uses full-set merge (new tiles reach existing users).
+- **C8** ErrorBoundary gains Reload + Clear-Saved-Data-&-Reload; global error/rejection
+  logging; dedicated fallback when `DATABASE` is missing; `onerror` on data scripts.
+- **C13** backup restore rejects newer-than-app schema versions; build-code import
+  strips whitespace and caps at 64 KB.
+- **C15** `AssetFrame` error handler purity; debounced + subtree-scoped FAB observer;
+  `preventDefault` only when cancelable.
+
+Android native (app repo only):
+- **C10** ProGuard keeps for the asset-pack plugin + Capacitor annotations.
+- **C11** cache-path traversal guard (canonical-path containment check).
+- **C12** `com.theentity.wiki://` VIEW intent-filter + `appUrlOpen` listener that mirrors
+  boot launch-context handling (deep links to views/profiles/cosmetics).
+
+Deferred (not in this branch): edge-to-edge (F9 → Capacitor 7 migration); on-demand
+asset pack; Vite/service-worker/ESLint-CI modernization (see plan below).
+
+Verification triggered two test-harness fixes (committed): offline checker now allows
+canonical `<link>` tags; smoke load-event timeout 10 s → 60 s (loaded CI boxes exceed
+10 s on cold-profile Babel boots — measured 15.4 s at load average 15).
+
+Final gates on the branch: `check:data` + `verify:offline` + smoke 8/8 green in both
+repos; fresh signed release AAB builds successfully (`jar verified`).
+
 ## App Polish & Accessibility Pass (5.34.0, post-sync)
 
 Quality pass on `web/index.html` after the Chorus of Sin sync. Full smoke test (8/8 scenarios) and offline-runtime verification pass.
