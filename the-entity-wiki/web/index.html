@@ -421,7 +421,7 @@
       color: #475569 !important;
     }
 
-    .light-mode .text-zinc-600,
+    .light-mode .text-zinc-400,
     .light-mode .text-slate-600 {
       color: #6b7280 !important;
     }
@@ -586,6 +586,33 @@
       }
     }
 
+    /* View enter utilities (the Play CDN build lacks tailwindcss-animate) */
+    @keyframes viewSlideEnter {
+      from {
+        opacity: 0;
+        transform: translateY(1rem);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-in {
+      animation-duration: 0.4s;
+      animation-fill-mode: both;
+      animation-timing-function: ease-out;
+    }
+
+    .animate-in.fade-in {
+      animation-name: fadeIn;
+    }
+
+    .animate-in.slide-in-from-bottom-4 {
+      animation-name: viewSlideEnter;
+    }
+
     .bottom-sheet-backdrop {
       animation: fadeIn 0.2s ease-out;
     }
@@ -748,7 +775,7 @@
         'Do not stack on generators, optimum is 2 per generator.',
         'Doing gens? You?',
         'Try not to get gens done too quickly and end up in a 3 gen',
-        'You have a 1 in 14 chance of seeing this loading screen tip.',
+        'You have a 1 in 17 chance of seeing this loading screen tip.',
         'Healing is strongest way to relieve pressure, but it is not the only way.',
         'Nerf Trapper.',
         'DBD is so killer sided.',
@@ -761,7 +788,7 @@
       const overlay = document.getElementById('launch-overlay');
       const tipEl = document.getElementById('launch-overlay-tip');
       const startedAt = Date.now();
-      const LAUNCH_OVERLAY_MIN_MS = 2000;
+      const LAUNCH_OVERLAY_MIN_MS = 400;
       if (tipEl) {
         tipEl.textContent = LAUNCH_TIPS[Math.floor(Math.random() * LAUNCH_TIPS.length)];
       }
@@ -2161,9 +2188,80 @@
         localStorage.setItem(key, JSON.stringify(value));
       } catch (err) {
         console.warn('Failed to save local storage for', key, err);
+        try {
+          window.dispatchEvent(new CustomEvent('dbd-storage-save-error', { detail: { key } }));
+        } catch (eventErr) {
+        }
       }
     };
     const uuid = () => (crypto?.randomUUID ? crypto.randomUUID() : `id-${Date.now().toString(36)}-${Math.random().toString(16).slice(2)}`);
+    const showAppDialog = (message, { title = null, confirmLabel = 'OK', cancelLabel = null, danger = false } = {}) => {
+      return new Promise((resolve) => {
+        if (typeof document === 'undefined') {
+          resolve(!cancelLabel);
+          return;
+        }
+        const backdrop = document.createElement('div');
+        backdrop.className = 'fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/70';
+        const panel = document.createElement('div');
+        panel.setAttribute('role', 'alertdialog');
+        panel.setAttribute('aria-modal', 'true');
+        panel.setAttribute('aria-label', title || 'App message');
+        panel.className = 'w-full max-w-sm rounded-2xl bg-zinc-900 border border-white/10 shadow-2xl p-5 space-y-4';
+        if (title) {
+          const heading = document.createElement('h3');
+          heading.className = 'text-base font-bold text-white';
+          heading.textContent = title;
+          panel.appendChild(heading);
+        }
+        const body = document.createElement('p');
+        body.className = 'text-sm text-zinc-300 leading-relaxed whitespace-pre-line';
+        body.textContent = String(message || '');
+        panel.appendChild(body);
+        const row = document.createElement('div');
+        row.className = 'flex gap-3 justify-end';
+        const makeButton = (label, action, classes) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.textContent = label;
+          button.dataset.act = action;
+          button.className = classes;
+          row.appendChild(button);
+        };
+        if (cancelLabel) {
+          makeButton(cancelLabel, 'cancel', 'px-4 py-2 rounded-xl bg-white/5 text-zinc-200 border border-white/10 text-sm hover:bg-white/10 transition-colors');
+        }
+        makeButton(confirmLabel, 'confirm', `px-4 py-2 rounded-xl text-white text-sm font-semibold transition-colors ${danger ? 'bg-red-600/90 hover:bg-red-600' : 'bg-red-600/80 hover:bg-red-600'}`);
+        panel.appendChild(row);
+        backdrop.appendChild(panel);
+        const finish = (value) => {
+          backdrop.remove();
+          document.removeEventListener('keydown', onKey, true);
+          resolve(value);
+        };
+        const onKey = (event) => {
+          if (event.key === 'Escape') {
+            event.stopPropagation();
+            finish(!cancelLabel);
+          } else if (event.key === 'Enter') {
+            event.stopPropagation();
+            finish(true);
+          }
+        };
+        backdrop.addEventListener('click', (event) => {
+          const act = event.target?.dataset?.act;
+          if (act === 'confirm') finish(true);
+          else if (act === 'cancel') finish(false);
+          else if (event.target === backdrop && !cancelLabel) finish(true);
+        });
+        document.addEventListener('keydown', onKey, true);
+        document.body.appendChild(backdrop);
+        const confirmButton = row.querySelector('[data-act="confirm"]');
+        if (confirmButton) confirmButton.focus();
+      });
+    };
+    const appAlert = (message, options = {}) => showAppDialog(message, options);
+    const appConfirm = (message, options = {}) => showAppDialog(message, { ...options, cancelLabel: options.cancelLabel || 'Cancel' });
     const parseTags = (val = '') => val.split(',').map(t => t.trim()).filter(Boolean);
     const ensureOrderedSubset = (value, allowed, fallback = []) => {
       const source = Array.isArray(value) ? value : fallback;
@@ -3420,6 +3518,9 @@
       const accentColor = perk.type === 'Killer' ? '#ef4444' : '#38bdf8';
       return (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Perk details"
           className="fixed inset-0 z-50 flex items-end justify-center bottom-sheet-backdrop"
           style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}
           onClick={onClose}
@@ -3447,7 +3548,7 @@
                   type="Perk"
                   size="fill"
                   imageUrl={perk.image}
-                  fallbackIcon={<Icons.Zap width={24} height={24} className="text-zinc-600" />}
+                  fallbackIcon={<Icons.Zap width={24} height={24} className="text-zinc-400" />}
                 />
               </div>
               <div className="flex-1">
@@ -3530,7 +3631,7 @@
           placeholder={placeholder}
           className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-zinc-500"
         />
-        <p className="text-[10px] text-zinc-600 mt-1">Stored locally only. Not included when sharing builds.</p>
+        <p className="text-[10px] text-zinc-400 mt-1">Stored locally only. Not included when sharing builds.</p>
       </div>
     );
     const DEFAULT_IMAGES = {
@@ -4389,6 +4490,8 @@
             <img
               src={src}
               alt={type}
+              loading="lazy"
+              decoding="async"
               className={`w-full h-full ${objectFit} ${imgClass} ${loaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
               onError={handleError}
               onLoad={handleLoad}
@@ -4433,7 +4536,7 @@
                     onClick={() => setView(item.id)}
                     onDoubleClick={() => item.id === 'perks' && onPerksReset?.()}
                     aria-label={item.label}
-                    className={`nav-item ${isMobile ? 'shrink-0 flex items-center justify-center gap-2 rounded-xl px-3 py-2' : `flex-1 flex items-center justify-center gap-2 rounded-xl sm:rounded-full py-2.5 ${hasMany ? 'px-3' : ''}`} transition-all duration-200 ${isActive ? 'nav-item--active' : 'hover:text-white'}`}
+                    className={`nav-item ${isMobile ? 'shrink-0 flex items-center justify-center gap-2 rounded-xl px-3 py-2 min-h-[44px]' : `flex-1 flex items-center justify-center gap-2 rounded-xl sm:rounded-full py-2.5 ${hasMany ? 'px-3' : ''}`} transition-all duration-200 ${isActive ? 'nav-item--active' : 'hover:text-white'}`}
                     style={isActive ? { borderColor: theme.accent } : {}}
                   >
                     <IconComponent width={20} height={20} strokeWidth={isActive ? 2.3 : 2} />
@@ -4456,7 +4559,7 @@
               <div className="w-8 h-8 rounded-lg bg-sky-500/15 border border-sky-500/20 flex items-center justify-center"><Icons.Info width={16} height={16} className="text-sky-400" /></div>
               <h3 className="text-base font-bold text-white">Controls & Tips</h3>
             </div>
-            <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-white/10 transition-colors text-zinc-400 hover:text-white"><Icons.X width={18} height={18} /></button>
+            <button onClick={onClose} aria-label="Close" className="p-1.5 rounded-lg hover:bg-white/10 transition-colors text-zinc-400 hover:text-white"><Icons.X width={18} height={18} /></button>
           </div>
           <div className="px-5 py-4 max-h-[60vh] overflow-y-auto custom-scrollbar space-y-2.5">
             {tips.map((tip, i) => (
@@ -4742,7 +4845,7 @@
                 </div>
               )}
               {isPerk && onLongPress && (
-                <p className="text-zinc-600 text-[10px] mt-1">Long press to compare</p>
+                <p className="text-zinc-400 text-[10px] mt-1">Long press to compare</p>
               )}
             </div>
             <div className={isPerk ? 'perk-icon-hover' : ''}>
@@ -4879,7 +4982,7 @@
       }, [offerings, role]);
       const rollDice = () => {
         if (ownedCharacters.size === 0 && randomizeCharacter && !lockedCharacterId) {
-          alert(`Please select at least one ${role} you own!`);
+          appAlert(`Please select at least one ${role} you own!`);
           return;
         }
         setIsSpinning(true);
@@ -5046,7 +5149,7 @@
                 {result.addons.map((addon, i) => addon && (
                   <div key={i} className="p-3 rounded-xl bg-white/5 border border-white/5" style={{ boxShadow: getRarityGlow(addon.rarity, settings.rarityGlows !== false) }}>
                     <p className="text-white text-sm font-bold" style={{ color: getRarityColor(addon.rarity) }}>{addon.name}</p>
-                    <p className="text-zinc-600 text-[10px] mt-1 line-clamp-2">{addon.description}</p>
+                    <p className="text-zinc-400 text-[10px] mt-1 line-clamp-2">{addon.description}</p>
                   </div>
                 ))}
               </div>
@@ -5148,11 +5251,11 @@
                     )}
                   </div>
                   {!lockedChar ? (
-                    <p className="text-zinc-600 text-[10px] mb-2">Lock a specific {role.toLowerCase()} to always play. Perks still come from your owned pool below.</p>
+                    <p className="text-zinc-400 text-[10px] mb-2">Lock a specific {role.toLowerCase()} to always play. Perks still come from your owned pool below.</p>
                   ) : (
                     <div className="flex items-center gap-3 p-2 rounded-xl bg-white/5 border border-white/10">
                       <div className={`w-12 h-12 rounded-lg overflow-hidden border ${role === 'Killer' ? 'border-red-500/50' : 'border-blue-500/50'}`}>
-                        <AssetFrame type={role} imageUrl={lockedChar.image} size="fill" fallbackIcon={<Icons.User width={16} height={16} className="text-zinc-600" />} />
+                        <AssetFrame type={role} imageUrl={lockedChar.image} size="fill" fallbackIcon={<Icons.User width={16} height={16} className="text-zinc-400" />} />
                       </div>
                       <div className="flex-1">
                         <p className="text-white text-sm font-bold">{lockedChar.name}</p>
@@ -5172,7 +5275,7 @@
                           className="relative aspect-square rounded-lg border border-white/10 transition-all overflow-hidden bg-zinc-900 hover:border-white/30 hover:scale-105"
                           title={`Lock ${char.name}`}
                         >
-                          <AssetFrame type={role} imageUrl={char.image} size="fill" fallbackIcon={<Icons.User width={14} height={14} className="text-zinc-600" />} />
+                          <AssetFrame type={role} imageUrl={char.image} size="fill" fallbackIcon={<Icons.User width={14} height={14} className="text-zinc-400" />} />
                         </button>
                       ))}
                     </div>
@@ -5222,7 +5325,7 @@
                           type={role}
                           imageUrl={char.image}
                           size="fill"
-                          fallbackIcon={<Icons.User width={16} height={16} className="text-zinc-600" />}
+                          fallbackIcon={<Icons.User width={16} height={16} className="text-zinc-400" />}
                         />
                         {isOwned && (
                           <div className={`absolute top-0.5 right-0.5 w-2 h-2 rounded-full z-10 ${role === 'Killer' ? 'bg-red-500' : 'bg-blue-500'}`} />
@@ -5265,9 +5368,9 @@
                   };
                   const code = encodeBuild(chaosLoadout);
                   if (code) {
-                    navigator.clipboard.writeText(code).then(() => alert('Build share text copied!')).catch(() => alert('Could not copy automatically. Please copy it manually.'));
+                    navigator.clipboard.writeText(code).then(() => appAlert('Build share text copied!')).catch(() => appAlert('Could not copy automatically. Please copy it manually.'));
                   } else {
-                    alert('Could not prepare this build to share.');
+                    appAlert('Could not prepare this build to share.');
                   }
                 }}
                 className="w-full py-2 rounded-xl bg-white/5 border border-white/10 text-zinc-300 text-xs font-bold uppercase tracking-wider hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
@@ -5909,11 +6012,11 @@
               <div className="relative flex items-center bg-zinc-800/60 backdrop-blur-xl border border-white/10 rounded-3xl p-2 shadow-2xl">
                 <div className="pl-4 text-zinc-400"><Icons.Search width={18} height={18} /></div>
                 <input type="text" className="w-full bg-transparent text-white p-3 text-sm sm:text-base font-medium placeholder-zinc-600 focus:outline-none" placeholder="Search anything..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-                {searchTerm && <button onClick={() => setSearchTerm('')} className="p-2 mr-1 rounded-xl bg-white/5 text-zinc-300 hover:text-white hover:bg-white/10 transition-colors"><Icons.X width={18} height={18} /></button>}
+                {searchTerm && <button onClick={() => setSearchTerm('')} aria-label="Clear search" className="p-2 mr-1 rounded-xl bg-white/5 text-zinc-300 hover:text-white hover:bg-white/10 transition-colors"><Icons.X width={18} height={18} /></button>}
               </div>
               {/* Filter hint */}
               {!searchTerm && (
-                <p className="text-center text-[10px] text-zinc-600 mt-2">
+                <p className="text-center text-[10px] text-zinc-400 mt-2">
                   Smart search: describe what you're looking for, or use <span className="text-zinc-400">perks:</span> <span className="text-zinc-400">random:</span> filters
                 </p>
               )}
@@ -6049,9 +6152,9 @@
 
                 {!randomResult.type && (
                   <div className="p-5 rounded-3xl bg-zinc-900/60 border border-white/10 text-center">
-                    <Icons.AlertCircle width={32} height={32} className="text-zinc-600 mx-auto mb-2" />
+                    <Icons.AlertCircle width={32} height={32} className="text-zinc-400 mx-auto mb-2" />
                     <p className="text-zinc-400 text-sm">No match found for "<span className="text-white">{searchTerm.slice(7)}</span>"</p>
-                    <p className="text-zinc-600 text-xs mt-1">Try a killer name (trapper, huntress) or item type (medkit, toolbox)</p>
+                    <p className="text-zinc-400 text-xs mt-1">Try a killer name (trapper, huntress) or item type (medkit, toolbox)</p>
                   </div>
                 )}
               </div>
@@ -6063,7 +6166,7 @@
                 <div className="flex items-center justify-between mb-6 px-2">
                   <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">
                     {results.length} Matches
-                    {searchTerm.includes(':') && <span className="ml-2 text-zinc-600">• {searchTerm.split(':')[0]} filter</span>}
+                    {searchTerm.includes(':') && <span className="ml-2 text-zinc-400">• {searchTerm.split(':')[0]} filter</span>}
                   </span>
                   {results.length > 0 && results[0]._score >= 20 && searchTerm.split(/\s+/).length >= 2 && (
                     <span className="text-[10px] font-bold uppercase tracking-wider text-sky-400 bg-sky-500/10 border border-sky-500/20 px-2 py-1 rounded-lg">Best Match ↓</span>
@@ -6238,7 +6341,7 @@
                     );
                   }
                   return null;
-                }) : <div className="text-center mt-12 text-zinc-600"><p className="font-medium text-sm">No results found.</p></div>}
+                }) : <div className="text-center mt-12 text-zinc-400"><p className="font-medium text-sm">No results found.</p></div>}
               </div>
             ) : (
               <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 grid-flow-dense auto-rows-fr gap-4">
@@ -6749,7 +6852,7 @@
       };
       const handleSave = () => {
         if (!form.name.trim()) {
-          alert('Give the build a name.');
+          appAlert('Give the build a name.');
           return;
         }
         const now = new Date().toISOString();
@@ -6833,7 +6936,7 @@
             {form.characterName ? (
               <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10">
                 <div className={`w-1 h-12 rounded-full ${form.role === 'Killer' ? 'bg-red-500' : 'bg-blue-500'}`} />
-                <AssetFrame type={form.role} imageUrl={characters.find(c => c.id === form.characterId)?.image} fallbackIcon={<Icons.User width={20} height={20} className="text-zinc-600" />} />
+                <AssetFrame type={form.role} imageUrl={characters.find(c => c.id === form.characterId)?.image} fallbackIcon={<Icons.User width={20} height={20} className="text-zinc-400" />} />
                 <div className="flex-1">
                   <p className="text-white font-bold">{form.characterName}</p>
                   <p className="text-zinc-500 text-xs">Selected {form.role.toLowerCase()}</p>
@@ -6843,7 +6946,7 @@
                 </button>
               </div>
             ) : (
-              <p className="text-zinc-600 text-sm">No character selected (generic build)</p>
+              <p className="text-zinc-400 text-sm">No character selected (generic build)</p>
             )}
             {showCharacterGrid && (
               <div className="mt-3 grid grid-cols-5 sm:grid-cols-8 gap-2 max-h-40 overflow-y-auto custom-scrollbar p-2 rounded-xl bg-zinc-900/50">
@@ -6855,7 +6958,7 @@
                     title={char.name}
                   >
                     <div className="w-full h-full bg-zinc-900">
-                      <AssetFrame type={form.role} imageUrl={char.image} size="fill" fallbackIcon={<Icons.User width={12} height={12} className="text-zinc-600" />} />
+                      <AssetFrame type={form.role} imageUrl={char.image} size="fill" fallbackIcon={<Icons.User width={12} height={12} className="text-zinc-400" />} />
                     </div>
                   </button>
                 ))}
@@ -6873,13 +6976,13 @@
                   placeholder="Search..."
                   className="w-32 bg-zinc-900/60 border border-white/10 rounded-lg px-2 py-1 text-xs text-white placeholder-zinc-600 focus:outline-none"
                 />
-                <span className="text-[10px] text-zinc-600">{perkPool.length} available</span>
+                <span className="text-[10px] text-zinc-400">{perkPool.length} available</span>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-3">
               {form.perks.map((perk, idx) => (
                 <div key={idx} className="p-3 rounded-xl bg-zinc-900/50 border border-white/5">
-                  <p className="text-[10px] uppercase tracking-wider text-zinc-600 font-bold mb-2">Perk {idx + 1}</p>
+                  <p className="text-[10px] uppercase tracking-wider text-zinc-400 font-bold mb-2">Perk {idx + 1}</p>
                   <select
                     value={perk?.id || ''}
                     onChange={e => updatePerk(idx, e.target.value)}
@@ -6934,14 +7037,14 @@
               />
             </div>
             {(form.role === 'Killer' && !form.characterName) || (form.role === 'Survivor' && !form.selectedItem) ? (
-              <p className="text-zinc-600 text-xs">
+              <p className="text-zinc-400 text-xs">
                 {form.role === 'Killer' ? 'Select a killer to choose power addons' : 'Select an item to choose addons'}
               </p>
             ) : (
               <div className="grid grid-cols-2 gap-3">
                 {[0, 1].map(slot => (
                   <div key={slot} className="p-3 rounded-xl bg-zinc-900/50 border border-white/5">
-                    <p className="text-[10px] uppercase tracking-wider text-zinc-600 font-bold mb-2">Addon {slot + 1}</p>
+                    <p className="text-[10px] uppercase tracking-wider text-zinc-400 font-bold mb-2">Addon {slot + 1}</p>
                     <select
                       value={form.selectedAddons[slot]?.id || ''}
                       onChange={e => updateAddon(slot, e.target.value)}
@@ -7089,8 +7192,8 @@
         const clone = { ...build, id: uuid(), name: `${build.name} (Copy)`, favorite: false, createdAt: now, updatedAt: now };
         setBuilds(prev => [clone, ...prev]);
       };
-      const deleteBuild = (id) => {
-        if (!confirm('Delete this build?')) return;
+      const deleteBuild = async (id) => {
+        if (!(await appConfirm('Delete this build?', { title: 'Delete build', confirmLabel: 'Delete', danger: true }))) return;
         setBuilds(prev => prev.filter(b => b.id !== id));
       };
       const toggleFavorite = (id) => {
@@ -7207,7 +7310,7 @@
                     <div className="flex gap-2">
                       <button onClick={() => { setEditing(build); setShowForm(true); }} className="text-xs px-3 py-1 rounded-xl bg-white/5 text-white border border-white/10">Edit</button>
                       <button onClick={() => duplicateBuild(build)} className="text-xs px-3 py-1 rounded-xl bg-white/5 text-zinc-200 border border-white/10">Duplicate</button>
-                      <button onClick={() => { const code = encodeBuild(build); if (code) { navigator.clipboard.writeText(code).then(() => alert('Build share text copied!')).catch(() => alert('Could not copy automatically. Please copy it manually.')); } else { alert('Could not prepare this build to share.'); } }} className="text-xs px-3 py-1 rounded-xl bg-white/5 text-blue-200 border border-blue-500/30">Share</button>
+                      <button onClick={() => { const code = encodeBuild(build); if (code) { navigator.clipboard.writeText(code).then(() => appAlert('Build share text copied!')).catch(() => appAlert('Could not copy automatically. Please copy it manually.')); } else { appAlert('Could not prepare this build to share.'); } }} className="text-xs px-3 py-1 rounded-xl bg-white/5 text-blue-200 border border-blue-500/30">Share</button>
                       <button onClick={() => toggleFavorite(build.id)} className="text-xs px-3 py-1 rounded-xl bg-white/5 text-yellow-200 border border-yellow-500/30">{build.favorite ? 'Unfavorite' : 'Favorite'}</button>
                       <button onClick={() => deleteBuild(build.id)} className="text-xs px-3 py-1 rounded-xl bg-red-900/50 text-red-200 border border-red-600/40">Delete</button>
                     </div>
@@ -8146,8 +8249,8 @@
         });
         setPrefs && setPrefs({ lastRole: match.role, lastCharacterId: match.characterId, lastBuildId: match.buildId || null });
       };
-      const deleteMatch = (id) => {
-        if (!confirm('Delete this match?')) return;
+      const deleteMatch = async (id) => {
+        if (!(await appConfirm('Delete this match?', { title: 'Delete match', confirmLabel: 'Delete', danger: true }))) return;
         setMatches(prev => prev.filter(match => match.id !== id));
       };
       return (
@@ -8282,7 +8385,7 @@
                       <option value={4}>4 kills</option>
                     </select>
                   </div>
-                  <p className="text-[9px] text-zinc-600 mt-1">Survivor: Escaped = Win</p>
+                  <p className="text-[9px] text-zinc-400 mt-1">Survivor: Escaped = Win</p>
                 </div>
               </div>
               <button
@@ -8466,7 +8569,7 @@
         <div className="p-4 rounded-3xl bg-zinc-900/50 border border-white/10">
           <div className="flex items-baseline justify-between gap-3 mb-2">
             <p className="text-xs uppercase font-bold text-zinc-500">{title}</p>
-            {subtitle && <span className="text-[10px] text-zinc-600 uppercase tracking-wider">{subtitle}</span>}
+            {subtitle && <span className="text-[10px] text-zinc-400 uppercase tracking-wider">{subtitle}</span>}
           </div>
           {rows.length === 0 && <p className="text-zinc-500 text-sm">{empty}</p>}
           <div className="space-y-2 max-h-72 overflow-y-auto custom-scrollbar">
@@ -8480,7 +8583,7 @@
                   <div className="h-full rounded-full transition-all" style={{ width: `${row.rate}%`, background: row.rate >= 50 ? '#22c55e' : '#ef4444' }} />
                 </div>
                 <p className="text-[10px] text-zinc-500">{row.total} matches · Avg self score {row.avgPerf}</p>
-                {(row.owner || row.type) && <p className="text-[10px] text-zinc-600 mt-1">{[row.type, row.owner].filter(Boolean).join(' · ')}</p>}
+                {(row.owner || row.type) && <p className="text-[10px] text-zinc-400 mt-1">{[row.type, row.owner].filter(Boolean).join(' · ')}</p>}
               </div>
             ))}
           </div>
@@ -8998,7 +9101,7 @@
                     <div className="grid grid-cols-1 md:grid-cols-[170px,1fr] gap-4 items-start">
                       <div className="p-4 rounded-2xl bg-black/20 border border-white/10">
                         <div className="w-24 h-32 mx-auto rounded-2xl overflow-hidden border border-white/10 bg-zinc-900/70">
-                          <AssetFrame type="Killer" size="fill" imageUrl={target.image} fallbackIcon={<Icons.Sword width={40} height={40} className="text-zinc-600" />} />
+                          <AssetFrame type="Killer" size="fill" imageUrl={target.image} fallbackIcon={<Icons.Sword width={40} height={40} className="text-zinc-400" />} />
                         </div>
                         <p className="text-base font-bold text-white mt-3 text-center">{target.name}</p>
                         <p className="text-xs text-zinc-500 mt-1 text-center">Guess all three teachable perks. Duplicate attempts do not count.</p>
@@ -9011,9 +9114,9 @@
                               <div key={perk.id} className={`p-4 rounded-2xl border ${solved ? 'bg-emerald-500/10 border-emerald-400/20' : 'bg-white/5 border-white/10'}`}>
                                 <div className="w-16 h-16 rounded-xl overflow-hidden bg-black/30 border border-white/10 mb-3">
                                   {solved ? (
-                                    <AssetFrame type="Perk" size="fill" imageUrl={perk.image} fallbackIcon={<Icons.BookOpen width={24} height={24} className="text-zinc-600" />} />
+                                    <AssetFrame type="Perk" size="fill" imageUrl={perk.image} fallbackIcon={<Icons.BookOpen width={24} height={24} className="text-zinc-400" />} />
                                   ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-zinc-600 text-2xl font-black">?</div>
+                                    <div className="w-full h-full flex items-center justify-center text-zinc-400 text-2xl font-black">?</div>
                                   )}
                                 </div>
                                 <p className="text-sm font-semibold text-white">{solved ? perk.name : 'Unknown teachable'}</p>
@@ -9104,7 +9207,7 @@
                 <div className="p-4 rounded-3xl bg-zinc-900/60 border border-white/10">
                   <div className="flex items-center justify-between gap-3 mb-3">
                     <p className="text-[11px] uppercase tracking-[0.22em] text-zinc-500 font-bold">Guess History</p>
-                    <span className="text-[10px] uppercase tracking-wider text-zinc-600">{guessCount} attempts</span>
+                    <span className="text-[10px] uppercase tracking-wider text-zinc-400">{guessCount} attempts</span>
                   </div>
                   {mode === 'classic' ? (
                     <div className="space-y-3">
@@ -9165,7 +9268,7 @@
                 <div className="p-4 rounded-3xl bg-zinc-900/60 border border-white/10">
                   <div className="flex items-center justify-between gap-3 mb-3">
                     <p className="text-[11px] uppercase tracking-[0.22em] text-zinc-500 font-bold">Histogram</p>
-                    <span className="text-[10px] uppercase tracking-wider text-zinc-600">Solved runs only</span>
+                    <span className="text-[10px] uppercase tracking-wider text-zinc-400">Solved runs only</span>
                   </div>
                   <div className="space-y-2">
                     {Object.entries(statsBucket.histogram || {}).map(([bucket, value]) => (
@@ -9182,7 +9285,7 @@
                 <div className="p-4 rounded-[24px] bg-zinc-900/60 border border-white/10">
                   <div className="flex items-center justify-between gap-3 mb-3">
                     <p className="text-[11px] uppercase tracking-[0.22em] text-zinc-500 font-bold">Recent Results</p>
-                    <span className="text-[10px] uppercase tracking-wider text-zinc-600">Last 30</span>
+                    <span className="text-[10px] uppercase tracking-wider text-zinc-400">Last 30</span>
                   </div>
                   <div className="space-y-2 max-h-80 overflow-y-auto custom-scrollbar">
                     {historyRows.map((row, index) => (
@@ -9356,7 +9459,7 @@
             <div>
               <div className="flex items-center justify-between gap-3 mb-2">
                 <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold">Tab Order</p>
-                <span className="text-[10px] text-zinc-600 uppercase tracking-wider">Saved locally</span>
+                <span className="text-[10px] text-zinc-400 uppercase tracking-wider">Saved locally</span>
               </div>
               <div className="space-y-1">
                 {orderedTabs.map((tabId, index) => (
@@ -9498,7 +9601,7 @@
               <div className="p-4 rounded-3xl bg-zinc-900/60 border border-white/10">
                 <div className="flex items-center justify-between gap-3 mb-2">
                   <p className="text-xs uppercase font-bold text-zinc-500">Prestige Unlock Coverage</p>
-                  <span className="text-[10px] uppercase tracking-wider text-zinc-600">{prestigeUnlockedCharacters}/{ownedCharacters.length || 0} owned chars at P1+</span>
+                  <span className="text-[10px] uppercase tracking-wider text-zinc-400">{prestigeUnlockedCharacters}/{ownedCharacters.length || 0} owned chars at P1+</span>
                 </div>
                 {teachableCoverage.length === 0 && <p className="text-zinc-500 text-sm">Mark a character as owned to start tracking roster unlocks.</p>}
                 {teachableCoverage.map(row => (
@@ -10752,7 +10855,7 @@
                                     <div className="flex items-center gap-1 flex-shrink-0">
                                       {onToggleFavoriteAddon && (
                                         <button onClick={(e) => { e.stopPropagation(); onToggleFavoriteAddon(addon.id); }} className={`p-1 rounded-full transition-colors ${favoriteAddons.includes(addon.id) ? 'bg-yellow-500/20' : 'bg-white/5 hover:bg-white/10'}`}>
-                                          <Icons.Star width={12} height={12} className={favoriteAddons.includes(addon.id) ? 'text-yellow-400 fill-yellow-400' : 'text-zinc-600'} />
+                                          <Icons.Star width={12} height={12} className={favoriteAddons.includes(addon.id) ? 'text-yellow-400 fill-yellow-400' : 'text-zinc-400'} />
                                         </button>
                                       )}
                                       <span className="text-[10px] font-bold ml-1" style={{ color: getRarityColor(addon.rarity) }}>{formatRarity(addon.rarity)}</span>
@@ -10767,7 +10870,7 @@
                       )}
                       {isExpanded && itemAddons.length === 0 && (
                         <div className="mt-3 pt-3 border-t border-white/10">
-                          <p className="text-zinc-600 text-xs">No addons for this item type.</p>
+                          <p className="text-zinc-400 text-xs">No addons for this item type.</p>
                         </div>
                       )}
                     </div>
@@ -10831,7 +10934,7 @@
                                     <div className="flex items-center gap-1 flex-shrink-0">
                                       {onToggleFavoriteAddon && (
                                         <button onClick={(e) => { e.stopPropagation(); onToggleFavoriteAddon(addon.id); }} className={`p-1 rounded-full transition-colors ${favoriteAddons.includes(addon.id) ? 'bg-yellow-500/20' : 'bg-white/5 hover:bg-white/10'}`}>
-                                          <Icons.Star width={12} height={12} className={favoriteAddons.includes(addon.id) ? 'text-yellow-400 fill-yellow-400' : 'text-zinc-600'} />
+                                          <Icons.Star width={12} height={12} className={favoriteAddons.includes(addon.id) ? 'text-yellow-400 fill-yellow-400' : 'text-zinc-400'} />
                                         </button>
                                       )}
                                       <span className="text-[10px] font-bold ml-1" style={{ color: getRarityColor(addon.rarity) }}>{formatRarity(addon.rarity)}</span>
@@ -10846,7 +10949,7 @@
                       )}
                       {isExpanded && powerAddons.length === 0 && (
                         <div className="mt-3 pt-3 border-t border-white/10">
-                          <p className="text-zinc-600 text-xs">No addons found for this killer's power.</p>
+                          <p className="text-zinc-400 text-xs">No addons found for this killer's power.</p>
                         </div>
                       )}
                     </div>
@@ -11336,7 +11439,7 @@
               <div className="text-center py-12">
                 <Icons.Image width={36} height={36} className="mx-auto text-zinc-700 mb-3" />
                 <p className="text-zinc-500 text-sm">No cosmetics match the current filters.</p>
-                <p className="text-zinc-600 text-xs mt-2">Try selecting all characters or clearing the search query.</p>
+                <p className="text-zinc-400 text-xs mt-2">Try selecting all characters or clearing the search query.</p>
               </div>
             )}
           </div>
@@ -11678,14 +11781,14 @@
                           <div className="mt-2 flex flex-wrap items-center gap-2">
                             {(combo.addons || []).map((comboAddon, addonIndex) => (
                               <div key={`${combo.label || 'combo'}-${comboAddon.rank}-${addonIndex}`} className="flex items-center gap-2">
-                                {addonIndex > 0 && <span className="text-zinc-600 text-xs font-bold">+</span>}
+                                {addonIndex > 0 && <span className="text-zinc-400 text-xs font-bold">+</span>}
                                 <div className="flex items-center gap-2 px-2 py-1 rounded-lg bg-black/20 border border-white/10">
                                   <div className="w-8 h-8 rounded-md bg-zinc-950/70 border border-white/10 overflow-hidden shrink-0">
                                     <AssetFrame
                                       type="Addon"
                                       size="fill"
                                       imageUrl={comboAddon?.localMatch?.localImage || ''}
-                                      fallbackIcon={<Icons.Package width={12} height={12} className="text-zinc-600" />}
+                                      fallbackIcon={<Icons.Package width={12} height={12} className="text-zinc-400" />}
                                     />
                                   </div>
                                   <span className="text-[11px] text-zinc-200">{comboAddon.name}</span>
@@ -11709,7 +11812,7 @@
                               type="Addon"
                               size="fill"
                               imageUrl={addon?.localMatch?.localImage || ''}
-                              fallbackIcon={<Icons.Package width={14} height={14} className="text-zinc-600" />}
+                              fallbackIcon={<Icons.Package width={14} height={14} className="text-zinc-400" />}
                             />
                           </div>
                           <div className="flex-1 min-w-0">
@@ -12002,7 +12105,7 @@
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-3 px-1">
               <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: accentColor }}>{title}</span>
-              <span className="text-[10px] text-zinc-600 font-bold">{sectionItems.length}</span>
+              <span className="text-[10px] text-zinc-400 font-bold">{sectionItems.length}</span>
             </div>
             <div className="space-y-2">
               {sectionItems.map(item => renderItem(item, category))}
@@ -12201,7 +12304,7 @@
                       <ul className="space-y-1">
                         {entry.changes.map((change, i) => (
                           <li key={i} className="text-sm text-zinc-400 flex items-start gap-2">
-                            <span className="text-zinc-600 mt-1">•</span>
+                            <span className="text-zinc-400 mt-1">•</span>
                             <span>{change}</span>
                           </li>
                         ))}
@@ -12526,15 +12629,15 @@
                       ))}
                     </div>
                     <button
-                      onClick={() => {
+                      onClick={async () => {
                         if (!restorePreview) return;
-                        const confirmed = window.confirm('Restore this backup and replace your current local data? This cannot be undone unless you export your current state first.');
+                        const confirmed = await appConfirm('Restore this backup and replace your current local data? This cannot be undone unless you export your current state first.', { title: 'Restore backup', confirmLabel: 'Restore', danger: true });
                         if (!confirmed) return;
                         onRestoreBackup(restorePreview);
                         setBackupDraft('');
                         setBackupPreview(null);
                         setBackupError('');
-                        alert('Backup restored.');
+                        appAlert('Backup restored.');
                       }}
                       className="w-full py-3 rounded-2xl bg-white/5 border border-white/10 text-white font-semibold hover:bg-white/10 transition-colors"
                     >
@@ -12658,7 +12761,7 @@
                       onBlur={e => setCurrentPrestige(Math.min(100, Math.max(0, parseInt(e.target.value) || 0)))}
                       className="w-full text-center text-4xl font-bold bg-black/40 border-2 border-red-900/50 rounded-2xl py-4 text-white focus:outline-none focus:border-red-500 transition-colors"
                     />
-                    <label className="block text-[10px] uppercase tracking-widest text-zinc-600 mt-3 mb-1">Level</label>
+                    <label className="block text-[10px] uppercase tracking-widest text-zinc-400 mt-3 mb-1">Level</label>
                     <input
                       type="number"
                       min="1"
@@ -13052,7 +13155,7 @@
                 </div>
               )}
               {/* Legend */}
-              <div className="max-w-3xl mx-auto mt-6 flex items-center justify-center gap-4 text-[10px] text-zinc-600 font-bold uppercase tracking-wider">
+              <div className="max-w-3xl mx-auto mt-6 flex items-center justify-center gap-4 text-[10px] text-zinc-400 font-bold uppercase tracking-wider">
                 <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-green-500 inline-block" /> Buff</span>
                 <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-red-500 inline-block" /> Debuff</span>
                 <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: `${accentColor}60` }} /> Neutral</span>
@@ -13134,7 +13237,7 @@
                 <div className="text-center py-16">
                   <Icons.Search width={48} height={48} className="mx-auto text-zinc-700 mb-4" />
                   <p className="text-zinc-500 text-lg">No icons found</p>
-                  <p className="text-zinc-600 text-sm mt-1">Try adjusting your search or filter</p>
+                  <p className="text-zinc-400 text-sm mt-1">Try adjusting your search or filter</p>
                 </div>
               )}
             </div>
@@ -13186,7 +13289,7 @@
       const isKiller = character.type === 'Killer' || character.power;
       const accentColor = isKiller ? '#ef4444' : '#38bdf8';
       return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={onClose}>
+        <div role="dialog" aria-modal="true" aria-label="Character lore" className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={onClose}>
           <div
             className="relative w-full max-w-lg max-h-[85vh] overflow-hidden rounded-3xl bg-zinc-900 border border-white/10 shadow-2xl"
             onClick={e => e.stopPropagation()}
@@ -13240,7 +13343,7 @@
       const survivorTips = guide?.survivorTips || "No survivor tips available yet.";
       const killerTips = guide?.killerTips || "No killer tips available yet.";
       return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={onClose}>
+        <div role="dialog" aria-modal="true" aria-label="Killer power" className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={onClose}>
           <div
             className="relative w-full max-w-lg max-h-[85vh] overflow-hidden rounded-3xl bg-zinc-900 border border-red-500/20 shadow-2xl"
             onClick={e => e.stopPropagation()}
@@ -13340,7 +13443,7 @@
       const layouts = getMapLayoutsForName(map.name);
       const hasMultiple = layouts.length > 1;
       return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm" onClick={onClose}>
+        <div role="dialog" aria-modal="true" aria-label="Map layout" className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm" onClick={onClose}>
           <div
             className="relative w-full max-w-2xl max-h-[90vh] flex flex-col rounded-3xl bg-zinc-900 border border-white/10 shadow-2xl"
             onClick={e => e.stopPropagation()}
@@ -13380,14 +13483,14 @@
                       />
                     ) : (
                       <div className="flex flex-col items-center justify-center gap-3 text-zinc-500 px-6 text-center">
-                        <Icons.Map width={36} height={36} className="text-zinc-600" />
+                        <Icons.Map width={36} height={36} className="text-zinc-400" />
                         <p className="text-sm font-medium">Map layout unavailable in the offline bundle.</p>
                       </div>
                     )}
                   </div>
                 ) : (
                   <div className="w-full aspect-square max-h-[40vh] rounded-2xl bg-zinc-800/70 border border-white/10 flex flex-col items-center justify-center text-center px-6">
-                    <Icons.Map width={36} height={36} className="text-zinc-600 mb-3" />
+                    <Icons.Map width={36} height={36} className="text-zinc-400 mb-3" />
                     <p className="text-sm font-medium text-zinc-400">No layout art bundled for this map.</p>
                   </div>
                 )}
@@ -13431,7 +13534,7 @@
       if (!perks || perks.length === 0) return null;
       const accentColor = theme?.accent || '#38bdf8';
       return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={onClose}>
+        <div role="dialog" aria-modal="true" aria-label="Perk comparison" className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={onClose}>
           <div
             className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl bg-zinc-900 shadow-2xl"
             style={{ border: `1px solid ${accentColor}40` }}
@@ -13571,16 +13674,15 @@
       );
     };
     const CharacterProfileModal = ({ character, onClose, allPerks = [], onPerkTap, theme, settings = {}, noteValue = '', onNoteChange, cosmeticsByBaseId = {} }) => {
-      if (!character) return null;
-      const isKiller = character.type === 'Killer' || character.power;
+      const isKiller = character ? (character.type === 'Killer' || character.power) : false;
       const accentColor = isKiller ? '#ef4444' : '#38bdf8';
-      const stats = isKiller ? KILLER_STATS[character.name] : null;
-      const guide = isKiller ? KILLER_GUIDES[character.name] : null;
-      const teachables = allPerks.filter(p => p.owner === character.name);
+      const stats = isKiller ? KILLER_STATS[character?.name] : null;
+      const guide = isKiller ? KILLER_GUIDES[character?.name] : null;
+      const teachables = allPerks.filter(p => p.owner === character?.name);
       const [activeTab, setActiveTab] = useState('overview');
       const cosmeticsSectionRef = useRef(null);
-      const cosmeticsEntries = cosmeticsByBaseId[character.id] || [];
-      const focusedCosmeticId = character.cosmeticFocusId || null;
+      const cosmeticsEntries = character ? (cosmeticsByBaseId[character.id] || []) : [];
+      const focusedCosmeticId = character?.cosmeticFocusId || null;
       const characterSwapGroups = useMemo(() => {
         const groups = cosmeticsEntries
           .filter((entry) => entry.isCharacterSwap)
@@ -13619,14 +13721,14 @@
       const linkedFullSetCount = fullSetLinkStats.linked + fullSetLinkStats.partially_linked;
 
       const releaseInfo = useMemo(() => {
-        if (typeof TIMELINE_DATA === 'undefined') return null;
+        if (typeof TIMELINE_DATA === 'undefined' || !character) return null;
         for (const release of TIMELINE_DATA.releases) {
           const found = (release.killers || []).find(k => k.name === character.name) ||
             (release.survivors || []).find(s => s.name === character.name);
           if (found) return { date: release.displayDate, chapter: release.name, licensed: found.licensed };
         }
         return null;
-      }, [character.name]);
+      }, [character?.name]);
 
       const tabs = isKiller
         ? [{ id: 'overview', label: 'Overview' }, { id: 'power', label: 'Power' }, { id: 'perks', label: 'Perks' }, { id: 'lore', label: 'Lore' }]
@@ -13634,7 +13736,7 @@
 
       useEffect(() => {
         setActiveTab('overview');
-      }, [character.id, focusedCosmeticId]);
+      }, [character?.id, focusedCosmeticId]);
 
       useEffect(() => {
         if (!focusedCosmeticId || activeTab !== 'overview' || !cosmeticsSectionRef.current) return undefined;
@@ -13642,10 +13744,12 @@
           cosmeticsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }, 140);
         return () => window.clearTimeout(timer);
-      }, [focusedCosmeticId, activeTab, character.id]);
+      }, [focusedCosmeticId, activeTab, character?.id]);
+
+      if (!character) return null;
 
       return (
-        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm" onClick={onClose}>
+        <div role="dialog" aria-modal="true" aria-label="Character profile" className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm" onClick={onClose}>
           <div className="h-full overflow-y-auto custom-scrollbar" data-smoke-profile={character.id} onClick={e => e.stopPropagation()}>
             <div className="max-w-lg mx-auto min-h-full">
               {/* Hero Section */}
@@ -13678,7 +13782,7 @@
                       <div className="flex items-center gap-1.5 mt-2">
                         <Icons.Calendar width={12} height={12} className="text-zinc-500" />
                         <span className="text-zinc-500 text-xs">{releaseInfo.date}</span>
-                        <span className="text-zinc-600 text-[10px]">• {releaseInfo.chapter}</span>
+                        <span className="text-zinc-400 text-[10px]">• {releaseInfo.chapter}</span>
                       </div>
                     )}
                   </div>
@@ -13797,7 +13901,7 @@
                           <div key={group.label} className="space-y-3">
                             <div className="flex items-center justify-between gap-2">
                               <p className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">{group.label}</p>
-                              <span className="text-[10px] uppercase tracking-wider text-zinc-600">{group.entries.length}</span>
+                              <span className="text-[10px] uppercase tracking-wider text-zinc-400">{group.entries.length}</span>
                             </div>
                             <div className={group.entries.length === 1 ? 'grid grid-cols-1 gap-3 justify-items-center' : 'grid grid-cols-2 sm:grid-cols-3 gap-3'}>
                               {group.entries.map((entry) => {
@@ -13816,7 +13920,7 @@
                           <div key={group.label} className="space-y-3">
                             <div className="flex items-center justify-between gap-2">
                               <p className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">{group.label}</p>
-                              <span className="text-[10px] uppercase tracking-wider text-zinc-600">{group.entries.length}</span>
+                              <span className="text-[10px] uppercase tracking-wider text-zinc-400">{group.entries.length}</span>
                             </div>
                             <div className={group.entries.length === 1 ? 'grid grid-cols-1 gap-3 justify-items-center' : 'grid grid-cols-2 sm:grid-cols-3 gap-3'}>
                               {group.entries.map((entry) => {
@@ -14099,6 +14203,33 @@
         setComparePerks([]);
         setShowCompareModal(false);
       };
+      const closeTopOverlay = useCallback(() => {
+        if (layoutMap) { setLayoutMap(null); return true; }
+        if (profileCharacter) { setProfileCharacter(null); return true; }
+        if (powerKiller) { setPowerKiller(null); return true; }
+        if (loreCharacter) { setLoreCharacter(null); return true; }
+        if (selectedPerk) { setSelectedPerk(null); return true; }
+        if (showCompareModal) { setShowCompareModal(false); return true; }
+        return false;
+      }, [layoutMap, profileCharacter, powerKiller, loreCharacter, selectedPerk, showCompareModal]);
+      const closeTopOverlayRef = useRef(closeTopOverlay);
+      useEffect(() => {
+        closeTopOverlayRef.current = closeTopOverlay;
+      }, [closeTopOverlay]);
+      const [storageSaveError, setStorageSaveError] = useState(null);
+      useEffect(() => {
+        let timer;
+        const onStorageError = (event) => {
+          setStorageSaveError(event?.detail?.key || 'settings');
+          if (timer) window.clearTimeout(timer);
+          timer = window.setTimeout(() => setStorageSaveError(null), 6000);
+        };
+        window.addEventListener('dbd-storage-save-error', onStorageError);
+        return () => {
+          window.removeEventListener('dbd-storage-save-error', onStorageError);
+          if (timer) window.clearTimeout(timer);
+        };
+      }, []);
       const FAVORITE_KEYS = {
         Perk: 'favoritePerks', Killer: 'favoriteKillers', Survivor: 'favoriteSurvivors',
         Item: 'favoriteItems', Addon: 'favoriteAddons', Offering: 'favoriteOfferings'
@@ -14204,6 +14335,7 @@
         const setup = async () => {
           if (window.Capacitor?.Plugins?.App) {
             listenerHandle = await window.Capacitor.Plugins.App.addListener('backButton', () => {
+              if (closeTopOverlayRef.current()) return;
               goBack();
             });
           }
@@ -14359,12 +14491,12 @@
       const copyAppBackup = useCallback(() => {
         const text = JSON.stringify(appBackupPayload, null, 2);
         if (!navigator.clipboard?.writeText) {
-          alert('Copy is not available here. Use Download Backup File instead.');
+          appAlert('Copy is not available here. Use Download Backup File instead.');
           return;
         }
         navigator.clipboard.writeText(text)
-          .then(() => alert('Backup copied.'))
-          .catch(() => alert('Could not copy the backup. Use Download Backup File instead.'));
+          .then(() => appAlert('Backup copied.'))
+          .catch(() => appAlert('Could not copy the backup. Use Download Backup File instead.'));
       }, [appBackupPayload]);
       const downloadAppBackup = useCallback(() => {
         const text = JSON.stringify(appBackupPayload, null, 2);
@@ -14504,6 +14636,11 @@
           <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(140% 140% at 50% -20%, rgba(255,255,255,0.05), transparent 60%)' }}></div>
           <main ref={mainRef} className="relative z-10 flex-1 overflow-hidden"><div key={currentView} className="view-transition h-full">{renderContent()}</div></main>
           <ScrollToTopFAB mainRef={mainRef} currentView={currentView} />
+          {storageSaveError && (
+            <div role="alert" className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[70] max-w-sm px-4 py-3 rounded-xl bg-rose-950/90 border border-rose-500/40 text-rose-100 text-xs shadow-xl text-center">
+              <span className="font-semibold">Storage warning:</span> device storage is full or blocked — recent changes ({storageSaveError}) may not persist. Free up space or disable private browsing.
+            </div>
+          )}
           <Navigation currentView={currentView} setView={setView} theme={theme} isMobile={device.isMobile} onPerksReset={() => setPerkSearch('')} customNavItems={settings.navItems || DEFAULT_SETTINGS.navItems} />
           {/* Perk Comparison UI */}
           <FloatingCompareBadge count={comparePerks.length} onClick={() => setShowCompareModal(true)} onClear={clearCompare} theme={theme} />

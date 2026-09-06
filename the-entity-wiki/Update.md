@@ -2,6 +2,38 @@
 
 Date: 2026-09-06
 
+## App Polish & Accessibility Pass (5.34.0, post-sync)
+
+Quality pass on `web/index.html` after the Chorus of Sin sync. Full smoke test (8/8 scenarios) and offline-runtime verification pass.
+
+Fixes:
+
+- **Hardware back button is now modal-aware**: pressing back closes the topmost overlay (map layout → character profile → power → lore → perk sheet → compare modal) before navigating views; previously it navigated behind open modals and could exit the app with a modal still open.
+- **Rules-of-hooks violation fixed** in `CharacterProfileModal` (the `if (!character) return null` guard moved below all hooks; derived values null-guarded).
+- **Native `alert()`/`confirm()` (14 call sites) replaced** with a styled in-app dialog (`showAppDialog`/`appAlert`/`appConfirm` helpers): Escape/Enter keys, danger styling for destructive confirmations, focused confirm button. Used by build share/delete, match delete, Chaos Shuffle validation, and backup copy/restore flows.
+- **localStorage save failures are now visible**: `saveToStorage` dispatches `dbd-storage-save-error`; the app shows a transient warning banner instead of failing silently (private browsing / quota-full).
+- **Dead `animate-in` classes fixed**: the Play CDN build lacks `tailwindcss-animate`, so 8 view entrances silently rendered nothing; the utilities (`animate-in`, `fade-in`, `slide-in-from-bottom-4`) are now defined against the existing `fadeIn` keyframes plus a new `viewSlideEnter`.
+- **Cold start**: `LAUNCH_OVERLAY_MIN_MS` reduced from 2000 ms to 400 ms (the 2 s floor existed to mask the Babel compile; keep it small until the Vite migration lands).
+- **Images**: `AssetFrame` now renders with `loading="lazy"` + `decoding="async"`.
+- **Contrast**: all 50 `text-zinc-600` text uses bumped to `text-zinc-400` (was ~2.9:1 on dark, fails WCAG AA).
+- **A11y**: `role="dialog"` + `aria-modal` + labels on all six overlays (character profile, lore, power, map layout, perk compare, perk bottom sheet); `aria-label="Close"` on icon-only close buttons; "clear search" buttons labeled; mobile nav touch targets raised to 44px min.
+- Fixed the stale loading-screen tip copy ("1 in 14" → "1 in 17", matching the actual tip count).
+
+### Modernization Plan (planned — not started)
+
+Agreed follow-up project; do **after** the site's own polish pass so both UIs migrate together where possible.
+
+1. **Vite + precompiled React + Tailwind CLI** (biggest win): split the 14.6k-line `index.html` into modules; JSX compiles at build time — removes the 2.9 MB Babel runtime, the ~12.5 MB per-launch parse, and the splash entirely; enables minification and code splitting (lazy-load the 5.6 MB cosmetics bundle). Keep `smoke-test.py` as the regression gate on the built output.
+2. **Extract hand-maintained data blocks** (`KILLER_GUIDES`, `KILLER_STATS`, `POWER_MECHANICS`, `GLOSSARY`, `CHANGELOG`, `PREMADE_BUILDS`, achievements) into `content/*.json` compiled by `build-data.js` — kills the drift class of bugs (the "Executioner (Tokyo Ghoul)" orphan) and stops per-chapter hand-editing of HTML; add a key-coverage check to `check:data`.
+3. **Capacitor 5 → 7** after the Vite split: proper Android 15/16 edge-to-edge + keyboard handling (delete the manual 34px nav-offset fudge), current plugin APIs.
+4. **Optional PWA/service worker**: versioned data bundles fetched+cached on Wi-Fi so content updates can ship without a full Play release (the app is already 100% offline-capable, zero runtime fetches today).
+5. **ESLint (+ react-hooks) + Prettier + a real CI workflow** running `check:data`, `test:smoke`, and lint on every push (replace the disabled content-guardrails stub).
+6. Deferred by choice: converting the 399 MB cosmetics asset pack from `install-time` to on-demand Play Asset Delivery (revisit before the next Play release; ~550 MB first download today).
+
+---
+
+Date: 2026-09-06
+
 ## Full Sync — Chapter 41: Chorus of Sin (patch 10.1.0)
 
 Synced both data layers to the August 25, 2026 chapter (first community-created chapter, no new map).
