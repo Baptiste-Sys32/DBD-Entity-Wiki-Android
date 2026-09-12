@@ -21,8 +21,8 @@ const SOURCES = {
   home: 'https://otzdarva.com/',
   addonTierlist: 'https://otz-addon-tierlist.pages.dev/',
   buildsHome: 'https://otzdarva-builds.com/',
-  buildsPanels: 'https://otzdarva-builds.com/assets/modules/XMLHttpRequest/returnCharacterPanels.php',
-  buildsPerkDetails: 'https://otzdarva-builds.com/assets/modules/XMLHttpRequest/showPerkDetails.php',
+  buildsData: 'https://otzdarva-builds.com/data/builds.json',
+  buildsScrape: 'https://otzdarva-builds.com/data/scrape.json',
   characterInfo: 'https://otzdarva.com/dbd/character-info',
   beginnerGuides: 'https://otzdarva.com/dbd/beginner-guides',
   killerGuides: 'https://otzdarva.com/dbd/killer-guides',
@@ -107,7 +107,8 @@ function normalizeCompact(value) {
     [/traveller/g, 'traveler'],
     [/theatre/g, 'theater'],
     [/judgement/g, 'judgment'],
-    [/granma/g, 'grandma']
+    [/granma/g, 'grandma'],
+    [/magnetised/g, 'magnetized']
   ];
 
   spellingTweaks.forEach(([pattern, replacement]) => {
@@ -349,29 +350,6 @@ function assertHealthySourcePayload(sourceLabel, payload, minLength = 120) {
   }
 }
 
-async function mapWithConcurrency(items, limit, mapper) {
-  const size = Math.max(1, Number(limit) || 1);
-  const results = new Array(items.length);
-  let cursor = 0;
-
-  async function worker() {
-    while (true) {
-      const index = cursor;
-      cursor += 1;
-      if (index >= items.length) return;
-      try {
-        results[index] = await mapper(items[index], index);
-      } catch (error) {
-        results[index] = null;
-      }
-    }
-  }
-
-  const workerCount = Math.min(size, Math.max(1, items.length));
-  await Promise.all(Array.from({ length: workerCount }, () => worker()));
-  return results;
-}
-
 function extractSvelteRoutePayload(html, pageLabel) {
   const startIndex = html.indexOf('const data = ');
   if (startIndex < 0) {
@@ -434,7 +412,9 @@ function buildKillerResolver(database) {
     'dracula': 'The Dark Lord',
     'dark lord': 'The Dark Lord',
     'springtrap': 'The Animatronic',
-    'animatronic': 'The Animatronic'
+    'animatronic': 'The Animatronic',
+    'judgement': 'The Judgment',
+    'judgment': 'The Judgment'
   };
 
   Object.entries(aliases).forEach(([alias, canonical]) => {
@@ -659,99 +639,102 @@ function parseAddonTierlist(html, database) {
   };
 }
 
-function extractBuildFromNode($, buildNode) {
-  const buildName = normalizeText($(buildNode).find('> .build-name').first().text()) || 'Unnamed Build';
-  const perks = [];
+async function fetchJson(url) {
+  const text = await fetchText(url);
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    throw new Error(`Invalid JSON from ${url}: ${error.message}`);
+  }
+}
 
-  $(buildNode).find('> .perks-list > li').each((_, li) => {
-    const mainPerkImg = $(li).find('> img.perk-icon').first();
-    const perkName = normalizeText(mainPerkImg.attr('alt') || '');
-    const perkIconUrl = resolveUrl(SOURCES.buildsHome, mainPerkImg.attr('src') || '');
+function formatScrapeDateLabel(unixSeconds) {
+  const ms = Number(unixSeconds) * 1000;
+  if (!Number.isFinite(ms) || ms <= 0) return null;
+  const date = new Date(ms);
+  if (Number.isNaN(date.getTime())) return null;
+  return `${date.getUTCMonth() + 1}/${date.getUTCDate()}/${date.getUTCFullYear()}`;
+}
 
-    const alternatives = $(li)
-      .find('.alt-perks-list img.perk-icon')
-      .map((__, altImg) => ({
-        name: normalizeText($(altImg).attr('alt') || ''),
-        iconUrl: resolveUrl(SOURCES.buildsHome, $(altImg).attr('src') || '')
-      }))
-      .get()
-      .filter((entry) => entry.name);
-
-    if (perkName) {
-      perks.push({
-        name: perkName,
-        iconUrl: perkIconUrl,
-        alternatives
+function buildPerkLookup(scrapeJson) {
+  const lookup = new Map();
+  ['killers', 'survivors'].forEach((roleKey) => {
+    const perks = scrapeJson?.[roleKey]?.perks;
+    if (Array.isArray(perks)) {
+      perks.forEach((perk) => {
+        const name = normalizeText(perk?.name);
+        if (name && !lookup.has(name)) lookup.set(name, perk);
       });
     }
   });
-
-  const details = uniqBy(
-    $(buildNode)
-      .find('.build-info-wrapper .build-info li, .build-info-wrapper .main-build-info li')
-      .map((_, li) => normalizeText($(li).text()))
-      .get()
-      .filter(Boolean),
-    (value) => value
-  );
-
-  return {
-    name: buildName,
-    perks,
-    details
-  };
+  return lookup;
 }
 
-function parseBuildPanels(html, role) {
-  const $ = cheerio.load(`<div id="panels">${html}</div>`);
-  const profiles = [];
-
-  $('#panels .character-profile').each((_, profileNode) => {
-    const profile = $(profileNode);
-    const panelId = normalizeText(profile.attr('id') || '');
-    const characterName = normalizeText(profile.find('.character-name').first().text()) || panelId;
-    const characterImageUrl = resolveUrl(SOURCES.buildsHome, profile.find('.character-image img').first().attr('src') || '');
-
-    const builds = [];
-    profile.find('.builds-list .dialog-form-content > .build').each((__, buildNode) => {
-      const parsedBuild = extractBuildFromNode($, buildNode);
-      if (parsedBuild.name) builds.push(parsedBuild);
+function buildPortraitLookup(scrapeJson) {
+  const lookup = new Map();
+  const profiles = scrapeJson?.killers?.profiles;
+  if (Array.isArray(profiles)) {
+    profiles.forEach((profile) => {
+      const name = normalizeText(profile?.name);
+      if (name && profile?.portraitUrl) lookup.set(name, profile.portraitUrl);
     });
+  }
+  return lookup;
+}
 
-    if (builds.length === 0) {
-      const fallbackMainBuild = profile.find('.build.main-build').first();
-      if (fallbackMainBuild.length) {
-        const parsedBuild = extractBuildFromNode($, fallbackMainBuild);
-        if (parsedBuild.name) builds.push(parsedBuild);
-      }
-    }
+function toBuildPerkEntry(rawPerk, perkLookup) {
+  const name = normalizeText(rawPerk?.name);
+  if (!name) return null;
+  const ref = perkLookup.get(name) || {};
+  const alternatives = (Array.isArray(rawPerk?.alts) ? rawPerk.alts : [])
+    .map((alt) => {
+      const altName = normalizeText(typeof alt === 'string' ? alt : alt?.name);
+      if (!altName) return null;
+      const altRef = perkLookup.get(altName) || {};
+      return { name: altName, iconUrl: altRef.iconUrl || '' };
+    })
+    .filter(Boolean);
+  return { name, iconUrl: ref.iconUrl || '', alternatives };
+}
+
+function parseBuildsJson(buildsJson, scrapeJson) {
+  const perkLookup = buildPerkLookup(scrapeJson);
+  const portraitLookup = buildPortraitLookup(scrapeJson);
+
+  const toProfiles = (entries, role) => (Array.isArray(entries) ? entries : []).map((entry) => {
+    const name = normalizeText(entry?.name) || 'Unnamed';
+    const builds = (Array.isArray(entry?.builds) ? entry.builds : [])
+      .map((rawBuild) => {
+        const perks = (Array.isArray(rawBuild?.perks) ? rawBuild.perks : [])
+          .map((rawPerk) => toBuildPerkEntry(rawPerk, perkLookup))
+          .filter(Boolean);
+        const details = (Array.isArray(rawBuild?.notes) ? rawBuild.notes : [])
+          .map((note) => normalizeText(note))
+          .filter(Boolean);
+        return { name: normalizeText(rawBuild?.name) || 'Unnamed Build', perks, details };
+      })
+      .filter((build) => build.name && build.perks.length > 0);
 
     const dedupedBuilds = uniqBy(builds, (entry) => `${entry.name}::${entry.perks.map((perk) => perk.name).join('|')}`);
+    const portraitUrl = portraitLookup.get(name) || '';
 
-    profiles.push({
-      id: slugify(panelId || characterName),
+    return {
+      id: slugify(name),
       role,
-      panelId,
-      name: characterName,
-      imageUrl: characterImageUrl,
+      panelId: slugify(name),
+      name,
+      imageUrl: portraitUrl ? resolveUrl(SOURCES.buildsHome, portraitUrl) : '',
       featuredBuildName: dedupedBuilds[0]?.name || '',
       buildCount: dedupedBuilds.length,
       builds: dedupedBuilds
-    });
+    };
   });
 
-  return profiles;
-}
-
-function parseBuilds(homeHtml, killerPanelsHtml, survivorPanelsHtml) {
-  const $home = cheerio.load(homeHtml);
-  const updateLabel = normalizeText($home('.update-info').first().text().replace(/^Last update:\s*/i, ''));
-
-  const killers = parseBuildPanels(killerPanelsHtml, 'killer');
-  const survivors = parseBuildPanels(survivorPanelsHtml, 'survivor');
+  const killers = toProfiles(buildsJson?.killers, 'killer');
+  const survivors = toProfiles(buildsJson?.survivors, 'survivor');
 
   return {
-    lastUpdateLabel: updateLabel || null,
+    lastUpdateLabel: formatScrapeDateLabel(scrapeJson?.other?.scrapeRequestUNIX),
     roles: {
       killers,
       survivors
@@ -766,7 +749,7 @@ function parseBuilds(homeHtml, killerPanelsHtml, survivorPanelsHtml) {
   };
 }
 
-function collectBuildPerkNames(profiles) {
+function collectUsedPerkNames(profiles) {
   const names = new Set();
   (profiles || []).forEach((profile) => {
     (profile.builds || []).forEach((build) => {
@@ -778,98 +761,68 @@ function collectBuildPerkNames(profiles) {
       });
     });
   });
-  return [...names].filter(Boolean).sort((a, b) => a.localeCompare(b));
+  return names;
 }
 
-async function fetchBuildPerkDetails(perkName, role) {
-  const body = new URLSearchParams({ xml: JSON.stringify({ name: perkName, role }) }).toString();
-  return fetchText(SOURCES.buildsPerkDetails, {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/x-www-form-urlencoded',
-      Referer: SOURCES.buildsHome
-    },
-    body
-  });
-}
-
-function parseBuildPerkDetail(html, perkName, role) {
-  const $ = cheerio.load(html);
-  const pageText = normalizeText($.text()).toLowerCase();
-  if (!pageText || pageText.includes('nothing to see here')) {
-    return null;
-  }
-
-  const name = normalizeText($('.about-perk h2').first().text()) || normalizeText(perkName);
-  if (!name) return null;
-
-  const obtainmentLine = normalizeText($('h3').first().text());
-  const obtainedFrom = normalizeText(obtainmentLine.replace(/^This perk is obtained from\s*/i, ''));
-
-  const detailsHolder = $('.details-holder').first();
-  const descriptionHtml = detailsHolder.length ? detailsHolder.html() || '' : '';
-  const descriptionText = htmlToText(descriptionHtml);
-
-  const iconUrl = resolveUrl(SOURCES.buildsHome, $('.perk-image img').first().attr('src') || '');
-
-  const links = uniqBy(
-    detailsHolder
-      .find('a[href]')
+function extractLinksFromHtml(html, base) {
+  if (!html) return [];
+  const $ = cheerio.load(`<div>${html}</div>`);
+  return uniqBy(
+    $('a[href]')
       .map((_, anchor) => {
-        const href = $(anchor).attr('href');
-        const label = normalizeText($(anchor).text());
-        const url = resolveUrl(SOURCES.buildsHome, href);
-        return { label: label || url, url };
+        const url = resolveUrl(base, $(anchor).attr('href'));
+        const label = normalizeText($(anchor).text()) || url;
+        return { label, url };
       })
       .get()
       .filter((entry) => entry.url),
     (entry) => entry.url
   );
-
-  return {
-    id: `${role}-${slugify(name)}`,
-    role,
-    key: normalizeCompact(name),
-    name,
-    obtainedFrom: obtainedFrom || '',
-    iconUrl,
-    descriptionText,
-    links
-  };
 }
 
-async function enrichBuildsWithPerkDetails(builds) {
-  const killerPerks = collectBuildPerkNames(builds.roles?.killers || []);
-  const survivorPerks = collectBuildPerkNames(builds.roles?.survivors || []);
-
-  const [killerDetailsRaw, survivorDetailsRaw] = await Promise.all([
-    mapWithConcurrency(killerPerks, 8, async (perkName) => {
-      const html = await fetchBuildPerkDetails(perkName, 'killers');
-      return parseBuildPerkDetail(html, perkName, 'killers');
-    }),
-    mapWithConcurrency(survivorPerks, 8, async (perkName) => {
-      const html = await fetchBuildPerkDetails(perkName, 'survivors');
-      return parseBuildPerkDetail(html, perkName, 'survivors');
+function buildPerkDetailsFromScrape(scrapeJson, usedNames, roleKey, role) {
+  const perks = scrapeJson?.[roleKey]?.perks;
+  if (!Array.isArray(perks)) return [];
+  return perks
+    .map((perk) => {
+      const name = normalizeText(perk?.name);
+      if (!name || !usedNames.has(name)) return null;
+      return {
+        id: `${role}-${slugify(name)}`,
+        role,
+        key: normalizeCompact(name),
+        name,
+        obtainedFrom: normalizeText(perk?.obtainment),
+        iconUrl: perk?.iconUrl || '',
+        descriptionText: htmlToText(perk?.description),
+        links: extractLinksFromHtml(perk?.description, SOURCES.buildsHome)
+      };
     })
-  ]);
+    .filter(Boolean);
+}
 
-  const killerDetails = killerDetailsRaw.filter(Boolean);
-  const survivorDetails = survivorDetailsRaw.filter(Boolean);
+function enrichBuildsFromScrape(parsedBuilds, scrapeJson) {
+  const killerProfiles = parsedBuilds.roles?.killers || [];
+  const survivorProfiles = parsedBuilds.roles?.survivors || [];
+  const killerUsed = collectUsedPerkNames(killerProfiles);
+  const survivorUsed = collectUsedPerkNames(survivorProfiles);
+  const killerDetails = buildPerkDetailsFromScrape(scrapeJson, killerUsed, 'killers', 'killers');
+  const survivorDetails = buildPerkDetailsFromScrape(scrapeJson, survivorUsed, 'survivors', 'survivors');
 
   return {
-    ...builds,
+    ...parsedBuilds,
     perkDetails: {
       killers: killerDetails,
       survivors: survivorDetails
     },
     stats: {
-      ...builds.stats,
-      uniqueKillerPerksInBuilds: killerPerks.length,
-      uniqueSurvivorPerksInBuilds: survivorPerks.length,
+      ...parsedBuilds.stats,
+      uniqueKillerPerksInBuilds: killerUsed.size,
+      uniqueSurvivorPerksInBuilds: survivorUsed.size,
       killerPerkDetailsResolved: killerDetails.length,
       survivorPerkDetailsResolved: survivorDetails.length,
       perkDetailsResolvedTotal: killerDetails.length + survivorDetails.length,
-      perkDetailsMissingTotal: (killerPerks.length - killerDetails.length) + (survivorPerks.length - survivorDetails.length)
+      perkDetailsMissingTotal: (killerUsed.size - killerDetails.length) + (survivorUsed.size - survivorDetails.length)
     }
   };
 }
@@ -1085,15 +1038,13 @@ function extractLinkCatalog(homeHtml) {
   return uniqBy(filtered, (entry) => entry.url);
 }
 
-async function fetchBuildPanels(role) {
-  const body = new URLSearchParams({ xml: role }).toString();
-  return fetchText(SOURCES.buildsPanels, {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/x-www-form-urlencoded'
-    },
-    body
-  });
+function assertBuildsJsonUsable(buildsJson, scrapeJson) {
+  if (!buildsJson || !Array.isArray(buildsJson.killers) || buildsJson.killers.length === 0) {
+    fail('buildsData: no killer profiles in builds.json, upstream format may have changed');
+  }
+  if (!scrapeJson || !Array.isArray(scrapeJson?.killers?.perks)) {
+    fail('buildsScrape: no killer perk pool in scrape.json, upstream format may have changed');
+  }
 }
 
 async function main() {
@@ -1103,8 +1054,8 @@ async function main() {
     homeHtml,
     addonTierlistHtml,
     buildsHomeHtml,
-    killerPanelsHtml,
-    survivorPanelsHtml,
+    buildsDataJson,
+    buildsScrapeJson,
     characterInfoHtml,
     beginnerGuidesHtml,
     tierlistsHtml,
@@ -1113,8 +1064,8 @@ async function main() {
     fetchText(SOURCES.home),
     fetchText(SOURCES.addonTierlist),
     fetchText(SOURCES.buildsHome),
-    fetchBuildPanels('killers'),
-    fetchBuildPanels('survivors'),
+    fetchJson(SOURCES.buildsData),
+    fetchJson(SOURCES.buildsScrape),
     fetchText(SOURCES.characterInfo),
     fetchText(SOURCES.beginnerGuides),
     fetchText(SOURCES.tierlists),
@@ -1124,8 +1075,7 @@ async function main() {
   assertHealthySourcePayload('home', homeHtml, 400);
   assertHealthySourcePayload('addonTierlist', addonTierlistHtml, 400);
   assertHealthySourcePayload('buildsHome', buildsHomeHtml, 400);
-  assertHealthySourcePayload('buildsPanels(killers)', killerPanelsHtml, 100);
-  assertHealthySourcePayload('buildsPanels(survivors)', survivorPanelsHtml, 100);
+  assertBuildsJsonUsable(buildsDataJson, buildsScrapeJson);
   assertHealthySourcePayload('characterInfo', characterInfoHtml, 400);
   assertHealthySourcePayload('beginnerGuides', beginnerGuidesHtml, 300);
   assertHealthySourcePayload('tierlists', tierlistsHtml, 300);
@@ -1137,8 +1087,11 @@ async function main() {
   }
 
   const addonTierlist = parseAddonTierlist(addonTierlistHtml, database);
-  const parsedBuilds = parseBuilds(buildsHomeHtml, killerPanelsHtml, survivorPanelsHtml);
-  const builds = await enrichBuildsWithPerkDetails(parsedBuilds);
+  const parsedBuilds = parseBuildsJson(buildsDataJson, buildsScrapeJson);
+  const builds = enrichBuildsFromScrape(parsedBuilds, buildsScrapeJson);
+  if (builds.stats.totalBuildCount === 0) {
+    fail('builds: parsed zero builds from builds.json, upstream format may have changed');
+  }
   const characterInfo = parseCharacterInfo(characterInfoHtml);
   const beginnerGuides = parseBeginnerGuides(beginnerGuidesHtml);
   const tierlists = parseTierlists(tierlistsHtml);
@@ -1156,8 +1109,8 @@ async function main() {
         { id: 'home', url: SOURCES.home, fetchedAt: generatedAt },
         { id: 'addonTierlist', url: SOURCES.addonTierlist, fetchedAt: generatedAt },
         { id: 'buildsHome', url: SOURCES.buildsHome, fetchedAt: generatedAt },
-        { id: 'buildsPanels', url: SOURCES.buildsPanels, fetchedAt: generatedAt },
-        { id: 'buildsPerkDetails', url: SOURCES.buildsPerkDetails, fetchedAt: generatedAt },
+        { id: 'buildsData', url: SOURCES.buildsData, fetchedAt: generatedAt },
+        { id: 'buildsScrape', url: SOURCES.buildsScrape, fetchedAt: generatedAt },
         { id: 'characterInfo', url: SOURCES.characterInfo, fetchedAt: generatedAt },
         { id: 'beginnerGuides', url: SOURCES.beginnerGuides, fetchedAt: generatedAt },
         { id: 'tierlists', url: SOURCES.tierlists, fetchedAt: generatedAt },

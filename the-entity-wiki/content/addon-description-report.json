@@ -1,8 +1,8 @@
 {
   "totalAddons": 946,
   "counts": {
-    "updated": 0,
-    "unchanged": 946,
+    "updated": 1,
+    "unchanged": 945,
     "unresolved": 0
   },
   "entries": [
@@ -6611,7 +6611,7 @@
       "id": "a5bbfc62-c29b-4f06-8c42-be0c138f5c73",
       "internalId": "Addon_K44_18",
       "name": "Obsidian Feather",
-      "status": "unchanged",
+      "status": "updated",
       "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K44_18"
     },
     {

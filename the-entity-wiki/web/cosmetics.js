@@ -1,19 +1,19 @@
 var COSMETICS_CATALOG = {
-  "generatedAt": "2026-09-06T10:53:17.412Z",
+  "generatedAt": "2026-09-12T09:40:52.607Z",
   "metadata": {
-    "sourceDiscoveryGeneratedAt": "2026-09-06T00:31:00.377Z",
+    "sourceDiscoveryGeneratedAt": "2026-09-12T09:40:46.791Z",
     "characterSwapCount": 112,
-    "fullSetCount": 4235,
-    "cosmeticCount": 4235,
+    "fullSetCount": 4245,
+    "cosmeticCount": 4245,
     "linkedFullSetCount": 57,
     "linkedCosmeticCount": 57,
     "fullSetLinkModeCounts": {
-      "unlinked": 4178,
+      "unlinked": 4188,
       "partially_linked": 7,
       "linked": 50
     },
     "cosmeticLinkModeCounts": {
-      "unlinked": 4178,
+      "unlinked": 4188,
       "partially_linked": 7,
       "linked": 50
     }
@@ -1845,7 +1845,7 @@ var COSMETICS_CATALOG = {
       ],
       "sourceKind": "wiki-category",
       "sourcePage": "The Xenomorph/Xenomorph King",
-      "assetProvenance": "official-portrait-exception",
+      "assetProvenance": "official-headshot",
       "status": "ready",
       "rarity": "Legendary",
       "outfitLinkMode": "character_swap",
@@ -1856,6 +1856,7 @@ var COSMETICS_CATALOG = {
       "pieceType": "Outfit",
       "sourceBucket": "Character swaps",
       "assetFileTitleCandidates": [
+        "File:K33 Head013.png",
         "File:CC107 charSelect portrait.png"
       ],
       "description": "Character swaps outfit for The Xenomorph"
@@ -14824,7 +14825,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Hallowed Blight",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "image": "./dbd_images/cosmetics/full_sets/the-deathslinger--blighted-bounty-hunter--outfit--uk-outfit-018.png",
       "aliases": [
         "blighted bounty hunter",
@@ -19211,7 +19212,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Hallowed Blight",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "image": "./dbd_images/cosmetics/full_sets/the-doctor--foul-bile--outfit--killer07-outfit-013-2.png",
       "aliases": [
         "foul bile",
@@ -24939,7 +24940,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Chucky",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "image": "./dbd_images/cosmetics/full_sets/the-good-guy--blighted-good-guy--outfit--k34-outfit-010.png",
       "aliases": [
         "blighted good guy",
@@ -30048,7 +30049,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Hallowed Blight",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "image": "./dbd_images/cosmetics/full_sets/the-hillbilly--osseous-carcass--outfit--hillbilly-outfit-010-2.png",
       "aliases": [
         "osseous carcass",
@@ -33789,7 +33790,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Artists from the Fog",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "image": "./dbd_images/cosmetics/full_sets/the-huntress--doll-collector--outfit--be-outfit-022.png",
       "aliases": [
         "doll collector",
@@ -34027,7 +34028,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Hallowed Blight",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "image": "./dbd_images/cosmetics/full_sets/the-huntress--growth-surge--outfit--bear-outfit-006-2.png",
       "aliases": [
         "growth surge",
@@ -34625,6 +34626,90 @@ var COSMETICS_CATALOG = {
       "description": "\"It sets forth across the universe, setting villages, cities and even entire planets to ruin.\" (Truths Revealed, ch. 3)"
     },
     {
+      "id": "the-judgment--cruel-messenger--outfit--k44-outfit-002",
+      "name": "Cruel Messenger",
+      "baseCharacterId": "064a9628-9056-4b0c-9fe5-72e6fce7f56e",
+      "baseCharacterName": "The Judgment",
+      "baseCharacterType": "Killer",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "collectionName": "Chorus of Sin",
+      "image": "./dbd_images/cosmetics/full_sets/the-judgment--cruel-messenger--outfit--k44-outfit-002.png",
+      "aliases": [
+        "cruel messenger",
+        "chorus of sin",
+        "outfit",
+        "the judgment",
+        "head",
+        "body",
+        "weapon",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Weapon"
+      ],
+      "bindSummary": "Head + Body + Weapon",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Chorus of Sin",
+      "assetFileTitleCandidates": [
+        "File:K44 outfit 002.png"
+      ],
+      "description": "\"It who judges us, we thank you for your noble and unending mission!\" (Witness to Koenrad, ch. 45)"
+    },
+    {
+      "id": "the-judgment--merciless-messenger--outfit--k44-outfit-002-01",
+      "name": "Merciless Messenger",
+      "baseCharacterId": "064a9628-9056-4b0c-9fe5-72e6fce7f56e",
+      "baseCharacterName": "The Judgment",
+      "baseCharacterType": "Killer",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "collectionName": "Chorus of Sin",
+      "image": "./dbd_images/cosmetics/full_sets/the-judgment--merciless-messenger--outfit--k44-outfit-002-01.png",
+      "aliases": [
+        "merciless messenger",
+        "chorus of sin",
+        "outfit",
+        "the judgment",
+        "head",
+        "body",
+        "weapon",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Weapon"
+      ],
+      "bindSummary": "Head + Body + Weapon",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Chorus of Sin",
+      "assetFileTitleCandidates": [
+        "File:K44 outfit 002 01.png"
+      ],
+      "description": "\"It who judges us, we thank you for your noble and unending mission!\" (Witness to Koenrad, ch. 45\n)"
+    },
+    {
       "id": "the-judgment--staff-of-obliteration--weapon--k044-w01-p01",
       "name": "Staff of Obliteration",
       "baseCharacterId": "064a9628-9056-4b0c-9fe5-72e6fce7f56e",
@@ -34658,6 +34743,48 @@ var COSMETICS_CATALOG = {
         "File:K044 W01_P01.png"
       ],
       "description": "\"Those who see Its blinding staff and terrifying form are doomed to an end in vociferous light.\" (Truths Revealed, ch. 3)"
+    },
+    {
+      "id": "the-judgment--vanguard-of-the-creators--outfit--k44-outfit-006",
+      "name": "Vanguard of the Creators",
+      "baseCharacterId": "064a9628-9056-4b0c-9fe5-72e6fce7f56e",
+      "baseCharacterName": "The Judgment",
+      "baseCharacterType": "Killer",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "collectionName": "Chorus of Sin",
+      "image": "./dbd_images/cosmetics/full_sets/the-judgment--vanguard-of-the-creators--outfit--k44-outfit-006.png",
+      "aliases": [
+        "vanguard of the creators",
+        "chorus of sin",
+        "outfit",
+        "the judgment",
+        "head",
+        "body",
+        "weapon",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Weapon"
+      ],
+      "bindSummary": "Head + Body + Weapon",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Chorus of Sin",
+      "assetFileTitleCandidates": [
+        "File:K44 outfit 006.png"
+      ],
+      "description": "\"Some of that which was created needed to be punished, and so they needed a punisher.\" (Truths Revealed, ch. 11)"
     },
     {
       "id": "the-knight--funeral-march--outfit--k30-outfit-019",
@@ -37277,7 +37404,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Deck the Trials",
-      "collectionName": "Deck The Trials",
+      "collectionName": "Deck the Trials",
       "image": "./dbd_images/cosmetics/full_sets/the-krasue--ice-queen--outfit--k41-outfit-008.png",
       "aliases": [
         "ice queen",
@@ -39929,7 +40056,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Artists from the Fog",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "image": "./dbd_images/cosmetics/full_sets/the-legion--school-gang-julie--outfit--kk-outfit-028.png",
       "aliases": [
         "school gang (julie)",
@@ -40470,7 +40597,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Neon Nights",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "image": "./dbd_images/cosmetics/full_sets/the-legion--angsty-artist-susie--outfit--kk-outfit-019.png",
       "aliases": [
         "angsty artist (susie)",
@@ -40512,7 +40639,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Neon Nights",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "image": "./dbd_images/cosmetics/full_sets/the-legion--high-vis-horror-joey--outfit--legion-outfit-009.png",
       "aliases": [
         "high-vis horror (joey)",
@@ -47643,7 +47770,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Artists from the Fog",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "image": "./dbd_images/cosmetics/full_sets/the-oni--blind-revenge--outfit--swedenkiller-outfit-016.png",
       "aliases": [
         "blind revenge",
@@ -48007,7 +48134,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Hallowed Blight",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "image": "./dbd_images/cosmetics/full_sets/the-oni--bursting-with-fury--outfit--swedenkiller-outfit-013.png",
       "aliases": [
         "bursting with fury",
@@ -48599,7 +48726,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Hallowed Blight",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "image": "./dbd_images/cosmetics/full_sets/the-onryo--swollen-excrescence--outfit--k27-outfit-007.png",
       "aliases": [
         "swollen excrescence",
@@ -49357,7 +49484,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Hallowed Blight",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "image": "./dbd_images/cosmetics/full_sets/the-pig--blighted-pig--outfit--fk-outfit-011.png",
       "aliases": [
         "blighted pig",
@@ -62284,7 +62411,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Hallowed Blight",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "image": "./dbd_images/cosmetics/full_sets/the-trapper--king-of-the-hooks--outfit--chuckles-outfit-010-2.png",
       "aliases": [
         "king of the hooks",
@@ -64655,7 +64782,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Deck the Trials",
-      "collectionName": "Deck The Trials",
+      "collectionName": "Deck the Trials",
       "image": "./dbd_images/cosmetics/full_sets/the-trickster--king-of-sweets--outfit--k23-outfit-015.png",
       "aliases": [
         "king of sweets",
@@ -64991,7 +65118,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Neon Nights",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "image": "./dbd_images/cosmetics/full_sets/the-trickster--pressured-performer--outfit--k23-outfit-007.png",
       "aliases": [
         "pressured performer",
@@ -66104,7 +66231,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Artists from the Fog",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "image": "./dbd_images/cosmetics/full_sets/the-twins--flesh-and-bones--outfit--k22-outfit-010.png",
       "aliases": [
         "flesh and bones",
@@ -67003,7 +67130,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Artists from the Fog",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "image": "./dbd_images/cosmetics/full_sets/the-unknown--real-life-tale--outfit--k35-outfit-011.png",
       "aliases": [
         "real-life tale",
@@ -67129,7 +67256,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Hallowed Blight",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "image": "./dbd_images/cosmetics/full_sets/the-unknown--unknown-blighting--outfit--k35-outfit-015.png",
       "aliases": [
         "unknown blighting",
@@ -69902,7 +70029,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Hallowed Blight",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "image": "./dbd_images/cosmetics/full_sets/the-wraith--seeping-hollow--outfit--bob-outfit-010-2.png",
       "aliases": [
         "seeping hollow",
@@ -70399,7 +70526,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Killer",
       "groupKey": "cosmetic",
       "groupLabel": "Alien",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "image": "./dbd_images/cosmetics/full_sets/the-xenomorph--inoculated-xenomorph--outfit--k33-outfit-008.png",
       "aliases": [
         "inoculated xenomorph",
@@ -79391,6 +79518,126 @@ var COSMETICS_CATALOG = {
       "description": "\"At last they came upon a place of rest, and in that place the Aurorans would be born.\" (Sang Legat, 6:5)"
     },
     {
+      "id": "aurora-stardotter--bloodstar--outfit--s054-outfit-01-cv04",
+      "name": "Bloodstar",
+      "baseCharacterId": "b08621c0-95ba-421f-b1bb-10ee78a1695f",
+      "baseCharacterName": "Aurora Stardotter",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "collectionName": "Chorus of Sin",
+      "image": "./dbd_images/cosmetics/full_sets/aurora-stardotter--bloodstar--outfit--s054-outfit-01-cv04.png",
+      "aliases": [
+        "bloodstar",
+        "chorus of sin",
+        "outfit",
+        "aurora stardotter",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Common",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Chorus of Sin",
+      "assetFileTitleCandidates": [
+        "File:S054 outfit 01 CV04.png"
+      ],
+      "description": "\"She gazed into the dark tapestry, for in the stars were the threads of fate interwoven.\" (Metridora, 5:31)"
+    },
+    {
+      "id": "aurora-stardotter--gloamstar--outfit--s054-outfit-01-cv03",
+      "name": "Gloamstar",
+      "baseCharacterId": "b08621c0-95ba-421f-b1bb-10ee78a1695f",
+      "baseCharacterName": "Aurora Stardotter",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "collectionName": "Chorus of Sin",
+      "image": "./dbd_images/cosmetics/full_sets/aurora-stardotter--gloamstar--outfit--s054-outfit-01-cv03.png",
+      "aliases": [
+        "gloamstar",
+        "chorus of sin",
+        "outfit",
+        "aurora stardotter",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Common",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Chorus of Sin",
+      "assetFileTitleCandidates": [
+        "File:S054 outfit 01 CV03.png"
+      ],
+      "description": "\"She gazed into the dark tapestry, for in the stars were the threads of fate interwoven.\" (Metridora, 5:31)"
+    },
+    {
+      "id": "aurora-stardotter--verdantstar--outfit--s054-outfit-01-cv02",
+      "name": "Verdantstar",
+      "baseCharacterId": "b08621c0-95ba-421f-b1bb-10ee78a1695f",
+      "baseCharacterName": "Aurora Stardotter",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "collectionName": "Chorus of Sin",
+      "image": "./dbd_images/cosmetics/full_sets/aurora-stardotter--verdantstar--outfit--s054-outfit-01-cv02.png",
+      "aliases": [
+        "verdantstar",
+        "chorus of sin",
+        "outfit",
+        "aurora stardotter",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Common",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Chorus of Sin",
+      "assetFileTitleCandidates": [
+        "File:S054 outfit 01 CV02.png"
+      ],
+      "description": "\"She gazed into the dark tapestry, for in the stars were the threads of fate interwoven.\" (Metridora, 5:31)"
+    },
+    {
       "id": "aurora-stardotter--searcher-s-bloodstains--body--s054-torso01-p01",
       "name": "Searcher's Bloodstains",
       "baseCharacterId": "b08621c0-95ba-421f-b1bb-10ee78a1695f",
@@ -79494,6 +79741,174 @@ var COSMETICS_CATALOG = {
         "File:S054 Legs01 P01.png"
       ],
       "description": "\"At last they came upon a place of rest, and in that place they would stand defiant against Judgment.\" (Collations, 8:1)"
+    },
+    {
+      "id": "aurora-stardotter--judgment-s-bane--outfit--s054-outfit-02",
+      "name": "Judgment's Bane",
+      "baseCharacterId": "b08621c0-95ba-421f-b1bb-10ee78a1695f",
+      "baseCharacterName": "Aurora Stardotter",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "collectionName": "Chorus of Sin",
+      "image": "./dbd_images/cosmetics/full_sets/aurora-stardotter--judgment-s-bane--outfit--s054-outfit-02.png",
+      "aliases": [
+        "judgment's bane",
+        "chorus of sin",
+        "outfit",
+        "aurora stardotter",
+        "head",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Chorus of Sin",
+      "assetFileTitleCandidates": [
+        "File:S054 outfit 02.png"
+      ],
+      "description": "\"As the crop turns toward the rising sun, so must we turn toward the decipherer of stars, she who shields us from sin's ravenous jaws.\" (Enlightenments, 4:7)"
+    },
+    {
+      "id": "aurora-stardotter--judgment-s-reckoning--outfit--s054-outfit-02-01",
+      "name": "Judgment's Reckoning",
+      "baseCharacterId": "b08621c0-95ba-421f-b1bb-10ee78a1695f",
+      "baseCharacterName": "Aurora Stardotter",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "collectionName": "Chorus of Sin",
+      "image": "./dbd_images/cosmetics/full_sets/aurora-stardotter--judgment-s-reckoning--outfit--s054-outfit-02-01.png",
+      "aliases": [
+        "judgment's reckoning",
+        "chorus of sin",
+        "outfit",
+        "aurora stardotter",
+        "head",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Chorus of Sin",
+      "assetFileTitleCandidates": [
+        "File:S054 outfit 02 01.png"
+      ],
+      "description": "\"As the crop turns toward the rising sun, so must we turn toward the decipherer of stars, she who shields us from sin's ravenous jaws.\" (Enlightenments, 4:7)"
+    },
+    {
+      "id": "aurora-stardotter--unblinded--outfit--s054-outfit-01-01",
+      "name": "Unblinded",
+      "baseCharacterId": "b08621c0-95ba-421f-b1bb-10ee78a1695f",
+      "baseCharacterName": "Aurora Stardotter",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "collectionName": "Chorus of Sin",
+      "image": "./dbd_images/cosmetics/full_sets/aurora-stardotter--unblinded--outfit--s054-outfit-01-01.png",
+      "aliases": [
+        "unblinded",
+        "chorus of sin",
+        "outfit",
+        "aurora stardotter",
+        "head",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Uncommon",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Chorus of Sin",
+      "assetFileTitleCandidates": [
+        "File:S054 outfit 01 01.png"
+      ],
+      "description": "\"She had withstood the torturer's blade, wavering not as it slipped beneath her eyelid, carving that which could never be blinded.\" (Metridora, 3:21)"
+    },
+    {
+      "id": "aurora-stardotter--unyielding--outfit--s054-outfit-01-03",
+      "name": "Unyielding",
+      "baseCharacterId": "b08621c0-95ba-421f-b1bb-10ee78a1695f",
+      "baseCharacterName": "Aurora Stardotter",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "collectionName": "Chorus of Sin",
+      "image": "./dbd_images/cosmetics/full_sets/aurora-stardotter--unyielding--outfit--s054-outfit-01-03.png",
+      "aliases": [
+        "unyielding",
+        "chorus of sin",
+        "outfit",
+        "aurora stardotter",
+        "head",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Uncommon",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Chorus of Sin",
+      "assetFileTitleCandidates": [
+        "File:S054 outfit 01 03.png"
+      ],
+      "description": "\"She had withstood the torturer's blade, wavering not as it slipped beneath her eyelid, carving that which could never be blinded.\" (Metridora, 3:21)"
     },
     {
       "id": "cheryl-mason--hinako-shimizu--outfit--s22-outfit-014",
@@ -85274,7 +85689,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Neon Nights",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "image": "./dbd_images/cosmetics/full_sets/claudette-morel--story-time--outfit--cm-outfit-026.png",
       "aliases": [
         "story time",
@@ -100365,7 +100780,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Artists from the Fog",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "image": "./dbd_images/cosmetics/full_sets/felix-richter--inspiration-seeker--outfit--s23-outfit-023.png",
       "aliases": [
         "inspiration seeker",
@@ -108609,7 +109024,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Artists from the Fog",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "image": "./dbd_images/cosmetics/full_sets/haddie-kaur--flower-of-life--outfit--s31-outfit-024.png",
       "aliases": [
         "flower of life",
@@ -123120,7 +123535,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Deck the Trials",
-      "collectionName": "Deck The Trials",
+      "collectionName": "Deck the Trials",
       "image": "./dbd_images/cosmetics/full_sets/kate-denson--sugar-plum-singer--outfit--gs-outfit-022.png",
       "aliases": [
         "sugar plum singer",
@@ -131346,7 +131761,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Deck the Trials",
-      "collectionName": "Deck The Trials",
+      "collectionName": "Deck the Trials",
       "image": "./dbd_images/cosmetics/full_sets/meg-thomas--winter-sprinter--outfit--mt-outfit-021.png",
       "aliases": [
         "winter sprinter",
@@ -134593,7 +135008,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Deck the Trials",
-      "collectionName": "Deck The Trials",
+      "collectionName": "Deck the Trials",
       "image": "./dbd_images/cosmetics/full_sets/mikaela-reid--witch-of-the-north--outfit--s28-outfit-016.png",
       "aliases": [
         "witch of the north",
@@ -140088,7 +140503,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Neon Nights",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "image": "./dbd_images/cosmetics/full_sets/nea-karlsson--modern-rebel--outfit--nea-outfit-009-01-2.png",
       "aliases": [
         "modern rebel",
@@ -140130,7 +140545,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Neon Nights",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "image": "./dbd_images/cosmetics/full_sets/nea-karlsson--undaunted-teenager--outfit--nk-outfit-016.png",
       "aliases": [
         "undaunted teenager",
@@ -141157,7 +141572,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Hallowed Blight",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "image": "./dbd_images/cosmetics/full_sets/nicolas-cage--tragic-hero--outfit--s38-outfit-015.png",
       "aliases": [
         "tragic hero",
@@ -144971,7 +145386,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Neon Nights",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "image": "./dbd_images/cosmetics/full_sets/renato-lyra--homebody--outfit--s36-outfit-014.png",
       "aliases": [
         "homebody",
@@ -145906,7 +146321,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Artists from the Fog",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "image": "./dbd_images/cosmetics/full_sets/sable-ward--little-red--outfit--s41-outfit-014.png",
       "aliases": [
         "little red",
@@ -150563,7 +150978,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Neon Nights",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "image": "./dbd_images/cosmetics/full_sets/thalita-lyra--social-butterfly--outfit--s35-outfit-013.png",
       "aliases": [
         "social butterfly",
@@ -154208,7 +154623,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Hallowed Blight",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "image": "./dbd_images/cosmetics/full_sets/yoichi-asakawa--vigo-s-scientist--outfit--s30-outfit-008.png",
       "aliases": [
         "vigo’s scientist",
@@ -156175,7 +156590,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Artists from the Fog",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "image": "./dbd_images/cosmetics/full_sets/yui-kimura--dark-racer--outfit--swedensurvivor-outfit-020.png",
       "aliases": [
         "dark racer",
@@ -158400,7 +158815,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Artists from the Fog",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "image": "./dbd_images/cosmetics/full_sets/yun-jin-lee--surprise-performance--outfit--s25-outfit-017.png",
       "aliases": [
         "surprise performance",
@@ -158652,7 +159067,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Deck the Trials",
-      "collectionName": "Deck The Trials",
+      "collectionName": "Deck the Trials",
       "image": "./dbd_images/cosmetics/full_sets/yun-jin-lee--casual-holiday--outfit--s25-outfit-014.png",
       "aliases": [
         "casual holiday",
@@ -158863,7 +159278,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Neon Nights",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "image": "./dbd_images/cosmetics/full_sets/yun-jin-lee--midnight-fashionista--outfit--s25-outfit-007.png",
       "aliases": [
         "midnight fashionista",
@@ -161503,7 +161918,7 @@ var COSMETICS_CATALOG = {
       "baseCharacterType": "Survivor",
       "groupKey": "cosmetic",
       "groupLabel": "Neon Nights",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "image": "./dbd_images/cosmetics/full_sets/zarina-kassir--night-out-in-queens--outfit--us-outfit-013.png",
       "aliases": [
         "night-out in queens",

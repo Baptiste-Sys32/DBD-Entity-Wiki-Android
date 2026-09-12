@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T10:54:01.413Z",
+  "generatedAt": "2026-09-12T09:32:43.439Z",
   "options": {
     "dryRun": false,
     "checkMode": false,
@@ -19,29 +19,110 @@
     },
     "changes": {
       "added": 0,
-      "updated": 0,
+      "updated": 15,
       "removed": 0,
-      "unchanged": 321,
-      "total": 0
+      "unchanged": 306,
+      "total": 15
     },
     "unresolvedCount": 0,
     "unresolved": [],
-    "sampleChanges": []
+    "sampleChanges": [
+      {
+        "name": "Deathbound",
+        "kind": "updatedPost95",
+        "matchType": "name"
+      },
+      {
+        "name": "Hex: Plaything",
+        "kind": "updatedPost95",
+        "matchType": "name"
+      },
+      {
+        "name": "Hex: Pentimento",
+        "kind": "updatedPost95",
+        "matchType": "name"
+      },
+      {
+        "name": "Nowhere to Hide",
+        "kind": "updatedPost95",
+        "matchType": "name"
+      },
+      {
+        "name": "Machine Learning",
+        "kind": "updatedPost95",
+        "matchType": "name"
+      },
+      {
+        "name": "No One Left Behind",
+        "kind": "updatedPost95",
+        "matchType": "name"
+      },
+      {
+        "name": "Boon: Circle of Healing",
+        "kind": "updatedPost95",
+        "matchType": "name"
+      },
+      {
+        "name": "Boon: Exponential",
+        "kind": "updatedPost95",
+        "matchType": "name"
+      },
+      {
+        "name": "Boon: Dark Theory",
+        "kind": "updatedPost95",
+        "matchType": "name"
+      },
+      {
+        "name": "Better Than New",
+        "kind": "updatedPost95",
+        "matchType": "name"
+      },
+      {
+        "name": "Made for This",
+        "kind": "updatedPost95",
+        "matchType": "name"
+      },
+      {
+        "name": "Thanatophobia",
+        "kind": "updatedPost95",
+        "matchType": "name"
+      },
+      {
+        "name": "Vigil",
+        "kind": "updatedPost95",
+        "matchType": "name"
+      },
+      {
+        "name": "Secret Project",
+        "kind": "updatedPost95",
+        "matchType": "name"
+      },
+      {
+        "name": "Flow State",
+        "kind": "updatedPost95",
+        "matchType": "name"
+      }
+    ]
   },
   "addons": {
     "total": 946,
     "counts": {
-      "updated": 0,
-      "unchanged": 946,
+      "updated": 1,
+      "unchanged": 945,
       "unresolved": 0
     },
     "changes": {
-      "updated": 0,
-      "unchanged": 946,
-      "total": 0
+      "updated": 1,
+      "unchanged": 945,
+      "total": 1
     },
     "unresolvedCount": 0,
     "unresolved": [],
-    "sampleChanges": []
+    "sampleChanges": [
+      {
+        "name": "Obsidian Feather",
+        "internalId": "Addon_K44_18"
+      }
+    ]
   }
 }

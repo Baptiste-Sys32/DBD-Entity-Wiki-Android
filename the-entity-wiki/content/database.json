@@ -1186,7 +1186,7 @@
       "type": "Killer",
       "description": "Those whose lives are intertwined in darkness are destined to suffer together.\n\nWhen a Survivor heals another Survivor, the healer Survivor screams and activates Deathbound. While they are at least 12/8/4 meters apart, the healer Survivor sees the aura of the Survivor they healed and suffers from the Oblivious status effect. Deathbound lasts until the healer loses a health state.\n\nOblivious prevents Survivors from hearing or being affected by the Killer's Terror Radius.",
       "image": "dbd_images/perks/IconPerks_deathbound.png",
-      "descriptionPost95": "Whenever a Survivor finishes healing another, they scream. Then, until they take damage, while they are at least 12/8/4m away from that Survivor: - They gain Oblivious. - They see that Survivor's Aura."
+      "descriptionPost95": "Whenever a Survivor finishes healing another, the healer screams. Then, until the healer takes damage, while they are at least 12/8/4m away from the healed Survivor: - The healer gains Oblivious. - The healer sees the healed Survivor's Aura. This can only apply to one Survivor at a time."
     },
     {
       "id": "3ae77ce7-8f08-419c-b6f7-c972fc47b184",
@@ -1681,7 +1681,7 @@
       "description": "A Hex that toys with a victim's suffering.\n\nThe first time you hook a Survivor, they become Cursed and Hex: Plaything activates on a Dull Totem. The Cursed Survivor suffers from the Oblivious status effect until Hex: Plaything is cleansed.\n\nHex: Plaything's totem aura is revealed to the Cursed Survivor when within 24/20/16 meters of it. For the first 90 seconds, only the Cursed Survivor can cleanse the totem.\n\nOblivious prevents Survivors from hearing or being affected by the Killer's Terror Radius.",
       "image": "dbd_images/perks/IconPerks_hexPlaything.png",
       "bloodweb": true,
-      "descriptionPost95": "The first time you hook each Survivor, they are hexed and a Dull Totem ignites. For 90s, the Hex Totem is blocked to other Survivors. The hexed Survivors: - Gain Oblivious. - Within 24/20/16m of the Hex totem, they see its Aura."
+      "descriptionPost95": "The first time you hook each Survivor, they are hexed and a Dull Totem ignites. For 90s, the Hex Totem is blocked to other Survivors. The hexed Survivors: - Gain Oblivious. - Within 24/20/16m of the Hex Totem, they see its Aura."
     },
     {
       "id": "77b7b655-52e6-41b1-8caf-38d8eab3d0f7",
@@ -1718,7 +1718,7 @@
       "type": "Killer",
       "description": "You see the aura of cleansed totems and can Rekindle each Totem once.\n\nWhile a Totem is Rekindled, Survivors Heal and Repair 20% slower +1/2/3% for each additional Rekindled Totem.\n\nIf all five totems are Rekindled simultaneously, all Totems are permanently blocked by The Entity.\n\nSurvivors cursed by this perk see the auras of Rekindled Totems within 16 meters.",
       "image": "dbd_images/perks/IconPerks_hexPentimento.png",
-      "descriptionPost95": "You see the Auras of cleansed Totems, and can rekindle each once. Within 16m, Survivors see the Auras of Rekindled Totems. While a totem is rekindled, Survivors heal and repair 20% slower, plus 1/2/3% for each additional Rekindled Totem. When all 5 Totems are rekindled at once, they are blocked."
+      "descriptionPost95": "You see the Auras of cleansed Totems, and can rekindle each once. Within 16m, Survivors see the Auras of Rekindled Totems. While a Totem is rekindled, Survivors heal and repair 20% slower, plus 1/2/3% for each additional Rekindled Totem. When all 5 Totems are rekindled at once, they are blocked."
     },
     {
       "id": "96a98802-3723-481b-af2b-9a304ea360a3",
@@ -1808,7 +1808,7 @@
       "type": "Killer",
       "description": "The machinations of the weak and craven draw your ire. Your anger forces Survivors to reveal themselves.\n\nWhenever you damage a generator, reveal the aura of all Survivors standing within 24 meters of your position for 3/4/5 seconds.",
       "image": "dbd_images/perks/IconPerks_nowhereToHide.png",
-      "descriptionPost95": "Whenever you damage a Generator, for 3/4/5s, you see the Auras of Survivors within 18m of you."
+      "descriptionPost95": "Whenever you damage a Generator, for 3/4/5s, you see the Auras of Survivors within 18m of it."
     },
     {
       "id": "3b04e69f-2975-481b-9cc0-5eb5eafd81e1",
@@ -1880,7 +1880,7 @@
       "type": "Killer",
       "description": "Free from your shackles, you are born anew and prepared to eliminate your creators.\n\nWhen you damage a generator, it becomes Compromised. Only one generator can be Compromised at a time.\n\nWhen the Compromised generator is completed, you gain Undetectable and 8% Haste for 40/50/60 seconds.\n\nUndetectable hides the Killer's aura, Terror Radius, and Red Stain.\n\nHaste increases Killer movement speed.",
       "image": "dbd_images/perks/IconPerks_machineLearning.png",
-      "descriptionPost95": "Whenever you damage a Generator, it becomes Compromised. When that Generator is completed by Survivors: - You gain 8% Haste for 40/50/60s. - You gain Undetectable for 40/50/60s. Only one Generator can be compromised at a time."
+      "descriptionPost95": "Whenever you damage a Generator, it becomes compromised. When that Generator is completed by Survivors: - You gain 8% Haste for 40/50/60s. - You gain Undetectable for 40/50/60s. Only one Generator can be compromised at a time."
     },
     {
       "id": "a723238b-4fcb-4720-98dc-9361b4f7b7d4",
@@ -2258,7 +2258,7 @@
       "type": "Survivor",
       "description": "It is inconceivable to leave someone behind. Once the exit gates are powered, you gain the following effects:\n\n- 50/75/100% bonus action speed when healing and unhooking other Survivors.\n- When unhooking a Survivor, increase the Haste they gain by 10%.\n- The auras of all other Survivors are revealed to you.\n\nHaste increases Survivor movement speed.",
       "image": "dbd_images/perks/IconPerks_noOneLeftBehind.png",
-      "descriptionPost95": "When all Generators are completed: - You heal 50/75/100% faster. - You unhook other Survivors 50/75/100% faster. - Whenever you unhook a Survivor, they gain 10% more Haste. - You see the Auras of other Survivors."
+      "descriptionPost95": "When all Generators are completed: - You heal other Survivors 50/75/100% faster. - You unhook other Survivors 50/75/100% faster. - Whenever you unhook a Survivor, they gain 10% more Haste. - You see the Auras of other Survivors."
     },
     {
       "id": "8adf88bc-7a4d-400d-9bdb-917d37d01ed2",
@@ -2571,7 +2571,7 @@
       "type": "Survivor",
       "description": "A boon that offers comfort amidst the terror.\n\nPress and hold the Ability button 1 near a Dull or Hex Totem to bless it and create a Boon Totem. Soft chimes ring out in a 24 meter range.\n\nAny Survivors within the Boon Totem's range gain a 50/75/100% healing speed bonus to healing others. Med-kits give no bonus to healing in the Boon Totem's range. Injured Survivors have their auras revealed to all other Survivors when inside the Boon Totem’s range.\n\nYou can only bless one Totem at a time. All equipped boon perks are active on your Boon Totem.",
       "image": "dbd_images/perks/IconPerks_boonCircleOfHealing.png",
-      "descriptionPost95": "While next to a totem, use Active Ability Button 1 to bless it, creating a unique Boon Totem that combines all your Boons. Survivors within the Boon's range: - While healing without a Med-Kit, they heal others 50/75/100% faster. - While injured, other Survivors see their Aura."
+      "descriptionPost95": "While next to a Totem, use Active Ability Button 1 to bless it, creating a unique Boon Totem that combines all your Boons. Survivors within the Boon's range: - While healing without a Med-Kit, they heal others 50/75/100% faster. - While injured, other Survivors see their Aura."
     },
     {
       "id": "03209cbd-a56e-4aca-96c5-77f0a7af15d2",
@@ -2607,7 +2607,7 @@
       "type": "Survivor",
       "description": "When it seems like your number is up, you consider ways to recalculate the odds.\n\nPress and hold the Ability button near a Dull or Hex Totem to bless it and create a Boon Totem. Soft chimes ring out in a 24 meter range.\n\nAll Survivors within the Boon Totem's range recover 90/95/100% faster and can completely recover from the dying state.\n\nYou can only bless one Totem at a time. All equipped boon perks are active on your Boon Totem.",
       "image": "dbd_images/perks/IconPerks_boonExponential.png",
-      "descriptionPost95": "While next to a totem, use Active Ability Button 1 to bless it, creating a unique Boon totem that combines all your Boons. Downed Survivors within the Boon's range: - Recover 90/95/100% faster. - Can fully recover."
+      "descriptionPost95": "While next to a Totem, use Active Ability Button 1 to bless it, creating a unique Boon Totem that combines all your Boons. Downed Survivors within the Boon's range: - Recover 90/95/100% faster. - Can fully recover."
     },
     {
       "id": "cde5bc25-4d44-4135-a4a5-4637fbb2f355",
@@ -2634,7 +2634,7 @@
       "type": "Survivor",
       "description": "Your obsessive study of the paranormal has given you unprecedented knowledge of other realms and planes of existence.\n\nPress and hold the Ability button near a Dull or Hex Totem to bless it and create a Boon Totem. Soft chimes ring out in a 24 meter range.\n\nAny Survivors within the Boon Totem’s range gain 3% Haste. This effect lingers for 2/3/4 seconds after leaving the Boon Totem's range.\n\nYou can only bless one Totem at a time. All equipped boon perks are active on your Boon Totem.\n\nHaste increases Survivor movement speed.",
       "image": "dbd_images/perks/IconPerks_boonDarkTheory.png",
-      "descriptionPost95": "While next to a totem, use Active Ability Button 1 to bless it, creating a unique Boon Totem that combines all your Boons. Survivors within the Boon's range gain 3% Haste. When leaving the range, this ends after 2/3/4s."
+      "descriptionPost95": "While next to a Totem, use Active Ability Button 1 to bless it, creating a unique Boon Totem that combines all your Boons. Survivors within the Boon's range gain 3% Haste. When leaving the range, this ends after 2/3/4s."
     },
     {
       "id": "f5afd9f5-6450-458d-8c6f-6ad76a81422f",
@@ -2697,7 +2697,7 @@
       "type": "Survivor",
       "description": "You are an expert in combat medicine. Patients leave your care reinvigorated.\n\nUpon completing a healing action on another Survivor, the targeted Survivor gets a 12/14/16% speed boost to healing, opening chests, cleansing and blessing Totems.\n\nSurvivors keep the bonus until they lose a health state.",
       "image": "dbd_images/perks/IconPerks_betterThanNew.png",
-      "descriptionPost95": "Whenever you finish healing another Survivor, until they take damage: - They bless and cleanse 12/14/16% faster. - They heal 12/14/16% faster. - They unlock Chests 12/14/16% faster."
+      "descriptionPost95": "Whenever you finish healing another Survivor, until they take damage: - They bless and cleanse Totems 12/14/16% faster. - They heal 12/14/16% faster. - They unlock Chests 12/14/16% faster."
     },
     {
       "id": "53ad7029-6338-4658-aff4-bdfc74e705a3",
@@ -2814,7 +2814,7 @@
       "type": "Survivor",
       "description": "You were born to survive, and raised to adapt.\n\nMade for This activates while you are in the injured state.\n\n- After you finish healing another Survivor, gain the Endurance status effect for 6/8/10 seconds.\n- While affected by Deep Wound, you have 3% Haste.\n\nEndurance prevents a Survivor from being downed, inflicting Deep Wound instead.\n\nDeep Wound will put a Survivor in the dying state unless it is mended before the timer runs out.\n\nHaste increases Survivor movement speed.",
       "image": "dbd_images/perks/IconPerks_madeForThis.png",
-      "descriptionPost95": "While injured, whenever you finish healing another Survivor, you gain Endurance for 6/8/10s. While you have Deep Wound, you gain 3% Haste."
+      "descriptionPost95": "While injured, whenever you finish healing another Survivor, you gain Endurance for 6/8/10s. While you are running and have Deep Wound, you gain 3% Haste."
     },
     {
       "id": "390ad3cb-21dd-48b1-883e-62622304a5f4",
@@ -3380,7 +3380,7 @@
       "type": "Killer",
       "description": "Their courage fades in the face of undeniable mortality.\n\n- For each injured, dying, or hooked Survivor, all Survivors receive a penalty of 1/1.5/2% to repair, sabotage and Totem-cleansing speeds.\n- If there are 4 injured, dying or hooked Survivors, there is an additional 12% penalty to repair, sabotage and Totem-cleansing speeds.",
       "image": "dbd_images/perks/IconPerks_thanatophobia.png",
-      "descriptionPost95": "For each injured, downed, or hooked Survivor, all Survivors: - Cleanse totems 1/1.5/2% slower. - Repair 1/1.5/2% slower. - Sabotage Hooks 1/1.5/2% slower. While 4 Survivors are either injured, downed or hooked, all above actions are additionally 12% slower."
+      "descriptionPost95": "For each injured, downed, or hooked Survivor, all Survivors: - Cleanse Totems 1/1.5/2% slower. - Repair 1/1.5/2% slower. - Sabotage Hooks 1/1.5/2% slower. While 4 Survivors are either injured, downed or hooked, all above actions are additionally 12% slower."
     },
     {
       "id": "5adc59b9-38e0-41e1-9824-0035cc55c45e",
@@ -3470,7 +3470,7 @@
       "type": "Survivor",
       "description": "You look over your friends even in dire situations.\n\nYou and Survivors within 16 meters recover 44/55/66% faster from the Blindness, Broken, Exhausted, Exposed, Hemorrhage, Hindered, Mangled and Oblivious status effects.\n\nSurvivors can only be affected by one Vigil's effect at a time.\n\nOnce out of range, this effect persists for 15 seconds.",
       "image": "dbd_images/perks/IconPerks_vigil.png",
-      "descriptionPost95": "All Survivors within 16m of you: - Lose Blindness 30/35/40% faster. - Lose Broken 30/35/40% faster. - Lose Exhausted 30/35/40% faster. - Lose Exposed 30/35/40% faster. - Lose Hemorrhage 30/35/40% faster. - Lose Hindered 30/35/40% faster. - Lose Mangled 30/35/40% faster. - Lose Oblivious 30/35/40% faster. After they leave your range, this ends after 15s."
+      "descriptionPost95": "All Survivors within 16m of you lose Exhausted 30/35/40% faster. This effect ends 15s after they leave your range."
     },
     {
       "id": "05d826d9-af67-4cf9-a5db-05e348d22a12",
@@ -3551,7 +3551,7 @@
       "type": "Killer",
       "description": "When a Totem is blessed or cleansed, block a random unblocked generator for 20/25/30 seconds.\n\nWhen 1 or more generators become blocked, you gain Undetectable for 30 seconds.",
       "image": "assets/perks/secretproject.png",
-      "descriptionPost95": "Whenever a totem is blessed or cleansed, a random unblocked Generator is blocked for 20/25/30s. Whenever 1 or more Generators are blocked, you gain Undetectable for 30s."
+      "descriptionPost95": "Whenever a Totem is blessed or cleansed, a random unblocked Generator is blocked for 20/25/30s. Whenever 1 or more Generators are blocked, you gain Undetectable for 30s."
     },
     {
       "id": "st2-perk-003-hexhivemind",
@@ -3641,7 +3641,7 @@
       "type": "Survivor",
       "description": "Whenever a Generator is completed, earn 1 Token, up to 5.\n\nFor each Token, you bless and cleanse Totems 8/9/10% faster, heal 8/9/10% faster, and unhook Survivors 8/9/10% faster.",
       "image": "assets/perks/flowstate.png",
-      "descriptionPost95": "Whenever a Generator is completed, earn 1 Token, up to 5. For each Token: - You bless and cleanse 8/9/10% faster. - You heal 8/9/10% faster. - You unhook Survivors 8/9/10% faster."
+      "descriptionPost95": "Whenever a Generator is completed, earn 1 Token, up to 5. For each Token: - You bless and cleanse Totems 8/9/10% faster. - You heal 8/9/10% faster. - You unhook Survivors 8/9/10% faster."
     },
     {
       "id": "k43p01-hex-scared-to-death",
@@ -22755,7 +22755,7 @@
         "Item_K44Power"
       ],
       "killerName": "The Judgment",
-      "description": "“Some villagers will carve feathers from rocks, hoping that their faith might protect them.” (Visions of Gerhardt, ch. 3) You can no longer manually Cast or cancel controlled Divine Light, and it is automatically Cast when it would instead time out. You move 100% faster while controlling Divine Light, and decreases the max time that could be spent controlling it by 25%. You recover 10% slower and move 30% slower while Casting Divine Light.",
+      "description": "“Some villagers will carve feathers from rocks, hoping that their faith might protect them.” (Visions of Gerhardt, ch. 3) You can no longer manually Cast or cancel controlled Divine Light, and it is automatically Cast when it would instead time out. You move 100% faster while controlling Divine Light, and decreases the max time that could be spent controlling it by 25%. You recover 10% slower and move 30% slower while Casting Divine Light. Equipping this add-on negates the effects of Holy Winged Icon.",
       "role": "killer",
       "rarity": "visceral",
       "bloodweb": true,

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T00:31:00.377Z",
+  "generatedAt": "2026-09-12T09:40:46.791Z",
   "sources": {
     "characterSwapCategories": [
       {
@@ -35,14 +35,14 @@
       "characterTemplates": 2295,
       "featuredTemplates": 225,
       "riftTemplates": 0,
-      "collectionPages": 965
+      "collectionPages": 975
     }
   },
   "stats": {
     "characterSwapCandidates": 111,
-    "fullSetCandidates": 3360,
-    "cosmeticCandidates": 3360,
-    "templatesWithoutRows": 11,
+    "fullSetCandidates": 3370,
+    "cosmeticCandidates": 3370,
+    "templatesWithoutRows": 10,
     "ignoredTitles": 1
   },
   "ignoredTitles": [
@@ -98,7 +98,6 @@
     "Twisted Masquerade Collection::Masquerade Musician::Troupe"
   ],
   "templatesWithoutRows": [
-    "Chorus of Sin Collection",
     "Diablo Collection",
     "Ice Nine Kills Collection",
     "Scooby-Doo Collection",
@@ -1208,6 +1207,7 @@
       "baseCharacterName": "The Xenomorph",
       "baseCharacterType": "Killer",
       "assetFileTitleCandidates": [
+        "File:K33 Head013.png",
         "File:CC107 charSelect portrait.png"
       ],
       "sourceKind": "wiki-category",
@@ -9104,7 +9104,7 @@
       "name": "Blighted Bounty Hunter",
       "rarity": "Very Rare",
       "description": "The subject's boiling blood made the serum flow like lightning.",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -12051,7 +12051,7 @@
       "name": "Foul Bile",
       "rarity": "Very Rare",
       "description": "A relentless specimen with acute aggressive responses to experimentation. Physical restraints were used on both ankles.",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -15481,7 +15481,7 @@
       "name": "Blighted Good Guy",
       "rarity": "Very Rare",
       "description": "Testing on a plastic specimen seemed like a waste of time, but the results were staggering.",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -18402,7 +18402,7 @@
       "name": "Osseous Carcass",
       "rarity": "Very Rare",
       "description": "A particularly aggressive specimen following experimentation. Injected in multiple locations to yield faster results, which caused severe fluid-filled lumps.",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -20908,7 +20908,7 @@
       "name": "Doll Collector",
       "rarity": "Very Rare",
       "description": "Designed by Jay.",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -20939,7 +20939,7 @@
       "name": "Growth Surge",
       "rarity": "Very Rare",
       "description": "This feral specimen was the first experiment of its kind.",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -21386,6 +21386,68 @@
     {
       "kind": "cosmetic",
       "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "pageTitle": "Chorus of Sin Collection",
+      "templateName": "Chorus of Sin Collection",
+      "sourceBucket": "Chorus of Sin",
+      "name": "Cruel Messenger",
+      "rarity": "Rare",
+      "description": "\"It who judges us, we thank you for your noble and unending mission!\" (Witness to Koenrad, ch. 45)",
+      "collectionName": "Chorus of Sin",
+      "pieceType": "Outfit",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Weapon"
+      ],
+      "bindSummary": "Head + Body + Weapon",
+      "basePageTitle": "The Judgment",
+      "baseCharacterId": "064a9628-9056-4b0c-9fe5-72e6fce7f56e",
+      "baseCharacterName": "The Judgment",
+      "baseCharacterType": "Killer",
+      "assetFileTitleCandidates": [
+        "File:K44 outfit 002.png"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "slugHint": "the-judgment--cruel-messenger--chorus-of-sin--k44-outfit-002",
+      "statusHint": "ready"
+    },
+    {
+      "kind": "cosmetic",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "pageTitle": "Chorus of Sin Collection",
+      "templateName": "Chorus of Sin Collection",
+      "sourceBucket": "Chorus of Sin",
+      "name": "Merciless Messenger",
+      "rarity": "Rare",
+      "description": "\"It who judges us, we thank you for your noble and unending mission!\" (Witness to Koenrad, ch. 45\n)",
+      "collectionName": "Chorus of Sin",
+      "pieceType": "Outfit",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Weapon"
+      ],
+      "bindSummary": "Head + Body + Weapon",
+      "basePageTitle": "The Judgment",
+      "baseCharacterId": "064a9628-9056-4b0c-9fe5-72e6fce7f56e",
+      "baseCharacterName": "The Judgment",
+      "baseCharacterType": "Killer",
+      "assetFileTitleCandidates": [
+        "File:K44 outfit 002 01.png"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "slugHint": "the-judgment--merciless-messenger--chorus-of-sin--k44-outfit-002-01",
+      "statusHint": "ready"
+    },
+    {
+      "kind": "cosmetic",
+      "groupKey": "cosmetic",
       "groupLabel": "Prestige",
       "pageTitle": "Template:Judgment's Prestige Cosmetics",
       "templateName": "Judgment's Prestige Cosmetics",
@@ -21408,6 +21470,37 @@
       "sourceKind": "wiki-template",
       "sourcePage": "Template:Judgment's Prestige Cosmetics",
       "slugHint": "the-judgment--staff-of-obliteration--weapon--k044-w01-p01--prestige",
+      "statusHint": "ready"
+    },
+    {
+      "kind": "cosmetic",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "pageTitle": "Chorus of Sin Collection",
+      "templateName": "Chorus of Sin Collection",
+      "sourceBucket": "Chorus of Sin",
+      "name": "Vanguard of the Creators",
+      "rarity": "Very Rare",
+      "description": "\"Some of that which was created needed to be punished, and so they needed a punisher.\" (Truths Revealed, ch. 11)",
+      "collectionName": "Chorus of Sin",
+      "pieceType": "Outfit",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Weapon"
+      ],
+      "bindSummary": "Head + Body + Weapon",
+      "basePageTitle": "The Judgment",
+      "baseCharacterId": "064a9628-9056-4b0c-9fe5-72e6fce7f56e",
+      "baseCharacterName": "The Judgment",
+      "baseCharacterType": "Killer",
+      "assetFileTitleCandidates": [
+        "File:K44 outfit 006.png"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "slugHint": "the-judgment--vanguard-of-the-creators--chorus-of-sin--k44-outfit-006",
       "statusHint": "ready"
     },
     {
@@ -22641,7 +22734,7 @@
       "name": "Ice Queen",
       "rarity": "Very Rare",
       "description": "Her amazing performance showed the audience how the Queen’s icy heart melted, thanks to the love coursing through her.",
-      "collectionName": "Deck The Trials",
+      "collectionName": "Deck the Trials",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -24306,7 +24399,7 @@
       "name": "Angsty Artist (Susie)",
       "rarity": "Very Rare",
       "description": "She braved the night to create. Even when surrounded in darkness, she shone.",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -24608,7 +24701,7 @@
       "name": "High-vis Horror (Joey)",
       "rarity": "Very Rare",
       "description": "There's no need to hide. We have the strength of numbers.",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -25090,7 +25183,7 @@
       "name": "School Gang (Julie)",
       "rarity": "Very Rare",
       "description": "Designed by Ikumi Nakamura.",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -29186,7 +29279,7 @@
       "name": "Blind Revenge",
       "rarity": "Very Rare",
       "description": "Designed by Ikumi Nakamura.",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -29217,7 +29310,7 @@
       "name": "Bursting With Fury",
       "rarity": "Very Rare",
       "description": "His overwhelming strength made him a priority candidate for testing. The searing pain of the experiment, more than anything, made his rage even more potent.",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -29793,7 +29886,7 @@
       "name": "Swollen Excrescence",
       "rarity": "Very Rare",
       "description": "Boils spread beneath her rotting skin due to over-injection.",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -30311,7 +30404,7 @@
       "name": "Blighted Pig",
       "rarity": "Very Rare",
       "description": "She triumphed over many gruesome tests in her life before. She accepted that she must endure one more.",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -38256,7 +38349,7 @@
       "name": "King of the Hooks",
       "rarity": "Very Rare",
       "description": "A cruel specimen injected with metalloids congealed at high temperatures.",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -39501,7 +39594,7 @@
       "name": "King of Sweets",
       "rarity": "Very Rare",
       "description": "A holiday photoshoot outfit for his fans.",
-      "collectionName": "Deck The Trials",
+      "collectionName": "Deck the Trials",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -39656,7 +39749,7 @@
       "name": "Pressured Performer",
       "rarity": "Very Rare",
       "description": "The night inspired him and concealed his dark impulses.",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -40278,7 +40371,7 @@
       "name": "Flesh And Bones",
       "rarity": "Very Rare",
       "description": "Designed by Raina.",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -40819,7 +40912,7 @@
       "name": "Real-Life Tale",
       "rarity": "Very Rare",
       "description": "The biggest kid in the schoolyard had everyone's attention – he told them The Unknown was so scary, it even killed the Big Bad Wolf.Design inspired by DuckieGrumpy.",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -40850,7 +40943,7 @@
       "name": "Unknown Blighting",
       "rarity": "Very Rare",
       "description": "So blight-poisoned was his mind that the legends surrounding this creature seemed not to apply to him.",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -42662,7 +42755,7 @@
       "name": "Seeping Hollow",
       "rarity": "Very Rare",
       "description": "A tortured prototype with a unique, otherworldly densely corrupted quality.",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -42920,7 +43013,7 @@
       "name": "Inoculated Xenomorph",
       "rarity": "",
       "description": "The serum slowly circulated bit by bit, eating away at the perfect organism.",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -47787,6 +47880,96 @@
     {
       "kind": "cosmetic",
       "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "pageTitle": "Chorus of Sin Collection",
+      "templateName": "Chorus of Sin Collection",
+      "sourceBucket": "Chorus of Sin",
+      "name": "Bloodstar",
+      "rarity": "Common",
+      "description": "\"She gazed into the dark tapestry, for in the stars were the threads of fate interwoven.\" (Metridora, 5:31)",
+      "collectionName": "Chorus of Sin",
+      "pieceType": "Outfit",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Body + Legs",
+      "basePageTitle": "Aurora Stardotter",
+      "baseCharacterId": "b08621c0-95ba-421f-b1bb-10ee78a1695f",
+      "baseCharacterName": "Aurora Stardotter",
+      "baseCharacterType": "Survivor",
+      "assetFileTitleCandidates": [
+        "File:S054 outfit 01 CV04.png"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "slugHint": "aurora-stardotter--bloodstar--chorus-of-sin--s054-outfit-01-cv04",
+      "statusHint": "ready"
+    },
+    {
+      "kind": "cosmetic",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "pageTitle": "Chorus of Sin Collection",
+      "templateName": "Chorus of Sin Collection",
+      "sourceBucket": "Chorus of Sin",
+      "name": "Gloamstar",
+      "rarity": "Common",
+      "description": "\"She gazed into the dark tapestry, for in the stars were the threads of fate interwoven.\" (Metridora, 5:31)",
+      "collectionName": "Chorus of Sin",
+      "pieceType": "Outfit",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Body + Legs",
+      "basePageTitle": "Aurora Stardotter",
+      "baseCharacterId": "b08621c0-95ba-421f-b1bb-10ee78a1695f",
+      "baseCharacterName": "Aurora Stardotter",
+      "baseCharacterType": "Survivor",
+      "assetFileTitleCandidates": [
+        "File:S054 outfit 01 CV03.png"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "slugHint": "aurora-stardotter--gloamstar--chorus-of-sin--s054-outfit-01-cv03",
+      "statusHint": "ready"
+    },
+    {
+      "kind": "cosmetic",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "pageTitle": "Chorus of Sin Collection",
+      "templateName": "Chorus of Sin Collection",
+      "sourceBucket": "Chorus of Sin",
+      "name": "Verdantstar",
+      "rarity": "Common",
+      "description": "\"She gazed into the dark tapestry, for in the stars were the threads of fate interwoven.\" (Metridora, 5:31)",
+      "collectionName": "Chorus of Sin",
+      "pieceType": "Outfit",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Body + Legs",
+      "basePageTitle": "Aurora Stardotter",
+      "baseCharacterId": "b08621c0-95ba-421f-b1bb-10ee78a1695f",
+      "baseCharacterName": "Aurora Stardotter",
+      "baseCharacterType": "Survivor",
+      "assetFileTitleCandidates": [
+        "File:S054 outfit 01 CV02.png"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "slugHint": "aurora-stardotter--verdantstar--chorus-of-sin--s054-outfit-01-cv02",
+      "statusHint": "ready"
+    },
+    {
+      "kind": "cosmetic",
+      "groupKey": "cosmetic",
       "groupLabel": "Prestige",
       "pageTitle": "Template:Aurora's Prestige Cosmetics",
       "templateName": "Aurora's Prestige Cosmetics",
@@ -47863,6 +48046,130 @@
       "sourceKind": "wiki-template",
       "sourcePage": "Template:Aurora's Prestige Cosmetics",
       "slugHint": "aurora-stardotter--wanderer-s-wrap--legs--s054-legs01-p01--prestige",
+      "statusHint": "ready"
+    },
+    {
+      "kind": "cosmetic",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "pageTitle": "Chorus of Sin Collection",
+      "templateName": "Chorus of Sin Collection",
+      "sourceBucket": "Chorus of Sin",
+      "name": "Judgment's Bane",
+      "rarity": "Rare",
+      "description": "\"As the crop turns toward the rising sun, so must we turn toward the decipherer of stars, she who shields us from sin's ravenous jaws.\" (Enlightenments, 4:7)",
+      "collectionName": "Chorus of Sin",
+      "pieceType": "Outfit",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "basePageTitle": "Aurora Stardotter",
+      "baseCharacterId": "b08621c0-95ba-421f-b1bb-10ee78a1695f",
+      "baseCharacterName": "Aurora Stardotter",
+      "baseCharacterType": "Survivor",
+      "assetFileTitleCandidates": [
+        "File:S054 outfit 02.png"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "slugHint": "aurora-stardotter--judgment-s-bane--chorus-of-sin--s054-outfit-02",
+      "statusHint": "ready"
+    },
+    {
+      "kind": "cosmetic",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "pageTitle": "Chorus of Sin Collection",
+      "templateName": "Chorus of Sin Collection",
+      "sourceBucket": "Chorus of Sin",
+      "name": "Judgment's Reckoning",
+      "rarity": "Rare",
+      "description": "\"As the crop turns toward the rising sun, so must we turn toward the decipherer of stars, she who shields us from sin's ravenous jaws.\" (Enlightenments, 4:7)",
+      "collectionName": "Chorus of Sin",
+      "pieceType": "Outfit",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "basePageTitle": "Aurora Stardotter",
+      "baseCharacterId": "b08621c0-95ba-421f-b1bb-10ee78a1695f",
+      "baseCharacterName": "Aurora Stardotter",
+      "baseCharacterType": "Survivor",
+      "assetFileTitleCandidates": [
+        "File:S054 outfit 02 01.png"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "slugHint": "aurora-stardotter--judgment-s-reckoning--chorus-of-sin--s054-outfit-02-01",
+      "statusHint": "ready"
+    },
+    {
+      "kind": "cosmetic",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "pageTitle": "Chorus of Sin Collection",
+      "templateName": "Chorus of Sin Collection",
+      "sourceBucket": "Chorus of Sin",
+      "name": "Unblinded",
+      "rarity": "Uncommon",
+      "description": "\"She had withstood the torturer's blade, wavering not as it slipped beneath her eyelid, carving that which could never be blinded.\" (Metridora, 3:21)",
+      "collectionName": "Chorus of Sin",
+      "pieceType": "Outfit",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "basePageTitle": "Aurora Stardotter",
+      "baseCharacterId": "b08621c0-95ba-421f-b1bb-10ee78a1695f",
+      "baseCharacterName": "Aurora Stardotter",
+      "baseCharacterType": "Survivor",
+      "assetFileTitleCandidates": [
+        "File:S054 outfit 01 01.png"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "slugHint": "aurora-stardotter--unblinded--chorus-of-sin--s054-outfit-01-01",
+      "statusHint": "ready"
+    },
+    {
+      "kind": "cosmetic",
+      "groupKey": "cosmetic",
+      "groupLabel": "Chorus of Sin",
+      "pageTitle": "Chorus of Sin Collection",
+      "templateName": "Chorus of Sin Collection",
+      "sourceBucket": "Chorus of Sin",
+      "name": "Unyielding",
+      "rarity": "Uncommon",
+      "description": "\"She had withstood the torturer's blade, wavering not as it slipped beneath her eyelid, carving that which could never be blinded.\" (Metridora, 3:21)",
+      "collectionName": "Chorus of Sin",
+      "pieceType": "Outfit",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "basePageTitle": "Aurora Stardotter",
+      "baseCharacterId": "b08621c0-95ba-421f-b1bb-10ee78a1695f",
+      "baseCharacterName": "Aurora Stardotter",
+      "baseCharacterType": "Survivor",
+      "assetFileTitleCandidates": [
+        "File:S054 outfit 01 03.png"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Chorus of Sin Collection",
+      "slugHint": "aurora-stardotter--unyielding--chorus-of-sin--s054-outfit-01-03",
       "statusHint": "ready"
     },
     {
@@ -51653,7 +51960,7 @@
       "name": "Story Time",
       "rarity": "Very Rare",
       "description": "Claudette read a paperback about a reclusive yet brilliant biologist who lived in a futuristic community.",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -61116,7 +61423,7 @@
       "name": "Inspiration Seeker",
       "rarity": "Very Rare",
       "description": "Designed by Hunnybear.",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -65240,7 +65547,7 @@
       "name": "Flower Of Life",
       "rarity": "Very Rare",
       "description": "Uncle Stefan set her sights on an abandoned medieval garden, rumored to have been tended by a notorious occultist.Design inspired by Ace.",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -75066,7 +75373,7 @@
       "name": "Sugar Plum Singer",
       "rarity": "Very Rare",
       "description": "She wore this ensemble while performing for a holiday benefit concert at her local community center.",
-      "collectionName": "Deck The Trials",
+      "collectionName": "Deck the Trials",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -80740,7 +81047,7 @@
       "name": "Winter Sprinter",
       "rarity": "Very Rare",
       "description": "Early memories of seeing the ballet came rushing back to her when she happened upon this outfit.",
-      "collectionName": "Deck The Trials",
+      "collectionName": "Deck the Trials",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -82411,7 +82718,7 @@
       "name": "Witch of the North",
       "rarity": "Very Rare",
       "description": "The long and cold nights of winter served as inspiration for this icy look.",
-      "collectionName": "Deck The Trials",
+      "collectionName": "Deck the Trials",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -85218,7 +85525,7 @@
       "name": "Modern Rebel",
       "rarity": "Very Rare",
       "description": "A punk aesthetic, updated for the modern age.",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -85632,7 +85939,7 @@
       "name": "Undaunted Teenager",
       "rarity": "Very Rare",
       "description": "To find her bearings, she skipped class and wandered the streets at night, tagging the alleyways with her mark, Mashtyx.",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -86026,7 +86333,7 @@
       "name": "Tragic Hero",
       "rarity": "Very Rare",
       "description": "Perhaps it was an ordinary costume fitting. Perhaps it was something darker altogether. He moved through the shadowy studio in a daze.",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -87924,7 +88231,7 @@
       "name": "Homebody",
       "rarity": "Very Rare",
       "description": "He followed his sister into the bar and was immediately repulsed by the noise, the smells, the crowd inside.",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -88538,7 +88845,7 @@
       "name": "Little Red",
       "rarity": "Very Rare",
       "description": "She devoted multiple episodes of her radio show to uncover a serial killer the press called Little Red.Design inspired by DuckieGrumpy.",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -91021,7 +91328,7 @@
       "name": "Social Butterfly",
       "rarity": "Very Rare",
       "description": "As she stepped into the bar, the noise and the smells immediately lifted her spirits.",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -92938,7 +93245,7 @@
       "name": "Vigo’s Scientist",
       "rarity": "Very Rare",
       "description": "The clothing of an explorer-scientist searching for the putrid nectar of a flower that blooms only once a year.",
-      "collectionName": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -93813,7 +94120,7 @@
       "name": "Dark Racer",
       "rarity": "Very Rare",
       "description": "Designed by Ikumi Nakamura.",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -94909,7 +95216,7 @@
       "name": "Casual Holiday",
       "rarity": "Very Rare",
       "description": "With nobody else in the office, she was able to dress down.",
-      "collectionName": "Deck The Trials",
+      "collectionName": "Deck the Trials",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -95126,7 +95433,7 @@
       "name": "Midnight Fashionista",
       "rarity": "Very Rare",
       "description": "Her bold style made her stand out even in complete obscurity.",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -95370,7 +95677,7 @@
       "name": "Surprise Performance",
       "rarity": "Very Rare",
       "description": "Designed by Manuel.",
-      "collectionName": "Artists from the Fog",
+      "collectionName": "Artists From The Fog",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
@@ -96819,7 +97126,7 @@
       "name": "Night-Out in Queens",
       "rarity": "Very Rare",
       "description": "Every Friday nights, she met with like-minded filmmakers and celebrated every small victory.",
-      "collectionName": "Neon Nights",
+      "collectionName": "NEON NIGHTS",
       "pieceType": "Outfit",
       "outfitLinkMode": "unlinked",
       "boundSlots": [
