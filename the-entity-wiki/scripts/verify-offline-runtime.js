@@ -201,8 +201,10 @@ function auditRequiredFiles(indexHtml) {
     if (!fileExists(relPath)) warn(`Missing map layout asset referenced in web/index.html: ${relPath}`);
   });
 
-  if (!/<script\s+src=["']cosmetics\.js["'][^>]*><\/script>/.test(indexHtml)) {
-    fail('web/index.html does not load web/cosmetics.js.');
+  // cosmetics.js loads lazily (boot performance) via __dbdLoadCosmetics.
+  if (!/<script\s+src=["']cosmetics\.js["'][^>]*><\/script>/.test(indexHtml)
+    && !indexHtml.includes('__dbdLoadCosmetics')) {
+    fail(`${WEB_DIR_NAME}/index.html neither loads cosmetics.js nor defines __dbdLoadCosmetics.`);
   }
 
   if (!/<script\s+src=["']community-content\.js["'][^>]*><\/script>/.test(indexHtml)) {
