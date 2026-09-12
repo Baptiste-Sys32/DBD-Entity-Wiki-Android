@@ -879,6 +879,21 @@
     .char-detail .go { display: inline-block; margin-top: 6px; color: var(--link); font-weight: 600; font-size: 13.5px; background: none; border: none; cursor: pointer; padding: 8px 0; min-height: 44px; }
     .char-detail .rowbtns { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
     .char-detail .rowbtns button { background: none; border: 1px solid var(--stroke); color: var(--text); font-size: 12.5px; font-weight: 600; padding: 8px 12px; min-height: 44px; cursor: pointer; }
+
+    /* ===== Perk index (step D): summary rows + inline details ===== */
+    .perk-row { border-bottom: 1px solid var(--stroke); }
+    .perk-head { display: flex; align-items: center; gap: 12px; width: 100%; background: none; border: none; min-height: 60px; padding: 8px 4px; cursor: pointer; text-align: left; }
+    .perk-head .diamond { width: 34px; height: 34px; flex: 0 0 34px; transform: rotate(45deg); border: 2px solid var(--stroke); background: var(--ghost-surface); margin: 0 3px; overflow: hidden; }
+    .perk-head .diamond > span { transform: rotate(-45deg); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    .perk-head .nm { font-size: 14.5px; font-weight: 600; color: var(--link); }
+    .perk-head:hover .nm { text-decoration: underline; text-underline-offset: 2px; }
+    .perk-head .tag { display: inline-block; font-size: 11px; color: var(--muted); border: 1px solid var(--stroke); padding: 1px 7px; margin-left: 8px; font-weight: 400; }
+    .perk-head .chev { margin-left: auto; color: var(--link); font-size: 14px; flex-shrink: 0; }
+    .perk-detail { padding: 2px 4px 14px 53px; font-size: 13.5px; line-height: 1.65; }
+    .perk-detail .desc { margin: 0 0 8px; color: var(--text); }
+    .perk-detail .meta { color: var(--muted); font-size: 12.5px; margin: 0 0 4px; }
+    .perk-detail .rowbtns { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+    .perk-detail .rowbtns button { background: none; border: 1px solid var(--stroke); color: var(--text); font-size: 12.5px; font-weight: 600; padding: 8px 12px; min-height: 44px; cursor: pointer; }
   </style>
 </head>
 
@@ -5819,6 +5834,54 @@
         </div>
       );
     };
+    // ── Compact perk row (step D): summary-hide detail, tap expands, long-press compares ──
+    const PerkRow = ({ item, expanded, onToggle, isInCompare, onCompare, isFavorite, onToggleFavorite, onDetails, settings = {} }) => {
+      const pressTimer = useRef(null);
+      const longFired = useRef(false);
+      const cancelPress = () => { if (pressTimer.current) { window.clearTimeout(pressTimer.current); pressTimer.current = null; } };
+      const startPress = () => {
+        longFired.current = false;
+        cancelPress();
+        pressTimer.current = window.setTimeout(() => {
+          pressTimer.current = null;
+          if (onCompare) { longFired.current = true; onCompare(); }
+        }, 500);
+      };
+      const handleTap = () => {
+        if (longFired.current) { longFired.current = false; return; }
+        onToggle && onToggle();
+      };
+      useEffect(() => cancelPress, []);
+      return (
+        <div className="perk-row">
+          <button
+            type="button" className="perk-head" aria-expanded={expanded}
+            onClick={handleTap}
+            onTouchStart={startPress} onTouchEnd={cancelPress} onTouchMove={cancelPress}
+            onMouseDown={startPress} onMouseUp={cancelPress} onMouseLeave={cancelPress}
+          >
+            <span className="diamond" aria-hidden="true">
+              <span><AssetFrame type="Perk" size="fill" imageUrl={item.image} fallbackIcon={<Icons.BookOpen width={16} height={16} className="text-white/40" />} /></span>
+            </span>
+            <span style={{ minWidth: 0 }}>
+              <span className="nm">{item.name}</span> <span className="tag">{item.type || 'Perk'}</span>
+            </span>
+            <span className="chev" aria-hidden="true">{expanded ? '▾' : '▸'}</span>
+          </button>
+          {expanded && (
+            <div className="perk-detail">
+              <PerkDescriptionBlock perk={item} settings={settings} className="desc" />
+              {item.owner ? (<p className="meta">Teachable of {item.owner}</p>) : null}
+              <div className="rowbtns">
+                {onDetails && (<button type="button" onClick={onDetails}>Details</button>)}
+                {onCompare && (<button type="button" onClick={onCompare} aria-pressed={!!isInCompare}>{isInCompare ? 'Compare −' : 'Compare +'}</button>)}
+                {onToggleFavorite && (<button type="button" onClick={onToggleFavorite} aria-pressed={!!isFavorite}>{isFavorite ? '★ Favorited' : '★ Favorite'}</button>)}
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    };
     const ListView = ({ data, type, filterOptions, activeFilter, setActiveFilter, allPerks = [], setView, onPerkSelect, initialSearch = '', onSearchChange, buildsByOwner = {}, onCreateBuildSeed, onBack, comparePerks = [], onPerkLongPress, favoritePerks = [], onToggleFavorite, onPerkTap, onShowLore, onShowPower, onViewProfile, settings = {}, roleCounts = null }) => {
       const scrollRef = useRef(null);
       const [localSearch, setLocalSearch] = useState(initialSearch || '');
@@ -5906,6 +5969,11 @@
             }
           });
         }
+        if (isPerkList) {
+          result = [...result].sort((a, b) => sortBy === 'name_desc'
+            ? (b.name || '').localeCompare(a.name || '')
+            : (a.name || '').localeCompare(b.name || ''));
+        }
         if (isCharacterList && showFavOnly) {
           result = result.filter(item => favoritePerks.includes(item.id));
         }
@@ -5931,18 +5999,22 @@
               </div>
             </div>
           </div>
-          {isCharacterList && (
+          {(isCharacterList || isPerkList) && (
             <div className="max-w-3xl mx-auto flex justify-center gap-2 mb-2 px-6">
-              <select value={sortBy} onChange={e => setSortBy(e.target.value)} className="themed-select compact text-sm" aria-label="Sort characters">
+              <select value={sortBy} onChange={e => setSortBy(e.target.value)} className="themed-select compact text-sm" aria-label="Sort list">
                 <option value="name_asc">Name A-Z</option>
                 <option value="name_desc">Name Z-A</option>
-                <option value="realname_asc">Real Name A-Z</option>
-                <option value="realname_desc">Real Name Z-A</option>
-                <option value="release_asc">Release ↑ (Oldest)</option>
-                <option value="release_desc">Release ↓ (Newest)</option>
+                {isCharacterList && (<React.Fragment>
+                  <option value="realname_asc">Real Name A-Z</option>
+                  <option value="realname_desc">Real Name Z-A</option>
+                  <option value="release_asc">Release ↑ (Oldest)</option>
+                  <option value="release_desc">Release ↓ (Newest)</option>
+                </React.Fragment>)}
               </select>
-              <button type="button" onClick={() => setShowFavOnly(v => !v)} aria-pressed={showFavOnly} className="char-favchip">★ Favorites</button>
-              <span className="text-[11px] text-zinc-500 uppercase tracking-wider self-center">{filtered.length} {type.toLowerCase()}</span>
+              {isCharacterList && (
+                <button type="button" onClick={() => setShowFavOnly(v => !v)} aria-pressed={showFavOnly} className="char-favchip">★ Favorites</button>
+              )}
+              <span className="text-[11px] text-zinc-500 uppercase tracking-wider self-center">{filtered.length} {isPerkList ? 'perks' : type.toLowerCase()}</span>
             </div>
           )}
           <div className="px-6">
@@ -5996,27 +6068,16 @@
                 );
               }
               return (
-                <GlassCard
+                <PerkRow
                   key={item.id}
                   item={item}
-                  category={category}
-                  expanded={showPerks && expandedId === item.id}
-                  onToggle={showPerks ? () => setExpandedId(expandedId === item.id ? null : item.id) : undefined}
-                  perksForOwner={perksForOwner}
-                  onPerkClick={perk => {
-                    onPerkSelect && onPerkSelect(perk.name);
-                    setView && setView('perks');
-                  }}
-                  buildsForOwner={relatedBuilds}
-                  onCreateBuild={showPerks && onCreateBuildSeed ? () => { onCreateBuildSeed({ role: category, characterId: item.id, characterName: item.name }); setView && setView('buildLab'); } : undefined}
-                  isInCompare={category === 'Perk' && comparePerks.some(p => p.id === item.id)}
-                  onLongPress={category === 'Perk' && onPerkLongPress ? () => onPerkLongPress(item) : undefined}
+                  expanded={expandedId === item.id}
+                  onToggle={() => setExpandedId(expandedId === item.id ? null : item.id)}
+                  isInCompare={comparePerks.some(p => p.id === item.id)}
+                  onCompare={onPerkLongPress ? () => onPerkLongPress(item) : undefined}
                   isFavorite={favoritePerks.includes(item.id)}
                   onToggleFavorite={onToggleFavorite ? () => onToggleFavorite(item.id) : undefined}
-                  onPerkTap={category === 'Perk' && onPerkTap ? () => onPerkTap(item) : undefined}
-                  onShowLore={showPerks && onShowLore ? () => onShowLore(item) : undefined}
-                  onShowPower={category === 'Killer' && onShowPower ? () => onShowPower(item) : undefined}
-                  onViewProfile={showPerks && onViewProfile ? () => onViewProfile(item) : undefined}
+                  onDetails={onPerkTap ? () => onPerkTap(item) : undefined}
                   settings={settings}
                 />
               );
