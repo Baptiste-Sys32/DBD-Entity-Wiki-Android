@@ -7091,49 +7091,50 @@
             'Match analytics now live in Progression > Analytics; this screen stays focused on logging, filtering, and editing history.',
             'Editing a build later does not rewrite older match records because each match keeps its own saved details.'
           ]} />
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-4">
-            <div className="p-4 rounded-3xl bg-zinc-900/60 border border-white/10 lg:col-span-2">
-              <div className="flex items-center gap-2 mb-3 flex-wrap">
+          <div className="tool-card">
+              <p className="home-secttl" style={{ marginTop: 0 }}>{editingId ? 'Edit match' : 'Log match'}</p>
+              <div className="char-segments" role="tablist" aria-label="Match role">
                 <button
+                  type="button" role="tab" aria-selected={form.role === 'Survivor'}
+                  className={form.role === 'Survivor' ? 'on' : ''}
                   onClick={() => changeRole('Survivor')}
-                  className="px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all"
-                  style={form.role === 'Survivor' ? { background: '#0a0a0a', border: '2px solid #38bdf8', color: '#38bdf8' } : { background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.1)', color: '#a1a1aa' }}
                 >Survivor</button>
                 <button
+                  type="button" role="tab" aria-selected={form.role === 'Killer'}
+                  className={form.role === 'Killer' ? 'on' : ''}
                   onClick={() => changeRole('Killer')}
-                  className="px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all"
-                  style={form.role === 'Killer' ? { background: '#0a0a0a', border: '2px solid #ef4444', color: '#ef4444' } : { background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.1)', color: '#a1a1aa' }}
                 >Killer</button>
-                {editingId && <span className="text-[11px] text-yellow-300 font-bold">Editing existing match</span>}
               </div>
+              {editingId && <p className="text-[11px] font-bold" style={{ color: 'var(--muted)' }}>Editing existing match</p>}
+              <p className="home-secttl">Details</p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div>
-                  <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold mb-1">Date/Time</p>
-                  <input type="datetime-local" value={form.date} onChange={e => setForm(f => ({ ...f, date: e.target.value }))} className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white" />
+                  <p className="home-secttl" style={{ marginTop: 0 }}>Date/Time</p>
+                  <input type="datetime-local" value={form.date} onChange={e => setForm(f => ({ ...f, date: e.target.value }))} className="field" style={{ marginTop: 0 }} />
                 </div>
                 <div>
-                  <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold mb-1">Character</p>
+                  <p className="home-secttl" style={{ marginTop: 0 }}>Character</p>
                   <select value={form.characterId} onChange={e => setForm(f => ({ ...f, characterId: e.target.value }))} className="themed-select w-full text-sm">
                     <option value="">Any</option>
                     {characters.map(character => <option key={character.id} value={character.id}>{character.name}</option>)}
                   </select>
                 </div>
                 <div>
-                  <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold mb-1">Build</p>
+                  <p className="home-secttl" style={{ marginTop: 0 }}>Build</p>
                   <select value={form.buildId || ''} onChange={e => setForm(f => ({ ...f, buildId: e.target.value }))} className="themed-select w-full text-sm">
                     <option value="">Unlinked</option>
                     {buildsForRole.map(build => <option key={build.id} value={build.id}>{build.name}</option>)}
                   </select>
                 </div>
                 <div>
-                  <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold mb-1">Map</p>
+                  <p className="home-secttl" style={{ marginTop: 0 }}>Map</p>
                   <select value={form.mapId || ''} onChange={e => setForm(f => ({ ...f, mapId: e.target.value }))} className="themed-select w-full text-sm">
                     <option value="">Unknown / not set</option>
                     {(maps || []).map((map) => <option key={map.id} value={map.id}>{map.name}</option>)}
                   </select>
                 </div>
                 <div>
-                  <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold mb-1">Outcome</p>
+                  <p className="home-secttl" style={{ marginTop: 0 }}>Outcome</p>
                   <select value={form.outcome} onChange={e => setForm(f => ({ ...f, outcome: e.target.value }))} className="themed-select w-full text-sm">
                     {form.role === 'Killer' ? (
                       ['0 Kills', '1 Kill', '2 Kills', '3 Kills', '4 Kills', 'DC', 'Early Surrender'].map(option => <option key={option} value={option}>{option}</option>)
@@ -7143,70 +7144,76 @@
                   </select>
                 </div>
                 <div>
-                  <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold mb-1">Kills / Extra</p>
-                  <input type="number" min="0" max="4" value={form.kills} onChange={e => setForm(f => ({ ...f, kills: Number(e.target.value) }))} className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white" />
-                  <label className="mt-1 inline-flex items-center gap-2 text-[12px] text-zinc-400"><input type="checkbox" checked={form.dc} onChange={e => setForm(f => ({ ...f, dc: e.target.checked }))} /> DC / early quit</label>
+                  <p className="home-secttl" style={{ marginTop: 0 }}>Kills / Extra</p>
+                  <input type="number" min="0" max="4" inputMode="numeric" value={form.kills} onChange={e => setForm(f => ({ ...f, kills: Number(e.target.value) }))} className="field" style={{ marginTop: 0 }} />
+                  <label className="mt-1 inline-flex items-center gap-2 text-[12px]" style={{ color: 'var(--muted)' }}><input type="checkbox" checked={form.dc} onChange={e => setForm(f => ({ ...f, dc: e.target.checked }))} /> DC / early quit</label>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   {[['performance', 'Self Perf'], ['sweat', 'Sweat'], ['tilt', 'Tilt']].map(([key, label]) => (
                     <div key={key}>
-                      <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold mb-1">{label}</p>
-                      <input type="number" min="0" max="10" value={form[key]} onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))} className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-2 py-1 text-xs text-white" />
+                      <p className="home-secttl" style={{ marginTop: 0 }}>{label}</p>
+                      <input type="number" min="0" max="10" inputMode="numeric" value={form[key]} onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))} className="field" style={{ marginTop: 0 }} />
                     </div>
                   ))}
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold mb-1">Hooks</p>
-                    <input type="number" value={form.hooks} onChange={e => setForm(f => ({ ...f, hooks: e.target.value }))} className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-2 py-1 text-xs text-white" />
+                    <p className="home-secttl" style={{ marginTop: 0 }}>Hooks</p>
+                    <input type="number" inputMode="numeric" value={form.hooks} onChange={e => setForm(f => ({ ...f, hooks: e.target.value }))} className="field" style={{ marginTop: 0 }} />
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold mb-1">Gens Done</p>
-                    <input type="number" value={form.gens} onChange={e => setForm(f => ({ ...f, gens: e.target.value }))} className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-2 py-1 text-xs text-white" />
+                    <p className="home-secttl" style={{ marginTop: 0 }}>Gens Done</p>
+                    <input type="number" inputMode="numeric" value={form.gens} onChange={e => setForm(f => ({ ...f, gens: e.target.value }))} className="field" style={{ marginTop: 0 }} />
                   </div>
                 </div>
                 <div className="md:col-span-3">
-                  <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold mb-1">Notes</p>
-                  <textarea value={form.notes} onChange={e => setForm(f => ({ ...f, notes: e.target.value }))} rows={2} className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-zinc-500" placeholder="What went well? What to change?"></textarea>
+                  <p className="home-secttl" style={{ marginTop: 0 }}>Notes</p>
+                  <textarea value={form.notes} onChange={e => setForm(f => ({ ...f, notes: e.target.value }))} rows={2} className="field" style={{ marginTop: 0 }} placeholder="What went well? What to change?"></textarea>
                 </div>
               </div>
-              <div className="flex justify-end gap-2 mt-3">
-                <button onClick={() => { setForm(blankForm(form.role)); setEditingId(null); }} className="px-4 py-2 rounded-xl text-sm font-bold bg-white/5 text-zinc-300 border border-white/10">Reset</button>
-                <button onClick={handleSubmit} className="px-4 py-2 rounded-xl text-sm font-bold bg-gradient-to-r from-red-700 to-red-500 text-white shadow-lg">{editingId ? 'Update Match' : 'Save Match'}</button>
+              <button type="button" onClick={handleSubmit} className="shuf-spin">{editingId ? 'Update Match' : 'Save Match'}</button>
+              <div className="rowbtns">
+                <button type="button" onClick={() => { setForm(blankForm(form.role)); setEditingId(null); }}>Reset</button>
               </div>
             </div>
-            <div className="p-4 rounded-3xl bg-zinc-900/60 border border-white/10 space-y-3">
-              <p className="text-xs text-zinc-400 font-bold uppercase tracking-wider">History Filters</p>
-              <select value={filters.role} onChange={e => setFilters(f => ({ ...f, role: e.target.value }))} className="themed-select w-full text-sm">
-                <option value="All">All roles</option>
-                <option value="Killer">Killer</option>
-                <option value="Survivor">Survivor</option>
-              </select>
-              <select value={filters.character} onChange={e => setFilters(f => ({ ...f, character: e.target.value }))} className="themed-select w-full text-sm">
+            <div className="tool-card">
+              <p className="home-secttl" style={{ marginTop: 0 }}>History filters</p>
+              <div className="char-segments" role="tablist" aria-label="Filter matches by role">
+                {['All', 'Killer', 'Survivor'].map((role) => (
+                  <button
+                    key={role}
+                    type="button" role="tab" aria-selected={filters.role === role}
+                    className={filters.role === role ? 'on' : ''}
+                    onClick={() => setFilters(f => ({ ...f, role }))}
+                  >{role === 'All' ? 'All' : role}</button>
+                ))}
+              </div>
+              <select value={filters.character} onChange={e => setFilters(f => ({ ...f, character: e.target.value }))} className="themed-select w-full text-sm" aria-label="Filter by character">
                 <option value="All">Any character</option>
                 {characterOptions.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
               </select>
-              <select value={filters.build} onChange={e => setFilters(f => ({ ...f, build: e.target.value }))} className="themed-select w-full text-sm">
+              <select value={filters.build} onChange={e => setFilters(f => ({ ...f, build: e.target.value }))} className="themed-select w-full text-sm" aria-label="Filter by build">
                 <option value="All">Any build</option>
                 {buildOptions.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
               </select>
-              <select value={filters.map} onChange={e => setFilters(f => ({ ...f, map: e.target.value }))} className="themed-select w-full text-sm">
+              <select value={filters.map} onChange={e => setFilters(f => ({ ...f, map: e.target.value }))} className="themed-select w-full text-sm" aria-label="Filter by map">
                 <option value="All">Any map</option>
                 {mapOptions.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
               </select>
               <div className="grid grid-cols-2 gap-2">
-                <input type="date" value={filters.from} onChange={e => setFilters(f => ({ ...f, from: e.target.value }))} className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white" />
-                <input type="date" value={filters.to} onChange={e => setFilters(f => ({ ...f, to: e.target.value }))} className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white" />
+                <input type="date" value={filters.from} onChange={e => setFilters(f => ({ ...f, from: e.target.value }))} className="field" aria-label="Filter from date" />
+                <input type="date" value={filters.to} onChange={e => setFilters(f => ({ ...f, to: e.target.value }))} className="field" aria-label="Filter to date" />
               </div>
-              <div className="pt-2 border-t border-white/10 mt-2">
-                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider mb-2">Win Definition</p>
+              <div className="pt-2 mt-2" style={{ borderTop: '1px solid var(--stroke)' }}>
+                <p className="home-secttl" style={{ marginTop: 0 }}>Win definition</p>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <span className="text-[11px] text-zinc-400 w-14">Killer:</span>
+                    <span className="text-[11px] w-14" style={{ color: 'var(--muted)' }}>Killer:</span>
                     <select
                       value={prefs?.killerWinThreshold ?? 2}
                       onChange={e => setPrefs && setPrefs(p => ({ ...p, killerWinThreshold: Number(e.target.value) }))}
                       className="themed-select text-xs py-1 px-3 min-w-[100px]"
+                      aria-label="Killer win threshold"
                     >
                       <option value={0}>0+ kills</option>
                       <option value={1}>1+ kills</option>
@@ -7215,59 +7222,64 @@
                       <option value={4}>4 kills</option>
                     </select>
                   </div>
-                  <p className="text-[9px] text-zinc-400 mt-1">Survivor: Escaped = Win</p>
+                  <p className="text-[11px] mt-1" style={{ color: 'var(--muted)' }}>Survivor: Escaped = Win</p>
                 </div>
               </div>
-              <button
-                onClick={onOpenAnalytics}
-                className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-sm text-zinc-200 hover:bg-white/10 transition-colors"
-              >
-                Open Progression Analytics
-              </button>
-              <div className="text-xs text-zinc-400">Showing {filteredMatches.length} / {matches.length} logged matches.</div>
-            </div>
-          </div>
-          <div className="space-y-2 pb-32">
-            <div className="flex items-center justify-between">
-              <p className="text-xs uppercase font-bold text-zinc-500">Logged Matches</p>
-              <p className="text-xs text-zinc-500">{filteredMatches.length} entries</p>
-            </div>
-            {filteredMatches.map(match => (
-              <div key={match.id} className="p-3 rounded-2xl bg-zinc-900/60 border border-white/10 flex flex-col gap-1">
-                <div className="flex flex-wrap justify-between gap-2 items-center">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className={`px-2 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider ${match.role === 'Killer' ? 'bg-red-600/30 text-red-200' : 'bg-blue-600/30 text-blue-200'}`}>{match.role}</span>
-                    <span className="text-white font-semibold text-sm">{getMatchCharacterLabel(match)}</span>
-                    {(match.buildSnapshot?.name || match.buildId) && <span className="text-[11px] text-zinc-400">- {getMatchBuildLabel(match)}</span>}
-                  </div>
-                  <div className="flex gap-2 text-[11px] text-zinc-400">
-                    <button onClick={() => editMatch(match)} className="px-2 py-1 rounded-lg bg-white/5 border border-white/10">Edit</button>
-                    <button onClick={() => deleteMatch(match.id)} className="px-2 py-1 rounded-lg bg-red-900/40 border border-red-700/60 text-red-100">Delete</button>
-                  </div>
-                </div>
-                <div className="text-xs text-zinc-500 flex flex-wrap gap-2">
-                  <span>{formatDate(match.date)}</span>
-                  <span>- Map {getMatchMapLabel(match)}</span>
-                  <span>- Outcome {match.outcome}</span>
-                  <span>- Kills {match.kills}</span>
-                  {match.performance && <span>- Self {match.performance}</span>}
-                  {match.sweat && <span>- Sweat {match.sweat}</span>}
-                  {match.tilt && <span>- Tilt {match.tilt}</span>}
-                  {match.dc && <span className="text-orange-300">- DC</span>}
-                </div>
-                {match.perkSnapshots?.length > 0 && (
-                  <div className="flex flex-wrap gap-1 mt-1">
-                    {match.perkSnapshots.map((perk) => (
-                      <span key={`${match.id}-${perk.id || perk.name}`} className="px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] text-zinc-300">
-                        {perk.name}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                {match.notes && <p className="text-sm text-zinc-300">{match.notes}</p>}
+              <div className="rowbtns">
+                <button type="button" onClick={onOpenAnalytics}>
+                  Open Progression Analytics
+                </button>
               </div>
-            ))}
-            {filteredMatches.length === 0 && <div className="text-center text-zinc-500 py-6">No matches logged yet.</div>}
+              <div className="text-xs" style={{ color: 'var(--muted)' }}>Showing {filteredMatches.length} / {matches.length} logged matches.</div>
+            </div>
+          <div className="pb-32">
+            <p className="home-secttl">Logged matches · {filteredMatches.length} entries</p>
+            <div>
+            {filteredMatches.map(match => {
+              const matchCharId = match?.characterSnapshot?.id || match?.characterId || null;
+              const matchChar = matchCharId ? [...killers, ...survivors].find(c => c && c.id === matchCharId) : null;
+              const matchLabel = getMatchCharacterLabel(match);
+              const matchWon = isMatchWin(match, prefs);
+              const matchRoleColor = match.role === 'Killer' ? '#ef4444' : '#38bdf8';
+              return (
+              <div key={match.id} className="char-row">
+                <div className="char-rowtop">
+                  <button type="button" className="char-head" aria-label={`Edit match ${matchLabel} ${match.outcome || ''}`} onClick={() => editMatch(match)}>
+                    <span className="portrait">
+                      {matchChar?.image
+                        ? <AssetFrame type={match.role === 'Killer' ? 'Killer' : 'Survivor'} size="fill" imageUrl={matchChar.image} fallbackIcon={<Icons.User width={18} height={18} className="text-zinc-500" />} />
+                        : <span aria-hidden="true" style={{ color: 'var(--muted)', fontWeight: 700 }}>{(matchLabel || '?').charAt(0).toUpperCase()}</span>}
+                    </span>
+                    <span style={{ minWidth: 0 }}>
+                      <span className="nm">{matchLabel}</span>
+                      <span className="sub">{getMatchMapLabel(match)} · {formatDate(match.date)}</span>
+                    </span>
+                    <span className="tok" style={{ color: matchWon ? '#4ade80' : '#f87171' }}>{match.outcome}</span>
+                    <span className="chev" aria-hidden="true">▸</span>
+                  </button>
+                </div>
+                <div className="char-detail">
+                  <div className="kv"><span className="k">Role</span><span style={{ color: matchRoleColor }}>{match.role}</span></div>
+                  {(match.buildSnapshot?.name || match.buildId) && (<div className="kv"><span className="k">Build</span><span>{getMatchBuildLabel(match)}</span></div>)}
+                  <div className="kv"><span className="k">Kills</span><span>{match.kills}</span></div>
+                  {match.performance && (<div className="kv"><span className="k">Self score</span><span>{match.performance}</span></div>)}
+                  {match.sweat && (<div className="kv"><span className="k">Sweat</span><span>{match.sweat}</span></div>)}
+                  {match.tilt && (<div className="kv"><span className="k">Tilt</span><span>{match.tilt}</span></div>)}
+                  {match.dc && (<div className="kv"><span className="k">DC</span><span>Early quit</span></div>)}
+                  {match.perkSnapshots?.length > 0 && (
+                    <div className="kv"><span className="k">Perks</span><span>{match.perkSnapshots.map((perk) => perk.name).join(' · ')}</span></div>
+                  )}
+                  {match.notes && <p style={{ margin: '6px 0 0' }}>{match.notes}</p>}
+                  <div className="rowbtns">
+                    <button type="button" onClick={() => editMatch(match)}>Edit</button>
+                    <button type="button" onClick={() => deleteMatch(match.id)}>Delete</button>
+                  </div>
+                </div>
+              </div>
+              );
+            })}
+            </div>
+            {filteredMatches.length === 0 && <p className="text-sm" style={{ color: 'var(--muted)' }}>No matches logged yet.</p>}
           </div>
         </div>
       );
@@ -7396,24 +7408,24 @@
       const perkStats = summarizePerksAcrossMatches(filteredMatches, prefs);
       const sortRows = (rows) => rows.slice().sort((a, b) => b.rate - a.rate || b.total - a.total || b.avgPerfValue - a.avgPerfValue).slice(0, 8);
       const AnalyticsBoard = ({ title, rows, empty, subtitle }) => (
-        <div className="p-4 rounded-3xl bg-zinc-900/50 border border-white/10">
+        <div className="tool-card">
           <div className="flex items-baseline justify-between gap-3 mb-2">
-            <p className="text-xs uppercase font-bold text-zinc-500">{title}</p>
-            {subtitle && <span className="text-[10px] text-zinc-400 uppercase tracking-wider">{subtitle}</span>}
+            <p className="home-secttl" style={{ marginTop: 0 }}>{title}</p>
+            {subtitle && <span className="text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>{subtitle}</span>}
           </div>
-          {rows.length === 0 && <p className="text-zinc-500 text-sm">{empty}</p>}
+          {rows.length === 0 && <p className="text-sm" style={{ color: 'var(--muted)' }}>{empty}</p>}
           <div className="space-y-2 max-h-72 overflow-y-auto custom-scrollbar">
             {sortRows(rows).map((row) => (
-              <div key={row.key} className="p-2 rounded-xl bg-white/5 border border-white/10">
-                <div className="flex justify-between text-sm text-white font-semibold mb-1 gap-2">
-                  <span className="truncate">{row.label}</span>
+              <div key={row.key} className="p-2" style={{ border: '1px solid var(--stroke)', background: 'var(--glass-bg)' }}>
+                <div className="flex justify-between text-sm font-semibold mb-1 gap-2">
+                  <span className="truncate" style={{ color: 'var(--text)' }}>{row.label}</span>
                   <span style={{ color: row.rate >= 50 ? '#4ade80' : '#f87171' }}>{row.rate}%</span>
                 </div>
-                <div className="h-1.5 rounded-full bg-zinc-800 overflow-hidden mb-1">
-                  <div className="h-full rounded-full transition-all" style={{ width: `${row.rate}%`, background: row.rate >= 50 ? '#22c55e' : '#ef4444' }} />
+                <div className="h-1.5 overflow-hidden mb-1" style={{ background: 'var(--ghost-surface)' }}>
+                  <div className="h-full transition-all" style={{ width: `${row.rate}%`, background: row.rate >= 50 ? '#22c55e' : '#ef4444' }} />
                 </div>
-                <p className="text-[10px] text-zinc-500">{row.total} matches · Avg self score {row.avgPerf}</p>
-                {(row.owner || row.type) && <p className="text-[10px] text-zinc-400 mt-1">{[row.type, row.owner].filter(Boolean).join(' · ')}</p>}
+                <p className="text-[10px]" style={{ color: 'var(--muted)' }}>{row.total} matches · Avg self score {row.avgPerf}</p>
+                {(row.owner || row.type) && <p className="text-[10px] mt-1" style={{ color: 'var(--muted)' }}>{[row.type, row.owner].filter(Boolean).join(' · ')}</p>}
               </div>
             ))}
           </div>
@@ -7421,33 +7433,33 @@
       );
       return (
         <div className="space-y-4">
-          <div className="p-4 rounded-3xl bg-zinc-900/60 border border-white/10">
+          <div className="tool-card">
             <div className="flex items-center justify-between gap-3 mb-3 flex-wrap">
-              <p className="text-xs text-zinc-400 font-bold uppercase tracking-wider">Analytics Filters</p>
-              <button onClick={onOpenMatches} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] text-zinc-200 hover:bg-white/10 transition-colors">
+              <p className="home-secttl" style={{ marginTop: 0 }}>Analytics filters</p>
+              <button type="button" onClick={onOpenMatches} className="shuf-subbtn">
                 Open Match Log
               </button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <select value={filters.role} onChange={e => setFilters(current => ({ ...current, role: e.target.value }))} className="themed-select w-full text-sm">
+              <select value={filters.role} onChange={e => setFilters(current => ({ ...current, role: e.target.value }))} className="themed-select w-full text-sm" aria-label="Filter analytics by role">
                 <option value="All">All roles</option>
                 <option value="Killer">Killer</option>
                 <option value="Survivor">Survivor</option>
               </select>
-              <select value={filters.character} onChange={e => setFilters(current => ({ ...current, character: e.target.value }))} className="themed-select w-full text-sm">
+              <select value={filters.character} onChange={e => setFilters(current => ({ ...current, character: e.target.value }))} className="themed-select w-full text-sm" aria-label="Filter analytics by character">
                 <option value="All">Any character</option>
                 {characterOptions.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
               </select>
-              <select value={filters.build} onChange={e => setFilters(current => ({ ...current, build: e.target.value }))} className="themed-select w-full text-sm">
+              <select value={filters.build} onChange={e => setFilters(current => ({ ...current, build: e.target.value }))} className="themed-select w-full text-sm" aria-label="Filter analytics by build">
                 <option value="All">Any build</option>
                 {buildOptions.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
               </select>
-              <select value={filters.map} onChange={e => setFilters(current => ({ ...current, map: e.target.value }))} className="themed-select w-full text-sm">
+              <select value={filters.map} onChange={e => setFilters(current => ({ ...current, map: e.target.value }))} className="themed-select w-full text-sm" aria-label="Filter analytics by map">
                 <option value="All">Any map</option>
                 {mapOptions.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
               </select>
-              <input type="date" value={filters.from} onChange={e => setFilters(current => ({ ...current, from: e.target.value }))} className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white" />
-              <input type="date" value={filters.to} onChange={e => setFilters(current => ({ ...current, to: e.target.value }))} className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white" />
+              <input type="date" value={filters.from} onChange={e => setFilters(current => ({ ...current, from: e.target.value }))} className="field" style={{ marginTop: 0 }} aria-label="Analytics from date" />
+              <input type="date" value={filters.to} onChange={e => setFilters(current => ({ ...current, to: e.target.value }))} className="field" style={{ marginTop: 0 }} aria-label="Analytics to date" />
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
@@ -7458,9 +7470,9 @@
               { label: 'Killer Win Rate', value: `${killerWinRate}%`, color: '#ef4444' },
               { label: 'Perk Coverage', value: `${perkSnapshotMatches}/${filteredMatches.length || 0}`, color: '#facc15' }
             ].map((card) => (
-              <div key={card.label} className="p-4 rounded-2xl bg-gradient-to-br from-zinc-900/80 to-zinc-800/40 border border-white/10 text-center">
+              <div key={card.label} className="tool-card text-center">
                 <p className="text-2xl font-bold" style={{ color: card.color }}>{card.value}</p>
-                <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold mt-1">{card.label}</p>
+                <p className="home-secttl" style={{ margin: '4px 0 0' }}>{card.label}</p>
               </div>
             ))}
           </div>
@@ -8307,125 +8319,130 @@
             'Use the tab order controls to rearrange the hub.',
             'Choosing who you own here and then enabling "Owned Only global filter" in Settings will filter supported views across the app.'
           ]} />
-          <div className="p-4 rounded-3xl bg-zinc-900/60 border border-white/10 mb-4 space-y-3">
-            <div className="flex flex-wrap gap-2">
+          <div className="char-segments compact" role="tablist" aria-label="Progression sections">
               {orderedTabs.map((tabId) => (
                 <button
                   key={tabId}
+                  type="button" role="tab" aria-selected={tab === tabId}
+                  className={tab === tabId ? 'on' : ''}
                   onClick={() => setTab(tabId)}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider border ${tab === tabId ? 'bg-red-600 text-white border-red-500/60' : 'bg-white/5 text-zinc-300 border-white/10'}`}
                 >
                   {tabMeta[tabId]}
                 </button>
               ))}
             </div>
-            <div>
+            <div className="tool-card">
               <div className="flex items-center justify-between gap-3 mb-2">
-                <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold">Tab Order</p>
-                <span className="text-[10px] text-zinc-400 uppercase tracking-wider">Saved locally</span>
+                <p className="home-secttl" style={{ marginTop: 0 }}>Tab order</p>
+                <span className="text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>Saved locally</span>
               </div>
               <div className="space-y-1">
                 {orderedTabs.map((tabId, index) => (
-                  <div key={tabId} className="flex items-center gap-2 p-2 rounded-xl bg-white/5 border border-white/10">
-                    <button onClick={() => setTab(tabId)} className="text-sm font-semibold text-white">{tabMeta[tabId]}</button>
+                  <div key={tabId} className="flex items-center gap-2 py-1" style={{ borderBottom: '1px solid var(--stroke)' }}>
+                    <button type="button" onClick={() => setTab(tabId)} className="cx-alink text-sm font-semibold" style={{ textDecoration: 'none' }}>{tabMeta[tabId]}</button>
                     <div className="ml-auto flex gap-1">
-                      <button onClick={() => moveTab(tabId, -1)} disabled={index === 0} className="w-7 h-7 rounded-lg bg-white/5 text-zinc-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed">↑</button>
-                      <button onClick={() => moveTab(tabId, 1)} disabled={index === orderedTabs.length - 1} className="w-7 h-7 rounded-lg bg-white/5 text-zinc-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed">↓</button>
+                      <button type="button" onClick={() => moveTab(tabId, -1)} disabled={index === 0} className="shuf-subbtn" aria-label={`Move ${tabMeta[tabId]} up`}>↑</button>
+                      <button type="button" onClick={() => moveTab(tabId, 1)} disabled={index === orderedTabs.length - 1} className="shuf-subbtn" aria-label={`Move ${tabMeta[tabId]} down`}>↓</button>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
           {tab === 'achievements' && (
             <div className="space-y-4">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div className="p-4 rounded-2xl bg-zinc-900/60 border border-white/10 text-center">
-                  <p className="text-2xl font-bold text-white">{completedCount}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold mt-1">Completed</p>
+                <div className="tool-card text-center">
+                  <p className="text-2xl font-bold" style={{ color: 'var(--text)' }}>{completedCount}</p>
+                  <p className="home-secttl" style={{ margin: '4px 0 0' }}>Completed</p>
                 </div>
-                <div className="p-4 rounded-2xl bg-zinc-900/60 border border-white/10 text-center">
-                  <p className="text-2xl font-bold text-white">{DBD_ACHIEVEMENTS.length}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold mt-1">Total</p>
+                <div className="tool-card text-center">
+                  <p className="text-2xl font-bold" style={{ color: 'var(--text)' }}>{DBD_ACHIEVEMENTS.length}</p>
+                  <p className="home-secttl" style={{ margin: '4px 0 0' }}>Total</p>
                 </div>
-                <div className="p-4 rounded-2xl bg-zinc-900/60 border border-white/10 text-center">
-                  <p className="text-2xl font-bold text-green-400">{DBD_ACHIEVEMENTS.length ? Math.round((completedCount / DBD_ACHIEVEMENTS.length) * 100) : 0}%</p>
-                  <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold mt-1">Completion</p>
+                <div className="tool-card text-center">
+                  <p className="text-2xl font-bold" style={{ color: '#4ade80' }}>{DBD_ACHIEVEMENTS.length ? Math.round((completedCount / DBD_ACHIEVEMENTS.length) * 100) : 0}%</p>
+                  <p className="home-secttl" style={{ margin: '4px 0 0' }}>Completion</p>
                 </div>
-                <div className="p-4 rounded-2xl bg-zinc-900/60 border border-white/10 text-center">
-                  <p className="text-2xl font-bold text-yellow-300">{DBD_ACHIEVEMENTS.length - completedCount}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold mt-1">Remaining</p>
+                <div className="tool-card text-center">
+                  <p className="text-2xl font-bold" style={{ color: '#facc15' }}>{DBD_ACHIEVEMENTS.length - completedCount}</p>
+                  <p className="home-secttl" style={{ margin: '4px 0 0' }}>Remaining</p>
                 </div>
               </div>
-              <div className="p-4 rounded-3xl bg-zinc-900/60 border border-white/10">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div className="tool-card">
+                <p className="home-secttl" style={{ marginTop: 0 }}>Find achievements</p>
+                <div className="cx-searchbox">
                   <input
                     type="text"
                     value={achievementSearch}
                     onChange={e => setAchievementSearch(e.target.value)}
                     placeholder="Search achievements by name or description..."
-                    className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-zinc-500"
+                    aria-label="Search achievements"
                   />
-                  <select value={achievementSort} onChange={e => setAchievementSort(e.target.value)} className="themed-select w-full text-sm">
+                  {achievementSearch && (
+                    <button
+                      onClick={() => setAchievementSearch('')}
+                      aria-label="Clear search"
+                      className="p-2 mr-1 text-zinc-300 hover:text-white transition-colors"
+                      style={{ width: 44, height: 44 }}
+                    >
+                      ✕
+                    </button>
+                  )}
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+                  <select value={achievementSort} onChange={e => setAchievementSort(e.target.value)} className="themed-select w-full text-sm" aria-label="Sort achievements">
                     <option value="name_asc">A → Z</option>
                     <option value="name_desc">Z → A</option>
                     <option value="not_completed_first">Not Completed First</option>
                     <option value="completed_first">Completed First</option>
                   </select>
-                  <label className="inline-flex items-center gap-2 text-sm text-zinc-300 whitespace-nowrap px-3 py-2 rounded-xl bg-zinc-800/60 border border-white/10 cursor-pointer">
-                    <input type="checkbox" checked={hideCompletedAchievements} onChange={e => setHideCompletedAchievements(e.target.checked)} className="accent-current" />
-                    Hide completed
-                  </label>
+                  <button type="button" className="char-favchip" aria-pressed={hideCompletedAchievements} onClick={() => setHideCompletedAchievements(v => !v)}>
+                    {hideCompletedAchievements ? 'Show completed' : 'Hide completed'}
+                  </button>
                 </div>
               </div>
-              <div className="space-y-2">
+              <div>
                 {filteredAchievements.map((achievement) => {
                   const isComplete = !!achievementState[achievement.id];
                   return (
-                    <div
+                    <button
                       key={achievement.id}
+                      type="button"
                       onClick={() => toggleAchievement(achievement.id)}
-                      className={`p-3 rounded-2xl border cursor-pointer transition-all ${isComplete ? 'bg-white/5 border-green-500/40 opacity-70' : 'bg-zinc-900/60 border-white/10 hover:border-white/20'}`}
+                      className="shuf-toggle"
+                      aria-pressed={isComplete}
                     >
-                      <div className="flex items-start gap-3">
-                        <div className={`mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-colors ${isComplete ? 'bg-green-500 border-green-500' : 'border-zinc-500'}`}>
-                          {isComplete && <span className="text-white text-xs font-bold">✓</span>}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className={`font-semibold text-sm ${isComplete ? 'text-zinc-400 line-through' : 'text-white'}`}>{achievement.name}</p>
-                          <p className={`text-xs leading-relaxed mt-0.5 ${isComplete ? 'text-zinc-500' : 'text-zinc-400'}`}>{achievement.description}</p>
-                          <span className="inline-block mt-1 px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] uppercase tracking-wider text-zinc-500">{achievement.category.replace('_', ' ')}</span>
-                        </div>
-                      </div>
-                    </div>
+                      <span className="box" aria-hidden="true">{isComplete ? '✓' : ''}</span>
+                      <span style={isComplete ? { color: 'var(--muted)', textDecoration: 'line-through' } : undefined}>{achievement.name}<small>{achievement.description} · {achievement.category.replace('_', ' ')}</small></span>
+                    </button>
                   );
                 })}
-                {filteredAchievements.length === 0 && <div className="text-center text-zinc-500 py-8">No achievements found matching the current filters.</div>}
+                {filteredAchievements.length === 0 && <p className="text-sm" style={{ color: 'var(--muted)' }}>No achievements found matching the current filters.</p>}
               </div>
             </div>
           )}
           {tab === 'roster' && (
             <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
-                <div className="p-4 rounded-2xl bg-zinc-900/60 border border-white/10 text-center">
-                  <p className="text-2xl font-bold text-white">{ownedCharacters.length}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold mt-1">Owned Characters</p>
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                <div className="tool-card text-center">
+                  <p className="text-2xl font-bold" style={{ color: 'var(--text)' }}>{ownedCharacters.length}</p>
+                  <p className="home-secttl" style={{ margin: '4px 0 0' }}>Owned Characters</p>
                 </div>
-                <div className="p-4 rounded-2xl bg-zinc-900/60 border border-white/10 text-center">
-                  <p className="text-2xl font-bold text-red-400">{ownedKillers.length}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold mt-1">Owned Killers</p>
+                <div className="tool-card text-center">
+                  <p className="text-2xl font-bold" style={{ color: '#ef4444' }}>{ownedKillers.length}</p>
+                  <p className="home-secttl" style={{ margin: '4px 0 0' }}>Owned Killers</p>
                 </div>
-                <div className="p-4 rounded-2xl bg-zinc-900/60 border border-white/10 text-center">
-                  <p className="text-2xl font-bold text-blue-400">{ownedSurvivors.length}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold mt-1">Owned Survivors</p>
+                <div className="tool-card text-center">
+                  <p className="text-2xl font-bold" style={{ color: '#38bdf8' }}>{ownedSurvivors.length}</p>
+                  <p className="home-secttl" style={{ margin: '4px 0 0' }}>Owned Survivors</p>
                 </div>
-                <div className="p-4 rounded-2xl bg-zinc-900/60 border border-white/10 text-center">
-                  <p className="text-2xl font-bold text-yellow-300">{ownedCharacters.filter(character => progression.characters?.[character.id]?.favorite).length}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold mt-1">Favorites</p>
+                <div className="tool-card text-center">
+                  <p className="text-2xl font-bold" style={{ color: '#facc15' }}>{ownedCharacters.filter(character => progression.characters?.[character.id]?.favorite).length}</p>
+                  <p className="home-secttl" style={{ margin: '4px 0 0' }}>Favorites</p>
                 </div>
-                <div className="p-4 rounded-2xl bg-zinc-900/60 border border-white/10 text-center">
-                  <p className="text-2xl font-bold text-emerald-300">{unlockedTeachableTotal}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold mt-1">Teachable Perks Unlocked</p>
+                <div className="tool-card text-center">
+                  <p className="text-2xl font-bold" style={{ color: '#4ade80' }}>{unlockedTeachableTotal}</p>
+                  <p className="home-secttl" style={{ margin: '4px 0 0' }}>Teachable Perks Unlocked</p>
                 </div>
               </div>
               <InfoCallout lines={[
@@ -8433,44 +8450,44 @@
                 'For owned-only filtering and build pools, a character starts contributing their teachable perks at prestige 1.'
               ]} />
               <div className="flex gap-2 flex-wrap items-center">
-                <select value={roleFilter} onChange={e => setRoleFilter(e.target.value)} className="themed-select compact text-sm">
+                <select value={roleFilter} onChange={e => setRoleFilter(e.target.value)} className="themed-select compact text-sm" aria-label="Filter roster by role">
                   <option value="All">All roles</option>
                   <option value="Killer">Killers</option>
                   <option value="Survivor">Survivors</option>
                 </select>
-                <label className="inline-flex items-center gap-2 text-sm text-zinc-400"><input type="checkbox" checked={showOwnedOnly} onChange={e => setShowOwnedOnly(e.target.checked)} /> Owned only</label>
+                <button type="button" className="char-favchip" aria-pressed={showOwnedOnly} onClick={() => setShowOwnedOnly(v => !v)}>Owned only</button>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 {visibleCharacters.map((character) => {
                   const state = progression.characters?.[character.id] || {};
                   const isKiller = killers.some(killer => killer.id === character.id);
                   return (
-                    <div key={character.id} className="p-3 rounded-2xl bg-zinc-900/60 border border-white/10">
+                    <div key={character.id} className="tool-card" style={state.owned ? { borderColor: 'var(--link)', boxShadow: 'inset 0 0 0 1px var(--link)' } : undefined}>
                       <div className="flex justify-between items-center mb-2">
-                        <span className={`px-2 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider ${isKiller ? 'bg-red-600/30 text-red-200' : 'bg-blue-600/30 text-blue-200'}`}>{isKiller ? 'Killer' : 'Survivor'}</span>
-                        <button onClick={() => toggleCharacter(character.id, 'favorite')} className="text-yellow-300 text-sm">{state.favorite ? '*' : ''}</button>
+                        <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: isKiller ? '#ef4444' : '#38bdf8' }}>{isKiller ? 'Killer' : 'Survivor'}</span>
+                        <button type="button" onClick={() => toggleCharacter(character.id, 'favorite')} aria-label={state.favorite ? `Remove ${character.name} favorite` : `Favorite ${character.name}`} aria-pressed={!!state.favorite} className={`char-fav ${state.favorite ? 'lit' : ''}`}>★</button>
                       </div>
-                      <p className="text-white font-bold">{character.name}</p>
-                      <div className="flex items-center gap-2 mt-2 text-sm text-zinc-300">
+                      <p className="font-bold" style={{ color: 'var(--text)' }}>{character.name}</p>
+                      <div className="flex items-center gap-2 mt-2 text-sm flex-wrap" style={{ color: 'var(--text)' }}>
                         <label className="inline-flex items-center gap-2"><input type="checkbox" checked={!!state.owned} onChange={() => toggleCharacter(character.id, 'owned')} /> Owned</label>
-                        <input type="number" min="0" max="100" value={state.prestige || 0} onChange={e => updateCharacterPrestige(character.id, Number(e.target.value) || 0)} className="w-20 bg-zinc-800/60 border border-white/10 rounded-lg px-2 py-1 text-xs text-white" />
-                        <span className="text-[10px] uppercase tracking-wider text-zinc-500">Prestige</span>
+                        <input type="number" min="0" max="100" inputMode="numeric" value={state.prestige || 0} onChange={e => updateCharacterPrestige(character.id, Number(e.target.value) || 0)} className="field" style={{ marginTop: 0, minHeight: 44, maxWidth: 96 }} aria-label={`${character.name} prestige`} />
+                        <span className="text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>Prestige</span>
                       </div>
                     </div>
                   );
                 })}
-                {visibleCharacters.length === 0 && <div className="text-center text-zinc-500 py-6 md:col-span-3">No characters match the current roster filters.</div>}
+                {visibleCharacters.length === 0 && <p className="text-sm md:col-span-3" style={{ color: 'var(--muted)' }}>No characters match the current roster filters.</p>}
               </div>
-              <div className="p-4 rounded-3xl bg-zinc-900/60 border border-white/10">
+              <div className="tool-card">
                 <div className="flex items-center justify-between gap-3 mb-2">
-                  <p className="text-xs uppercase font-bold text-zinc-500">Prestige Unlock Coverage</p>
-                  <span className="text-[10px] uppercase tracking-wider text-zinc-400">{prestigeUnlockedCharacters}/{ownedCharacters.length || 0} owned chars at P1+</span>
+                  <p className="home-secttl" style={{ marginTop: 0 }}>Prestige unlock coverage</p>
+                  <span className="text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>{prestigeUnlockedCharacters}/{ownedCharacters.length || 0} owned chars at P1+</span>
                 </div>
-                {teachableCoverage.length === 0 && <p className="text-zinc-500 text-sm">Mark a character as owned to start tracking roster unlocks.</p>}
+                {teachableCoverage.length === 0 && <p className="text-sm" style={{ color: 'var(--muted)' }}>Mark a character as owned to start tracking roster unlocks.</p>}
                 {teachableCoverage.map(row => (
-                  <div key={row.character.id} className="flex justify-between items-center border-t border-white/5 py-2 text-sm text-zinc-300">
+                  <div key={row.character.id} className="flex justify-between items-center py-2 text-sm" style={{ borderTop: '1px solid var(--stroke)', color: 'var(--text)' }}>
                     <span>{row.character.name}</span>
-                    <span className="text-[12px] text-zinc-400">
+                    <span className="text-[12px]" style={{ color: 'var(--muted)' }}>
                       {row.total === 0 ? 'No personal perks in local data' : row.prestige >= 1 ? `${row.unlocked}/${row.total} unlocked` : `P${row.prestige} · unlocks at P1`}
                     </span>
                   </div>
@@ -8480,56 +8497,56 @@
           )}
           {tab === 'challenges' && (
             <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div className="grid grid-cols-3 gap-3">
                 {[
-                  ['planned', challengeCounts.planned, '#a1a1aa'],
+                  ['planned', challengeCounts.planned, 'var(--muted)'],
                   ['active', challengeCounts.active, '#facc15'],
                   ['completed', challengeCounts.completed, '#22c55e']
                 ].map(([label, value, color]) => (
-                  <div key={label} className="p-4 rounded-2xl bg-zinc-900/60 border border-white/10 text-center">
+                  <div key={label} className="tool-card text-center">
                     <p className="text-2xl font-bold" style={{ color }}>{value}</p>
-                    <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold mt-1">{label}</p>
+                    <p className="home-secttl" style={{ margin: '4px 0 0' }}>{label}</p>
                   </div>
                 ))}
               </div>
-              <div className="p-4 rounded-3xl bg-zinc-900/60 border border-white/10 space-y-2">
-                <p className="text-xs uppercase font-bold text-zinc-500">New Challenge</p>
-                <input value={challengeDraft.name} onChange={e => setChallengeDraft(draft => ({ ...draft, name: e.target.value }))} placeholder="Name" className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-zinc-500" />
-                <textarea value={challengeDraft.description} onChange={e => setChallengeDraft(draft => ({ ...draft, description: e.target.value }))} rows={2} placeholder="Description" className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-zinc-500"></textarea>
+              <div className="tool-card">
+                <p className="home-secttl" style={{ marginTop: 0 }}>New challenge</p>
+                <input value={challengeDraft.name} onChange={e => setChallengeDraft(draft => ({ ...draft, name: e.target.value }))} placeholder="Name" aria-label="Challenge name" className="field" style={{ marginTop: 0 }} />
+                <textarea value={challengeDraft.description} onChange={e => setChallengeDraft(draft => ({ ...draft, description: e.target.value }))} rows={2} placeholder="Description" aria-label="Challenge description" className="field"></textarea>
                 <div className="grid grid-cols-2 gap-2">
-                  <select value={challengeDraft.side} onChange={e => setChallengeDraft(draft => ({ ...draft, side: e.target.value }))} className="themed-select w-full text-sm">
+                  <select value={challengeDraft.side} onChange={e => setChallengeDraft(draft => ({ ...draft, side: e.target.value }))} className="themed-select w-full text-sm" aria-label="Challenge side">
                     <option value="any">Any</option>
                     <option value="Killer">Killer</option>
                     <option value="Survivor">Survivor</option>
                   </select>
-                  <input value={challengeDraft.tags} onChange={e => setChallengeDraft(draft => ({ ...draft, tags: e.target.value }))} placeholder="Tags (comma)" className="bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-zinc-500" />
-                  <select value={challengeDraft.buildId} onChange={e => setChallengeDraft(draft => ({ ...draft, buildId: e.target.value }))} className="themed-select w-full text-sm col-span-2">
+                  <input value={challengeDraft.tags} onChange={e => setChallengeDraft(draft => ({ ...draft, tags: e.target.value }))} placeholder="Tags (comma)" aria-label="Challenge tags" className="field" style={{ marginTop: 0 }} />
+                  <select value={challengeDraft.buildId} onChange={e => setChallengeDraft(draft => ({ ...draft, buildId: e.target.value }))} className="themed-select w-full text-sm col-span-2" aria-label="Linked build">
                     <option value="">Link build (optional)</option>
                     {builds.map(build => <option key={build.id} value={build.id}>{build.name}</option>)}
                   </select>
                 </div>
-                <button onClick={addChallenge} className="px-4 py-2 rounded-xl bg-gradient-to-r from-red-700 to-red-500 text-white font-bold text-sm">Add Challenge</button>
+                <button type="button" onClick={addChallenge} className="shuf-spin">Add Challenge</button>
               </div>
-              <div className="space-y-2">
+              <div>
                 {(progression.challenges || []).map((challenge) => (
-                  <div key={challenge.id} className="p-3 rounded-2xl bg-zinc-900/60 border border-white/10">
-                    <div className="flex justify-between items-center">
-                      <div>
-                        <p className="text-white font-semibold">{challenge.name}</p>
-                        <p className="text-[11px] text-zinc-500 uppercase tracking-wider">{challenge.side}</p>
+                  <div key={challenge.id} className="tool-card">
+                    <div className="flex justify-between items-center gap-2">
+                      <div style={{ minWidth: 0 }}>
+                        <h4>{challenge.name}</h4>
+                        <p className="text-[11px] uppercase tracking-wider">{challenge.side}</p>
                       </div>
-                      <select value={challenge.status} onChange={e => updateChallengeStatus(challenge.id, e.target.value)} className="themed-select compact text-xs">
+                      <select value={challenge.status} onChange={e => updateChallengeStatus(challenge.id, e.target.value)} className="themed-select compact text-xs" aria-label={`${challenge.name} status`}>
                         <option value="planned">Planned</option>
                         <option value="active">Active</option>
                         <option value="completed">Completed</option>
                       </select>
                     </div>
-                    {challenge.buildId && <p className="text-[11px] text-zinc-400 mt-1">Build: {buildName(challenge.buildId)}</p>}
-                    <p className="text-sm text-zinc-300 mt-1">{challenge.description}</p>
-                    {challenge.tags?.length > 0 && <div className="flex flex-wrap gap-1 mt-1">{challenge.tags.map(tag => <span key={tag} className="px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] text-zinc-300 uppercase tracking-wider">{tag}</span>)}</div>}
+                    {challenge.buildId && <p className="text-[11px] mt-1">Build: {buildName(challenge.buildId)}</p>}
+                    <p className="text-sm mt-1" style={{ color: 'var(--text)' }}>{challenge.description}</p>
+                    {challenge.tags?.length > 0 && <div className="flex flex-wrap gap-1 mt-1">{challenge.tags.map(tag => <span key={tag} className="px-2 py-1 text-[10px] uppercase tracking-wider" style={{ border: '1px solid var(--stroke)', color: 'var(--muted)' }}>{tag}</span>)}</div>}
                   </div>
                 ))}
-                {(progression.challenges || []).length === 0 && <div className="text-center text-zinc-500 py-4">No challenges yet.</div>}
+                {(progression.challenges || []).length === 0 && <p className="text-sm" style={{ color: 'var(--muted)' }}>No challenges yet.</p>}
               </div>
             </div>
           )}
@@ -10627,88 +10644,86 @@
       };
       const FavSection = ({ title, items: sectionItems, category, accentColor, renderItem }) => {
         if (sectionItems.length === 0) return null;
+        const keepRoleColor = category === 'Killer' || category === 'Survivor';
         return (
           <div className="mb-6">
-            <div className="flex items-center gap-2 mb-3 px-1">
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: accentColor }}>{title}</span>
-              <span className="text-[10px] text-zinc-400 font-bold">{sectionItems.length}</span>
-            </div>
-            <div className="space-y-2">
+            <p className="home-secttl" style={keepRoleColor ? { color: accentColor } : undefined}>{title} · {sectionItems.length}</p>
+            <div>
               {sectionItems.map(item => renderItem(item, category))}
             </div>
           </div>
         );
       };
       const CharCard = ({ item, category }) => (
-        <div key={item.id} className="p-3 rounded-2xl bg-zinc-900/40 border border-white/5 flex items-center gap-3 group">
-          <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex-shrink-0 overflow-hidden">
-            <AssetFrame type={category} size="fill" imageUrl={item.image} fallbackIcon={<Icons.User width={20} height={20} className="text-white/40" />} />
+        <div key={item.id} className="char-row">
+          <div className="char-rowtop">
+            <button type="button" className="char-head" onClick={() => setView(category === 'Killer' ? 'killers' : 'survivors', { search: item.name })} aria-label={`Open ${item.name}`}>
+              <span className="portrait">
+                <AssetFrame type={category} size="fill" imageUrl={item.image} fallbackIcon={<Icons.User width={20} height={20} className="text-white/40" />} />
+              </span>
+              <span style={{ minWidth: 0 }}>
+                <span className="nm">{item.name}</span>
+                <span className="sub">{item.realName || category}</span>
+              </span>
+              <span className="chev" aria-hidden="true">▸</span>
+            </button>
           </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-white font-bold text-sm truncate">{item.name}</p>
-            <p className="text-zinc-500 text-xs">{item.realName || category}</p>
-          </div>
-          <button onClick={() => setView(category === 'Killer' ? 'killers' : 'survivors', { search: item.name })} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] text-zinc-300 hover:text-white transition-colors mr-1">View</button>
-          <button onClick={() => toggleFavorite(category, item.id)} className="p-1.5 rounded-full bg-yellow-500/20 transition-colors hover:bg-yellow-500/30">
-            <Icons.Star width={14} height={14} className="text-yellow-400 fill-yellow-400" />
-          </button>
         </div>
       );
       const PerkCard = ({ item }) => (
-        <div key={item.id} className="p-3 rounded-2xl bg-zinc-900/40 border border-white/5 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex-shrink-0 overflow-hidden flex items-center justify-center">
-            <AssetFrame type="Perk" size="fill" imageUrl={item.image} fallbackIcon={<Icons.BookOpen width={16} height={16} className="text-white/40" />} />
+        <div key={item.id} className="char-row">
+          <div className="char-rowtop">
+            <button type="button" className="char-head" onClick={() => onPerkTap && onPerkTap(item)} aria-label={`Open ${item.name}`}>
+              <span className="portrait">
+                <AssetFrame type="Perk" size="fill" imageUrl={item.image} fallbackIcon={<Icons.BookOpen width={16} height={16} className="text-white/40" />} />
+              </span>
+              <span style={{ minWidth: 0 }}>
+                <span className="nm">{item.name}</span>
+                <span className="sub">{item.owner || (item.type === 'Killer' ? 'Killer' : 'Survivor')}</span>
+              </span>
+              <span className="chev" aria-hidden="true">▸</span>
+            </button>
           </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-white font-bold text-sm truncate">{item.name}</p>
-            <p className="text-zinc-500 text-xs truncate">{item.owner || (item.type === 'Killer' ? 'Killer' : 'Survivor')}</p>
-          </div>
-          <button onClick={() => onPerkTap && onPerkTap(item)} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] text-zinc-300 hover:text-white transition-colors mr-1">View</button>
-          <button onClick={() => toggleFavorite('Perk', item.id)} className="p-1.5 rounded-full bg-yellow-500/20 transition-colors hover:bg-yellow-500/30">
-            <Icons.Star width={14} height={14} className="text-yellow-400 fill-yellow-400" />
-          </button>
         </div>
       );
       const SmallCard = ({ item, category, subtitle }) => (
-        <div key={item.id} className="p-3 rounded-2xl bg-zinc-900/40 border border-white/5 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex-shrink-0 overflow-hidden">
-            <AssetFrame type={category} size="fill" imageUrl={item.image} fallbackIcon={<Icons.Package width={16} height={16} className="text-white/40" />} />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-white font-bold text-sm truncate">{item.name}</p>
-            <div className="flex items-center gap-2">
-              <span className="text-zinc-500 text-xs">{subtitle}</span>
-              {item.rarity && <span className="text-[10px] font-bold" style={{ color: getRarityColor(item.rarity) }}>{(item.rarity || '').replace('veryrare', 'Very Rare').replace('ultrarare', 'Ultra Rare')}</span>}
+        <div key={item.id} className="char-row">
+          <div className="char-rowtop">
+            <div className="char-head" style={{ cursor: 'default' }} aria-label={item.name}>
+              <span className="portrait">
+                <AssetFrame type={category} size="fill" imageUrl={item.image} fallbackIcon={<Icons.Package width={16} height={16} className="text-white/40" />} />
+              </span>
+              <span style={{ minWidth: 0 }}>
+                <span className="nm" style={{ color: 'var(--text)' }}>{item.name}</span>
+                <span className="sub">{subtitle}</span>
+              </span>
+              {item.rarity && <span className="tok" style={{ color: getRarityColor(item.rarity) }}>{(item.rarity || '').replace('veryrare', 'Very Rare').replace('ultrarare', 'Ultra Rare')}</span>}
             </div>
           </div>
-          <button onClick={() => toggleFavorite(category, item.id)} className="p-1.5 rounded-full bg-yellow-500/20 transition-colors hover:bg-yellow-500/30">
-            <Icons.Star width={14} height={14} className="text-yellow-400 fill-yellow-400" />
-          </button>
         </div>
       );
       const showSection = (tab) => activeTab === 'All' || activeTab === tab;
       return (
         <div className="flex flex-col h-full pt-12 pb-32 px-6 overflow-y-auto custom-scrollbar">
           <Header title="My Favorites" subtitle={totalCount + ' bookmarked'} onBack={onBack} infoTips={VIEW_TIPS.favorites} />
-          <div className="max-w-3xl mx-auto flex flex-wrap justify-center gap-2 mb-6">
+          <div className="chipstrip" role="tablist" aria-label="Filter favorites by category">
             {tabs.map(tab => {
               const count = tab === 'All' ? totalCount : tab === 'Killers' ? favKillers.length : tab === 'Survivors' ? favSurvivors.length : tab === 'Perks' ? favPerks.length : tab === 'Items' ? favItems.length : tab === 'Addons' ? favAddons.length : favOfferings.length;
               return (
-                <GlassButton key={tab} active={activeTab === tab} onClick={() => setActiveTab(tab)} className="text-xs py-2 px-3">
+                <button key={tab} type="button" role="tab" aria-selected={activeTab === tab} className={activeTab === tab ? 'on' : ''} onClick={() => setActiveTab(tab)}>
                   {tab}{count > 0 ? ` (${count})` : ''}
-                </GlassButton>
+                </button>
               );
             })}
           </div>
           <div className="pb-32 -mx-6 px-6">
             {totalCount === 0 ? (
-              <div className="flex flex-col items-center justify-center text-center mt-16 animate-in fade-in duration-500">
-                <div className="w-20 h-20 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center mb-4">
-                  <Icons.Star width={36} height={36} className="text-yellow-500/40" />
+              <div className="mt-8">
+                <p className="text-sm font-semibold" style={{ color: 'var(--text)' }}>No favorites yet.</p>
+                <p className="text-sm mt-1" style={{ color: 'var(--muted)' }}>Star any killer, survivor, perk, item, addon, or offering to see them here for quick access.</p>
+                <div className="rowbtns" style={{ display: 'flex', gap: 8, marginTop: 10 }}>
+                  <button type="button" onClick={() => setView('home')} className="shuf-subbtn">Browse Content</button>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">No Favorites Yet</h3>
-                <p className="text-zinc-500 text-sm max-w-xs">Star any killer, survivor, perk, item, addon, or offering to see them here for quick access.</p>
-                <button onClick={() => setView('home')} className="mt-6 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-zinc-300 text-sm font-semibold hover:bg-white/10 transition-colors">Browse Content</button>
               </div>
             ) : (
               <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -11141,64 +11156,72 @@
 
               {/* Entity Quote */}
               <div className="text-center mb-8">
-                <p className="text-red-400/80 text-sm italic font-medium tracking-wide">{getEntityQuote()}</p>
+                <p className="text-sm italic font-medium tracking-wide" style={{ color: 'var(--muted)' }}>{getEntityQuote()}</p>
               </div>
 
               {/* Input Section */}
-              <div className="entity-glow rounded-3xl p-6 mb-6" style={{ background: 'linear-gradient(145deg, rgba(127,29,29,0.15), rgba(0,0,0,0.4))', border: '1px solid rgba(220,38,38,0.3)' }}>
+              <div className="tool-card">
                 <div className="grid grid-cols-2 gap-6">
                   {/* Current Prestige */}
                   <div className="text-center">
-                    <label className="block text-xs uppercase tracking-widest text-zinc-500 mb-2 font-bold">Prestige</label>
+                    <label className="home-secttl" style={{ marginTop: 0 }}>Prestige</label>
                     <input
                       type="number"
+                      inputMode="numeric"
                       min="0"
                       max="100"
                       value={currentPrestige}
                       onChange={e => setCurrentPrestige(e.target.value === '' ? '' : parseInt(e.target.value) || 0)}
                       onBlur={e => setCurrentPrestige(Math.min(100, Math.max(0, parseInt(e.target.value) || 0)))}
-                      className="w-full text-center text-4xl font-bold bg-black/40 border-2 border-red-900/50 rounded-2xl py-4 text-white focus:outline-none focus:border-red-500 transition-colors"
+                      className="field text-center"
+                      style={{ fontSize: 32, fontWeight: 800 }}
+                      aria-label="Current prestige"
                     />
-                    <label className="block text-[10px] uppercase tracking-widest text-zinc-400 mt-3 mb-1">Level</label>
+                    <label className="home-secttl">Level</label>
                     <input
                       type="number"
+                      inputMode="numeric"
                       min="1"
                       max="50"
                       value={currentLevel}
                       onChange={e => setCurrentLevel(e.target.value === '' ? '' : parseInt(e.target.value) || 1)}
                       onBlur={e => setCurrentLevel(Math.min(50, Math.max(1, parseInt(e.target.value) || 1)))}
-                      className="w-full text-center text-lg font-bold bg-black/30 border border-red-900/30 rounded-xl py-2 text-zinc-300 focus:outline-none focus:border-red-500 transition-colors"
+                      className="field text-center"
+                      style={{ fontSize: 18, fontWeight: 700 }}
+                      aria-label="Current level"
                     />
                   </div>
 
                   {/* Target Prestige */}
                   <div className="text-center">
-                    <label className="block text-xs uppercase tracking-widest text-zinc-500 mb-2 font-bold">Target</label>
+                    <label className="home-secttl" style={{ marginTop: 0 }}>Target</label>
                     <input
                       type="number"
+                      inputMode="numeric"
                       min="0"
                       max="100"
                       value={targetPrestige}
                       onChange={e => setTargetPrestige(e.target.value === '' ? '' : parseInt(e.target.value) || 0)}
                       onBlur={e => setTargetPrestige(Math.min(100, Math.max(0, parseInt(e.target.value) || 0)))}
-                      className="w-full text-center text-4xl font-bold bg-black/40 border-2 border-red-900/50 rounded-2xl py-4 text-white focus:outline-none focus:border-red-500 transition-colors"
+                      className="field text-center"
+                      style={{ fontSize: 32, fontWeight: 800 }}
+                      aria-label="Target prestige"
                     />
                   </div>
                 </div>
 
                 {/* Progress Bar */}
                 <div className="mt-6">
-                  <div className="flex justify-between text-xs text-zinc-500 mb-2">
+                  <div className="flex justify-between text-xs mb-2" style={{ color: 'var(--muted)' }}>
                     <span>Progress</span>
                     <span>{progressPercent.toFixed(0)}%</span>
                   </div>
-                  <div className="h-3 bg-black/50 rounded-full overflow-hidden border border-red-900/30">
+                  <div className="h-3 overflow-hidden" style={{ background: 'var(--ghost-surface)', border: '1px solid var(--stroke)' }}>
                     <div
-                      className="h-full rounded-full transition-all duration-1000 ease-out"
+                      className="h-full transition-all duration-1000 ease-out"
                       style={{
                         width: `${progressPercent}%`,
-                        background: 'linear-gradient(90deg, #7f1d1d, #dc2626, #ef4444)',
-                        boxShadow: '0 0 10px rgba(220,38,38,0.5)'
+                        background: 'var(--link)'
                       }}
                     />
                   </div>
@@ -11206,101 +11229,85 @@
               </div>
 
               {/* Blood Points Required - Main Display */}
-              <div className="entity-glow rounded-3xl p-8 mb-6 text-center" style={{ background: 'linear-gradient(145deg, rgba(0,0,0,0.6), rgba(127,29,29,0.2))', border: '1px solid rgba(220,38,38,0.4)' }}>
-                <div className="flex items-center justify-center gap-3 mb-4">
-                  <div className="w-8 h-8 rounded-full bg-red-900/50 flex items-center justify-center">
-                    <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse" />
-                  </div>
-                  <span className="text-sm uppercase tracking-widest text-red-400/80 font-bold">Bloodpoints Required</span>
-                  <div className="w-8 h-8 rounded-full bg-red-900/50 flex items-center justify-center">
-                    <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse" />
-                  </div>
-                </div>
-                <div className="blood-text text-5xl sm:text-6xl font-black text-white mb-2" style={{ letterSpacing: '-0.02em' }}>
+              <div className="tool-card text-center">
+                <p className="home-secttl" style={{ marginTop: 0 }}>Bloodpoints required</p>
+                <div className="font-black" style={{ fontFamily: 'var(--font-display)', fontSize: 48, letterSpacing: '-0.02em', color: 'var(--text)' }}>
                   {formatNumber(animatedBP)}
                 </div>
-                <div className="text-zinc-500 text-sm">
+                <p className="text-sm" style={{ color: 'var(--muted)' }}>
                   {prestigesNeeded} prestige{prestigesNeeded !== 1 ? 's' : ''} × {formatNumber(costPerPrestige)} BP
-                </div>
+                </p>
               </div>
 
               {/* Stats Grid */}
               <div className="grid grid-cols-3 gap-3 mb-6">
-                <div className="rounded-2xl p-4 text-center" style={{ background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.1)' }}>
-                  <div className="text-2xl font-bold text-white">{prestigesNeeded}</div>
-                  <div className="text-[10px] uppercase tracking-wider text-zinc-500 mt-1">Prestiges</div>
+                <div className="tool-card text-center">
+                  <div className="text-2xl font-bold" style={{ color: 'var(--text)' }}>{prestigesNeeded}</div>
+                  <p className="home-secttl" style={{ margin: '4px 0 0' }}>Prestiges</p>
                 </div>
-                <div className="rounded-2xl p-4 text-center" style={{ background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.1)' }}>
-                  <div className="text-2xl font-bold text-white">{formatNumber(matchesNeeded)}</div>
-                  <div className="text-[10px] uppercase tracking-wider text-zinc-500 mt-1">Matches</div>
+                <div className="tool-card text-center">
+                  <div className="text-2xl font-bold" style={{ color: 'var(--text)' }}>{formatNumber(matchesNeeded)}</div>
+                  <p className="home-secttl" style={{ margin: '4px 0 0' }}>Matches</p>
                 </div>
-                <div className="rounded-2xl p-4 text-center" style={{ background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.1)' }}>
-                  <div className="text-2xl font-bold text-white">{hoursNeeded.toFixed(1)}</div>
-                  <div className="text-[10px] uppercase tracking-wider text-zinc-500 mt-1">Hours</div>
+                <div className="tool-card text-center">
+                  <div className="text-2xl font-bold" style={{ color: 'var(--text)' }}>{hoursNeeded.toFixed(1)}</div>
+                  <p className="home-secttl" style={{ margin: '4px 0 0' }}>Hours</p>
                 </div>
               </div>
 
               {/* Settings */}
-              <div className="entity-glow rounded-2xl p-5" style={{ background: 'linear-gradient(145deg, rgba(127,29,29,0.1), rgba(0,0,0,0.4))', border: '1px solid rgba(220,38,38,0.2)' }}>
-                <div className="flex items-center gap-2 mb-4">
-                  <Icons.Gear width={14} height={14} className="text-red-400/60" />
-                  <span className="text-xs uppercase tracking-widest text-red-400/60 font-bold">Settings</span>
-                </div>
-
-                {/* Efficiency */}
-                <div className="mb-4">
-                  <label className="block text-xs text-zinc-500 mb-2">Bloodweb Mode</label>
-                  <div className="flex gap-2">
-                    {[
-                      { id: 'efficient', label: 'Skip Level', desc: '~850k/P', sub: 'Skip Level Up', color: '#22c55e', bg: 'rgba(34,197,94,0.15)' },
-                      { id: 'average', label: 'Auto Buy', desc: '~1.05M/P', sub: 'Auto Purchase', color: '#dc2626', bg: 'rgba(220,38,38,0.2)' },
-                      { id: 'completionist', label: 'Manual', desc: '~1.5M/P', sub: 'Full Bloodweb', color: '#a855f7', bg: 'rgba(168,85,247,0.15)' }
-                    ].map(opt => (
-                      <button
-                        key={opt.id}
-                        onClick={() => setEfficiency(opt.id)}
-                        className="flex-1 py-2 px-2 rounded-xl text-xs font-bold transition-all"
-                        style={efficiency === opt.id
-                          ? { background: opt.bg, border: `2px solid ${opt.color}`, color: opt.color, boxShadow: `0 0 12px ${opt.bg}` }
-                          : { background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.1)', color: '#a1a1aa' }
-                        }
-                      >
-                        <div>{opt.label}</div>
-                        <div className="text-[9px] opacity-60">{opt.desc}</div>
-                        <div className="text-[8px] opacity-40 mt-0.5">{opt.sub}</div>
-                      </button>
-                    ))}
-                  </div>
+              <div className="tool-card">
+                <p className="home-secttl" style={{ marginTop: 0 }}>Bloodweb mode</p>
+                <div className="chipstrip" role="group" aria-label="Bloodweb mode" style={{ paddingTop: 0 }}>
+                  {[
+                    { id: 'efficient', label: 'Skip Level', desc: '~850k/P' },
+                    { id: 'average', label: 'Auto Buy', desc: '~1.05M/P' },
+                    { id: 'completionist', label: 'Manual', desc: '~1.5M/P' }
+                  ].map(opt => (
+                    <button
+                      key={opt.id}
+                      type="button"
+                      onClick={() => setEfficiency(opt.id)}
+                      className={efficiency === opt.id ? 'on' : ''}
+                      aria-pressed={efficiency === opt.id}
+                    >
+                      {opt.label} · {opt.desc}
+                    </button>
+                  ))}
                 </div>
 
                 {/* BP per match & Match length */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs text-zinc-500 mb-2">BP per Match</label>
+                    <label className="home-secttl">BP per match</label>
                     <input
                       type="number"
+                      inputMode="numeric"
                       value={bpPerMatch}
                       onChange={e => setBpPerMatch(e.target.value === '' ? '' : parseInt(e.target.value) || 30000)}
                       onBlur={e => setBpPerMatch(Math.max(1000, parseInt(e.target.value) || 30000))}
-                      className="w-full bg-black/40 border border-red-900/30 rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-red-500 transition-colors"
+                      className="field"
+                      aria-label="Bloodpoints per match"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs text-zinc-500 mb-2">Match Length (min)</label>
+                    <label className="home-secttl">Match length (min)</label>
                     <input
                       type="number"
+                      inputMode="numeric"
                       value={matchLength}
                       onChange={e => setMatchLength(e.target.value === '' ? '' : parseInt(e.target.value) || 12)}
                       onBlur={e => setMatchLength(Math.max(1, parseInt(e.target.value) || 12))}
-                      className="w-full bg-black/40 border border-red-900/30 rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-red-500 transition-colors"
+                      className="field"
+                      aria-label="Match length in minutes"
                     />
                   </div>
                 </div>
               </div>
 
               {/* Milestones hint */}
-              <div className="mt-6 text-center text-[10px] text-zinc-500 leading-relaxed">
-                <span className="text-red-800">P1-3</span> Universal teachables (T1→T2→T3) • <span className="text-red-800">P4-6</span> Bloody cosmetics • <span className="text-red-800">P7-9</span> Perk charms • <span className="text-red-800">P25/50/75/100</span> Character badge reward tiers
+              <div className="mt-6 text-center text-[11px] leading-relaxed" style={{ color: 'var(--muted)' }}>
+                P1-3 Universal teachables (T1→T2→T3) · P4-6 Bloody cosmetics · P7-9 Perk charms · P25/50/75/100 Character badge reward tiers
               </div>
             </div>
           </div>
