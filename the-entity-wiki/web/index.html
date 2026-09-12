@@ -943,6 +943,44 @@
     .cos-packnote { border: 1px solid var(--stroke); background: var(--glass-bg); padding: 12px 14px; font-size: 12.5px; color: var(--muted); line-height: 1.6; margin-top: 14px; }
     .cos-packnote b { color: var(--text); }
     .cos-packnote button { background: none; border: 1px solid var(--stroke); color: var(--text); font-size: 12.5px; font-weight: 600; padding: 8px 12px; min-height: 44px; margin-top: 8px; cursor: pointer; }
+
+    /* ===== Timeline & glossary (step H) ===== */
+    .tl-rail { border-left: 2px solid var(--stroke); margin-left: 6px; padding-left: 16px; }
+    .tl-rel { position: relative; }
+    .tl-rel::before { content: ''; position: absolute; left: -24px; top: 22px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg-01); border: 2px solid var(--muted); }
+    .tl-rel.open::before { border-color: var(--link); background: var(--link); }
+    .tl-head { display: block; width: 100%; background: none; border: none; border-bottom: 1px solid var(--stroke); text-align: left; padding: 12px 4px; cursor: pointer; }
+    .tl-head .badge { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .tl-head h3 { font-family: var(--font-display); font-size: 19px; margin: 2px 0; color: var(--text); font-weight: 700; }
+    .tl-head .date, .tl-head .cnt { font-size: 12px; color: var(--muted); display: block; }
+    .tl-head .chev { float: right; color: var(--link); font-size: 14px; }
+    .tl-body { padding: 10px 4px 16px; font-size: 13.5px; line-height: 1.65; }
+    .tl-body .desc { color: var(--muted); margin: 0 0 10px; }
+    .tl-sub-h { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 10px 0 2px; }
+    .tl-char { display: flex; align-items: center; gap: 10px; width: 100%; background: none; border: none; border-bottom: 1px solid var(--stroke); min-height: 56px; padding: 6px 4px; cursor: pointer; text-align: left; }
+    .tl-char .portrait { width: 36px; height: 36px; flex: 0 0 36px; background: var(--ghost-surface); border: 1px solid var(--stroke); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .tl-char .nm { font-size: 14px; font-weight: 600; color: var(--link); }
+    .tl-char .tag { font-size: 10px; color: var(--muted); border: 1px solid var(--stroke); padding: 0 6px; margin-left: 6px; text-transform: uppercase; font-weight: 700; }
+    .tl-char .chev { margin-left: auto; color: var(--muted); font-size: 14px; }
+    .tl-fog { font-size: 12.5px; color: var(--muted); font-style: italic; margin: 6px 0 0 46px; line-height: 1.6; }
+    .tl-go { color: var(--link); font-size: 13px; font-weight: 600; background: none; border: 1px solid var(--stroke); min-height: 44px; padding: 8px 12px; margin: 8px 0 4px 46px; cursor: pointer; }
+    .tl-map { font-size: 13.5px; color: var(--text); padding: 8px 4px; border-bottom: 1px solid var(--stroke); }
+    .tl-map span { display: block; font-size: 12px; color: var(--muted); }
+    .tl-years { display: flex; gap: 8px; overflow-x: auto; padding: 10px 2px; scrollbar-width: none; }
+    .tl-years::-webkit-scrollbar { display: none; }
+    .tl-years button { flex: 0 0 auto; background: none; border: 1px solid var(--stroke); color: var(--muted); font-size: 12.5px; font-weight: 600; padding: 8px 12px; min-height: 44px; cursor: pointer; }
+    .tl-years button.on { border-color: var(--link); color: var(--link); }
+    .g-letter { position: sticky; top: 0; background: var(--bg-01); padding: 8px 0; display: flex; align-items: center; gap: 10px; z-index: 2; }
+    .g-letter b { font-family: var(--font-display); font-size: 22px; color: var(--link); }
+    .g-letter .rule { flex: 1; height: 1px; background: var(--stroke); }
+    .g-letter .n { font-size: 10px; color: var(--muted); font-weight: 700; }
+    .g-term { padding: 10px 4px; border-bottom: 1px solid var(--stroke); }
+    .g-term .t { font-size: 14.5px; font-weight: 700; color: var(--text); }
+    .g-term .c { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 400; }
+    .g-term .d { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 2px 0 0; }
+    .g-az { flex: 0 0 26px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .g-az button { background: none; border: none; color: var(--link); font-size: 9.5px; font-weight: 700; cursor: pointer; min-height: 24px; }
+    .g-az button:disabled { color: var(--muted); opacity: 0.35; cursor: default; }
   </style>
 </head>
 
@@ -8546,75 +8584,48 @@
         const isKiller = type === 'killers';
 
         return (
-          <div className="mb-2">
+          <div>
             <button
+              type="button"
               onClick={() => toggleCharacter(charKey)}
-              className="w-full flex items-center gap-3 p-3 rounded-xl transition-all bg-white/5 border border-white/5 hover:bg-white/8 hover:border-white/10"
-              style={isExpanded ? { backgroundColor: `${accent}15`, borderColor: `${accent}30` } : {}}
+              className="tl-char"
+              aria-expanded={isExpanded}
             >
               {/* Portrait */}
-              <div
-                className="w-12 h-12 rounded-xl overflow-hidden border flex-shrink-0"
-                style={{ borderColor: isExpanded ? accent : 'rgba(255,255,255,0.1)' }}
-              >
+              <span className="portrait">
                 <AssetFrame
                   type={isKiller ? 'Killer' : 'Survivor'}
                   size="fill"
                   imageUrl={imageUrl}
                   fallbackIcon={<Icons.User width={18} height={18} className="text-zinc-500" />}
                 />
-              </div>
+              </span>
 
               {/* Info */}
-              <div className="flex-1 text-left min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-white font-semibold text-sm">{loreChar.name}</span>
-                  {loreChar.licensed && (
-                    <span
-                      className="px-1.5 py-0.5 rounded text-[9px] uppercase font-bold"
-                      style={{ backgroundColor: `${accent}20`, color: accent }}
-                    >
-                      Licensed
-                    </span>
-                  )}
-                </div>
+              <span style={{ minWidth: 0 }}>
+                <span className="nm">{loreChar.name}</span>
+                {loreChar.licensed && (<span className="tag">Licensed</span>)}
                 {loreChar.realName && loreChar.realName !== loreChar.name && (
-                  <p className="text-xs text-zinc-500 truncate">{loreChar.realName}</p>
+                  <span className="c" style={{ display: 'block', fontSize: 12, color: 'var(--muted)' }}>{loreChar.realName}</span>
                 )}
-              </div>
+              </span>
 
               {/* Expand indicator */}
-              <Icons.ChevronDown
-                width={16}
-                height={16}
-                className="text-zinc-500 transition-transform flex-shrink-0"
-                style={isExpanded ? { color: accent, transform: 'rotate(180deg)' } : {}}
-              />
+              <span className="chev" aria-hidden="true">{isExpanded ? '▾' : '▸'}</span>
             </button>
 
             {/* Expanded lore panel */}
             {isExpanded && (
-              <div
-                className="mt-2 ml-4 p-4 rounded-xl border animate-fadeIn"
-                style={{ backgroundColor: `${accentSoft}80`, borderColor: `${accent}20` }}
-              >
-                <p className="text-[10px] uppercase tracking-wider font-bold mb-2" style={{ color: accent }}>
-                  How they entered the fog
-                </p>
-                <p className="text-sm text-zinc-300 leading-relaxed">{loreChar.fogEntry}</p>
+              <div>
+                <p className="tl-fog">"{loreChar.fogEntry}"</p>
 
                 {fullData && (
                   <button
-                    onClick={(e) => { e.stopPropagation(); openCharacterModal(loreChar, type); }}
-                    className="mt-4 w-full py-2.5 rounded-xl text-sm font-semibold transition-colors flex items-center justify-center gap-2 border"
-                    style={{
-                      backgroundColor: `${accent}20`,
-                      borderColor: `${accent}30`,
-                      color: accent
-                    }}
+                    type="button"
+                    onClick={() => openCharacterModal(loreChar, type)}
+                    className="tl-go"
                   >
-                    <Icons.ChevronRight width={14} height={14} />
-                    View Full Profile
+                    View Full Profile →
                   </button>
                 )}
               </div>
@@ -8628,12 +8639,12 @@
           {/* Header */}
           <div className="flex-shrink-0 px-6 pt-6 pb-4">
             <div className="flex items-center gap-3 mb-4">
-              <button onClick={onBack} className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors">
+              <button onClick={onBack} aria-label="Back" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors">
                 <Icons.ArrowLeft width={20} height={20} />
               </button>
               <div className="flex-1">
-                <h1 className="text-xl font-bold text-white">Lore Timeline</h1>
-                <p className="text-xs text-zinc-500">
+                <h1 className="font-bold" style={{ fontFamily: 'var(--font-display)', fontSize: 24, color: 'var(--text)' }}>Lore Timeline</h1>
+                <p className="text-xs" style={{ color: 'var(--muted)' }}>
                   {releases.length === allReleases.length
                     ? `${releases.length} releases • June 2016 to present`
                     : `${releases.length} of ${allReleases.length} releases`
@@ -8644,23 +8655,23 @@
             </div>
 
             {/* Search bar */}
-            <div className="relative mb-4">
-              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500">
-                <Icons.Search width={18} height={18} />
-              </div>
+            <div className="cx-searchbox">
+              <div className="text-zinc-400"><Icons.Search width={18} height={18} /></div>
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search chapters, killers, survivors..."
-                className="w-full bg-zinc-800/60 border border-white/10 rounded-2xl py-3 pl-12 pr-10 text-white placeholder-zinc-600 text-sm focus:outline-none focus:border-white/20"
+                aria-label="Search timeline"
               />
               {search && (
                 <button
                   onClick={() => setSearch('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg bg-white/5 text-zinc-400 hover:text-white transition-colors"
+                  aria-label="Clear search"
+                  className="p-2 mr-1 text-zinc-300 hover:text-white transition-colors"
+                  style={{ width: 44, height: 44 }}
                 >
-                  <Icons.X width={14} height={14} />
+                  ✕
                 </button>
               )}
             </div>
@@ -8670,26 +8681,20 @@
           {/* Timeline content */}
           <div ref={scrollRef} className="flex-1 overflow-y-auto px-6 pb-32">
             {/* Year filter pills */}
-            <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-4">
+            <div className="tl-years">
               <button
+                type="button"
                 onClick={() => setYearFilter('all')}
-                className="px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all border"
-                style={yearFilter === 'all'
-                  ? { backgroundColor: accent, color: '#000', borderColor: accent }
-                  : { backgroundColor: 'transparent', color: '#a1a1aa', borderColor: 'rgba(255,255,255,0.1)' }
-                }
+                className={yearFilter === 'all' ? 'on' : ''}
               >
                 All
               </button>
               {years.map(year => (
                 <button
                   key={year}
+                  type="button"
                   onClick={() => setYearFilter(year.toString())}
-                  className="px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all border"
-                  style={yearFilter === year.toString()
-                    ? { backgroundColor: accent, color: '#000', borderColor: accent }
-                    : { backgroundColor: 'transparent', color: '#a1a1aa', borderColor: 'rgba(255,255,255,0.1)' }
-                  }
+                  className={yearFilter === year.toString() ? 'on' : ''}
                 >
                   {year}
                 </button>
@@ -8704,140 +8709,96 @@
                 </div>
               </div>
             ) : (
-              <div className="relative">
-                {/* Timeline line */}
-                <div className="absolute left-2 top-0 bottom-0 w-0.5" style={{ background: `linear-gradient(to bottom, ${accent}60, ${accent}20)` }} />
-
+              <div className="tl-rail">
                 {/* Release cards */}
-                <div className="space-y-4">
+                <div>
                   {releases.map((release, idx) => {
                     const isExpanded = expandedRelease === release.id;
                     const badge = getTypeBadge(release.type, release.chapterNumber);
                     const hasContent = release.killers?.length > 0 || release.survivors?.length > 0 || release.maps?.length > 0;
 
                     return (
-                      <div key={release.id} className="relative pl-8">
-                        {/* Timeline node dot */}
-                        <div
-                          className="absolute left-0 top-4 w-4 h-4 rounded-full border-2 flex items-center justify-center"
-                          style={isExpanded
-                            ? { backgroundColor: accent, borderColor: accent }
-                            : { backgroundColor: '#09090b', borderColor: '#52525b' }
-                          }
-                        />
+                      <div key={release.id} className={`tl-rel ${isExpanded ? 'open' : ''}`}>
 
-                        {/* Release card */}
-                        <div
-                          className="rounded-xl border transition-all"
-                          style={isExpanded
-                            ? { backgroundColor: `${accentSoft}60`, borderColor: `${accent}30`, boxShadow: `0 0 20px ${accent}15` }
-                            : { backgroundColor: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.05)' }
-                          }
+                        {/* Release header */}
+                        <button
+                          type="button"
+                          onClick={() => toggleRelease(release.id)}
+                          className="tl-head"
+                          aria-expanded={isExpanded}
                         >
-                          <button
-                            onClick={() => toggleRelease(release.id)}
-                            className="w-full text-left p-4"
-                          >
-                            <div className="flex items-start justify-between gap-3">
-                              <div className="flex-1 min-w-0">
-                                {/* Badge */}
-                                <span
-                                  className="inline-flex px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide mb-2"
-                                  style={{ backgroundColor: `${accent}20`, color: accent }}
-                                >
-                                  {badge.label}
-                                </span>
-
-                                {/* Date */}
-                                <p className="text-xs text-zinc-500 mb-1">{release.displayDate}</p>
-
-                                {/* Name */}
-                                <h3 className="text-lg font-bold text-white leading-tight">{release.name}</h3>
-
-                                {/* Content count - simple text */}
-                                {hasContent && (
-                                  <p className="text-xs text-zinc-500 mt-1">
-                                    {(release.killers?.length || 0) + (release.survivors?.length || 0)} character{((release.killers?.length || 0) + (release.survivors?.length || 0)) !== 1 ? 's' : ''}
-                                    {release.maps?.length > 0 && ` • ${release.maps.length} map${release.maps.length !== 1 ? 's' : ''}`}
-                                  </p>
-                                )}
-                              </div>
-
-                              {/* Expand indicator */}
-                              {hasContent && (
-                                <Icons.ChevronDown
-                                  width={18}
-                                  height={18}
-                                  className="text-zinc-500 transition-transform mt-1 flex-shrink-0"
-                                  style={isExpanded ? { color: accent, transform: 'rotate(180deg)' } : {}}
-                                />
-                              )}
-                            </div>
-                          </button>
-
-                          {/* Expanded content */}
-                          {isExpanded && hasContent && (
-                            <div className="px-4 pb-4 animate-fadeIn">
-                              {/* Description */}
-                              {release.description && (
-                                <p className="text-sm text-zinc-400 mb-4 leading-relaxed border-t border-white/5 pt-4">{release.description}</p>
-                              )}
-
-                              {/* Killers */}
-                              {release.killers?.length > 0 && (
-                                <div className="mb-4">
-                                  <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-bold mb-2">
-                                    Killers ({release.killers.length})
-                                  </p>
-                                  {release.killers.map(killer => (
-                                    <CharacterRow
-                                      key={killer.id}
-                                      loreChar={killer}
-                                      type="killers"
-                                      charKey={`killer-${killer.id}`}
-                                    />
-                                  ))}
-                                </div>
-                              )}
-
-                              {/* Survivors */}
-                              {release.survivors?.length > 0 && (
-                                <div className="mb-4">
-                                  <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-bold mb-2">
-                                    Survivors ({release.survivors.length})
-                                  </p>
-                                  {release.survivors.map(survivor => (
-                                    <CharacterRow
-                                      key={survivor.id}
-                                      loreChar={survivor}
-                                      type="survivors"
-                                      charKey={`survivor-${survivor.id}`}
-                                    />
-                                  ))}
-                                </div>
-                              )}
-
-                              {/* Maps */}
-                              {release.maps?.length > 0 && (
-                                <div>
-                                  <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-bold mb-2">
-                                    Maps ({release.maps.length})
-                                  </p>
-                                  <div className="space-y-1">
-                                    {release.maps.map(map => (
-                                      <div key={map.name} className="flex items-center gap-3 p-2.5 rounded-lg bg-white/5 border border-white/5">
-                                        <div>
-                                          <p className="text-white font-medium text-sm">{map.name}</p>
-                                          <p className="text-[11px] text-zinc-500">{map.realm}</p>
-                                        </div>
-                                      </div>
-                                    ))}
-                                  </div>
-                                </div>
-                              )}
-                            </div>
+                          <span className="badge">{badge.label}</span>
+                          <h3>{release.name}</h3>
+                          <span className="date">{release.displayDate}</span>
+                          {hasContent && (
+                            <span className="cnt">
+                              {(release.killers?.length || 0) + (release.survivors?.length || 0)} character{((release.killers?.length || 0) + (release.survivors?.length || 0)) !== 1 ? 's' : ''}
+                              {release.maps?.length > 0 && ` • ${release.maps.length} map${release.maps.length !== 1 ? 's' : ''}`}
+                            </span>
                           )}
-                        </div>
+                          {hasContent && (<span className="chev" aria-hidden="true">{isExpanded ? '▾' : '▸'}</span>)}
+                        </button>
+
+                        {/* Expanded content */}
+                        {isExpanded && hasContent && (
+                          <div className="tl-body">
+                            {/* Description */}
+                            {release.description && (
+                              <p className="desc">{release.description}</p>
+                            )}
+
+                            {/* Killers */}
+                            {release.killers?.length > 0 && (
+                              <div>
+                                <p className="tl-sub-h">
+                                  Killers ({release.killers.length})
+                                </p>
+                                {release.killers.map(killer => (
+                                  <CharacterRow
+                                    key={killer.id}
+                                    loreChar={killer}
+                                    type="killers"
+                                    charKey={`killer-${killer.id}`}
+                                  />
+                                ))}
+                              </div>
+                            )}
+
+                            {/* Survivors */}
+                            {release.survivors?.length > 0 && (
+                              <div>
+                                <p className="tl-sub-h">
+                                  Survivors ({release.survivors.length})
+                                </p>
+                                {release.survivors.map(survivor => (
+                                  <CharacterRow
+                                    key={survivor.id}
+                                    loreChar={survivor}
+                                    type="survivors"
+                                    charKey={`survivor-${survivor.id}`}
+                                  />
+                                ))}
+                              </div>
+                            )}
+
+                            {/* Maps */}
+                            {release.maps?.length > 0 && (
+                              <div>
+                                <p className="tl-sub-h">
+                                  Maps ({release.maps.length})
+                                </p>
+                                <div>
+                                  {release.maps.map(map => (
+                                    <div key={map.name} className="tl-map">
+                                      {map.name}
+                                      <span>{map.realm}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
                       </div>
                     );
                   })}
@@ -8996,17 +8957,17 @@
             {/* Search bar */}
             <div className="sticky top-0 z-20 -mx-6 px-6 pb-4 pointer-events-none">
               <div className="relative max-w-3xl mx-auto">
-                <div className="relative flex items-center bg-zinc-800/60 backdrop-blur-xl border border-white/10 rounded-3xl p-2 shadow-2xl pointer-events-auto">
-                  <div className="pl-4 text-zinc-400"><Icons.Search width={18} height={18} /></div>
+                <div className="cx-searchbox pointer-events-auto">
+                  <div className="text-zinc-400"><Icons.Search width={18} height={18} /></div>
                   <input
                     value={search}
                     onChange={e => setSearch(e.target.value)}
                     placeholder="Search terms..."
-                    className="w-full bg-transparent text-white p-3 text-sm font-medium placeholder-zinc-600 focus:outline-none"
+                    aria-label="Search glossary"
                   />
                   {search && (
-                    <button onClick={() => setSearch('')} className="p-2 mr-1 rounded-xl bg-white/5 text-zinc-300 hover:text-white hover:bg-white/10 transition-colors">
-                      <Icons.X width={18} height={18} />
+                    <button onClick={() => setSearch('')} aria-label="Clear search" className="p-2 mr-1 text-zinc-300 hover:text-white transition-colors" style={{ width: 44, height: 44 }}>
+                      ✕
                     </button>
                   )}
                 </div>
@@ -9021,24 +8982,18 @@
                 availableLetters.map(letter => (
                   <div key={letter} id={`glossary-${letter}`}>
                     {/* Letter header */}
-                    <div className="sticky top-16 z-10 py-2 -mx-2 px-2 mb-2 backdrop-blur-md">
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl font-black text-white" style={{ color: 'var(--accent)' }}>{letter}</span>
-                        <div className="flex-1 h-px bg-white/10"></div>
-                        <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{groupedTerms[letter].length}</span>
-                      </div>
+                    <div className="g-letter">
+                      <b>{letter}</b>
+                      <span className="rule"></span>
+                      <span className="n">{groupedTerms[letter].length}</span>
                     </div>
 
                     {/* Terms for this letter */}
-                    <div className="space-y-2 mb-6">
+                    <div>
                       {groupedTerms[letter].map(item => (
-                        <div key={item.term} className="p-3 rounded-2xl bg-zinc-900/40 border border-white/5 backdrop-blur-md">
-                          <div className="flex items-start gap-3">
-                            <div className="flex-1">
-                              <p className="text-white text-sm font-bold mb-1">{item.term}</p>
-                              <p className="text-zinc-400 text-xs leading-relaxed">{item.def}</p>
-                            </div>
-                          </div>
+                        <div key={item.term} className="g-term">
+                          <div className="t">{item.term} <span className="c">· {item.category}</span></div>
+                          <p className="d">{item.def}</p>
                         </div>
                       ))}
                     </div>
@@ -9049,7 +9004,7 @@
           </div>
 
           {/* A-Z sidebar index */}
-          <div className="w-6 flex flex-col items-center justify-center py-4 mr-1">
+          <div className="g-az py-4 mr-1">
             {alphabet.map(letter => {
               const hasTerms = availableLetters.includes(letter);
               return (
@@ -9057,11 +9012,6 @@
                   key={letter}
                   onClick={() => hasTerms && scrollToLetter(letter)}
                   disabled={!hasTerms}
-                  className="text-[9px] font-bold py-0.5 transition-all"
-                  style={{
-                    color: hasTerms ? 'var(--accent)' : '#3f3f46',
-                    opacity: hasTerms ? 1 : 0.4
-                  }}
                 >
                   {letter}
                 </button>
