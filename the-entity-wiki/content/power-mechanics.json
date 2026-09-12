@@ -1,0 +1,152 @@
+{
+  "268435456": {
+    "powerName": "Bear Trap",
+    "mechanics": [
+      "Place deadly Bear Traps around the map that injure and immobilize Survivors who step in them",
+      "Can carry up to 2 Bear Traps at a time",
+      "Setting a trap grants +7.5% Haste for 5 seconds",
+      "Trapped Survivors can attempt escape (16.67% chance per attempt, max 6 attempts) or wait for rescue",
+      "The Trapper can also step in his own traps, causing carried Survivors to escape"
+    ]
+  },
+  "268435457": {
+    "powerName": "Wailing Bell",
+    "mechanics": [
+      "Ring the Wailing Bell to Cloak, becoming invisible and gaining +50% speed",
+      "While Cloaked, cannot attack but can traverse the map quickly",
+      "Uncloak to surprise Survivors - brief speed burst after uncloaking",
+      "Survivors can hear the bell from a distance",
+      "Body-blocking while cloaked reveals shimmer effect"
+    ]
+  },
+  "268435458": {
+    "powerName": "Chainsaw",
+    "mechanics": [
+      "Sprint across the map at high speed with the Chainsaw",
+      "Instantly down any Survivor hit during a Chainsaw Sprint",
+      "Chainsaw generates Heat - overheat causes a temporary cooldown",
+      "Requires skill to steer around obstacles",
+      "Great for map traversal and ending chases quickly"
+    ]
+  },
+  "268435459": {
+    "powerName": "Spencer's Last Breath",
+    "mechanics": [
+      "Blink (teleport) through walls and obstacles",
+      "Chain up to 2 Blinks in quick succession",
+      "After Blinking, suffer Fatigue (cannot attack briefly)",
+      "Ignores pallets and windows completely",
+      "High skill ceiling - master Blink distances"
+    ]
+  },
+  "268435461": {
+    "powerName": "Evil Within",
+    "mechanics": [
+      "Stalk Survivors to build Evil Within (3 tiers)",
+      "Tier 1: Very small Terror Radius, reduced lunge, 105% speed",
+      "Tier 2: Normal Terror Radius, normal lunge, 115% speed",
+      "Tier 3: Exposed effect on all Survivors, extended lunge, increased vault speed",
+      "Tier 3 is temporary unless using Tombstone add-ons"
+    ]
+  },
+  "268435462": {
+    "powerName": "Carter's Spark",
+    "mechanics": [
+      "Static Blast: Shock all Survivors in Terror Radius, revealing their location",
+      "Shock Therapy: Short-range shock that prevents actions briefly",
+      "Build up Madness tiers on Survivors (I, II, III)",
+      "Higher Madness causes hallucinations, screaming, and skill check difficulties",
+      "Survivors at Tier III cannot heal until they Snap Out of It"
+    ]
+  },
+  "268435463": {
+    "powerName": "Hunting Hatchets",
+    "mechanics": [
+      "Throw hatchets to injure Survivors from a distance",
+      "Can carry up to 5 hatchets (refill at Lockers)",
+      "Hatchets require wind-up time before throwing",
+      "Reduced movement speed while aiming",
+      "Becomes 110% movement speed killer (4.4 m/s)"
+    ]
+  },
+  "268435466": {
+    "powerName": "Jigsaw's Baptism",
+    "mechanics": [
+      "Crouch to move stealthily (no Terror Radius, slower speed)",
+      "Ambush Dash: Lunge attack from crouch position",
+      "Place Reverse Bear Traps on downed Survivors",
+      "Active RBTs start timer when a generator is completed",
+      "Survivors must search Jigsaw Boxes to remove the trap before timer expires (death)"
+    ]
+  },
+  "268435470": {
+    "powerName": "Yamaoka's Haunting",
+    "mechanics": [
+      "Phase Walk: Become invisible and leave a husk behind",
+      "While phasing, move at 176% speed but cannot see Survivors",
+      "Track Survivors by Scratch Marks and sound (grass, footsteps)",
+      "Survivors cannot see you during Phase Walk",
+      "Mind-game with passive Phasing (briefly invisible while walking)"
+    ]
+  },
+  "268435476": {
+    "powerName": "Night Shroud",
+    "mechanics": [
+      "Crouch to reduce detection, activate Night Shroud while crouched",
+      "Night Shroud: No Terror Radius, no Red Stain",
+      "Stalk Survivors to Mark them (Exposed for 45 seconds)",
+      "Leaning around corners increases Stalk rate",
+      "Survivors can reveal you by looking at you to break Night Shroud"
+    ]
+  },
+  "268435477": {
+    "powerName": "Of the Abyss",
+    "mechanics": [
+      "Shred: Lunge attack that can hit Survivors and break pallets",
+      "Place Portals around the map (up to 6)",
+      "Traverse between Portals to quickly move across the map",
+      "Detect Survivors near Portals with Killer Instinct",
+      "Survivors can seal Portals to destroy them"
+    ]
+  },
+  "trickster_950": {
+    "powerName": "Showstopper",
+    "mechanics": [
+      "Start the trial with 36 Blades and a 24m Terror Radius while moving at 4.4 m/s",
+      "Distinct back-to-back actions generate Style Points that raise you from E-Rank to S-Rank",
+      "Higher Style Ranks improve Blade throw rate and Locker restocking speed",
+      "At S-Rank, Survivors within 44m are revealed by Killer Instinct for 4.4 seconds and Main Event becomes available",
+      "Main Event lasts 10 seconds, throws Blades at 1.67x speed, then triggers a 4-second power cooldown"
+    ]
+  },
+  "the_first_950": {
+    "powerName": "Test Subject #001",
+    "mechanics": [
+      "Strike with a targeted ground attack to force survivors off direct paths",
+      "Summon masses of vines to deny routes and punish stalled movement",
+      "Traverse the map through the Upside Down to ambush generators, rescues, and rotations",
+      "Use Worldbreaker pressure to snowball when survivors hesitate in unsafe spaces",
+      "Pair traversal and zoning so survivors are punished whether they hold position or panic-rotate"
+    ]
+  },
+  "the_slasher_950": {
+    "powerName": "Omnipresent Evil",
+    "mechanics": [
+      "Vanish into a Mist Cloud and reposition unseen across the map",
+      "Jump Scare from hiding spots to reveal survivors and gain early chase pressure",
+      "Plant Hook Spikes to punish predictable lanes, walls, and choke points",
+      "Use vanishing traversal to cut off rotations before survivors commit to tiles",
+      "Convert tile chaos into downs by mixing stealth pressure with basic-attack chases"
+    ]
+  },
+  "the_judgment_950": {
+    "powerName": "Will of the Gods",
+    "mechanics": [
+      "Hold the Power button to control a column of Divine Light, then cast it forward to damage and inflict Heresy",
+      "The longer Divine Light is controlled, the shorter the cast delay and the longer the cast duration; near-misses reveal Killer Instinct; steering curves over 0.8s while Zealous and 0.3s when not Zealous",
+      "Heretics (survivors with Heresy) suffer special skill checks while repairing and can be sent to the Exile from the Dying State; liberated Exiles respawn at least 32m away with 1s of Divine Light immunity",
+      "Exiling a Heretic triggers Zealous for 60 seconds, increasing Divine Light's size, cast duration, and control window",
+      "Survivors repent at Shrines of Judgment to remove Heresy or rescue the Exiled, and taunting The Judgment inflicts Heresy"
+    ]
+  }
+}

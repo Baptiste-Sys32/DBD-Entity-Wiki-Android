@@ -1,0 +1,1772 @@
+[
+  {
+    "id": "ach_1",
+    "name": "The Grand Sacrifice",
+    "description": "In a public match, get 4 sacrifices in a single match.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_2",
+    "name": "A bite for the Entity",
+    "description": "In public matches, sacrifice a total of 100 survivors.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_3",
+    "name": "Blood on your hands",
+    "description": "In a public match, kill your first survivor.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_4",
+    "name": "Blood on your face",
+    "description": "In a public match, kill 4 survivors in a single match.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_5",
+    "name": "Blood in your mouth",
+    "description": "In public matches, kill a total of 25 survivors",
+    "category": "killer"
+  },
+  {
+    "id": "ach_6",
+    "name": "Jump Scares",
+    "description": "In public matches, with the Wraith, Surprise & hit a total of 100 survivors.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_7",
+    "name": "Escape Artist",
+    "description": "In a public match, successfully escape the hook and escape.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_8",
+    "name": "Made it out alive!",
+    "description": "In public matches, escape the match alive for a total of 100 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_9",
+    "name": "Agonizing Escape",
+    "description": "In a public match, crawl your way out.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_10",
+    "name": "Backdoor Escape",
+    "description": "In a public match, escape through the hatch.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_11",
+    "name": "The Key to Escape",
+    "description": "Escape through the Hatch using a Key in a public match.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_12",
+    "name": "I've got your back",
+    "description": "In public matches, save a total of 50 survivors from death.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_13",
+    "name": "No one left behind",
+    "description": "In a public match, rescue someone after at least one gate has opened.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_14",
+    "name": "Medic",
+    "description": "In public matches, heal others for a total of 100 health states.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_15",
+    "name": "Handyman",
+    "description": "In public matches, repair generators for a total of 100 full repairs.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_16",
+    "name": "Nerves of steel",
+    "description": "In public matches, get a total of 500 successful Skill-Checks.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_17",
+    "name": "Perfect Escape",
+    "description": "In a public match, as a survivor, complete with at least 5000 blood points in each score category.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_18",
+    "name": "Perfect Killing",
+    "description": "In a public match, as a killer, complete with at least 5000 blood points in each score category.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_19",
+    "name": "Zealous",
+    "description": "In a public match, get more than 8K blood points in one scoring category.",
+    "category": "progression"
+  },
+  {
+    "id": "ach_20",
+    "name": "It wakes",
+    "description": "Raise a character level to 10.",
+    "category": "progression"
+  },
+  {
+    "id": "ach_21",
+    "name": "Not half bad",
+    "description": "Raise a character level to 25.",
+    "category": "progression"
+  },
+  {
+    "id": "ach_22",
+    "name": "Bloody Millionaire",
+    "description": "Accumulate a total of 1 million blood points.",
+    "category": "progression"
+  },
+  {
+    "id": "ach_23",
+    "name": "Expert survivor",
+    "description": "Reach survivor online grade Silver I.",
+    "category": "progression"
+  },
+  {
+    "id": "ach_24",
+    "name": "Master survivor",
+    "description": "Reach survivor online grade Gold I.",
+    "category": "progression"
+  },
+  {
+    "id": "ach_25",
+    "name": "Legendary survivor",
+    "description": "Reach survivor online grade Iridescent I.",
+    "category": "progression"
+  },
+  {
+    "id": "ach_26",
+    "name": "Getting the hang of it",
+    "description": "Raise your grade for the first time.",
+    "category": "progression"
+  },
+  {
+    "id": "ach_27",
+    "name": "Expert Killer",
+    "description": "Reach killer online grade Silver I.",
+    "category": "progression"
+  },
+  {
+    "id": "ach_28",
+    "name": "Gifts for the Fog",
+    "description": "In a public match, burn a Visceral offering.",
+    "category": "challenge"
+  },
+  {
+    "id": "ach_29",
+    "name": "Apt Survivor",
+    "description": "Start a public match with a full survivor loadout.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_30",
+    "name": "Apt Killer",
+    "description": "Start a public match with a full killer loadout.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_31",
+    "name": "Survival Treasures",
+    "description": "In a public match, escape while bringing a new item to the campfire.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_32",
+    "name": "Vulture",
+    "description": "In a public match, escape with an item that another player brought into the match.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_33",
+    "name": "Adept Jake",
+    "description": "In a public match, escape with Jake using only his 3 unique perks.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_34",
+    "name": "Adept Dwight",
+    "description": "In a public match, escape with Dwight using only his 3 unique perks.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_35",
+    "name": "Adept Trapper",
+    "description": "In a public match, achieve a merciless victory with the Trapper using only his 3 unique perks.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_36",
+    "name": "Adept Wraith",
+    "description": "In a public match, achieve a merciless victory with the Wraith using only his 3 unique perks.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_37",
+    "name": "Skillful",
+    "description": "Boost any perk to level 3.",
+    "category": "progression"
+  },
+  {
+    "id": "ach_38",
+    "name": "I",
+    "description": "Reach prestige Level I with any character.",
+    "category": "progression"
+  },
+  {
+    "id": "ach_39",
+    "name": "II",
+    "description": "Reach prestige Level II with any character.",
+    "category": "progression"
+  },
+  {
+    "id": "ach_40",
+    "name": "III",
+    "description": "Reach prestige Level III with any character.",
+    "category": "progression"
+  },
+  {
+    "id": "ach_41",
+    "name": "III-50",
+    "description": "Reach prestige Level III-50 with any character.",
+    "category": "progression"
+  },
+  {
+    "id": "ach_42",
+    "name": "Shock Therapy",
+    "description": "In a public match, repair the generator on the second floor of the Disturbed Ward and escape.",
+    "category": "map"
+  },
+  {
+    "id": "ach_43",
+    "name": "Adept Nea",
+    "description": "In a public match, escape with Nea using only her 3 unique perks",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_44",
+    "name": "Item of Obsession",
+    "description": "In a public match, as the killer's obsession, escape as the last survivor without getting hit.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_45",
+    "name": "All Aboard",
+    "description": "In a public match, activate the Foghorn by repairing the generator in the Steamboat and escape.",
+    "category": "map"
+  },
+  {
+    "id": "ach_46",
+    "name": "Deep Cleansing",
+    "description": "In public matches, cleanse 100 Hex totems.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_47",
+    "name": "Adept Ace",
+    "description": "In a public match, escape with Ace using only his 3 unique perks.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_48",
+    "name": "Adept Bill",
+    "description": "Escape with Bill using only his 3 unique perks.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_49",
+    "name": "Engineer",
+    "description": "In public matches, repair a Generator in the Damage state , 50 Times. One time per generator.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_50",
+    "name": "Leapfrog",
+    "description": "In public matches, jump over a pallet or through a window during a chase, 200 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_51",
+    "name": "Adept Min",
+    "description": "In a public match, escape with Min using only her 3 unique perks.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_52",
+    "name": "Cottage Owner",
+    "description": "In a public match, repair the generator in the Mother's Dwelling and live to tell the story.",
+    "category": "map"
+  },
+  {
+    "id": "ach_53",
+    "name": "Sorted",
+    "description": "In a public match, spend most of the trial injured (more than 50%) and live to tell the story.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_54",
+    "name": "Texas BBQ",
+    "description": "In public matches, hook 25 Survivors in the Basement. Once per Survivor per match.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_55",
+    "name": "Escaping the Nightmare",
+    "description": "In public matches, open the exit gate 35 times as a Survivor.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_56",
+    "name": "Serial Killer",
+    "description": "In public matches, Sacrifice the Obsession 30 times.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_57",
+    "name": "Holiday Get-Together",
+    "description": "In a public match, have at least 3 survivors hooked in the basement at the same time.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_58",
+    "name": "Happy Holidays",
+    "description": "Open at least 100 mystery boxes on the bloodweb (available during select special events).",
+    "category": "challenge"
+  },
+  {
+    "id": "ach_59",
+    "name": "Near-Death Experience",
+    "description": "In public matches, get downed only once and escape the match alive, 25 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_60",
+    "name": "Game Over",
+    "description": "In public matches, sacrifice or kill 30 Survivors after the last Generator has been activated.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_61",
+    "name": "Campbell's Chapel Legacy",
+    "description": "In a public match, repair the generator in the chapel and live to tell the tale.",
+    "category": "map"
+  },
+  {
+    "id": "ach_62",
+    "name": "Party Crasher",
+    "description": "In public matches, damage a generator while at least 1 Survivor is Hooked, 100 times.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_63",
+    "name": "Adept Adam",
+    "description": "In a public match, escape with Adam using only his 3 unique perks.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_64",
+    "name": "Outrage",
+    "description": "In public matches, during a chase, damage a Survivor who drops a Pallet within a chase, 100 times.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_65",
+    "name": "Unforgettable Getaway",
+    "description": "In a public match, repair the generator in the Chalet and live to tell the tale.",
+    "category": "map"
+  },
+  {
+    "id": "ach_66",
+    "name": "Deranged Pursuit",
+    "description": "In public matches, as the Legion, down 25 different Survivors that have Deep Wound applied.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_67",
+    "name": "Wounded Healer",
+    "description": "In public matches, heal other Survivors for a total of 50 health states while you are also injured.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_68",
+    "name": "Shrine Apparatus",
+    "description": "In a public match, repair the generator in the Temple basement and live to tell the tale.",
+    "category": "map"
+  },
+  {
+    "id": "ach_69",
+    "name": "Devoted Gatekeeping",
+    "description": "In public matches, sacrifice all survivors before the last generator is repaired, 15 times.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_70",
+    "name": "Cutting Out",
+    "description": "In public matches, while The Killer is carrying you, wiggle out of The Killer's grasp 10 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_71",
+    "name": "Outrun Evil",
+    "description": "In a public match, crawl your way out through the hatch.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_72",
+    "name": "Denied!",
+    "description": "In public matches, close the hatch 30 times.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_73",
+    "name": "First to the Punch",
+    "description": "Down 30 Survivors next to raised pallets in public matches.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_74",
+    "name": "Operation: Survival",
+    "description": "In a public match, repair the generator in the Treatment Theatre's operation theatre and escape.",
+    "category": "map"
+  },
+  {
+    "id": "ach_75",
+    "name": "Broken Bodies",
+    "description": "In public matches, hook a Survivor while 3 other Survivors are injured, 10 times.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_76",
+    "name": "Adept Oni",
+    "description": "In a public match, achieve a merciless victory with The Oni using only his 3 unique perks.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_77",
+    "name": "Grim Pilgrimage",
+    "description": "In a public match, repair the generator in the upper level of the Shrine and escape.",
+    "category": "map"
+  },
+  {
+    "id": "ach_78",
+    "name": "Old West Oasis",
+    "description": "In a public match, repair the generator in the Saloon and escape.",
+    "category": "map"
+  },
+  {
+    "id": "ach_79",
+    "name": "Selfless Survival",
+    "description": "Heal a Survivor from the dying state to the injured state 30 times in public matches.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_80",
+    "name": "Adept Zarina",
+    "description": "Escape with Zarina Kassir using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_81",
+    "name": "Death of Ignorance",
+    "description": "Down a Survivor suffering from the Oblivious status effect 15 times in public matches.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_82",
+    "name": "Classy Act",
+    "description": "In a public match, repair the generator in Midwich School's music room or chem lab and escape.",
+    "category": "map"
+  },
+  {
+    "id": "ach_83",
+    "name": "Healthy Obsession",
+    "description": "Heal other Survivors marked as the Obsession for a total of 10 health states in public matches.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_84",
+    "name": "Every Last Drop",
+    "description": "Deplete 30 items in public matches.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_85",
+    "name": "Resurgence",
+    "description": "Heal other Survivors for 10 health states while at least 3 Survivors are injured, dying or hooked.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_86",
+    "name": "Adept Felix",
+    "description": "Escape with Felix Richter using only his 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_87",
+    "name": "End of Days",
+    "description": "Hook 15 Survivors during the End Game Collapse in public matches.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_88",
+    "name": "Power Moves",
+    "description": "Equip 0 perks, repair generators for a total of 1 full repair and escape 8 times in public matches.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_89",
+    "name": "Insult and Injury",
+    "description": "Escape a chase 50 times after stunning the Killer with a pallet in public matches.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_90",
+    "name": "Close Shave",
+    "description": "Dodge basic attacks or projectiles 100 times in public matches.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_91",
+    "name": "Preemptive Strike",
+    "description": "Hook a Survivor in a public match before any generators have been fully repaired.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_92",
+    "name": "Raccoon City Recruit",
+    "description": "In a public match, repair the generator on the 1st floor of the RPD station's main hall and escape.",
+    "category": "map"
+  },
+  {
+    "id": "ach_93",
+    "name": "Adept Jill",
+    "description": "Escape with Jill using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_94",
+    "name": "Neither Seen Nor Heard",
+    "description": "Apply the Oblivious status effect to Survivors 30 times in public matches.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_95",
+    "name": "Lost All Hope",
+    "description": "Down a Survivor within the bounds of any Exit Gate.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_96",
+    "name": "Humanitarian",
+    "description": "Affect other Survivors with positive status effects 50 times in public matches.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_97",
+    "name": "Adept Mikaela",
+    "description": "Escape with Mikaela using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_98",
+    "name": "Prowler",
+    "description": "Detect 100 Survivors with Killer Instinct in public matches.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_99",
+    "name": "With Scars to Show",
+    "description": "Go from healthy to injured during a chase and escape. Do this 50 times in public matches.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_100",
+    "name": "Flight to Freedom",
+    "description": "In a public match, repair the generator in the eyrie and escape.",
+    "category": "map"
+  },
+  {
+    "id": "ach_101",
+    "name": "Ghost in the Machine",
+    "description": "Damage 50 generators while Undetectable in public matches.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_102",
+    "name": "Triage",
+    "description": "When a Survivor is injured far away, heal them 30 times without travelling more than 16 meters.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_103",
+    "name": "Outrun the Overlap",
+    "description": "In a public match, repair the generator in the main house in the Garden of Joy and escape.",
+    "category": "map"
+  },
+  {
+    "id": "ach_104",
+    "name": "Adept Haddie",
+    "description": "Escape with Haddie Kaur using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_105",
+    "name": "High Speed Pursuit",
+    "description": "As a Killer, vault 50 times while chasing Survivors in public matches.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_106",
+    "name": "A Fast Death",
+    "description": "Damage a Survivor with the Haste Status effect 8 times in public matches.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_107",
+    "name": "Rebuilding The Borgo",
+    "description": "In a public match, repair the generator in the main house in the Shattered Square and escape.",
+    "category": "map"
+  },
+  {
+    "id": "ach_108",
+    "name": "Lifting The Fog",
+    "description": "Reveal the Killer's aura 50 times in public matches.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_109",
+    "name": "Adept Vittorio",
+    "description": "Escape with Vittorio Toscano using only his 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_110",
+    "name": "Chorus of Chaos",
+    "description": "In public matches, make 30 unique survivors scream.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_111",
+    "name": "Adept Skull Merchant",
+    "description": "Achieve a merciless victory with The Skull Merchant using only her 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_112",
+    "name": "Hack the Mainframe",
+    "description": "In a public match, repair the generator by the command center on Shelter Woods and escape.",
+    "category": "map"
+  },
+  {
+    "id": "ach_113",
+    "name": "Complete the Evolution",
+    "description": "In public matches, injure or down 3 Survivors who are Hindered.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_114",
+    "name": "Extraterrestrial",
+    "description": "In a public match, complete the generator at the base on Toba Landing and escape.",
+    "category": "map"
+  },
+  {
+    "id": "ach_115",
+    "name": "One More Step",
+    "description": "In public matches, take a hit while you have the Endurance status effect 10 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_116",
+    "name": "Second Act",
+    "description": "In public matches, recover from dying by yourself or with help 10 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_117",
+    "name": "Make Some Noise",
+    "description": "In public matches, scream 50 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_118",
+    "name": "Adept Cage",
+    "description": "Escape with Nicolas Cage using only his 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_119",
+    "name": "MU/TH/UR Dearest",
+    "description": "In a public match, complete the generator at the mess hall in the Nostromo Wreckage and escape.",
+    "category": "map"
+  },
+  {
+    "id": "ach_120",
+    "name": "Kitted Out",
+    "description": "In 35 different public matches, pick up and use at least one Special Item as a Survivor.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_121",
+    "name": "Outta Nowhere",
+    "description": "In public matches, hit 40 Survivors with a basic attack while you are Undetectable.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_122",
+    "name": "Under Pressure",
+    "description": "In public matches, perform 20 great skill checks while injured.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_123",
+    "name": "Movie Buff",
+    "description": "In a public match, complete the generator inside the movie theater in Greenville Square and escape.",
+    "category": "map"
+  },
+  {
+    "id": "ach_124",
+    "name": "Tanuki in the Fog",
+    "description": "Discover a hidden guardian at the Yamaoka Estate.",
+    "category": "challenge"
+  },
+  {
+    "id": "ach_125",
+    "name": "Dungeon Crawler",
+    "description": "In a public match, complete the generator inside the torture room in the Forgotten Ruins and escape.",
+    "category": "map"
+  },
+  {
+    "id": "ach_126",
+    "name": "Hand-Eye Coordination",
+    "description": "Find and use the Hand or Eye of Vecna and escape a Trial.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_127",
+    "name": "Desperate Escape",
+    "description": "In public matches, perform a fast vault within 3 seconds of getting hit 15 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_128",
+    "name": "Resourceful",
+    "description": "In public matches, swap held Survivor items for new ones from chests 10 times (max once per chest).",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_129",
+    "name": "Adept Lara",
+    "description": "Escape with Lara using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_130",
+    "name": "Taste the Darkness",
+    "description": "In public matches, interrupt 10 Survivors while they are performing a vault.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_131",
+    "name": "Symphony of Fire",
+    "description": "Playing as The Dark Lord, hit 20 Survivors using Hellfire in public matches.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_132",
+    "name": "Honor the Bloodline",
+    "description": "In public matches, reveal the Killer's aura for a total of 60 seconds in a single trial.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_133",
+    "name": "Hero of Wallachia",
+    "description": "In public matches, pallet stun the Killer 10 times while holding a rare, common, or uncommon item.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_134",
+    "name": "Deadly Plunge",
+    "description": "In public matches, as a Killer, fall a combined distance of 1000 meters.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_135",
+    "name": "Awakened Anger",
+    "description": "In public matches, damage a Survivor who just blinded you within 30 seconds.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_136",
+    "name": "Final Days",
+    "description": "In public matches, take 10 protection hits during the Endgame Collapse.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_137",
+    "name": "Ever Vigilant",
+    "description": "In public matches, complete 20 healing actions on Survivors once all generators have been completed.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_138",
+    "name": "None the Wiser",
+    "description": "In public matches, hit 5 Survivors that are Oblivious.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_139",
+    "name": "Death Flight",
+    "description": "Injure Survivors after you vaulted during a chase 20 times in public matches.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_140",
+    "name": "The Show Must Go On",
+    "description": "In public matches, finish repairing 10 generators while injured.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_141",
+    "name": "Practice Makes Perfect",
+    "description": "In public matches, succeed in 100 healing or repair skill checks.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_142",
+    "name": "Adept Vee",
+    "description": "Escape with Vee Boonyasak using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_143",
+    "name": "A feast for the Entity",
+    "description": "In public matches, sacrifice a total of 1000 survivors.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_144",
+    "name": "Cripple them all",
+    "description": "In public matches, with the Trapper, pick up a total of 100 survivors caught in your Bear Traps.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_145",
+    "name": "The Grind",
+    "description": "In public matches, with the Hillbilly, chainsaw a total of 100 survivors.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_146",
+    "name": "Master Killer",
+    "description": "Reach killer online grade Gold I.",
+    "category": "progression"
+  },
+  {
+    "id": "ach_147",
+    "name": "Legendary Killer",
+    "description": "Reach Killer Iridescent I.",
+    "category": "progression"
+  },
+  {
+    "id": "ach_148",
+    "name": "Risk it all",
+    "description": "In a public match, as a survivor, use a visceral item or add-on without using a protective ward.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_149",
+    "name": "Adept Claudette",
+    "description": "In a public match, escape with Claudette using only her 3 unique perks.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_150",
+    "name": "Adept Meg",
+    "description": "In a public match, escape with Meg using only her 3 unique perks.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_151",
+    "name": "Adept Hillbilly",
+    "description": "In a public match, achieve a merciless victory with the Hillbilly using only his 3 unique perks.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_152",
+    "name": "Hemophobia",
+    "description": "In a public match, escape the Disturbed Ward without losing a single drop of blood.",
+    "category": "map"
+  },
+  {
+    "id": "ach_153",
+    "name": "In the void she walks",
+    "description": "In public matches, with the Nurse, blink and successfully land an attack a total of 500 times.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_154",
+    "name": "From the void she kills",
+    "description": "In a public match, chain 3 or more blinks and land on a survivor, grabbing him successfully.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_155",
+    "name": "Adept Nurse",
+    "description": "In a public match, achieve a merciless victory with the Nurse using only her 3 unique perks.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_161",
+    "name": "Triggered",
+    "description": "In public matches, with The Hag, cause survivors to trigger her Phantasm traps 300 times.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_162",
+    "name": "Adept Hag",
+    "description": "In a public match, achieve a merciless victory with The Hag using only her 3 unique perks",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_163",
+    "name": "Even Punishment",
+    "description": "In a public match, teleport to your Phantasm traps and hit all 4 individual survivors at least once.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_164",
+    "name": "Taking One For The Team",
+    "description": "Protect a recently unhooked Survivor by taking a hit near them 250 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_165",
+    "name": "Left For Dead",
+    "description": "As the last person still alive, activate the last generator and escape through the exit gate.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_166",
+    "name": "Shocking Treatment",
+    "description": "In public matches, hit survivors 500 times with The Doctor's Shock Therapy attack.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_167",
+    "name": "Mad House",
+    "description": "In a public match, bring the 4 survivors to insanity Tier 3 at least once in the same match.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_168",
+    "name": "Adept Doctor",
+    "description": "In a public match, achieve a merciless victory with The Doctor using only his 3 unique perks.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_169",
+    "name": "Adept David",
+    "description": "In a public match, escape with David using only his 3 unique perks.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_170",
+    "name": "Swirling Death",
+    "description": "In public matches, throw 1000 Hatchets.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_171",
+    "name": "Skilled Huntress",
+    "description": "In public matches, down survivors 20 times with The Huntress' Hatchets further than 24 meters.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_172",
+    "name": "Adept Huntress",
+    "description": "In a public match, achieve a merciless victory with The Huntress using only her 3 unique perks.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_173",
+    "name": "Butcherin'",
+    "description": "In public matches, with The Cannibal, successfully chainsaw a total of 100 times.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_174",
+    "name": "Adept Cannibal",
+    "description": "In a public match, achieve a merciless victory with The Cannibal using only his 3 unique perks.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_175",
+    "name": "Looter",
+    "description": "In public matches, unlock 100 chests.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_176",
+    "name": "Adept Quentin",
+    "description": "In a public match, escape with Quentin using only his 3 unique perks.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_177",
+    "name": "Dream Demon",
+    "description": "In public matches, pull 200 Survivors into the Dream World.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_178",
+    "name": "Adept Nightmare",
+    "description": "In a public match, achieve a merciless victory with The Nightmare using only his 3 unique perks.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_179",
+    "name": "Milk 'n' Cookies",
+    "description": "In a public match, take the item from the chest in the basement in at least 30 different trials.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_180",
+    "name": "Cherish your Life",
+    "description": "In a public match, repair the generator in The Game's Bathroom and live to tell the story.",
+    "category": "map"
+  },
+  {
+    "id": "ach_181",
+    "name": "Adept Tapp",
+    "description": "In a public match, escape with Detective Tapp using only his 3 unique perks.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_182",
+    "name": "I Want to Play a Game",
+    "description": "In public matches, with The Pig, put 125 Reverse Bear Traps on Survivors.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_183",
+    "name": "Adept Pig",
+    "description": "In a public match, achieve a merciless victory with The Pig using only her 3 unique perks.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_184",
+    "name": "Whiffing to Success",
+    "description": "In public matches, cause the killer to miss an attack before taking a vault, 50 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_185",
+    "name": "Adept Kate",
+    "description": "In a public match, escape with Kate, using only her 3 unique perks.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_186",
+    "name": "Smoked",
+    "description": "In public matches, down 100 Survivors while they are intoxicated by The Afterpiece Tonic.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_187",
+    "name": "Adept Clown",
+    "description": "In a public match, achieve a merciless victory with The Clown, using only his 3 unique perks.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_188",
+    "name": "Ancestor's Rite",
+    "description": "In a public match, repair the generator in the Family Residence and live to tell the tale.",
+    "category": "map"
+  },
+  {
+    "id": "ach_189",
+    "name": "Not Today",
+    "description": "In public matches, unhook yourself 50 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_190",
+    "name": "Conniption",
+    "description": "In public matches, with The Spirit, use Yamaoka's Haunting to down 30 Survivors.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_191",
+    "name": "Adept Spirit",
+    "description": "In a public match, achieve a merciless victory with The Spirit using only her 3 unique perks.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_192",
+    "name": "Dismantle",
+    "description": "In public matches, break a total of 50 individual Hooks.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_193",
+    "name": "Adept Jeff",
+    "description": "In a public match, escape with Jeff using only his 3 unique perks.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_194",
+    "name": "Heavy Burden",
+    "description": "In public matches, hit 25 different individual Survivors while carrying another Survivor.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_195",
+    "name": "Adept Legion",
+    "description": "In a public match, achieve a merciless victory with The Legion using only their 3 unique perks.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_196",
+    "name": "Adept Jane",
+    "description": "In a public match, escape with Jane using only her 3 unique perks.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_197",
+    "name": "Terminal Illness",
+    "description": "In public matches, with The Plague, down 50 Survivors affected by the maximum infection.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_198",
+    "name": "Adept Plague",
+    "description": "In a public match, achieve a merciless victory with The Plague using only their 3 unique perks.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_199",
+    "name": "Adept Ash",
+    "description": "In a public match, escape with Ash using only his 3 unique perks.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_200",
+    "name": "Silent Approach",
+    "description": "In public matches, interrupt and grab 25 Survivors while they are repairing generators.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_201",
+    "name": "Totally Vulnerable",
+    "description": "In public matches, with Ghost Face, down 50 Marked Survivors.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_202",
+    "name": "Adept Ghost Face",
+    "description": "In a public match, achieve a merciless victory with The Ghost Face using only his 3 unique perks.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_203",
+    "name": "Tools of the Trade",
+    "description": "Achieve a merciless victory 5 times in a public match with only 3 universal perks equipped.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_204",
+    "name": "Expert Generalist",
+    "description": "Escape 8 times while repairing the equivalent of 1 generator with only 2 universal perks equipped.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_205",
+    "name": "Skilled Generalist",
+    "description": "Escape 8 times while repairing the equivalent of 1 generator with only 3 universal perks equipped.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_206",
+    "name": "Bloodbath",
+    "description": "In public matches with The Oni, down 75 Survivors during Blood Fury.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_207",
+    "name": "Bodyguard",
+    "description": "In public matches, take a protection hit while the Killer is carrying a Survivor, 30 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_208",
+    "name": "Adept Yui",
+    "description": "In a public match, escape with Yui Kimura using only her 3 unique perks.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_209",
+    "name": "Bound and Downed",
+    "description": "Down speared Survivors 30 times with The Deathslinger in public matches.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_210",
+    "name": "Quick Draw",
+    "description": "Interrupt a Survivor cleansing a Totem 10 times in public matches.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_211",
+    "name": "Adept Deathslinger",
+    "description": "Achieve a merciless victory with The Deathslinger using only his 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_212",
+    "name": "Cleansed in Agony",
+    "description": "Ensnare 30 Survivors in Cages of Atonement with The Executioner in public matches.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_213",
+    "name": "Adept Executioner",
+    "description": "Achieve a merciless victory with The Executioner using only his 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_214",
+    "name": "Adept Cheryl",
+    "description": "Escape with Cheryl Mason using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_215",
+    "name": "Speed Kills",
+    "description": "Hit 30 survivors with a Lethal Rush in public matches.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_216",
+    "name": "I See You",
+    "description": "Down 30 Survivors suffering from the Exposed status effect in public matches.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_217",
+    "name": "Adept Blight",
+    "description": "Achieve a merciless victory with The Blight using only his 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_218",
+    "name": "Tag Team",
+    "description": "With The Twins, down 10 Survivors while Victor is clinging to them in a public match.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_219",
+    "name": "Adept Twins",
+    "description": "Achieve a merciless victory with The Twins using only their 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_220",
+    "name": "Rescue Mission",
+    "description": "Stun the Killer with a pallet while they are carrying a Survivor 5 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_221",
+    "name": "Adept Élodie",
+    "description": "Escape with Élodie using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_222",
+    "name": "One Thousand Cuts",
+    "description": "Deal maximum Laceration on Survivors 50 times in public matches.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_223",
+    "name": "Multi-tasker",
+    "description": "Down 30 Survivors while carrying another Survivor in public matches.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_224",
+    "name": "Adept Trickster",
+    "description": "Achieve a merciless victory with The Trickster using only his 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_225",
+    "name": "Adept Yun-Jin",
+    "description": "Escape with Yun-Jin using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_226",
+    "name": "Biological Weaponry",
+    "description": "Down Contaminated Survivors with The Nemesis 65 times in public matches using Tentacle Strike.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_227",
+    "name": "Adept Nemesis",
+    "description": "Achieve a merciless victory with The Nemesis using only his 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_228",
+    "name": "Adept Leon",
+    "description": "Escape with Leon using only his 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_229",
+    "name": "Beyond Broken",
+    "description": "Injure a Survivor afflicted by the Broken Status Effect with a Basic Attack a total of 50 times.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_230",
+    "name": "Bless You",
+    "description": "Bless a Hex totem 20 times in public matches.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_231",
+    "name": "Caws of Death",
+    "description": "Down 50 Survivors with Dire Crows in public matches.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_232",
+    "name": "Adept Artist",
+    "description": "Achieve a merciless victory with The Artist using only her 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_233",
+    "name": "Adept Jonah",
+    "description": "Escape with Jonah using only his 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_234",
+    "name": "Viral Video",
+    "description": "Apply Condemned on Survivors 30 times in public matches.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_235",
+    "name": "Adept Onryō",
+    "description": "Achieve a merciless victory with The Onryō using only her 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_236",
+    "name": "Fleet of Foot",
+    "description": "Help other Survivors by increasing their movement speed 50 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_237",
+    "name": "Adept Yoichi",
+    "description": "Escape with Yoichi using only his 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_238",
+    "name": "Bump in the Night",
+    "description": "Down Survivors during Nightfall 50 times in public matches.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_239",
+    "name": "From the Deep",
+    "description": "Grab a Survivor hiding inside a locker 25 times in public matches.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_240",
+    "name": "Adept Dredge",
+    "description": "Achieve a merciless victory with The Dredge using only its 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_241",
+    "name": "Hiding Seeker",
+    "description": "In a public match, end a chase against any Killer by hiding inside a locker 35 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_242",
+    "name": "Collision Course",
+    "description": "Slam one Survivor into another 10 times in public matches.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_243",
+    "name": "Adept Mastermind",
+    "description": "Achieve a merciless victory with The Mastermind using only his 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_244",
+    "name": "Outbreak Breakout",
+    "description": "Open the exit gates and escape from Raccoon City Police Department 20 times in public matches.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_245",
+    "name": "Adept Ada",
+    "description": "Escape with Ada using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_246",
+    "name": "Adept Rebecca",
+    "description": "Escape with Rebecca using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_247",
+    "name": "Cruelty Loves Company",
+    "description": "With The Knight, damage a Survivor while they are actively pursued by a Guard 50 times.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_248",
+    "name": "Adept Knight",
+    "description": "Achieve a merciless victory with The Knight using only his 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_249",
+    "name": "Thrill of the Chase",
+    "description": "In public matches, down 10 Claw Trapped survivors.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_250",
+    "name": "Adept Thalita",
+    "description": "Escape with Thalita Lyra using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_251",
+    "name": "Adept Renato",
+    "description": "Escape with Renato Lyra using only his 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_252",
+    "name": "Adept Singularity",
+    "description": "Achieve a merciless victory with The Singularity using only his 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_253",
+    "name": "Adept Gabriel",
+    "description": "Escape with Gabriel Soma using only his 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_254",
+    "name": "Slip Into the Stream",
+    "description": "In public matches, with The Singularity, hit 30 Survivors that you recently teleported to.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_255",
+    "name": "Terror of LV-426",
+    "description": "In public matches, hit 30 Survivors using a Tail attack.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_256",
+    "name": "Disarm and Dismember",
+    "description": "In public matches, hit 50 Survivors holding a Special Item.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_257",
+    "name": "Adept Xenomorph",
+    "description": "Achieve a merciless victory with The Xenomorph using only its 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_258",
+    "name": "Adept Ripley",
+    "description": "Escape with Ellen Ripley using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_259",
+    "name": "Joke's On You",
+    "description": "In public matches, hit a Survivor within 3 seconds of performing a Scamper 10 times.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_260",
+    "name": "Adept Good Guy",
+    "description": "Achieve a merciless victory with The Good Guy using only his 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_261",
+    "name": "Shine On",
+    "description": "In public matches, blind the Killer with a flashlight 30 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_262",
+    "name": "Adept Alan",
+    "description": "Escape with Alan Wake using only his 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_263",
+    "name": "Prey Upon",
+    "description": "Playing as The Unknown, put Survivors in the Dying State using UVX 20 times.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_264",
+    "name": "What Lurks Beneath",
+    "description": "In public matches, injure Survivors while in the Basement 25 times.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_265",
+    "name": "Adept Unknown",
+    "description": "Achieve a merciless victory with The Unknown using only its 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_266",
+    "name": "Fearless Healer",
+    "description": "In public matches, heal a total of 25 Health States while in the Basement.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_267",
+    "name": "Adept Sable",
+    "description": "Escape with Sable using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_268",
+    "name": "Battle Caster",
+    "description": "As The Lich, injure a Survivor with a basic attack within 15 seconds of casting a spell 25 times.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_269",
+    "name": "Rightful Owner",
+    "description": "As The Lich, collect the Hand or Eye of Vecna and kill or sacrifice all Survivors in the same match.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_270",
+    "name": "Adept Lich",
+    "description": "Achieve a merciless victory with The Lich using only his 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_271",
+    "name": "Adept Troupe",
+    "description": "Escape with Aestri or Baermar using only their 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_272",
+    "name": "Adept Dark Lord",
+    "description": "Achieve a merciless victory with The Dark Lord using only his 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_273",
+    "name": "Adept Trevor",
+    "description": "Escape with Trevor using only his 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_274",
+    "name": "Binding Teeth",
+    "description": "Playing as The Houndmaster, injure 25 Survivors detained by the Dog in public matches.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_275",
+    "name": "Adept Houndmaster",
+    "description": "Achieve a merciless victory with The Houndmaster using only her 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_276",
+    "name": "Break For It",
+    "description": "In public matches, escape a match while being Broken a total of 5 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_277",
+    "name": "Bloodied Hands",
+    "description": "In public matches, safely unhook Survivors while being Broken a total of 10 times.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_278",
+    "name": "Adept Taurie",
+    "description": "Escape with Taurie Cain using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_279",
+    "name": "Remember Who I Am",
+    "description": "Playing as The Ghoul in public matches, perform 30 perfectly timed grab-attacks.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_280",
+    "name": "Adept Ghoul",
+    "description": "Achieve a merciless victory with The Ghoul using only his 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_281",
+    "name": "Adept Orela",
+    "description": "Escape with Orela Rose using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_282",
+    "name": "Jump Scared",
+    "description": "Playing as The Animatronic, interrupt a Survivor in the Security Office 15 times in public matches.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_283",
+    "name": "Adept Animatronic",
+    "description": "Achieve a merciless victory with The Animatronic using only his 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_284",
+    "name": "Don't Open, Dead Inside",
+    "description": "In a public match, complete the generator at the Fallen Refuge and escape.",
+    "category": "map"
+  },
+  {
+    "id": "ach_285",
+    "name": "Adept Rick",
+    "description": "Escape with Rick Grimes using only his 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_286",
+    "name": "Adept Michonne",
+    "description": "Escape with Michonne Grimes using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_287",
+    "name": "You've Got Guts",
+    "description": "As The Krasue, use Intestinal Whip to put Survivors in the dying state 20 times in public matches.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_288",
+    "name": "Adept Krasue",
+    "description": "Achieve a merciless victory with The Krasue using only her 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_289",
+    "name": "Working Overtime",
+    "description": "In a single public match, repair generators for at least 300 seconds.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_290",
+    "name": "Share the Pain",
+    "description": "In a public match as a Killer, have all four Survivors injured at the same time.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_291",
+    "name": "Stranger Sightings",
+    "description": "Reveal or see the Killer's aura 11 times in a single trial in a public match.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_292",
+    "name": "Prized Possession",
+    "description": "As a Killer, finish a public match with at least one Hex totem standing.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_293",
+    "name": "Master Manipulator",
+    "description": "In public matches, damage a Survivor while they are healing another or repairing 5 times.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_294",
+    "name": "Key to Success",
+    "description": "In a public match, use a key to open a chest.",
+    "category": "survivor"
+  },
+  {
+    "id": "ach_295",
+    "name": "Deadly Obsession",
+    "description": "In a public match, hook the Obsession 300 times.",
+    "category": "killer"
+  },
+  {
+    "id": "ach_296",
+    "name": "Torn Asunder",
+    "description": "In public matches, damage a Survivor using the Vine or Undergate Attacks 50 times.",
+    "category": "killer_specific"
+  },
+  {
+    "id": "ach_297",
+    "name": "Adept First",
+    "description": "Achieve a merciless victory with The First using only his 3 unique perks in a public match.",
+    "category": "adept_killer"
+  },
+  {
+    "id": "ach_298",
+    "name": "Adept Dustin",
+    "description": "Escape with Dustin Henderson using only his 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_299",
+    "name": "Adept Eleven",
+    "description": "Escape with Eleven using only her 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  },
+  {
+    "id": "ach_300",
+    "name": "Adept Tae-Young",
+    "description": "Escape with Kwon Tae-Young using only his 3 unique perks in a public match.",
+    "category": "adept_survivor"
+  }
+]

@@ -7,12 +7,16 @@ const vm = require('vm');
 const { validateNormalizedDatabase } = require('./normalize-images');
 
 const ROOT = path.resolve(__dirname, '..');
-const WEB_ROOT = path.join(ROOT, 'web');
+// DBD_WEB_ROOT=dist verifies the built app; default verifies web/ source.
+const WEB_DIR_NAME = process.env.DBD_WEB_ROOT || 'web';
+const WEB_ROOT = path.join(ROOT, WEB_DIR_NAME);
+const IS_DIST = WEB_DIR_NAME !== 'web';
 const INDEX_PATH = path.join(WEB_ROOT, 'index.html');
 const DATA_PATH = path.join(WEB_ROOT, 'data.js');
 const COSMETICS_DATA_PATH = path.join(WEB_ROOT, 'cosmetics.js');
 const COMMUNITY_CONTENT_DATA_PATH = path.join(WEB_ROOT, 'community-content.js');
 const WORLDLE_DATA_PATH = path.join(WEB_ROOT, 'worldle-data.js');
+const GUIDES_DATA_PATH = path.join(WEB_ROOT, 'guides.js');
 const CAPACITOR_CONFIG_PATH = path.join(ROOT, 'capacitor.config.json');
 const ANDROID_MANIFEST_PATH = path.join(ROOT, 'android', 'app', 'src', 'main', 'AndroidManifest.xml');
 
@@ -61,6 +65,18 @@ function parseCommunityContentData() {
   vm.createContext(sandbox);
   vm.runInContext(`${code}\nthis.COMMUNITY_CONTENT = COMMUNITY_CONTENT;`, sandbox);
   return sandbox.COMMUNITY_CONTENT;
+}
+
+function parseGuidesData() {
+  const code = fs.readFileSync(GUIDES_DATA_PATH, 'utf8');
+  const sandbox = {};
+  vm.createContext(sandbox);
+  vm.runInContext(`${code}\nthis.KILLER_GUIDES = KILLER_GUIDES;\nthis.KILLER_STATS = KILLER_STATS;\nthis.POWER_MECHANICS = POWER_MECHANICS;`, sandbox);
+  return {
+    guides: sandbox.KILLER_GUIDES,
+    stats: sandbox.KILLER_STATS,
+    mechanics: sandbox.POWER_MECHANICS,
+  };
 }
 
 function normalizeEmojiClueSets(rawSets) {
@@ -116,8 +132,8 @@ function auditHtml(indexHtml) {
 
 function auditCapacitorConfig() {
   const config = JSON.parse(fs.readFileSync(CAPACITOR_CONFIG_PATH, 'utf8'));
-  if (config.webDir !== 'web') {
-    fail(`capacitor.config.json should point to "web", found "${config.webDir}".`);
+  if (config.webDir !== 'dist') {
+    fail(`capacitor.config.json should point to "dist", found "${config.webDir}".`);
   }
   if (config.server && config.server.url) {
     fail('capacitor.config.json has server.url configured, which breaks the offline bundle contract.');
@@ -144,31 +160,43 @@ function auditRoutes(indexHtml) {
 
 function auditRequiredFiles(indexHtml) {
   const requiredFiles = [
-    'web/vendor/react.production.min.js',
-    'web/vendor/react-dom.production.min.js',
-    'web/vendor/babel.min.js',
-    'web/vendor/tailwindcss.min.js',
-    'web/cosmetics.js',
-    'web/community-content.js',
-    'web/worldle-data.js',
-    'web/assets/default-killer.png',
-    'web/assets/default-survivor.png',
-    'web/assets/default-perk.svg',
-    'web/assets/default-map.svg',
+    `${WEB_DIR_NAME}/vendor/react.production.min.js`,
+    `${WEB_DIR_NAME}/vendor/react-dom.production.min.js`,
+    `${WEB_DIR_NAME}/cosmetics.js`,
+    `${WEB_DIR_NAME}/community-content.js`,
+    `${WEB_DIR_NAME}/worldle-data.js`,
+    `${WEB_DIR_NAME}/meta.js`,
+    `${WEB_DIR_NAME}/changelog.js`,
+    `${WEB_DIR_NAME}/guides.js`,
+    `${WEB_DIR_NAME}/glossary.js`,
+    `${WEB_DIR_NAME}/premade-builds.js`,
+    `${WEB_DIR_NAME}/achievements.js`,
+    `${WEB_DIR_NAME}/assets/default-killer.png`,
+    `${WEB_DIR_NAME}/assets/default-survivor.png`,
+    `${WEB_DIR_NAME}/assets/default-perk.svg`,
+    `${WEB_DIR_NAME}/assets/default-map.svg`,
   ];
 
   requiredFiles.forEach((relPath) => {
     if (!fileExists(relPath)) fail(`Missing required offline runtime file: ${relPath}`);
   });
 
+  if (IS_DIST) {
+    // The built app must not depend on the in-browser runtimes.
+    ['vendor/babel.min.js', 'vendor/tailwindcss.min.js'].forEach((rel) => {
+      if (indexHtml.includes(rel)) fail(`dist/index.html still references ${rel}.`);
+    });
+    if (indexHtml.includes('type="text/babel"')) fail('dist/index.html still contains a text/babel block.');
+  }
+
   const gameIconMatches = [...indexHtml.matchAll(/icon:\s*["'](\.\/dbd_images\/game_icons\/[^"']+)["']/g)];
-  const gameIcons = new Set(gameIconMatches.map((match) => match[1].replace(/^\.\//, 'web/')));
+  const gameIcons = new Set(gameIconMatches.map((match) => match[1].replace(/^\.\//, `${WEB_DIR_NAME}/`)));
   gameIcons.forEach((relPath) => {
     if (!fileExists(relPath)) fail(`Missing game icon asset referenced in web/index.html: ${relPath}`);
   });
 
   const layoutMatches = [...indexHtml.matchAll(/path:\s*["']([^"']+)["']/g)];
-  const mapLayouts = new Set(layoutMatches.map((match) => path.posix.join('web/dbd_images', match[1])));
+  const mapLayouts = new Set(layoutMatches.map((match) => path.posix.join(`${WEB_DIR_NAME}/dbd_images`, match[1])));
   mapLayouts.forEach((relPath) => {
     if (!fileExists(relPath)) warn(`Missing map layout asset referenced in web/index.html: ${relPath}`);
   });
@@ -180,6 +208,13 @@ function auditRequiredFiles(indexHtml) {
   if (!/<script\s+src=["']community-content\.js["'][^>]*><\/script>/.test(indexHtml)) {
     fail('web/index.html does not load web/community-content.js.');
   }
+
+  for (const bundle of ['meta.js', 'changelog.js', 'guides.js', 'glossary.js', 'premade-builds.js', 'achievements.js']) {
+    const escaped = bundle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    if (!new RegExp(`<script\\s+src=["']${escaped}["'][^>]*></script>`).test(indexHtml)) {
+      fail(`web/index.html does not load web/${bundle}.`);
+    }
+  }
 }
 
 function auditDatabaseImages(db) {
@@ -187,18 +222,17 @@ function auditDatabaseImages(db) {
   issuesFromDatabase.forEach((message) => fail(`Generated DATABASE image issue: ${message}`));
 }
 
-function auditWorldle(indexHtml, db, worldleData) {
+function auditWorldle(indexHtml, db, worldleData, killerStats) {
   const killers = Array.isArray(db.killers) ? db.killers : [];
   const perks = Array.isArray(db.perks) ? db.perks : [];
   const aliases = worldleData?.aliases || {};
   const genders = worldleData?.genders || {};
   const emojiClues = worldleData?.emojiClues || {};
-
-  const killerStatsMatches = [...indexHtml.matchAll(/"([^"]+)":\s*\{\s*terrorRadius:\s*"[^"]+",\s*speed:\s*"[^"]+",\s*height:\s*"[^"]+"/g)];
-  const killerStatsNames = new Set(killerStatsMatches.map((match) => match[1]));
+  const statsByName = killerStats && typeof killerStats === 'object' ? killerStats : {};
 
   killers.forEach((killer) => {
-    if (!killerStatsNames.has(killer.name)) {
+    const stats = statsByName[killer.name];
+    if (!stats || typeof stats.terrorRadius !== 'string' || typeof stats.speed !== 'string' || typeof stats.height !== 'string') {
       fail(`Worldle classic metadata is missing KILLER_STATS for "${killer.name}".`);
     }
     if (!Array.isArray(aliases[killer.name]) || aliases[killer.name].length === 0) {
@@ -323,6 +357,7 @@ function main() {
   const cosmeticsCatalog = parseCosmeticsData();
   const communityContent = parseCommunityContentData();
   const worldleData = parseWorldleData();
+  const guidesData = parseGuidesData();
   auditHtml(indexHtml);
   auditCapacitorConfig();
   auditAndroidManifest();
@@ -333,8 +368,11 @@ function main() {
   if (!communityContent || typeof communityContent !== 'object') {
     fail('Community content runtime module did not expose a valid COMMUNITY_CONTENT object.');
   }
+  if (!guidesData.stats || typeof guidesData.stats !== 'object') {
+    fail('Guides runtime module did not expose a valid KILLER_STATS object.');
+  }
   auditOfferingFixes(database);
-  auditWorldle(indexHtml, database, worldleData);
+  auditWorldle(indexHtml, database, worldleData, guidesData.stats);
 
   if (warnings.length) {
     console.log('Warnings:');

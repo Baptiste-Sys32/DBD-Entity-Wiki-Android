@@ -1,0 +1,222 @@
+{
+  "The Trapper": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Wraith": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Hillbilly": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Nurse": {
+    "terrorRadius": "32m",
+    "speed": "3.85 m/s",
+    "height": "Average"
+  },
+  "The Shape": {
+    "terrorRadius": "0m (Stalker) / 24m (Pursuer)",
+    "speed": "4.2 / 4.6 m/s",
+    "height": "Tall"
+  },
+  "The Hag": {
+    "terrorRadius": "24m",
+    "speed": "4.4 m/s",
+    "height": "Average"
+  },
+  "The Doctor": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Huntress": {
+    "terrorRadius": "20m (Lullaby 45m)",
+    "speed": "4.4 m/s",
+    "height": "Tall"
+  },
+  "The Cannibal": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Nightmare": {
+    "terrorRadius": "32m (Lullaby)",
+    "speed": "4.6 m/s",
+    "height": "Average"
+  },
+  "The Pig": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Average"
+  },
+  "The Clown": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Spirit": {
+    "terrorRadius": "24m",
+    "speed": "4.4 m/s",
+    "height": "Average"
+  },
+  "The Legion": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Average"
+  },
+  "The Plague": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Ghost Face": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Average"
+  },
+  "The Demogorgon": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Oni": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Deathslinger": {
+    "terrorRadius": "32m",
+    "speed": "4.4 m/s",
+    "height": "Tall"
+  },
+  "The Executioner": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Blight": {
+    "terrorRadius": "32m",
+    "speed": "4.4 m/s",
+    "height": "Average"
+  },
+  "The Twins": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Trickster": {
+    "terrorRadius": "24m",
+    "speed": "4.4 m/s",
+    "height": "Average"
+  },
+  "The Nemesis": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Cenobite": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Artist": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Average"
+  },
+  "The Onryō": {
+    "terrorRadius": "24m",
+    "speed": "4.6 m/s",
+    "height": "Short"
+  },
+  "The Dredge": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Mastermind": {
+    "terrorRadius": "40m",
+    "speed": "4.6 m/s",
+    "height": "Average"
+  },
+  "The Knight": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Average"
+  },
+  "The Skull Merchant": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Average"
+  },
+  "The Singularity": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Average"
+  },
+  "The Xenomorph": {
+    "terrorRadius": "32m (24m Crawler)",
+    "speed": "4.6 m/s",
+    "height": "Average"
+  },
+  "The Good Guy": {
+    "terrorRadius": "32m",
+    "speed": "4.4 m/s",
+    "height": "Short"
+  },
+  "The Unknown": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Average"
+  },
+  "The Lich": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Average"
+  },
+  "The Dark Lord": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Houndmaster": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Average"
+  },
+  "The Ghoul": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Average"
+  },
+  "The Animatronic": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Krasue": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Average"
+  },
+  "The First": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Average"
+  },
+  "The Slasher": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Tall"
+  },
+  "The Judgment": {
+    "terrorRadius": "32m",
+    "speed": "4.4 m/s",
+    "height": "Tall"
+  }
+}

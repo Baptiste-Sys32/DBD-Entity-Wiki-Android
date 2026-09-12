@@ -1,0 +1,464 @@
+var CHANGELOG = [
+  {
+    "version": "5.34.0",
+    "date": "September 6, 2026",
+    "changes": [
+      "UPDATE : Synced to Dead by Daylight 10.1.0 with Chapter 41: Chorus of Sin - The Judgment, Aurora Stardotter, six new perks, Will of the Gods power, twenty add-ons, portraits, perk icons, power icon, and latest cosmetics",
+      "UPDATE : Added the Chorus of Sin chapter to the Lore Timeline, including the first community-created chapter release",
+      "FIX : Restored catalog sync pipeline support and resolved the Magnetised Manacles add-on icon (British spelling on the wiki)"
+    ]
+  },
+  {
+    "version": "5.33.0",
+    "date": "June 18, 2026",
+    "changes": [
+      "UPDATE : Synced to Dead by Daylight 10.0.0 with The Slasher, Shane Wiigwaas, new perks, Slasher add-ons, portraits, perk icons, power icon, and latest cosmetics",
+      "UPDATE : Added catalog sync support for new characters, perks, powers, add-ons, and local wiki image assets",
+      "FIX : Added Worldle metadata coverage for The Slasher"
+    ]
+  },
+  {
+    "version": "5.32.0",
+    "date": "May 11, 2026",
+    "changes": [
+      "UPDATE : Added missing Hell Priest cosmetics for The Cenobite",
+      "UPDATE : Added missing Escaped Patient store pieces for The Shape",
+      "FIX : Cosmetic sync now preserves these licensed store pieces during rebuilds"
+    ]
+  },
+  {
+    "version": "5.31.0",
+    "date": "May 1, 2026",
+    "changes": [
+      "FIX : Community Tierlists links open the latest sources",
+      "UPDATE : Updated to game version 9.6.0 with the latest content and changes, including the mid-season patch adjustments"
+    ]
+  },
+  {
+    "version": "5.30.0",
+    "date": "April 30, 2026",
+    "changes": [
+      "UPDATE : Edited scripts to manually read patch notes"
+    ]
+  },
+  {
+    "version": "5.29.0",
+    "date": "April 13, 2026",
+    "changes": [
+      "NEW : Prestige Calculator now lists Character Badge reward tiers",
+      "NEW : Added Community tab with helpful links",
+      "UPDATE : Cosmetics coverage increased to all in-game cosmetics (around 4000 files)",
+      "FIX : New Trickster map now shows up properly in Realms"
+    ]
+  },
+  {
+    "version": "5.28.0",
+    "date": "April 12, 2026",
+    "changes": [
+      "FIX : Submit button now works properly",
+      "FIX : Searching for addons now opens them properly",
+      "NEW : Backup and Restore the app",
+      "NEW : Legendary character browser"
+    ]
+  },
+  {
+    "version": "5.27.0",
+    "date": "April 10, 2026",
+    "changes": [
+      "FIX : Wordle now accepts both legacy and current perk names for bloodweb perks",
+      "FIX : Typing perk categories like Hex, Boon, and Scourge Hook now shows the correct alphabetical suggestions",
+      "FIX : Settings toggles no longer black out part of the screen on mobile",
+      "UPDATE : Added new loading screen tips"
+    ]
+  },
+  {
+    "version": "5.26.0",
+    "date": "April 10, 2026",
+    "changes": [
+      "NEW : Added the full official legendary portrait set for all characters",
+      "NEW : Added four new full-palette themes: Catppuccin Macchiato, Tokyo Night, Everforest, and Rose Pine Moon",
+      "UPDATE : Settings toggles now use better tick boxes and High Contrast mode was removed",
+      "FIX : Build Lab perks are now sorted alphabetically and show updated names"
+    ]
+  },
+  {
+    "version": "5.25.0",
+    "date": "April 8, 2026",
+    "changes": [
+      "NEW : Added a launch screen while the app loads",
+      "UPDATE : Wordle has a better mobile layout, and added a practice mode for Classic and Emoji",
+      "UPDATE : Added more emojis and combinations for Wordle",
+      "FIX : Navigation bar being overloaded with all items at once",
+      "FIX : Removed the perk option from progression"
+    ]
+  },
+  {
+    "version": "5.24.0",
+    "date": "April 8, 2026",
+    "changes": [
+      "NEW : Progression tab overhaul with detailed stats",
+      "NEW : Added Wordle modes for killers, perks, emoji, and teachable-perk guessing",
+      "NEW : Added notes for killers, maps, and perks",
+      "UPDATE : Match analytics now use stored states for characters, builds, perks, and maps instead of relying on live ones",
+      "FIX : Owned-content filtering now applies through the entire app, and offline behavior was improved on Android"
+    ]
+  },
+  {
+    "version": "5.23.0",
+    "date": "March 29, 2026",
+    "changes": [
+      "UPDATE : Added the new All-Kill Comeback content",
+      "FIX : Unified image loading across the app",
+      "FIX : Added missing icons for the few remaining assets that were not included in the initial bundle",
+      "FIX : Removed unnecessary scripts that slowed app loading"
+    ]
+  },
+  {
+    "version": "5.22.0",
+    "date": "March 29, 2026",
+    "changes": [
+      "UPDATE : Offline database refreshed to DBD 9.5.0 All-Kill: Comeback",
+      "NEW : Added Kwon Tae-Young, Sleepless District, and Trickster's Delusion",
+      "UPDATE : Refreshed Trickster, The First, and key perk descriptions to match the latest live text",
+      "UPDATE : Progression tracker and perk references synced with current live perk names"
+    ]
+  },
+  {
+    "version": "5.21.0",
+    "date": "March 3, 2026",
+    "changes": [
+      "FIX : Status bar overlap on larger displays, so the app no longer interferes with the status bar"
+    ]
+  },
+  {
+    "version": "5.20.0",
+    "date": "March 3, 2026",
+    "changes": [
+      "NEW : Full character profile pages — tap any killer or survivor to see their overview, power, perks, and lore in one place",
+      "NEW : Nord colour scheme added to themes",
+      "NEW : Chaos Shuffle locked pick — choose a specific character to play while still randomising perks",
+      "NEW : Sort characters by release date (oldest/newest)"
+    ]
+  },
+  {
+    "version": "5.19.0",
+    "date": "March 2, 2026",
+    "changes": [
+      "FIX : Killer real names now displayed correctly throughout the app",
+      "FIX : Michael Myers rework — updated mechanics and description",
+      "FIX : Legion ability description corrected",
+      "FIX : Perk icons no longer appear tilted/rotated",
+      "NEW : Haptic feedback toggle in settings",
+      "FIX : Android back button now navigates properly instead of closing the app",
+      "NEW : View button on favorite characters links directly to their detail page",
+      "NEW : View button on favorite perks links directly to the perks section",
+      "NEW : Scroll-to-top button on long lists",
+      "FIX : Progression section now uses a distinct target icon instead of the favorites star"
+    ]
+  },
+  {
+    "version": "5.18.0",
+    "date": "February 22, 2026",
+    "changes": [
+      "UPDATE : Synced achievements with Stranger Things 2 update",
+      "FIX : Filter/sort controls scrolling with the content",
+      "FIX : All search bars now match throughout the app",
+      "NEW : Tutorial buttons"
+    ]
+  },
+  {
+    "version": "5.17.0",
+    "date": "February 21, 2026",
+    "changes": [
+      "FIX : Faster startup",
+      "FIX : No more white screens on crash launches",
+      "NEW : Favorites tab to store all types of items"
+    ]
+  },
+  {
+    "version": "5.16.0",
+    "date": "February 21, 2026",
+    "changes": [
+      "NEW : Smart Search - describe what you're looking for like google",
+      "NEW : Search now understands killer names, rarity slang and description keywords"
+    ]
+  },
+  {
+    "version": "5.15.0",
+    "date": "February 20, 2026",
+    "changes": [
+      "UPDATE : Game configuration for patch 9.4.2",
+      "UPDATE : Synced latest data from database",
+      "NEW : Status icons for the HUD",
+      "NEW : All Stranger Things content added",
+      "FIX : Addon images not loading properly"
+    ]
+  },
+  {
+    "version": "5.14.0",
+    "date": "January 4, 2026",
+    "changes": [
+      "NEW : Quick Random command - type 'random:' in search bar for instant addon/offering rolls",
+      "FIX : Number inputs in Prestige Calculator"
+    ]
+  },
+  {
+    "version": "5.13.0",
+    "date": "January 3, 2026",
+    "changes": [
+      "UPDATE : Timeline data updated with accurate chapters",
+      "FIX : Map layout labels",
+      "FIX : Map layouts now display correct labels per map type"
+    ]
+  },
+  {
+    "version": "5.12.0",
+    "date": "January 3, 2026",
+    "changes": [
+      "NEW : Timeline view - scroll through chapters and events in a linear timeline",
+      "UI : Home search bar blur effect to match other views",
+      "FIX : Map layout close button being cut off",
+      "FIX : Character lore button scrolling issue"
+    ]
+  },
+  {
+    "version": "5.11.0",
+    "date": "January 1, 2026",
+    "changes": [
+      "UI : Revamped Match Stats with new tiles",
+      "NEW : Customizable win threshold for killers",
+      "UI : Improvements to filter dropdowns"
+    ]
+  },
+  {
+    "version": "5.10.0",
+    "date": "December 31, 2025",
+    "changes": [
+      "NEW : Perk effect filters - search by Aura, Stealth, Gen, Healing",
+      "NEW : Pull-to-refresh gesture on the home screen",
+      "NEW : Match stats dashboard - overall win rate cards with visual bar charts",
+      "UI : Enhanced character/build/map stats with sorted win rate display"
+    ]
+  },
+  {
+    "version": "5.9.0",
+    "date": "December 30, 2025",
+    "changes": [
+      "FIX : Killer addon image mismatches",
+      "FIX : Retired offerings no longer appear in Chaos Shuffle or global search",
+      "FIX : Chaos Shuffle no longer rolls the same perk twice in a row",
+      "FIX : Prestige calculator now works",
+      "FIX : Perk icons not loading in perk slide-up panel"
+    ]
+  },
+  {
+    "version": "5.8.0",
+    "date": "December 29, 2025",
+    "changes": [
+      "NEW : Entity's Offering - prestige bloodpoint calculator with animated UI",
+      "NEW : Glossary expanded with 18 new terms (techs, slang, perk acronyms)",
+      "FIX : Character selection grid on mobile/tablet"
+    ]
+  },
+  {
+    "version": "5.7.0",
+    "date": "December 28, 2025",
+    "changes": [
+      "FIX : Build sharing",
+      "UI : Navbar now supports up to 6 items with icon-only mode on widescreen",
+      "NEW : Build sharing now supports notes, items and addons",
+      "FIX : Build import"
+    ]
+  },
+  {
+    "version": "5.6.0",
+    "date": "December 28, 2025",
+    "changes": [
+      "NEW : Killer power icons in power description panel",
+      "FIX : Addon search - now correctly opens killer filter for killer addons",
+      "FIX : Lore close button being cut off on mobile",
+      "FIX : Killer stats now properly labeled (TR, Speed, Height)",
+      "FIX : Midwich map GIF not working",
+      "FIX : Removed broken map entry from Backwater Swamp"
+    ]
+  },
+  {
+    "version": "5.5.0",
+    "date": "December 27, 2025",
+    "changes": [
+      "NEW : Killer stats - Terror Radius, Speed, Height",
+      "NEW : Perk synergy suggestions - see what works well with a perk when viewing perk details",
+      "UI : Glossary redesigned as dictionary-style with A-Z sidebar navigation",
+      "UI : Filter buttons restyled to fit app theme"
+    ]
+  },
+  {
+    "version": "5.4.0",
+    "date": "December 25, 2025",
+    "changes": [
+      "NEW : Game Icons view - status icons for every action in game",
+      "NEW : Killer power tips",
+      "NEW : Killer stats - Terror Radius, Movement Speed, and Height for all killers",
+      "UI : Map layouts upgraded",
+      "UI : Perk comparison improved with clear button to exit comparison mode",
+      "FIX : Long press for compare not triggering perk modal"
+    ]
+  },
+  {
+    "version": "5.3.0",
+    "date": "December 23, 2025",
+    "changes": [
+      "NEW : Map layouts - view overhead layouts from Realms (thanks to Hens333)",
+      "FIX : 120+ addon image mismatches or wrong images",
+      "UPDATE : Special Thanks section now credits Hens333 and Steam for map layouts"
+    ]
+  },
+  {
+    "version": "5.2.0",
+    "date": "December 22, 2025",
+    "changes": [
+      "FIX : Various bug fixes"
+    ]
+  },
+  {
+    "version": "5.1.0",
+    "date": "December 21, 2025",
+    "changes": [
+      "NEW : Global search on home screen - search everything at once",
+      "FIX : Offering images not showing up",
+      "FIX : Event item images not loading due to naming conflicts",
+      "FIX : Addon image sizing"
+    ]
+  },
+  {
+    "version": "5.0.0",
+    "date": "December 21, 2025",
+    "changes": [
+      "FIX : Swipe navigation sensitivity",
+      "FIX : Addon cards clipping edges",
+      "UI : Renamed Signature Perks to Teachables",
+      "NEW : Double-tap to expand survivors and killers",
+      "NEW : Favorite perks to keep them at the top",
+      "NEW : Quick perk filters",
+      "NEW : Animated perk icons on hover (works best on PC)"
+    ]
+  },
+  {
+    "version": "4.8.0",
+    "date": "December 21, 2025",
+    "changes": [
+      "Added perk comparison mode"
+    ]
+  },
+  {
+    "version": "4.7.0",
+    "date": "December 21, 2025",
+    "changes": [
+      "Rarity glow effects on addon cards",
+      "Added a loading animation for non cached items",
+      "Animation for page change",
+      "Haptic feedback",
+      "Swipe left/right to navigate between tabs"
+    ]
+  },
+  {
+    "version": "4.6.2",
+    "date": "December 20, 2025",
+    "changes": [
+      "Changelog now shows up properly"
+    ]
+  },
+  {
+    "version": "4.6.1",
+    "date": "December 20, 2025",
+    "changes": [
+      "New app icon update"
+    ]
+  },
+  {
+    "version": "4.6.0",
+    "date": "December 20, 2025",
+    "changes": [
+      "Fixed Chaos Shuffle not clearing items/addons when deselected",
+      "Added auto-deselect for addons when items are deselected (Survivor)",
+      "Fixed item images not loading in Chaos Shuffle results",
+      "Marked The Shape & The Cenobite perks as bloodweb available"
+    ]
+  },
+  {
+    "version": "4.5.1",
+    "date": "December 19, 2025",
+    "changes": [
+      "Fixed character portrait loading in Chaos Shuffle",
+      "Fixed images not scaling depending on resolutions",
+      "Reworked Chaos Shuffle UI",
+      "Added Changelog section in Settings"
+    ]
+  },
+  {
+    "version": "4.5.0",
+    "date": "December 18, 2025",
+    "changes": [
+      "Complete Chaos Shuffle UI overhaul",
+      "Added character, item, addon, and offering randomization",
+      "Collapsible owned characters section",
+      "New UI for the builds section"
+    ]
+  },
+  {
+    "version": "4.4.0",
+    "date": "December 15, 2025",
+    "changes": [
+      "Added missing search bars in certain tiles",
+      "Fixed Secret offerings not refreshing list",
+      "Various UI improvements and bug fixes"
+    ]
+  },
+  {
+    "version": "4.3.0",
+    "date": "December 14, 2025",
+    "changes": [
+      "Data refresh pipeline updated",
+      "Polished code for future updates"
+    ]
+  },
+  {
+    "version": "4.2.0",
+    "date": "December 13, 2025",
+    "changes": [
+      "Added alphabetical sorting filter",
+      "Fixed image naming scheme",
+      "Various stability improvements"
+    ]
+  },
+  {
+    "version": "4.1.0",
+    "date": "December 12, 2025",
+    "changes": [
+      "Implemented UI customization feature",
+      "Customizable navigation bar items",
+      "Rearrangeable home screen tiles"
+    ]
+  },
+  {
+    "version": "4.0.0",
+    "date": "December 11, 2025",
+    "changes": [
+      "Major app overhaul with new design",
+      "Added OLED mode as default theme",
+      "Progression tracker implementation",
+      "Early build sharing system"
+    ]
+  },
+  {
+    "version": "3.0.0",
+    "date": "December 10, 2025",
+    "changes": [
+      "First Android APK release"
+    ]
+  }
+];
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = CHANGELOG;
+}

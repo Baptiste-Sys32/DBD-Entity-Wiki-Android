@@ -24,14 +24,18 @@
     "verify:data-contracts": "node scripts/verify-data-contracts.js",
     "release:summary": "node scripts/generate-release-summary.js",
     "build:data": "node scripts/build-data.js",
-    "check:data": "node scripts/normalize-images.js --check && node scripts/build-data.js --check && node scripts/audit-cosmetics.js && node scripts/verify-teachables.js && node scripts/verify-perk-descriptions.js && node scripts/verify-data-contracts.js",
+    "build:web": "node scripts/build-web.js",
+    "check:web": "node scripts/build-web.js --check",
+    "check:data": "node scripts/normalize-images.js --check && node scripts/build-data.js --check && node scripts/audit-cosmetics.js && node scripts/verify-teachables.js && node scripts/verify-perk-descriptions.js && node scripts/verify-data-contracts.js && node scripts/verify-content-coverage.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:smoke": "python3 scripts/smoke-test.py",
     "verify:content": "node scripts/normalize-images.js --check && node scripts/audit-cosmetics.js && node scripts/verify-teachables.js && node scripts/verify-perk-descriptions.js && node scripts/verify-data-contracts.js",
     "verify:offline": "node scripts/verify-offline-runtime.js",
+    "verify:offline:dist": "DBD_WEB_ROOT=dist node scripts/verify-offline-runtime.js",
+    "test:smoke:dist": "DBD_WEB_ROOT=dist python3 scripts/smoke-test.py",
     "sync": "npx cap sync android",
     "android:prepare-release-assets": "node scripts/prepare-android-release-assets.js",
-    "android:copy": "npx cap copy android",
+    "android:copy": "npm run build:web && npx cap copy android",
     "android:open": "npx cap open android",
     "android:build": "npm run sync && npm run android:prepare-release-assets && cd android && JAVA_HOME=${JAVA_HOME:-/opt/android-studio/jbr} ./gradlew assembleRelease",
     "android:bundle:play": "npm run build:data && npm run sync && npm run android:prepare-release-assets && cd android && JAVA_HOME=${JAVA_HOME:-/opt/android-studio/jbr} ./gradlew clean bundleRelease --rerun-tasks"
@@ -45,5 +49,9 @@
     "@capacitor/core": "^5.7.8",
     "@capacitor/haptics": "^5.0.8",
     "cheerio": "^1.2.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "tailwindcss": "^3.4.17"
   }
 }

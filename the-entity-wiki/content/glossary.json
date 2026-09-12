@@ -1,0 +1,802 @@
+[
+  {
+    "section": "Movement & Chase",
+    "items": [
+      {
+        "term": "Looping",
+        "def": "Running a structure to waste the Killer's time while conserving pallets."
+      },
+      {
+        "term": "Pallet Vacuum",
+        "def": "Old mechanic where dropping a pallet teleported Survivors through it; removed to make pallets riskier."
+      },
+      {
+        "term": "Checkspot",
+        "def": "Safe position at a loop to watch the Killer's red stain without committing."
+      },
+      {
+        "term": "Shift W / Holding W",
+        "def": "Abandoning a loop to run straight to the next tile for distance."
+      },
+      {
+        "term": "Greeding",
+        "def": "Choosing not to drop a pallet and risking a hit to save resources."
+      },
+      {
+        "term": "Pre-dropping",
+        "def": "Dropping a pallet early for guaranteed safety but poor efficiency."
+      },
+      {
+        "term": "360 / Spin",
+        "def": "Tight spin to break auto-aim during a lunge."
+      },
+      {
+        "term": "FOV Tech",
+        "def": "Abusing the Killer's limited vision by moving into their blind spot up close."
+      },
+      {
+        "term": "Window Tech",
+        "def": "Passing through the Killer's collision while they vault a window to lose them."
+      },
+      {
+        "term": "CJ Tech",
+        "def": "Vaulting a pallet as the Killer breaks it to force a pickup prompt and set up a blind."
+      },
+      {
+        "term": "Dumb Tech",
+        "def": "Vaulting back into the Killer immediately after a pallet stun to bait a swing."
+      },
+      {
+        "term": "Juke",
+        "def": "Sudden direction change to bait a Killer miss."
+      },
+      {
+        "term": "Locker Tech",
+        "def": "Using a locker to dodge/deny a hit or force a weird interaction."
+      },
+      {
+        "term": "Chase",
+        "def": "Killer actively pursuing a Survivor."
+      },
+      {
+        "term": "Tile",
+        "def": "A map 'piece' (pallet+window layout) that supports a loop."
+      },
+      {
+        "term": "Double Back",
+        "def": "Pretend to leave a loop, then immediately return."
+      },
+      {
+        "term": "Commit / Drop Chase",
+        "def": "Decide to stick with a chase or abandon it."
+      },
+      {
+        "term": "Respect the Pallet",
+        "def": "Killer pauses expecting pallet drop; survivor doesn't drop."
+      },
+      {
+        "term": "Eat the Pallet",
+        "def": "Killer takes the stun to maintain pressure."
+      },
+      {
+        "term": "Break Pallet",
+        "def": "Kick/destroy a dropped pallet."
+      },
+      {
+        "term": "Bloodlust",
+        "def": "Speed boost killer gains in extended chase."
+      },
+      {
+        "term": "Red Stain",
+        "def": "The red light in front of killer; used in mindgames."
+      },
+      {
+        "term": "Moonwalk",
+        "def": "Walk backwards to hide red stain while approaching."
+      },
+      {
+        "term": "LOS",
+        "def": "Line of sight."
+      }
+    ]
+  },
+  {
+    "section": "Map Structures & Topography",
+    "items": [
+      {
+        "term": "Shack / Killer Shack",
+        "def": "Universal landmark with a strong window and God Pallet."
+      },
+      {
+        "term": "Main / Main Building",
+        "def": "Central unique structure with strong windows or loops."
+      },
+      {
+        "term": "Jungle Gym / Maze Tile",
+        "def": "Complex wall tiles like T-L, 4-Lane, Long Wall with windows/pallets."
+      },
+      {
+        "term": "T-L Wall",
+        "def": "Maze tile shaped like a T and L; two windows, no pallet."
+      },
+      {
+        "term": "4-Lane / Long Wall",
+        "def": "Parallel long walls with a pallet; vision-blocking maze tile."
+      },
+      {
+        "term": "Cow Tree",
+        "def": "Coldwind landmark with a safe circular loop around a hanging carcass."
+      },
+      {
+        "term": "God Pallet",
+        "def": "Pallet that guarantees safety; Killer must break it."
+      },
+      {
+        "term": "Unsafe Pallet",
+        "def": "Pallet that can be mind-gamed or hit through; offers little safety."
+      },
+      {
+        "term": "Filler Tile",
+        "def": "Generic small loops filling space between landmarks; RNG quality."
+      },
+      {
+        "term": "Comp Corner",
+        "def": "Corner with no hooks/resources; used to deny hooks."
+      },
+      {
+        "term": "Dead Zone",
+        "def": "Area where pallets/walls are gone, making chases unwinnable for Survivors."
+      },
+      {
+        "term": "House of Pain",
+        "def": "House variant with an extremely strong loop/basement setup."
+      },
+      {
+        "term": "3-Gen",
+        "def": "Three close generators controlled by the Killer to stall the match."
+      }
+    ]
+  },
+  {
+    "section": "Generators & Objectives",
+    "items": [
+      {
+        "term": "Gen",
+        "def": "Generator; the main survivor objective."
+      },
+      {
+        "term": "Gen Pressure",
+        "def": "Killer's ability to stop gens getting done."
+      },
+      {
+        "term": "Split Gens",
+        "def": "Survivors intentionally complete gens far apart to avoid a 3-gen."
+      },
+      {
+        "term": "Tap",
+        "def": "Touching a gen briefly to stop regression or check progress."
+      },
+      {
+        "term": "99 a Gen",
+        "def": "Bring a gen to ~99% and leave it to pop later for timing."
+      },
+      {
+        "term": "Pop (Gen)",
+        "def": "Finish a generator; 'pop this gen'."
+      },
+      {
+        "term": "Regression",
+        "def": "Gens losing progress from kick or perk effects."
+      },
+      {
+        "term": "Kick",
+        "def": "Killer damaging a gen to start regression and trigger perks."
+      }
+    ]
+  },
+  {
+    "section": "Killer Mechanics & Techs",
+    "items": [
+      {
+        "term": "Hug Tech",
+        "def": "Sliding along collision during a dash to turn tightly instead of bumping."
+      },
+      {
+        "term": "U-Bend / Moonbound",
+        "def": "Wesker dash manipulation to curve or reverse direction."
+      },
+      {
+        "term": "Flick / 180",
+        "def": "Rapid camera turn at dash end to hit around corners."
+      },
+      {
+        "term": "Curve",
+        "def": "Hillbilly chainsaw drift using early high turn rate to round walls."
+      },
+      {
+        "term": "Bump Logic",
+        "def": "Choosing bump targets to set up the next Blight rush angle."
+      },
+      {
+        "term": "Mind Game",
+        "def": "Feigning direction (red stain, moonwalk) to trick Survivors into a hit."
+      },
+      {
+        "term": "Zoning",
+        "def": "Forcing Survivor movement with power/threat to drive them into danger."
+      },
+      {
+        "term": "Proxy Camp",
+        "def": "Guarding a hooked Survivor from nearby positions to intercept rescues."
+      },
+      {
+        "term": "Slugging",
+        "def": "Leaving Survivors in dying state to apply pressure or deny resets."
+      },
+      {
+        "term": "Tunneling",
+        "def": "Focusing one Survivor to remove them early and create a 3v1."
+      },
+      {
+        "term": "Camping",
+        "def": "Staying near hook to secure a kill or deny rescue."
+      },
+      {
+        "term": "Facecamp",
+        "def": "Standing right in front of hook; most extreme form of camping."
+      },
+      {
+        "term": "Hard Tunnel",
+        "def": "Go straight back to the unhooked survivor ASAP."
+      },
+      {
+        "term": "Soft Tunnel",
+        "def": "Prioritise the unhooked, but hit/hook others if convenient."
+      },
+      {
+        "term": "Slug for the 4K",
+        "def": "Leave someone downed while hunting last survivor/hatch."
+      },
+      {
+        "term": "Snowball",
+        "def": "One down leads into multiple downs quickly; momentum swing."
+      }
+    ]
+  },
+  {
+    "section": "Killer Nicknames",
+    "items": [
+      {
+        "term": "Bing Bong",
+        "def": "Wraith nickname from his bell sound."
+      },
+      {
+        "term": "Bubba / Booba",
+        "def": "Cannibal nickname from Leatherface's name."
+      },
+      {
+        "term": "Billy / Space Billy",
+        "def": "Hillbilly nickname; 'Space' references old flight glitches."
+      },
+      {
+        "term": "Mikey / Myers",
+        "def": "The Shape nickname using his real name."
+      },
+      {
+        "term": "Doc",
+        "def": "The Doctor nickname."
+      },
+      {
+        "term": "PH / Pyramid Head / Dorito Head",
+        "def": "Executioner nickname from helmet shape."
+      },
+      {
+        "term": "Wesker / Whiskers",
+        "def": "Mastermind nickname play on his name."
+      },
+      {
+        "term": "Nemmy / Nemo / Thanos",
+        "def": "Nemesis nicknames from pop culture."
+      },
+      {
+        "term": "Demo",
+        "def": "The Demogorgon nickname."
+      },
+      {
+        "term": "Pig",
+        "def": "The Pig; often paired with 'boop the snoot' meme."
+      },
+      {
+        "term": "Oreo",
+        "def": "Onryo nickname based on pronunciation."
+      },
+      {
+        "term": "Front Butt",
+        "def": "The Unknown nickname referencing model anatomy."
+      }
+    ]
+  },
+  {
+    "section": "Survivor Slang & Archetypes",
+    "items": [
+      {
+        "term": "Gen Rush",
+        "def": "Prioritizing rapid generator completion over other actions."
+      },
+      {
+        "term": "Blendette",
+        "def": "Stealthy Claudette hiding in bushes instead of doing objectives."
+      },
+      {
+        "term": "Baby Survivor / Dweet",
+        "def": "Inexperienced player, often a default Dwight."
+      },
+      {
+        "term": "Immersed",
+        "def": "Stealth-heavy playstyle avoiding chases."
+      },
+      {
+        "term": "SWF",
+        "def": "Survive With Friends; coordinated premade team."
+      },
+      {
+        "term": "Solo Q",
+        "def": "Solo queue with random teammates and limited info."
+      },
+      {
+        "term": "Bully Squad",
+        "def": "SWF focused on harassing the Killer with flashlights/sabo."
+      },
+      {
+        "term": "Sabo Squad",
+        "def": "Team dedicated to sabotaging hooks to deny carries."
+      },
+      {
+        "term": "Hook Diving",
+        "def": "Instant unhooks in front of the Killer, often unsafe."
+      }
+    ]
+  },
+  {
+    "section": "Key Perks & Acronyms",
+    "items": [
+      {
+        "term": "NOED",
+        "def": "Hex: No One Escapes Death; insta-down and speed when gates are powered."
+      },
+      {
+        "term": "DS",
+        "def": "Will To Live (formerly Decisive Strike); escape the Killer's grasp after unhook."
+      },
+      {
+        "term": "DH",
+        "def": "Dead Hard; dash/endurance to avoid damage after safe unhook."
+      },
+      {
+        "term": "BT",
+        "def": "Borrowed Time; extends endurance for unhooked Survivors."
+      },
+      {
+        "term": "SB",
+        "def": "Sprint Burst; speed boost when starting to run."
+      },
+      {
+        "term": "Adren",
+        "def": "Adrenaline; heal one state and sprint when gates are powered."
+      },
+      {
+        "term": "UB",
+        "def": "Unbreakable; recover from dying state once per trial."
+      },
+      {
+        "term": "OTR",
+        "def": "Off the Record; endurance and scratch mark hiding after unhook."
+      },
+      {
+        "term": "Prove",
+        "def": "Prove Thyself; repair speed bonus when working with others."
+      },
+      {
+        "term": "Pop",
+        "def": "Pop Goes the Weasel; hook-triggered gen regression kick."
+      },
+      {
+        "term": "Pain Res",
+        "def": "Scourge Hook: Pain Resonance; explodes most progressed gen on scourge hook."
+      },
+      {
+        "term": "Corrupt",
+        "def": "Corrupt Intervention; blocks 3 furthest gens at trial start."
+      },
+      {
+        "term": "WoO",
+        "def": "Windows of Opportunity; shows pallets/windows."
+      },
+      {
+        "term": "FTP",
+        "def": "For the People; trade a health state to instantly heal a teammate."
+      },
+      {
+        "term": "Buckle Up",
+        "def": "Synergy perk historically paired with FTP for endurance pickups."
+      },
+      {
+        "term": "BBQ",
+        "def": "Barbecue & Chilli; aura read after hooking (formerly bonus BP)."
+      }
+    ]
+  },
+  {
+    "section": "Community & Etiquette",
+    "items": [
+      {
+        "term": "GG / GGs",
+        "def": "Good game; standard post-match courtesy."
+      },
+      {
+        "term": "GLHF",
+        "def": "Good luck, have fun; pre-match greeting."
+      },
+      {
+        "term": "BM",
+        "def": "Bad manners; teabagging, hitting on hook, flashlight clicking, etc."
+      },
+      {
+        "term": "T-Bagging",
+        "def": "Rapid crouching to taunt or say hello."
+      },
+      {
+        "term": "Sandbag",
+        "def": "Teammate accidentally or intentionally gets you hit/caught."
+      },
+      {
+        "term": "Tryhard / Sweat",
+        "def": "Playing very seriously/optimally; usually said negatively."
+      },
+      {
+        "term": "TTV",
+        "def": "Twitch streamer tag in name; often attracts extra attention."
+      },
+      {
+        "term": "Nice tunnel/camp",
+        "def": "Usually sarcasm/salt in endgame chat."
+      },
+      {
+        "term": "Boop the Snoot",
+        "def": "Friendly Pig interaction; crouch/point to request mercy."
+      },
+      {
+        "term": "Burger King Myers",
+        "def": "Slow meme build using tombstone/vanity mirror add-ons."
+      },
+      {
+        "term": "Scratched Mirror Myers",
+        "def": "Jumpscare build with wall-hack add-on, Tier 1 terror radius."
+      },
+      {
+        "term": "Clicky Clicky",
+        "def": "Flashlight spam to taunt or demand aggro."
+      },
+      {
+        "term": "Hit on Hook",
+        "def": "Killer hitting a hooked Survivor; seen as BM."
+      }
+    ]
+  },
+  {
+    "section": "Comms & Callouts",
+    "items": [
+      {
+        "term": "On me",
+        "def": "Killer is chasing me."
+      },
+      {
+        "term": "Off me",
+        "def": "Killer left chase."
+      },
+      {
+        "term": "He's proxying",
+        "def": "Killer staying near hook."
+      },
+      {
+        "term": "Stick it",
+        "def": "Keep doing the gen."
+      },
+      {
+        "term": "Leave",
+        "def": "Disengage; don't greed the rescue/gen."
+      },
+      {
+        "term": "Trade",
+        "def": "I'll take hook so you can get out / reset."
+      },
+      {
+        "term": "Reset",
+        "def": "Everyone heal and spread."
+      }
+    ]
+  },
+  {
+    "section": "Rarity & Add-on Shorthand",
+    "items": [
+      {
+        "term": "Iri",
+        "def": "Iridescent; highest rarity tier (pink/red items and add-ons)."
+      },
+      {
+        "term": "Purple",
+        "def": "Very Rare rarity tier."
+      },
+      {
+        "term": "Green",
+        "def": "Rare rarity tier."
+      },
+      {
+        "term": "Yellow",
+        "def": "Uncommon rarity tier."
+      },
+      {
+        "term": "Brown",
+        "def": "Common rarity tier (lowest)."
+      }
+    ]
+  },
+  {
+    "section": "Items & Interactions",
+    "items": [
+      {
+        "term": "Flashlight Save",
+        "def": "Blind killer during pickup animation to drop survivor."
+      },
+      {
+        "term": "Blind",
+        "def": "Flashlight or firecracker blind on the Killer."
+      },
+      {
+        "term": "Pallet Save",
+        "def": "Stunning killer during pickup to free survivor."
+      },
+      {
+        "term": "Bodyblock",
+        "def": "Use your body to block the Killer's path."
+      },
+      {
+        "term": "Protection Hit",
+        "def": "Taking a hit meant for someone else."
+      },
+      {
+        "term": "Sabo / Sabo Play",
+        "def": "Sabotaging hooks with toolbox or perks."
+      },
+      {
+        "term": "Heal Under Hook",
+        "def": "Healing someone right at the hook; often debated if safe."
+      },
+      {
+        "term": "99 a Heal",
+        "def": "Heal to 99% and finish later for timing."
+      },
+      {
+        "term": "Unhook",
+        "def": "Rescue someone from hook. Under current protections this also grants Endurance, Haste, and Elusive."
+      },
+      {
+        "term": "Rehook",
+        "def": "Hook someone again soon after; often said alongside 'tunnel'."
+      }
+    ]
+  },
+  {
+    "section": "Totems",
+    "items": [
+      {
+        "term": "Dull Totem",
+        "def": "Unlit totem with no active effect."
+      },
+      {
+        "term": "Hex",
+        "def": "Killer perk tied to a lit totem; destroyed when cleansed."
+      },
+      {
+        "term": "Cleanse",
+        "def": "Break a hex or dull totem."
+      },
+      {
+        "term": "Boon",
+        "def": "Survivor 'blessed' totem creating an aura zone with effects."
+      },
+      {
+        "term": "Bless",
+        "def": "Apply a boon perk to a totem."
+      }
+    ]
+  },
+  {
+    "section": "Outcomes & Scoring",
+    "items": [
+      {
+        "term": "0K / 1K / 2K / 3K / 4K",
+        "def": "Killer kills 0–4 survivors; 4K is a clean win, 2K often treated as a draw."
+      },
+      {
+        "term": "4E / 3E / 2E / 1E / 0E",
+        "def": "Number of survivors escaping."
+      },
+      {
+        "term": "Hatch Escape",
+        "def": "Last survivor escapes via hatch."
+      },
+      {
+        "term": "Gate Escape",
+        "def": "Survivor escapes via an opened exit gate."
+      },
+      {
+        "term": "BP",
+        "def": "Bloodpoints; in-game currency for progression."
+      },
+      {
+        "term": "Pip / Depip",
+        "def": "Gaining or losing progress in grade."
+      },
+      {
+        "term": "Tome / Archives / Rift",
+        "def": "Challenge tracks and battle-pass style progression."
+      }
+    ]
+  },
+  {
+    "section": "Queue & Team Structure",
+    "items": [
+      {
+        "term": "Duo / 3-man / 4-man",
+        "def": "Size of the SWF group."
+      },
+      {
+        "term": "Stacked SWF",
+        "def": "Very coordinated/strong premade group."
+      }
+    ]
+  },
+  {
+    "section": "Survivor States & Hook Stages",
+    "items": [
+      {
+        "term": "Healthy / Injured",
+        "def": "Basic health states."
+      },
+      {
+        "term": "Downed / Dying State",
+        "def": "On the ground; can crawl and will bleed out."
+      },
+      {
+        "term": "Bleed Out",
+        "def": "Survivor dies from being left downed long enough."
+      },
+      {
+        "term": "Picked Up",
+        "def": "Killer picks a downed survivor up for hook/carry."
+      },
+      {
+        "term": "Wiggle",
+        "def": "Survivor escape attempt while being carried."
+      },
+      {
+        "term": "First Stage",
+        "def": "Hanging normally on hook."
+      },
+      {
+        "term": "Second Stage / Struggle",
+        "def": "Entity attempts; requires skill checks."
+      },
+      {
+        "term": "Death Hook",
+        "def": "Next hook kills; you've been hooked twice already."
+      },
+      {
+        "term": "EGC",
+        "def": "Endgame Collapse; timer after gates powered and opened or hatch closed."
+      }
+    ]
+  },
+  {
+    "section": "Status Effects & Mechanics",
+    "items": [
+      {
+        "term": "Exhausted",
+        "def": "Status that blocks Exhaustion perks until it recovers over time."
+      },
+      {
+        "term": "Haste",
+        "def": "Movement speed boost shown as a percentage, e.g. Sprint Burst's 50% Haste."
+      },
+      {
+        "term": "Endurance",
+        "def": "Takes a protection hit instead of going down; granted by unhooks and various perks."
+      },
+      {
+        "term": "Broken",
+        "def": "Cannot be healed; usually long-duration, e.g. after unhooking yourself with Deliverance."
+      },
+      {
+        "term": "Exposed",
+        "def": "Vulnerable: the next damage puts you into Dying State regardless of health."
+      },
+      {
+        "term": "Hindered",
+        "def": "Movement speed penalty shown as a percentage."
+      },
+      {
+        "term": "Undetectable",
+        "def": "Hides your Terror Radius, Red Stain, and aura reads from Survivors."
+      },
+      {
+        "term": "Oblivious",
+        "def": "Suppresses the Killer's Terror Radius and aura reads for you."
+      },
+      {
+        "term": "Blindness",
+        "def": "Suppresses all aura reading for you."
+      },
+      {
+        "term": "Deep Wound",
+        "def": "A draining bleed timer; mend yourself or get healed before it empties or you go down."
+      },
+      {
+        "term": "Hemorrhage",
+        "def": "Bleed-out and healing regression happen faster."
+      },
+      {
+        "term": "Mangled",
+        "def": "Healing you takes longer than normal."
+      },
+      {
+        "term": "Elusive",
+        "def": "Your Aura stays hidden from the Killer; granted by unhook protections and while standing on Light Marks."
+      },
+      {
+        "term": "Heresy",
+        "def": "Status inflicted by The Judgment's Divine Light or by taunting It; Heretics face special generator Skill Checks where good results cost progress. Repent at a Shrine of Judgment to cleanse it."
+      },
+      {
+        "term": "Heretic",
+        "def": "A Survivor carrying Heresy."
+      },
+      {
+        "term": "Exile",
+        "def": "The Judgment's secondary ability: exiles dying Heretics to a separate space. Counts as a hook state but ignores hook perks; others can Pray at an active Shrine to rescue them."
+      },
+      {
+        "term": "Shrine of Judgment",
+        "def": "Map objects for The Judgment's Heresy loop: Repent at one to cleanse Heresy over time; Pray at an active (red) one to rescue Exiled Survivors. The two closest activate on Exile."
+      },
+      {
+        "term": "Divine Light",
+        "def": "The Judgment's aimed beam (Will of the Gods): longer control means shorter cast delay and longer duration, 6s cooldown; near-misses reveal Survivors with Killer Instinct."
+      },
+      {
+        "term": "Will of the Gods",
+        "def": "The Judgment's Killer power."
+      },
+      {
+        "term": "Light Marks",
+        "def": "Glowing marks the Killer leaves while you are in their Terror Radius (Cross-Examination); standing on one grants Elusive. They last 10 seconds."
+      },
+      {
+        "term": "Searcher’s Pendant",
+        "def": "Limited item given on entering Exile; aim it at Exiled Souls to extend unhook protections."
+      },
+      {
+        "term": "Repent",
+        "def": "Channel at a Shrine of Judgment to deplete Heresy over time."
+      },
+      {
+        "term": "Pray",
+        "def": "Channel at an active Shrine of Judgment to rescue an Exiled Survivor."
+      },
+      {
+        "term": "Boon Totem",
+        "def": "A totem blessed with a Boon perk, projecting its effects in a radius (Boon: Steadfast merges all your Boons into one)."
+      }
+    ]
+  }
+]

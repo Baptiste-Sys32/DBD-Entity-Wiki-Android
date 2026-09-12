@@ -1,0 +1,167 @@
+[
+  {
+    "title": "Totem Hunter",
+    "role": "Survivor",
+    "perks": [
+      "Inner Strength",
+      "Hardened",
+      "Counterforce",
+      "Detective's Hunch"
+    ],
+    "note": "Cleanse fast, find the next totem, and self-heal from lockers."
+  },
+  {
+    "title": "Treasure Hunter",
+    "role": "Survivor",
+    "perks": [
+      "Ace in the Hole",
+      "Moment of Glory",
+      "Appraisal",
+      "Plunderer's Instinct"
+    ],
+    "note": "Loot chests for stacked items and add-ons to carry the trial."
+  },
+  {
+    "title": "Locker",
+    "role": "Survivor",
+    "perks": [
+      "Dance With Me",
+      "Head On",
+      "Inner Strength",
+      "Quick and Quiet"
+    ],
+    "note": "Stealth and stuns built around lockers and silent rush actions."
+  },
+  {
+    "title": "Altruism",
+    "role": "Survivor",
+    "perks": [
+      "Kindred",
+      "Borrowed Time",
+      "Shoulder The Burden",
+      "We'll Make It"
+    ],
+    "note": "Prioritize safe unhooks and fast heals to keep the team alive."
+  },
+  {
+    "title": "Aura Reading",
+    "role": "Survivor",
+    "perks": [
+      "Kindred",
+      "Eyes of Belmont",
+      "Open-Handed",
+      "Empathy"
+    ],
+    "note": "Keep tabs on killer and teammates with extended aura reads."
+  },
+  {
+    "title": "Stun",
+    "role": "Survivor",
+    "perks": [
+      "Blast Mine",
+      "Exultation",
+      "Any Means Necessary",
+      "Head On"
+    ],
+    "note": "Chain stuns with pallets, gens, and lockers to punish chases."
+  },
+  {
+    "title": "Non-Teachable",
+    "role": "Survivor",
+    "perks": [
+      "Deja Vu",
+      "Kindred",
+      "Hope",
+      "We'll Make It"
+    ],
+    "note": "Base-kit friendly info and speed for brand-new players."
+  },
+  {
+    "title": "Beginner",
+    "role": "Survivor",
+    "perks": [
+      "Windows of Opportunity",
+      "Overcome",
+      "Kindred",
+      "Deja Vu"
+    ],
+    "note": "Learn loops and gen spacing with vision and a forgiving exhaustion perk."
+  },
+  {
+    "title": "Self-Heal",
+    "role": "Survivor",
+    "perks": [
+      "Strength in Shadows",
+      "Botany Knowledge",
+      "Bond",
+      "Resurgence"
+    ],
+    "note": "Reset quickly and coordinate body blocks after basement or hooks."
+  },
+  {
+    "title": "Anti-Slug",
+    "role": "Survivor",
+    "perks": [
+      "Unbreakable",
+      "Sprint Burst",
+      "We're Gonna Live Forever",
+      "Will To Live"
+    ],
+    "note": "Recover and pick up downed teammates fast; punish slugging."
+  },
+  {
+    "title": "Endgame",
+    "role": "Survivor",
+    "perks": [
+      "Hope",
+      "Reassurance",
+      "Adrenaline",
+      "Sprint Burst"
+    ],
+    "note": "Extend hook timers, heal on gates, and outrun camping in collapse."
+  },
+  {
+    "title": "Anti-Tunnel",
+    "role": "Survivor",
+    "perks": [
+      "Dead Hard",
+      "Off the Record",
+      "Will To Live",
+      "Unbreakable"
+    ],
+    "note": "Make tunneling inefficient with endurance, skill checks, and recoveries."
+  },
+  {
+    "title": "Runner",
+    "role": "Survivor",
+    "perks": [
+      "Sprint Burst",
+      "Finesse",
+      "Windows of Opportunity",
+      "Blood Rush"
+    ],
+    "note": "High-mobility chase kit with vault boosts and exhaustion refresh."
+  },
+  {
+    "title": "Generator",
+    "role": "Survivor",
+    "perks": [
+      "Quick Gambit",
+      "Prove Thyself",
+      "Deja Vu",
+      "Sprint Burst"
+    ],
+    "note": "Teamwide gen speedups plus personal sprint for chase pressure."
+  },
+  {
+    "title": "Wallhacks",
+    "role": "Survivor",
+    "perks": [
+      "Eyes of Belmont",
+      "Dark Sense",
+      "Poised",
+      "Wicked"
+    ],
+    "note": "Long aura reads to track killer rotations; basement escape insurance."
+  }
+]
