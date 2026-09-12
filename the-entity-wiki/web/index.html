@@ -817,13 +817,43 @@
     .cx-drawer-list button.l2 .lbl { font-size: 13px; color: var(--muted); padding-left: 28px; }
     .cx-drawer-foot { border-top: 1px solid var(--stroke); padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); font-size: 11.5px; color: var(--muted); }
 
-    /* ===== Profile article in light mode (shell follows vars; legacy cards adapt) ===== */
-    .light-mode .cx-profile { background: var(--glass-bg); }
+    /* ===== Profile article in light mode (shell follows vars; legacy cards adapt) ===== */    .light-mode .cx-profile { background: var(--glass-bg); }
     .light-mode .cx-profile .cx-closebar { background: linear-gradient(to top, var(--glass-bg) 62%, transparent); }
     .light-mode .cx-profile .bg-white\/5 { background-color: var(--chip); }
     .light-mode .cx-profile .border-white\/10 { border-color: var(--stroke); }
     .light-mode .cx-profile .bg-zinc-800\/80 { background-color: var(--chip); }
     .light-mode .cx-profile .bg-black\/30 { background-color: var(--chip); }
+
+    /* ===== Featured home (step B): brand, search, featured card, link lists, result rows ===== */
+    .home-brand { text-align: center; margin: 6px 0 18px; }
+    .home-brand h1 { font-family: var(--font-display); font-size: 24px; font-weight: 700; margin: 0 0 2px; color: var(--text); }
+    .home-brand p { font-size: 10.5px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); margin: 0; }
+    .cx-searchbox { display: flex; align-items: center; gap: 10px; background: var(--glass-bg); border: 1px solid var(--stroke); padding: 0 6px 0 14px; min-height: 52px; }
+    .cx-searchbox input { flex: 1; background: none; border: none; outline: none; color: var(--text); font-size: 16px; min-width: 0; }
+    .cx-searchbox input::placeholder { color: var(--muted); }
+    .home-feat { border: 1px solid var(--stroke); background: var(--glass-bg); padding: 14px; display: flex; gap: 12px; cursor: pointer; width: 100%; text-align: left; }
+    .home-feat .thumb { width: 76px; height: 76px; flex: 0 0 76px; background: var(--ghost-surface); border: 1px solid var(--stroke); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .home-feat .kicker { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+    .home-feat h3 { font-family: var(--font-display); font-size: 19px; margin: 2px 0 4px; color: var(--link); }
+    .home-feat:hover h3 { text-decoration: underline; text-underline-offset: 2px; }
+    .home-feat .snip { font-size: 13px; line-height: 1.55; color: var(--text); margin: 0 0 6px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .home-feat .go { font-size: 13px; color: var(--link); font-weight: 600; }
+    .home-secttl { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 26px 0 10px; }
+    .home-linklist { border-top: 1px solid var(--stroke); }
+    .home-linkrow { display: flex; align-items: center; gap: 12px; width: 100%; background: none; border: none; border-bottom: 1px solid var(--stroke); color: var(--text); font-size: 15px; min-height: 52px; padding: 8px 4px; cursor: pointer; text-align: left; }
+    .home-linkrow .lbl { flex: 1; min-width: 0; color: var(--link); }
+    .home-linkrow:hover .lbl { text-decoration: underline; text-underline-offset: 2px; }
+    .home-linkrow .sub { display: block; font-size: 12px; color: var(--muted); }
+    .home-linkrow .count { font-size: 12px; color: var(--muted); }
+    .home-linkrow .chev { color: var(--muted); font-size: 18px; }
+    .cx-result-row { display: flex; align-items: center; gap: 12px; width: 100%; background: none; border: none; border-bottom: 1px solid var(--stroke); min-height: 60px; padding: 8px 4px; cursor: pointer; text-align: left; }
+    .cx-result-row .thumb { width: 40px; height: 40px; flex: 0 0 40px; background: var(--ghost-surface); border: 1px solid var(--stroke); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .cx-result-row .thumb.diamond { width: 34px; height: 34px; flex-basis: 34px; transform: rotate(45deg); margin: 0 3px; }
+    .cx-result-row .thumb.diamond > * { transform: rotate(-45deg); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    .cx-result-row .nm { font-size: 14.5px; font-weight: 600; color: var(--link); }
+    .cx-result-row:hover .nm { text-decoration: underline; text-underline-offset: 2px; }
+    .cx-result-row .tag { font-size: 12px; color: var(--muted); }
+    .cx-result-row .chev { margin-left: auto; color: var(--muted); font-size: 18px; flex-shrink: 0; }
   </style>
 </head>
 
@@ -1666,27 +1696,7 @@
       worldle: 'dbd_worldle_v1'
     };
     const STORAGE_KEY_ACHIEVEMENTS = 'dbd_achievements_progress';
-    const ALL_HOME_TILES = [
-      { id: 'killers', label: 'Killers', icon: 'Sword', desc: 'All killers, real names & teachables' },
-      { id: 'survivors', label: 'Survivors', icon: 'Heart', desc: 'Roster with their teachables' },
-      { id: 'perks', label: 'Perk Finder', icon: 'BookOpen', desc: 'Search perks with role filters' },
-      { id: 'buildLab', label: 'Build Lab', icon: 'Wrench', desc: 'Craft and save loadouts' },
-      { id: 'favorites', label: 'My Favorites', icon: 'Star', desc: 'All your bookmarked content' },
-      { id: 'progression', label: 'Progression Hub', icon: 'Target', desc: 'Achievements, roster, challenges and analytics' },
-      { id: 'communityContent', label: 'Community Content', icon: 'MessageCircle', desc: 'Otz tierlists, builds, and character intel' },
-      { id: 'cosmetics', label: 'Cosmetics', icon: 'Shirt', desc: 'Browse all cosmetics by role, character, and rarity' },
-      { id: 'worldle', label: 'Wordle', icon: 'Notepad', desc: 'Daily and practice DBD guessing games' },
-      { id: 'matches', label: 'Match Log', icon: 'List', desc: 'Track matches & notes' },
-      { id: 'prestige', label: "Entity's Offering", icon: 'Droplet', desc: 'BP calculator for prestiges' },
-      { id: 'roulette', label: 'Chaos Shuffle', icon: 'Dices', desc: 'Randomize perk combos' },
-      { id: 'realms', label: 'Realms', icon: 'Map', desc: 'Browse maps & realms' },
-      { id: 'items', label: 'Items & Addons', icon: 'Package', desc: 'Survivor items with addons' },
-      { id: 'offerings', label: 'Offerings', icon: 'Flame', desc: 'All offerings by rarity' },
-      { id: 'glossary', label: 'Glossary', icon: 'GraduationCap', desc: 'Terminology and tips' },
-      { id: 'gameIcons', label: 'Game Icons', icon: 'Zap', desc: 'Status effects, HUD & more' },
-      { id: 'import', label: 'Import Build', icon: 'Import', desc: 'Paste a shared build text' },
-      { id: 'timeline', label: 'Lore Timeline', icon: 'Clock', desc: 'DBD history from 2016 to now' },
-    ];
+
     const RARITY_GLOWS = {
       common: 'rgba(81,63,49,0.5)',
       uncommon: 'rgba(27,140,34,0.45)',
@@ -1713,7 +1723,6 @@
       hapticEnabled: true,
       ownedOnlyGlobal: false,
       progressionTabOrder: [...PROGRESSION_TABS],
-      homeTiles: ['killers', 'survivors', 'perks', 'buildLab', 'favorites', 'progression', 'communityContent', 'cosmetics', 'worldle', 'matches', 'roulette', 'realms', 'glossary', 'import', 'timeline'],
       favoritePerks: [],
       favoriteKillers: [],
       favoriteSurvivors: [],
@@ -2058,12 +2067,11 @@
       delete rest.systemNavButtonOffset;
       delete rest.navItems;
       delete rest.navItemsCustomized;
-      const homeTileIds = [...new Set(ALL_HOME_TILES.map(tile => tile.id))];
+      delete rest.homeTiles;
       return {
         ...DEFAULT_SETTINGS,
         ...rest,
         ownedOnlyGlobal: Boolean(rest.ownedOnlyGlobal),
-        homeTiles: ensureOrderedFullSet(rest.homeTiles, homeTileIds, DEFAULT_SETTINGS.homeTiles),
         progressionTabOrder: ensureOrderedFullSet(rest.progressionTabOrder, PROGRESSION_TABS, DEFAULT_SETTINGS.progressionTabOrder),
       };
     };
@@ -4635,7 +4643,7 @@
         </div>
       );
     };
-    const HomeView = ({ setView, data, theme, builds = [], maps = [], challenges = [], setBuildSeed, perks = [], setBuilds, customHomeTiles = [], items = [], addons = [], offerings = [], cosmeticsCatalog = { characterSwaps: [], fullSets: [] }, allCharacters = [], onOpenCharacterProfile }) => {
+    const HomeView = ({ setView, data, theme, builds = [], maps = [], challenges = [], setBuildSeed, perks = [], setBuilds, items = [], addons = [], offerings = [], cosmeticsCatalog = { characterSwaps: [], fullSets: [] }, allCharacters = [], onOpenCharacterProfile, onPerkTap = null }) => {
       const { killers = [], survivors = [] } = data || {};
       const [searchTerm, setSearchTerm] = useState('');
       const deferredSearchTerm = useDeferredValue(searchTerm);
@@ -5252,25 +5260,22 @@
           <PullIndicator pullDistance={pullDistance} threshold={80} isRefreshing={isRefreshing} />
           <div className="absolute right-4 z-30" style={{ top: 'max(1rem, env(safe-area-inset-top, 1rem))' }}><ViewInfoButton tips={VIEW_TIPS.home} /></div>
           <div className={`transition-all duration-500 ${searchTerm ? 'mt-0 opacity-85' : 'mt-2 sm:mt-6 opacity-100'}`}>
-            <div className="flex flex-col items-center text-center mb-6">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mb-3 bg-white/5 border border-white/10">
-                <Icons.DbdLogo width={36} height={36} className="text-white" />
-              </div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">DBD Companion</h1>
-              <p className="font-medium text-xs uppercase tracking-[0.22em] text-slate-400 mt-1">The Entity's Database</p>
+            <div className="home-brand">
+              <h1>The Entity's Wiki</h1>
+              <p>Dead by Daylight database</p>
             </div>
           </div>
           <div className="sticky top-0 z-20 -mx-6 px-6 pb-4 pt-1 pointer-events-none">
             <div className="relative mb-3 max-w-3xl mx-auto pointer-events-auto">
-              <div className="relative flex items-center bg-zinc-800/60 backdrop-blur-xl border border-white/10 rounded-3xl p-2 shadow-2xl">
-                <div className="pl-4 text-zinc-400"><Icons.Search width={18} height={18} /></div>
-                <input type="text" className="w-full bg-transparent text-white p-3 text-sm sm:text-base font-medium placeholder-zinc-600 focus:outline-none" placeholder="Search anything..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-                {searchTerm && <button onClick={() => setSearchTerm('')} aria-label="Clear search" className="p-2 mr-1 rounded-xl bg-white/5 text-zinc-300 hover:text-white hover:bg-white/10 transition-colors"><Icons.X width={18} height={18} /></button>}
+              <div className="cx-searchbox">
+                <div className="text-zinc-400"><Icons.Search width={20} height={20} /></div>
+                <input type="text" placeholder="Search killers, perks, items…" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} aria-label="Search the wiki" />
+                {searchTerm && <button onClick={() => setSearchTerm('')} aria-label="Clear search" className="p-2 mr-1 text-zinc-300 hover:text-white transition-colors" style={{ width: 44, height: 44 }}>✕</button>}
               </div>
               {/* Filter hint */}
               {!searchTerm && (
-                <p className="text-center text-[10px] text-zinc-400 mt-2">
-                  Smart search: describe what you're looking for, or use <span className="text-zinc-400">perks:</span> <span className="text-zinc-400">random:</span> filters
+                <p className="text-center text-xs mt-2" style={{ color: 'var(--muted)' }}>
+                  Try <span style={{ color: 'var(--text)', fontWeight: 600 }}>random:killer</span>, <span style={{ color: 'var(--text)', fontWeight: 600 }}>hex</span>, <span style={{ color: 'var(--text)', fontWeight: 600 }}>med-kit</span>…
                 </p>
               )}
             </div>
@@ -5425,229 +5430,190 @@
                     <span className="text-[10px] font-bold uppercase tracking-wider text-sky-400 bg-sky-500/10 border border-sky-500/20 px-2 py-1 rounded-lg">Best Match ↓</span>
                   )}
                 </div>
-                {results.length > 0 ? results.map((item, idx) => {
-                  const isBestMatch = idx === 0 && item._score >= 20 && searchTerm.split(/\s+/).length >= 2;
-                  const wrapBest = (el) => isBestMatch ? (
-                    <div key={'best-' + (item.id || item.name || idx)} className="ring-1 ring-sky-500/30 rounded-2xl shadow-lg shadow-sky-500/5">
-                      {el}
+                {results.length > 0 ? (() => {
+                  const GROUP_LABELS = { Killer: 'Killers', Survivor: 'Survivors', Perk: 'Perks', Cosmetic: 'Cosmetics', Build: 'Builds', Map: 'Maps', Challenge: 'Challenges', Item: 'Items', Addon: 'Add-ons', Offering: 'Offerings', GameIcon: 'Game Icons', Glossary: 'Glossary', Chapter: 'Chapters' };
+                  const groups = [];
+                  const byCat = {};
+                  results.forEach((item) => {
+                    const c = item.category || 'Other';
+                    if (!byCat[c]) { byCat[c] = []; groups.push(c); }
+                    byCat[c].push(item);
+                  });
+                  const row = (key, thumb, name, tag, onTap) => (
+                    <button key={key} type="button" className="cx-result-row" onClick={onTap}>
+                      {thumb}
+                      <span style={{ minWidth: 0 }}>
+                        <span className="nm">{name}</span><br />
+                        <span className="tag">{tag}</span>
+                      </span>
+                      <span className="chev">›</span>
+                    </button>
+                  );
+                  const img = (type, imageUrl, fallback) => (
+                    <span className="thumb"><AssetFrame type={type} size="fill" imageUrl={imageUrl} fallbackIcon={fallback} /></span>
+                  );
+                  const diamond = (imageUrl) => (
+                    <span className="thumb diamond"><span><AssetFrame type="Perk" size="fill" imageUrl={imageUrl} fallbackIcon={<Icons.BookOpen width={16} height={16} className="text-white/40" />} /></span></span>
+                  );
+                  const glyph = (icon) => (<span className="thumb">{icon}</span>);
+                  const renderItem = (item, idx) => {
+                    const key = item.id || item.name || idx;
+                    if (item.category === 'Killer' || item.category === 'Survivor') {
+                      const isK = item.category === 'Killer';
+                      return row(key, img(isK ? 'Killer' : 'Survivor', item.image, <Icons.User width={18} height={18} className="text-white/40" />),
+                        item.name, `${item.category}${item.realName && item.realName !== item.name ? ` · ${item.realName}` : ''}`,
+                        () => onOpenCharacterProfile && onOpenCharacterProfile(item));
+                    }
+                    if (item.category === 'Perk') {
+                      return row(key, diamond(item.image), item.name,
+                        `${item.type ? `${item.type} perk` : 'Perk'}${item.owner ? ` · ${item.owner}` : ''}`,
+                        () => onPerkTap && onPerkTap(item));
+                    }
+                    if (item.category === 'Cosmetic') {
+                      return row(key, img(item.baseCharacterType, item.image, <Icons.User width={18} height={18} className="text-white/40" />),
+                        item.name, `${item.isCharacterSwap ? 'Character swap' : `${item.pieceType || 'Cosmetic'} Cosmetic`} • ${item.baseCharacterName || ''}`,
+                        () => openCosmeticProfile(item));
+                    }
+                    if (item.category === 'Build') {
+                      return row(key, glyph(<Icons.Wrench width={18} height={18} className="text-white/40" />),
+                        item.name, `${item.role || ''} Build • ${(item.perks || []).length} perks`,
+                        () => { setBuildSeed && setBuildSeed(item); setView('buildLab'); });
+                    }
+                    if (item.category === 'Map') {
+                      return row(key, glyph(<Icons.Map width={18} height={18} className="text-white/40" />),
+                        item.name, 'Map',
+                        () => setView('realms', { search: item.name }));
+                    }
+                    if (item.category === 'Challenge') {
+                      return row(key, glyph(<Icons.Target width={18} height={18} className="text-white/40" />),
+                        item.name, 'Challenge',
+                        () => setView('progression', { tab: 'challenges' }));
+                    }
+                    if (item.category === 'Item') {
+                      return row(key, img('Item', item.image, <Icons.Package width={16} height={16} className="text-white/40" />),
+                        item.name, `Item • ${item.itemType || 'Unknown'}`,
+                        () => setView('items', { search: item.name, mode: 'survivor', targetId: item.id, targetType: 'item' }));
+                    }
+                    if (item.category === 'Addon') {
+                      const isKillerAddon = item.role === 'killer';
+                      const searchQuery = item.name || (isKillerAddon ? (item.killerName || '') : (item.itemType || ''));
+                      return row(key, img('Addon', item.image, <Icons.Wrench width={16} height={16} className="text-white/40" />),
+                        item.name, `${isKillerAddon ? 'Killer' : 'Survivor'} Addon${item.killerName ? ` • ${item.killerName}` : item.itemType ? ` • ${item.itemType}` : ''}`,
+                        () => setView('items', { search: searchQuery, mode: isKillerAddon ? 'killer' : 'survivor', targetId: item.id, targetType: 'addon' }));
+                    }
+                    if (item.category === 'Offering') {
+                      return row(key, img('Offering', item.image, <Icons.Flame width={16} height={16} className="text-white/40" />),
+                        item.name, `Offering${item.type ? ` • ${item.type}` : ''}`,
+                        () => setView('offerings', { search: item.name, targetId: item.id, targetType: 'offering' }));
+                    }
+                    if (item.category === 'GameIcon') {
+                      return row(key, img('GameIcon', item.icon, <Icons.AlertCircle width={16} height={16} className="text-white/40" />),
+                        item.name, `Game Icon • ${item.category || ''}`,
+                        () => setView('gameIcons'));
+                    }
+                    if (item.category === 'Glossary') {
+                      return row(key, glyph(<Icons.BookOpen width={18} height={18} className="text-white/40" />),
+                        item.name, `Glossary • ${item.section || ''}`,
+                        () => setView('glossary'));
+                    }
+                    if (item.category === 'Chapter') {
+                      return row(key, glyph(<Icons.Clock width={18} height={18} className="text-white/40" />),
+                        item.name, `${item.chapterNumber ? `Chapter ${item.chapterNumber}` : item.type === 'base' ? 'Base Game' : 'Release'} • ${item.displayDate || ''}`,
+                        () => setView('timeline'));
+                    }
+                    return null;
+                  };
+                  return groups.map((cat) => (
+                    <div key={cat}>
+                      <p className="home-secttl">{GROUP_LABELS[cat] || cat} · {byCat[cat].length}</p>
+                      {byCat[cat].map(renderItem)}
                     </div>
-                  ) : el;
-                  if (['Killer', 'Survivor', 'Perk'].includes(item.category)) {
-                    return wrapBest(<GlassCard key={item.id || Math.random()} item={item} category={item.category} />);
-                  }
-                  if (item.category === 'Cosmetic') {
-                    return wrapBest(
-                      <div key={item.id || item.name} className="p-3 rounded-2xl bg-zinc-900/60 border border-white/10 flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex-shrink-0 overflow-hidden">
-                          <AssetFrame type={item.baseCharacterType} size="fill" imageUrl={item.image} fallbackIcon={<Icons.User width={18} height={18} className="text-white/40" />} />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-white font-bold text-sm">{item.name}</p>
-                          <p className="text-[11px] text-zinc-500 uppercase tracking-wider">{item.isCharacterSwap ? 'Character swaps' : `${item.pieceType || 'Cosmetic'} Cosmetic`}</p>
-                          <p className="text-xs text-zinc-400 mt-1 line-clamp-2">
-                            {item.isCharacterSwap
-                              ? `Character swaps outfit for ${item.baseCharacterName}`
-                              : `${item.collectionName || item.sourceBucket || item.rarity || 'Cosmetic'} ${item.pieceType || 'cosmetic'} for ${item.baseCharacterName}${item.bindSummary ? ` (${item.bindSummary})` : ''}`}
-                          </p>
-                        </div>
-                        <button
-                          onClick={() => openCosmeticProfile(item)}
-                          className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] text-white"
-                        >
-                          Open
-                        </button>
-                      </div>
-                    );
-                  }
-                  if (item.category === 'Build') {
-                    return wrapBest(
-                      <div key={item.id || item.name} className="p-3 rounded-2xl bg-zinc-900/60 border border-white/10">
-                        <div className="flex justify-between items-center mb-1">
-                          <span className="text-[10px] uppercase tracking-widest font-bold text-zinc-500">Build</span>
-                          <span className={`px-2 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider ${item.role === 'Killer' ? 'bg-red-600/30 text-red-200' : 'bg-blue-600/30 text-blue-200'}`}>{item.role}</span>
-                        </div>
-                        <p className="text-white font-bold">{item.name}</p>
-                        <div className="flex flex-wrap gap-1 mt-1">
-                          {(item.perks || []).slice(0, 4).map(p => <span key={p.name} className="px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] text-white">{p.name}</span>)}
-                        </div>
-                        <button onClick={() => { setBuildSeed && setBuildSeed(item); setView('buildLab'); }} className="mt-2 px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] text-white">Open in Build Lab</button>
-                      </div>
-                    );
-                  }
-                  if (item.category === 'Map') {
-                    return wrapBest(
-                      <div key={item.id || item.name} className="p-3 rounded-2xl bg-zinc-900/60 border border-white/10 flex items-center justify-between">
-                        <div>
-                          <p className="text-white font-bold text-sm">{item.name}</p>
-                          <p className="text-[11px] text-zinc-500 uppercase tracking-wider">Map</p>
-                        </div>
-                        <button onClick={() => setView('realms', { search: item.name })} className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] text-white">Open maps</button>
-                      </div>
-                    );
-                  }
-                  if (item.category === 'Challenge') {
-                    return wrapBest(
-                      <div key={item.id} className="p-3 rounded-2xl bg-zinc-900/60 border border-white/10">
-                        <p className="text-white font-bold">{item.name}</p>
-                        <p className="text-[11px] text-zinc-500 uppercase tracking-wider">Challenge</p>
-                        {item.tags?.length > 0 && <div className="flex flex-wrap gap-1 mt-1">{item.tags.map(t => <span key={t} className="px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] text-zinc-300 uppercase tracking-wider">{t}</span>)}</div>}
-                        <button onClick={() => setView('progression', { tab: 'challenges' })} className="mt-2 px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] text-white">Open challenges</button>
-                      </div>
-                    );
-                  }
-                  if (item.category === 'Item') {
-                    return wrapBest(
-                      <div key={item.id || item.name} className="p-3 rounded-2xl bg-zinc-900/60 border border-white/10 flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex-shrink-0 overflow-hidden">
-                          <AssetFrame type="Item" size="fill" imageUrl={item.image} fallbackIcon={<Icons.Package width={16} height={16} className="text-white/40" />} />
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-white font-bold text-sm">{item.name}</p>
-                          <p className="text-[11px] text-zinc-500 uppercase tracking-wider">Item • {item.itemType || 'Unknown'}</p>
-                        </div>
-                        <button onClick={() => setView('items', { search: item.name, mode: 'survivor', targetId: item.id, targetType: 'item' })} className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] text-white">Open</button>
-                      </div>
-                    );
-                  }
-                  if (item.category === 'Addon') {
-                    const isKillerAddon = item.role === 'killer';
-                    const searchQuery = item.name || (isKillerAddon ? (item.killerName || '') : (item.itemType || ''));
-                    const addonMode = isKillerAddon ? 'killer' : 'survivor';
-                    return wrapBest(
-                      <div key={item.id || item.name} className="p-3 rounded-2xl bg-zinc-900/60 border border-white/10 flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex-shrink-0 overflow-hidden">
-                          <AssetFrame type="Addon" size="fill" imageUrl={item.image} fallbackIcon={<Icons.Wrench width={16} height={16} className="text-white/40" />} />
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-white font-bold text-sm">{item.name}</p>
-                          <p className="text-[11px] text-zinc-500 uppercase tracking-wider">
-                            {isKillerAddon ? 'Killer' : 'Survivor'} Addon{item.killerName ? ` • ${item.killerName}` : item.itemType ? ` • ${item.itemType}` : ''}
-                          </p>
-                        </div>
-                        <button onClick={() => setView('items', { search: searchQuery, mode: addonMode, targetId: item.id, targetType: 'addon' })} className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] text-white">Open</button>
-                      </div>
-                    );
-                  }
-                  if (item.category === 'Offering') {
-                    return wrapBest(
-                      <div key={item.id || item.name} className="p-3 rounded-2xl bg-zinc-900/60 border border-white/10 flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex-shrink-0 overflow-hidden">
-                          <AssetFrame type="Offering" size="fill" imageUrl={item.image} fallbackIcon={<Icons.Flame width={16} height={16} className="text-white/40" />} />
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-white font-bold text-sm">{item.name}</p>
-                          <p className="text-[11px] text-zinc-500 uppercase tracking-wider">Offering{item.type ? ` • ${item.type}` : ''}</p>
-                        </div>
-                        <button onClick={() => setView('offerings', { search: item.name, targetId: item.id, targetType: 'offering' })} className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] text-white">Open</button>
-                      </div>
-                    );
-                  }
-                  if (item.category === 'GameIcon') {
-                    const categoryColors = { health: '#22c55e', buff: '#38bdf8', debuff: '#ef4444', killer: '#a855f7', activity: '#fbbf24' };
-                    const color = categoryColors[item.category] || '#a1a1aa';
-                    return wrapBest(
-                      <div key={item.id || item.name} className="p-3 rounded-2xl bg-zinc-900/60 border border-white/10 flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex-shrink-0 overflow-hidden flex items-center justify-center">
-                          <AssetFrame
-                            type="GameIcon"
-                            size="fill"
-                            imageUrl={item.icon}
-                            fallbackIcon={<Icons.AlertCircle width={16} height={16} className="text-white/40" />}
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-white font-bold text-sm">{item.name}</p>
-                          <p className="text-[11px] text-zinc-500 uppercase tracking-wider">Game Icon • <span style={{ color }}>{item.category}</span></p>
-                        </div>
-                        <button onClick={() => setView('gameIcons')} className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] text-white">Open</button>
-                      </div>
-                    );
-                  }
-                  if (item.category === 'Glossary') {
-                    return wrapBest(
-                      <div key={item.term || item.name} className="p-3 rounded-2xl bg-zinc-900/60 border border-white/10">
-                        <div className="flex items-start justify-between gap-2">
-                          <div className="flex-1">
-                            <p className="text-white font-bold text-sm">{item.name}</p>
-                            <p className="text-[11px] text-zinc-500 uppercase tracking-wider mb-1">Glossary • {item.section}</p>
-                            <p className="text-xs text-zinc-400 line-clamp-2">{item.def}</p>
-                          </div>
-                          <button onClick={() => setView('glossary')} className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] text-white flex-shrink-0">Open</button>
-                        </div>
-                      </div>
-                    );
-                  }
-                  if (item.category === 'Chapter') {
-                    return wrapBest(
-                      <div key={item.id || item.name} className="p-3 rounded-2xl bg-zinc-900/60 border border-white/10 flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex-shrink-0 flex items-center justify-center">
-                          <Icons.Clock width={18} height={18} className="text-zinc-400" />
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-white font-bold text-sm">{item.name}</p>
-                          <p className="text-[11px] text-zinc-500 uppercase tracking-wider">
-                            {item.chapterNumber ? `Chapter ${item.chapterNumber}` : item.type === 'base' ? 'Base Game' : 'Release'} • {item.displayDate}
-                          </p>
-                        </div>
-                        <button onClick={() => setView('timeline')} className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] text-white">Open Timeline</button>
-                      </div>
-                    );
-                  }
-                  return null;
-                }) : <div className="text-center mt-12 text-zinc-400"><p className="font-medium text-sm">No results found.</p></div>}
+                  ));
+                })() : <div className="text-center mt-12 text-zinc-400"><p className="font-medium text-sm">No results found.</p></div>}
               </div>
             ) : (
-              <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 grid-flow-dense auto-rows-fr gap-4">
+              <div>
                 {(() => {
-                  const tileOrder = customHomeTiles.length > 0 ? customHomeTiles : ALL_HOME_TILES.map(t => t.id);
-                  const orderedTiles = tileOrder
-                    .map(id => ALL_HOME_TILES.find(t => t.id === id))
-                    .filter(Boolean);
-                  return orderedTiles.map(tile => {
-                    if (tile.id === 'import') {
-                      return (
-                        <button
-                          key={tile.id}
-                          onClick={() => setShowImportModal(true)}
-                          className="group p-4 sm:p-5 rounded-2xl glass-panel border border-white/5 flex flex-col items-center sm:items-start justify-start text-center sm:text-left gap-3 transition-all hover:-translate-y-1 min-h-[120px]"
-                          style={{ boxShadow: 'none' }}
-                        >
-                          <div className="flex items-center gap-3 w-full">
-                            <div className="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform bg-white/5 border border-white/10 shrink-0" style={{ color: theme.accent }}>
-                              <Icons.Import width={24} height={24} />
-                            </div>
-                            <div className="text-left hidden sm:block">
-                              <p className="text-zinc-100 text-sm font-semibold">{tile.label}</p>
-                              <p className="text-[11px] text-zinc-500 mt-1 leading-snug">{tile.desc}</p>
-                            </div>
-                          </div>
-                          <span className="text-zinc-300 group-hover:text-white text-[11px] font-bold uppercase tracking-[0.24em] transition-colors sm:hidden">{tile.label}</span>
-                        </button>
-                      );
-                    }
-                    const TileIcon = Icons[tile.icon] || Icons.Zap;
-                    const span = (tile.id === 'perks' || tile.id === 'buildLab') ? 'md:col-span-2' : '';
-                    return (
-                      <button
-                        key={tile.id}
-                        onClick={() => setView(tile.id)}
-                        className={`group p-4 sm:p-5 rounded-2xl glass-panel border border-white/5 flex flex-col items-center sm:items-start justify-start text-center sm:text-left gap-3 transition-all hover:-translate-y-1 min-h-[120px] ${span}`}
-                        style={{ boxShadow: 'none' }}
-                      >
-                        <div className="flex items-center gap-3 w-full">
-                          <div className="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform bg-white/5 border border-white/10 shrink-0" style={{ color: theme.accent }}>
-                            <TileIcon width={24} height={24} />
-                          </div>
-                          <div className="text-left hidden sm:block">
-                            <p className="text-zinc-100 text-sm font-semibold">{tile.label}</p>
-                            <p className="text-[11px] text-zinc-500 mt-1 leading-snug">{tile.desc}</p>
-                          </div>
-                        </div>
-                        <span className="text-zinc-300 group-hover:text-white text-[11px] font-bold uppercase tracking-[0.24em] transition-colors sm:hidden">{tile.label}</span>
+                  const dateKey = getWorldleDateKey();
+                  const featType = ['killer', 'survivor', 'perk'][hashString(dateKey) % 3];
+                  const featPool = featType === 'killer' ? killers : featType === 'survivor' ? survivors : perks;
+                  const feat = pickDeterministicEntry(featPool || [], `featured:${dateKey}:${featType}`);
+                  if (!feat) return null;
+                  const isPerk = featType === 'perk';
+                  const snip = isPerk
+                    ? stripHtml(feat.descriptionPost95 || feat.description || '')
+                    : featType === 'killer'
+                      ? ((typeof KILLER_GUIDES !== 'undefined' && KILLER_GUIDES[feat.name]?.tldr) || '')
+                      : (feat.lore ? feat.lore.split('\n\n')[0] : '');
+                  const openFeat = () => { if (isPerk) { onPerkTap && onPerkTap(feat); } else { onOpenCharacterProfile && onOpenCharacterProfile(feat); } };
+                  return (
+                    <div>
+                      <p className="home-secttl">Featured today</p>
+                      <button type="button" className="home-feat" onClick={openFeat}>
+                        <span className="thumb">
+                          <AssetFrame type={isPerk ? 'Perk' : featType === 'killer' ? 'Killer' : 'Survivor'} size="fill" imageUrl={feat.image} fallbackIcon={<Icons.Zap width={24} height={24} className="text-zinc-500" />} />
+                        </span>
+                        <span style={{ minWidth: 0 }}>
+                          <span className="kicker">{featType === 'killer' ? 'Killer of the day' : featType === 'survivor' ? 'Survivor of the day' : 'Perk of the day'}</span>
+                          <h3>{feat.name}</h3>
+                          {snip ? (<span className="snip">{snip}</span>) : null}
+                          <span className="go">Read article →</span>
+                        </span>
                       </button>
-                    );
-                  });
+                    </div>
+                  );
                 })()}
+                <p className="home-secttl">Browse the wiki</p>
+                <div className="home-linklist">
+                  {[
+                    { id: 'killers', title: 'Killers', sub: 'Powers, stats, guides', count: (killers || []).length },
+                    { id: 'survivors', title: 'Survivors', sub: 'Teachables and lore', count: (survivors || []).length },
+                    { id: 'perks', title: 'Perks', sub: 'Effects and synergies', count: (perks || []).length },
+                    { id: 'items', title: 'Items & Add-ons', sub: 'Tools of the trial', count: (items || []).length + (addons || []).length },
+                    { id: 'offerings', title: 'Offerings', sub: 'Bloodpoint rituals', count: (offerings || []).length },
+                    { id: 'cosmetics', title: 'Cosmetics', sub: 'Outfits and charms', count: searchableCosmetics.length },
+                    { id: 'realms', title: 'Realms & Maps', sub: 'Trial grounds', count: (maps || []).length },
+                    { id: 'timeline', title: 'Lore Timeline', sub: 'Chapters since 2016', count: (typeof TIMELINE_DATA !== 'undefined' && TIMELINE_DATA.releases ? TIMELINE_DATA.releases.length : null) },
+                    { id: 'glossary', title: 'Glossary', sub: 'Calls, terms, tech', count: (typeof GLOSSARY !== 'undefined' && Array.isArray(GLOSSARY) ? GLOSSARY.reduce((n, s) => n + (s.items || []).length, 0) : null) },
+                  ].map(row => (
+                    <button key={row.id} type="button" className="home-linkrow" onClick={() => setView(row.id)}>
+                      <span className="lbl">{row.title}<span className="sub">{row.sub}</span></span>
+                      {row.count !== null && row.count !== undefined ? (<span className="count">{row.count}</span>) : null}
+                      <span className="chev">›</span>
+                    </button>
+                  ))}
+                </div>
+                <p className="home-secttl">Tools</p>
+                <div className="home-linklist">
+                  {[
+                    { id: 'buildLab', title: 'Build Lab', sub: 'Craft and save loadouts' },
+                    { id: 'roulette', title: 'Chaos Shuffle', sub: 'Randomize perk combos' },
+                    { id: 'worldle', title: 'Worldle', sub: 'Daily guessing game' },
+                    { id: 'matches', title: 'Match Log', sub: 'Track matches & notes' },
+                    { id: 'progression', title: 'Progression', sub: 'Achievements & analytics' },
+                    { id: 'communityContent', title: 'Community', sub: 'Builds, tierlists, guides' },
+                  ].map(row => (
+                    <button key={row.id} type="button" className="home-linkrow" onClick={() => setView(row.id)}>
+                      <span className="lbl">{row.title}<span className="sub">{row.sub}</span></span>
+                      <span className="chev">›</span>
+                    </button>
+                  ))}
+                </div>
+                <p className="home-secttl">App</p>
+                <div className="home-linklist">
+                  <button type="button" className="home-linkrow" onClick={() => setView('favorites')}>
+                    <span className="lbl">Saved<span className="sub">All your bookmarked content</span></span>
+                    <span className="chev">›</span>
+                  </button>
+                  <button type="button" className="home-linkrow" onClick={() => setShowImportModal(true)}>
+                    <span className="lbl">Import Build<span className="sub">Paste a shared build text</span></span>
+                    <span className="chev">›</span>
+                  </button>
+                  <button type="button" className="home-linkrow" onClick={() => setView('settings')}>
+                    <span className="lbl">Settings<span className="sub">Theme, data, backup</span></span>
+                    <span className="chev">›</span>
+                  </button>
+                </div>
               </div>
             )}
           </div>
@@ -10664,83 +10630,6 @@
             </div>
             { }
             <div className="p-4 rounded-3xl bg-zinc-900/40 border border-white/5 space-y-4">
-              <h3 className="text-lg font-bold text-white">Customization</h3>
-              { }
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <p className="text-[11px] uppercase text-zinc-500 font-bold">Home Screen Tiles</p>
-                  <button
-                    onClick={() => updateSetting('homeTiles', DEFAULT_SETTINGS.homeTiles)}
-                    className="text-[10px] uppercase tracking-wider text-zinc-500 hover:text-white transition-colors"
-                  >
-                    Reset
-                  </button>
-                </div>
-                <p className="text-xs text-zinc-500 mb-2">Toggle visibility. Use arrows to reorder.</p>
-                <div className="space-y-1">
-                  {(() => {
-                    const currentTiles = settings.homeTiles || DEFAULT_SETTINGS.homeTiles;
-                    const allTileIds = ALL_HOME_TILES.map(t => t.id);
-                    const orderedList = [...currentTiles, ...allTileIds.filter(id => !currentTiles.includes(id))];
-                    return orderedList.map((tileId, idx) => {
-                      const tile = ALL_HOME_TILES.find(t => t.id === tileId);
-                      if (!tile) return null;
-                      const isVisible = currentTiles.includes(tileId);
-                      const posInVisible = currentTiles.indexOf(tileId);
-                      const moveUp = () => {
-                        if (posInVisible <= 0) return;
-                        const newOrder = [...currentTiles];
-                        [newOrder[posInVisible - 1], newOrder[posInVisible]] = [newOrder[posInVisible], newOrder[posInVisible - 1]];
-                        updateSetting('homeTiles', newOrder);
-                      };
-                      const moveDown = () => {
-                        if (posInVisible < 0 || posInVisible >= currentTiles.length - 1) return;
-                        const newOrder = [...currentTiles];
-                        [newOrder[posInVisible], newOrder[posInVisible + 1]] = [newOrder[posInVisible + 1], newOrder[posInVisible]];
-                        updateSetting('homeTiles', newOrder);
-                      };
-                      const toggleVisibility = () => {
-                        if (isVisible) {
-                          updateSetting('homeTiles', currentTiles.filter(id => id !== tileId));
-                        } else {
-                          updateSetting('homeTiles', [...currentTiles, tileId]);
-                        }
-                      };
-                      return (
-                        <div key={tileId} className={`flex items-center gap-2 p-2 rounded-xl ${isVisible ? 'bg-white/5 border border-white/10' : 'bg-transparent border border-transparent opacity-50'}`}>
-                          <button
-                            onClick={toggleVisibility}
-                            className={`w-6 h-6 rounded-lg flex items-center justify-center text-xs font-bold ${isVisible ? 'bg-green-600/30 text-green-300' : 'bg-zinc-700/50 text-zinc-500'}`}
-                          >
-                            {isVisible ? '✓' : '–'}
-                          </button>
-                          <span className="flex-1 text-sm text-white">{tile.label}</span>
-                          {isVisible && (
-                            <div className="flex gap-1">
-                              <button
-                                onClick={moveUp}
-                                disabled={posInVisible <= 0}
-                                className="w-6 h-6 rounded-lg bg-white/5 text-zinc-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center text-xs"
-                              >
-                                ↑
-                              </button>
-                              <button
-                                onClick={moveDown}
-                                disabled={posInVisible >= currentTiles.length - 1}
-                                className="w-6 h-6 rounded-lg bg-white/5 text-zinc-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center text-xs"
-                              >
-                                ↓
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    });
-                  })()}
-                </div>
-              </div>
-            </div>
-            <div className="p-4 rounded-3xl bg-zinc-900/40 border border-white/5 space-y-4">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <h3 className="text-lg font-bold text-white">Data Backup</h3>
@@ -12858,7 +12747,7 @@
       };
       const renderContent = () => {
         switch (currentView) {
-          case 'home': return <HomeView setView={setView} data={{ killers: visibleKillers, survivors: visibleSurvivors, perks: visiblePerks }} theme={theme} builds={builds} maps={maps} challenges={progression?.challenges || []} setBuildSeed={setBuildSeed} perks={visiblePerks} customHomeTiles={settings.homeTiles || DEFAULT_SETTINGS.homeTiles} items={items} addons={visibleAddons} offerings={offerings} cosmeticsCatalog={cosmeticsCatalogForDisplay} allCharacters={[...killers, ...survivors]} onOpenCharacterProfile={setProfileCharacter} />;
+          case 'home': return <HomeView setView={setView} data={{ killers: visibleKillers, survivors: visibleSurvivors, perks: visiblePerks }} theme={theme} builds={builds} maps={maps} challenges={progression?.challenges || []} setBuildSeed={setBuildSeed} perks={visiblePerks} items={items} addons={visibleAddons} offerings={offerings} cosmeticsCatalog={cosmeticsCatalogForDisplay} allCharacters={[...killers, ...survivors]} onOpenCharacterProfile={setProfileCharacter} onPerkTap={(perk) => setSelectedPerk(perk)} />;
           case 'progression':
             return (
               <ProgressionView
@@ -12919,7 +12808,7 @@
           case 'timeline': return <TimelineView onBack={() => setView('home')} setView={setView} killers={killers} survivors={survivors} theme={theme} />;
           case 'settings': return <SettingsView onBack={() => setView('home')} settings={settings} setSettings={setSettings} backupSummary={appBackupSummary} onCopyBackup={copyAppBackup} onDownloadBackup={downloadAppBackup} onRestoreBackup={restoreAppBackup} />;
           case 'favorites': return <FavoritesView onBack={() => setView('home')} settings={settings} killers={killers} survivors={survivors} perks={perks} items={items} addons={addons} offerings={offerings} toggleFavorite={toggleFavorite} setView={setView} onPerkTap={setSelectedPerk} />;
-          default: return <HomeView setView={setView} data={{ killers: visibleKillers, survivors: visibleSurvivors, perks: visiblePerks }} theme={theme} builds={builds} maps={maps} challenges={progression?.challenges || []} setBuildSeed={setBuildSeed} perks={visiblePerks} customHomeTiles={settings.homeTiles || DEFAULT_SETTINGS.homeTiles} items={items} addons={visibleAddons} offerings={offerings} cosmeticsCatalog={cosmeticsCatalogForDisplay} allCharacters={[...killers, ...survivors]} onOpenCharacterProfile={setProfileCharacter} />;
+          default: return <HomeView setView={setView} data={{ killers: visibleKillers, survivors: visibleSurvivors, perks: visiblePerks }} theme={theme} builds={builds} maps={maps} challenges={progression?.challenges || []} setBuildSeed={setBuildSeed} perks={visiblePerks} items={items} addons={visibleAddons} offerings={offerings} cosmeticsCatalog={cosmeticsCatalogForDisplay} allCharacters={[...killers, ...survivors]} onOpenCharacterProfile={setProfileCharacter} onPerkTap={(perk) => setSelectedPerk(perk)} />;
         }
       };
       return (
