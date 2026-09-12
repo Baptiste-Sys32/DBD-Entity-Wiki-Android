@@ -859,6 +859,7 @@
     .char-segments { display: flex; border: 1px solid var(--stroke); margin: 14px 0; }
     .char-segments button { flex: 1; background: none; border: none; color: var(--muted); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; min-height: 44px; cursor: pointer; }
     .char-segments button.on { background: var(--ghost-surface); color: var(--text); box-shadow: inset 0 -2px 0 var(--link); }
+    .char-segments.compact button { font-size: 11px; letter-spacing: 0.04em; padding: 0 2px; }
     .char-favchip { background: none; border: 1px solid var(--stroke); color: var(--muted); font-size: 13px; font-weight: 600; padding: 8px 12px; min-height: 44px; cursor: pointer; }
     .char-favchip[aria-pressed="true"] { border-color: var(--link); color: var(--link); }
     .char-row { border-bottom: 1px solid var(--stroke); }
@@ -907,7 +908,23 @@
     .addon-row .eff { font-size: 12.5px; color: var(--muted); line-height: 1.55; margin: 2px 0 0; }
     .addon-row .star { margin-left: auto; background: none; border: none; color: var(--muted); font-size: 15px; cursor: pointer; min-width: 44px; min-height: 44px; flex-shrink: 0; align-self: flex-start; }
     .addon-row .star.lit { color: #fbbf24; }
-    .addon-row.target-hi, .char-row.target-hi { background: rgba(34, 211, 238, 0.06); box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.12); }
+    .addon-row.target-hi, .char-row.target-hi, .off-row.target-hi { background: rgba(34, 211, 238, 0.06); box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.12); }
+
+    /* ===== Offerings (step F): role segments + compact rows ===== */
+    .off-row { border-bottom: 1px solid var(--stroke); }
+    .off-head { display: flex; align-items: center; gap: 12px; width: 100%; background: none; border: none; min-height: 60px; padding: 8px 4px; cursor: pointer; text-align: left; }
+    .off-head .thumb { width: 40px; height: 40px; flex: 0 0 40px; background: var(--ghost-surface); border: 1px solid var(--stroke); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .off-head .nm { font-size: 14.5px; font-weight: 600; color: var(--link); }
+    .off-head:hover .nm { text-decoration: underline; text-underline-offset: 2px; }
+    .off-head .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+    .off-head .tok { margin-left: auto; font-size: 12px; color: var(--muted); white-space: nowrap; }
+    .off-head .chev { color: var(--link); font-size: 14px; flex-shrink: 0; }
+    .off-detail { padding: 2px 4px 14px 56px; font-size: 13.5px; line-height: 1.65; }
+    .off-detail .eff { margin: 0 0 8px; color: var(--text); }
+    .off-detail .meta { color: var(--muted); font-size: 12.5px; margin: 0 0 4px; }
+    .off-detail .rowbtns { display: flex; gap: 8px; margin-top: 8px; }
+    .off-detail .rowbtns button { background: none; border: 1px solid var(--stroke); color: var(--text); font-size: 12.5px; font-weight: 600; padding: 8px 12px; min-height: 44px; cursor: pointer; }
+    .off-detail .rowbtns button.lit { border-color: var(--link); color: var(--link); }
   </style>
 </head>
 
@@ -9382,6 +9399,22 @@
         if (!role) return 'Universal';
         return role.charAt(0).toUpperCase() + role.slice(1);
       };
+      const formatType = (type) => {
+        const t = String(type || '').toLowerCase();
+        if (t === 'points') return 'Bloodpoints';
+        if (t === 'world') return 'Realms';
+        if (!t) return '';
+        return t.charAt(0).toUpperCase() + t.slice(1);
+      };
+      const roleKey = (o) => (o.role || 'universal').toLowerCase();
+      const roleCounts = useMemo(() => {
+        const counts = { universal: 0, killer: 0, survivor: 0 };
+        (offerings || []).filter(o => !o.retired).forEach(o => {
+          const k = roleKey(o);
+          if (counts[k] !== undefined) counts[k] += 1;
+        });
+        return counts;
+      }, [offerings]);
       const active = useMemo(() => {
         return (offerings || []).filter(o => !o.retired);
       }, [offerings]);
@@ -9421,34 +9454,42 @@
       return (
         <div className="flex flex-col h-full pt-12 pb-32 px-6 overflow-y-auto custom-scrollbar">
           <Header title="Offerings" subtitle={active.length + " offerings"} onBack={onBack} infoTips={VIEW_TIPS.offerings} />
+          <div className="max-w-3xl mx-auto w-full">
+            <div className="char-segments compact" role="tablist" aria-label="Offering role">
+              {['All', 'Universal', 'Killer', 'Survivor'].map(opt => (
+                <button
+                  key={opt} type="button" role="tab"
+                  aria-selected={filterRole === opt}
+                  className={filterRole === opt ? 'on' : ''}
+                  onClick={() => setFilterRole(opt)}
+                >{opt}{opt === 'All' ? ` · ${active.length}` : ` · ${roleCounts[opt.toLowerCase()] || 0}`}</button>
+              ))}
+            </div>
+          </div>
           <div className="sticky top-0 z-20 -mx-6 px-6 pb-4 pointer-events-none">
             <div className="relative max-w-3xl mx-auto">
-              <div className="relative flex items-center bg-zinc-800/60 backdrop-blur-xl border border-white/10 rounded-3xl p-2 shadow-2xl pointer-events-auto">
-                <div className="pl-4 text-zinc-400"><Icons.Search width={18} height={18} /></div>
-                <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search..." className="w-full bg-transparent text-white p-3 text-sm font-medium placeholder-zinc-600 focus:outline-none" />
+              <div className="cx-searchbox pointer-events-auto">
+                <div className="text-zinc-400"><Icons.Search width={18} height={18} /></div>
+                <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Filter offerings..." aria-label="Filter offerings" />
                 {search && (
-                  <button onClick={() => setSearch('')} className="p-2 mr-1 rounded-xl bg-white/5 text-zinc-300 hover:text-white hover:bg-white/10 transition-colors">
-                    <Icons.X width={18} height={18} />
-                  </button>
+                  <button onClick={() => setSearch('')} aria-label="Clear search" className="p-2 mr-1 text-zinc-300 hover:text-white transition-colors" style={{ width: 44, height: 44 }}>✕</button>
                 )}
               </div>
             </div>
           </div>
-          <div className="max-w-3xl mx-auto flex flex-wrap justify-center gap-2 mb-4">
-            {['All', 'Killer', 'Survivor', 'Universal'].map(opt => (
-              <GlassButton key={opt} active={filterRole === opt} onClick={() => setFilterRole(opt)} className="text-xs py-2 px-3">{opt}</GlassButton>
-            ))}
-            <GlassButton active={filterSecret} onClick={() => setFilterSecret(!filterSecret)} className="text-xs py-2 px-3">Secret</GlassButton>
-            <select value={sortBy} onChange={e => setSortBy(e.target.value)} className="themed-select compact text-sm ml-2">
+          <div className="max-w-3xl mx-auto flex flex-wrap items-center gap-2 mb-4 px-6">
+            <button type="button" onClick={() => setFilterSecret(v => !v)} aria-pressed={filterSecret} className="char-favchip">Shroud only</button>
+            <select value={sortBy} onChange={e => setSortBy(e.target.value)} className="themed-select compact text-sm ml-2" aria-label="Sort offerings">
               <option value="rarity">Sort by Rarity</option>
               <option value="name">Sort A-Z</option>
             </select>
             <span className="text-[11px] text-zinc-500 uppercase tracking-wider self-center ml-2">{filtered.length} offerings</span>
           </div>
-          <div className="pb-32 space-y-3 -mx-6 px-6">
+          <div className="pb-32 -mx-6 px-6">
             {filtered.length === 0 && <div className="text-center text-zinc-500 mt-12">No offerings found.</div>}
             {filtered.map(offering => {
               const isExpanded = expandedId === offering.id;
+              const isFav = favoriteOfferings.includes(offering.id);
               return (
                 <div
                   key={offering.id}
@@ -9457,30 +9498,34 @@
                     if (node) offeringRefs.current[offering.id] = node;
                     else delete offeringRefs.current[offering.id];
                   }}
-                  className={`p-4 rounded-3xl bg-zinc-900/40 border backdrop-blur-md cursor-pointer ${initialTargetId === offering.id ? 'border-cyan-400/35 shadow-[0_0_0_1px_rgba(34,211,238,0.12)]' : 'border-white/5'}`}
-                  onClick={() => setExpandedId(isExpanded ? null : offering.id)}
+                  className={`off-row ${initialTargetId === offering.id ? 'target-hi' : ''}`}
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 overflow-hidden">
-                      <AssetFrame type="Offering" imageUrl={offering.image} fallbackIcon={<Icons.Flame width={24} height={24} className="text-white/40" />} />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-1">
-                        <h3 className="text-lg font-bold text-white">{offering.name}</h3>
-                        <div className="flex items-center gap-2">
-                          {onToggleFavoriteOffering && (
-                            <button onClick={(e) => { e.stopPropagation(); onToggleFavoriteOffering(offering.id); }} className={`p-1.5 rounded-full transition-colors ${favoriteOfferings.includes(offering.id) ? 'bg-yellow-500/20' : 'bg-white/10 hover:bg-white/20'}`}>
-                              <Icons.Star width={16} height={16} className={favoriteOfferings.includes(offering.id) ? 'text-yellow-400 fill-yellow-400' : 'text-zinc-500'} />
-                            </button>
-                          )}
-                          <span className="text-xs font-bold uppercase tracking-wider" style={{ color: getRoleColor(offering.role) }}>{formatRole(offering.role)}</span>
-                        </div>
-                      </div>
-                      <span className="text-[10px] px-2 py-1 rounded-md bg-white/5 font-bold" style={{ color: getRarityColor(offering.rarity) }}>{formatRarity(offering.rarity)}</span>
-                    </div>
+                  <div className="char-rowtop">
+                    <button type="button" className="off-head" aria-expanded={isExpanded} onClick={() => setExpandedId(isExpanded ? null : offering.id)}>
+                      <span className="thumb">
+                        <AssetFrame type="Offering" size="fill" imageUrl={offering.image} fallbackIcon={<Icons.Flame width={18} height={18} className="text-white/40" />} />
+                      </span>
+                      <span style={{ minWidth: 0 }}>
+                        <span className="nm">{offering.name}</span>
+                        <span className="sub">{formatType(offering.type)}</span>
+                      </span>
+                      <span className="tok">{formatRarity(offering.rarity)}</span>
+                      <span className="chev" aria-hidden="true">{isExpanded ? '▾' : '▸'}</span>
+                    </button>
+                    {onToggleFavoriteOffering && (
+                      <button type="button" aria-label={isFav ? 'Remove favorite' : 'Add favorite'} className={`char-fav ${isFav ? 'lit' : ''}`} onClick={() => onToggleFavoriteOffering(offering.id)}>★</button>
+                    )}
                   </div>
-                  {offering.description && (
-                    <p className="text-zinc-400 text-xs mt-3 leading-relaxed">{offering.description}</p>
+                  {isExpanded && (
+                    <div className="off-detail">
+                      {offering.description && (<p className="eff">{offering.description}</p>)}
+                      <p className="meta">{formatRole(offering.role)}{offering.type ? ` · ${formatType(offering.type)}` : ''}{offering.secret ? ' · Shroud (Secret)' : ''}</p>
+                      {onToggleFavoriteOffering && (
+                        <div className="rowbtns">
+                          <button type="button" onClick={() => onToggleFavoriteOffering(offering.id)} aria-pressed={isFav} className={isFav ? 'lit' : ''}>{isFav ? '★ Favorited' : '★ Favorite'}</button>
+                        </div>
+                      )}
+                    </div>
                   )}
                 </div>
               );
