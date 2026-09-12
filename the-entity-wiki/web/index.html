@@ -980,6 +980,44 @@
     .g-az { flex: 0 0 26px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
     .g-az button { background: none; border: none; color: var(--link); font-size: 9.5px; font-weight: 700; cursor: pointer; min-height: 24px; }
     .g-az button:disabled { color: var(--muted); opacity: 0.35; cursor: default; }
+
+    /* ===== Chaos Shuffle (step I): toggle rows, spin button, result lines ===== */
+    .shuf-toggle { display: flex; align-items: center; gap: 12px; width: 100%; background: none; border: none; border-bottom: 1px solid var(--stroke); min-height: 52px; padding: 6px 4px; cursor: pointer; color: var(--text); font-size: 14.5px; text-align: left; }
+    .shuf-toggle .box { width: 22px; height: 22px; flex: 0 0 22px; border: 1px solid var(--stroke); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--link); }
+    .shuf-toggle small { display: block; font-size: 12px; color: var(--muted); }
+    .shuf-togglebtn { flex: 1; min-width: 0; background: none; border: none; color: var(--text); font-size: 14.5px; text-align: left; min-height: 44px; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 0; font-family: inherit; }
+    .shuf-spin { display: block; width: 100%; background: var(--text); color: var(--bg-01); border: none; font-size: 15px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; min-height: 52px; margin-top: 16px; cursor: pointer; }
+    .shuf-spin:disabled { opacity: 0.4; cursor: not-allowed; }
+    .shuf-res { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--stroke); min-height: 52px; padding: 6px 4px; font-size: 14px; }
+    .shuf-res .thumb { width: 34px; height: 34px; flex: 0 0 34px; border: 1px solid var(--stroke); background: var(--ghost-surface); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .shuf-res .thumb.diamond { transform: rotate(45deg); margin: 0 4px; width: 28px; height: 28px; flex-basis: 28px; }
+    .shuf-res .thumb.diamond > span { transform: rotate(-45deg); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    .shuf-res .nm { color: var(--link); font-weight: 600; }
+    .shuf-res .tag { font-size: 11.5px; color: var(--muted); display: block; }
+    .shuf-subbtn { background: none; border: 1px solid var(--stroke); color: var(--text); font-size: 12.5px; font-weight: 600; padding: 8px 12px; min-height: 44px; cursor: pointer; }
+    .shuf-gridbtn { position: relative; aspect-ratio: 1; border: 1px solid var(--stroke); overflow: hidden; background: var(--glass-bg); cursor: pointer; padding: 0; }
+    .shuf-gridbtn.off { opacity: 0.35; filter: grayscale(1); }
+
+    /* ===== Shared tool chrome (steps I-L): slot rows, fields, chips ===== */
+    .slotrow { display: flex; align-items: center; gap: 10px; border: 1px solid var(--stroke); background: var(--glass-bg); min-height: 56px; padding: 6px 12px; margin-top: 8px; font-size: 14px; cursor: pointer; width: 100%; color: var(--text); text-align: left; font-family: inherit; }
+    button.slotrow { cursor: pointer; }
+    .slotrow .n { font-size: 11px; color: var(--muted); font-weight: 700; flex: 0 0 18px; }
+    .slotrow .nm { color: var(--link); font-weight: 600; }
+    .slotrow .empty { color: var(--muted); }
+    .slotrow .chev { margin-left: auto; color: var(--muted); flex-shrink: 0; }
+    .field { width: 100%; background: var(--glass-bg); border: 1px solid var(--stroke); color: var(--text); font-size: 14px; min-height: 48px; padding: 0 12px; margin-top: 8px; border-radius: 0; font-family: inherit; }
+    select.field { cursor: pointer; }
+    textarea.field { padding: 10px 12px; min-height: 76px; resize: vertical; }
+    .field::placeholder { color: var(--muted); }
+    .chipstrip { display: flex; gap: 8px; overflow-x: auto; padding: 10px 2px; scrollbar-width: none; }
+    .chipstrip::-webkit-scrollbar { display: none; }
+    .chipstrip > button { flex: 0 0 auto; background: none; border: 1px solid var(--stroke); color: var(--muted); font-size: 12.5px; font-weight: 600; padding: 8px 12px; min-height: 44px; cursor: pointer; font-family: inherit; }
+    .chipstrip > button.on { border-color: var(--link); color: var(--link); }
+    .tool-card { border: 1px solid var(--stroke); background: var(--glass-bg); padding: 12px 14px; margin-top: 10px; }
+    .tool-card h4 { margin: 0 0 4px; font-size: 15px; font-weight: 700; color: var(--text); }
+    .tool-card p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .tool-card .rowbtns { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+    .tool-card .rowbtns button { background: none; border: 1px solid var(--stroke); color: var(--text); font-size: 12.5px; font-weight: 600; padding: 8px 12px; min-height: 44px; cursor: pointer; font-family: inherit; }
   </style>
 </head>
 
@@ -4472,81 +4510,70 @@
         };
       }, [isSpinning]);
       const StandardView = () => (
-        <div className="space-y-6">
+        <div>
           {/* Character Result */}
           {result.character && (
-            <div className="p-4 rounded-2xl bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border border-white/10 backdrop-blur-md">
-              <div className="flex items-center gap-4">
-                <div className={`w-1 h-16 rounded-full ${role === 'Killer' ? 'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]' : 'bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]'}`} />
-                <AssetFrame type={role} imageUrl={result.character.image} />
-                <div className="flex-1">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-1">{role}</p>
-                  <h3 className="text-xl font-bold text-white">{result.character.name}</h3>
-                  {result.character.realName && result.character.realName !== result.character.name && (
-                    <p className="text-zinc-400 text-sm mt-1">{result.character.realName}</p>
-                  )}
-                </div>
-              </div>
+            <div className="shuf-res">
+              <span className="thumb" style={{ width: 40, height: 40, flexBasis: 40 }}>
+                <AssetFrame type={role} size="fill" imageUrl={result.character.image} fallbackIcon={<Icons.User width={18} height={18} className="text-zinc-500" />} />
+              </span>
+              <span style={{ minWidth: 0 }}>
+                <span className="nm">{result.character.name}</span>
+                <span className="tag">{role}{result.character.realName && result.character.realName !== result.character.name ? ` · ${result.character.realName}` : ''}</span>
+              </span>
             </div>
           )}
-          {/* Perks Grid */}
-          <div className="grid grid-cols-2 gap-4">
-            {result.perks.map((perk, index) => (
-              <div key={index} className={`flex flex-col items-center transition-all duration-500 ${isSpinning ? 'scale-90 opacity-50 blur-sm' : 'scale-100 opacity-100'}`}>
-                <AssetFrame type="Perk" size="large" imageUrl={perk?.image} fallbackIcon={<Icons.BookOpen width={32} height={32} className={perk ? 'text-white' : 'text-zinc-700'} />} />
-                <div className="mt-3 text-center h-14 w-28">
-                  {perk ? (
-                    <>
-                      <p className="text-white text-[11px] font-bold uppercase tracking-wide line-clamp-2 leading-tight">{perk.name}</p>
-                      <p className="text-zinc-500 text-[9px] mt-1 truncate">{perk.owner}</p>
-                    </>
-                  ) : (
-                    <p className="text-zinc-700 text-xs font-bold uppercase tracking-widest">Empty</p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* Perks */}
+          {result.perks.map((perk, index) => (
+            <div key={index} className="shuf-res">
+              <span className="thumb diamond"><span>
+                <AssetFrame type="Perk" size="fill" imageUrl={perk?.image} fallbackIcon={<Icons.BookOpen width={14} height={14} className={perk ? 'text-white' : 'text-zinc-700'} />} />
+              </span></span>
+              <span style={{ minWidth: 0 }}>
+                {perk ? (<span><span className="nm">{perk.name}</span><span className="tag">{role} perk{perk.owner ? ` · ${perk.owner}` : ''}</span></span>)
+                  : (<span className="tag">Empty perk slot</span>)}
+              </span>
+            </div>
+          ))}
           {/* Item (Survivor Only) */}
           {role === 'Survivor' && result.item && (
-            <div className="p-4 rounded-2xl bg-zinc-900/60 border border-white/10">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-2">Item</p>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
-                  <AssetFrame
-                    type="Item"
-                    size="fill"
-                    imageUrl={result.item.image}
-                    fallbackIcon={<Icons.Package width={20} height={20} className="text-white/60" />}
-                  />
-                </div>
-                <div>
-                  <p className="text-white font-bold">{result.item.name}</p>
-                  <p className="text-xs text-zinc-500">{result.item.itemType}</p>
-                </div>
-              </div>
+            <div className="shuf-res">
+              <span className="thumb">
+                <AssetFrame type="Item" size="fill" imageUrl={result.item.image} fallbackIcon={<Icons.Package width={16} height={16} className="text-white/60" />} />
+              </span>
+              <span style={{ minWidth: 0 }}>
+                <span className="nm">{result.item.name}</span>
+                <span className="tag">Item · {result.item.itemType}</span>
+              </span>
             </div>
           )}
           {/* Addons */}
           {(result.addons[0] || result.addons[1]) && (
-            <div className="p-4 rounded-2xl bg-zinc-900/60 border border-white/10">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-3">{role === 'Killer' ? 'Power Addons' : 'Item Addons'}</p>
-              <div className="grid grid-cols-2 gap-3">
-                {result.addons.map((addon, i) => addon && (
-                  <div key={i} className="p-3 rounded-xl bg-white/5 border border-white/5" style={{ boxShadow: getRarityGlow(addon.rarity, settings.rarityGlows !== false) }}>
-                    <p className="text-white text-sm font-bold" style={{ color: getRarityColor(addon.rarity) }}>{addon.name}</p>
-                    <p className="text-zinc-400 text-[10px] mt-1 line-clamp-2">{addon.description}</p>
-                  </div>
-                ))}
-              </div>
+            <div>
+              <p className="home-secttl">{role === 'Killer' ? 'Power Addons' : 'Item Addons'}</p>
+              {result.addons.map((addon, i) => addon && (
+                <div key={i} className="shuf-res">
+                  <span className="thumb">
+                    <AssetFrame type="Addon" size="fill" imageUrl={addon.image} fallbackIcon={<Icons.Wrench width={14} height={14} className="text-white/40" />} />
+                  </span>
+                  <span style={{ minWidth: 0 }}>
+                    <span className="nm">{addon.name}</span>
+                    <span className="tag">Addon</span>
+                  </span>
+                </div>
+              ))}
             </div>
           )}
           {/* Offering */}
           {result.offering && (
-            <div className="p-4 rounded-2xl bg-zinc-900/60 border border-white/10">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-2">Offering</p>
-              <p className="text-white font-bold">{result.offering.name}</p>
-              <p className="text-zinc-500 text-xs mt-1 line-clamp-2">{result.offering.description}</p>
+            <div className="shuf-res">
+              <span className="thumb">
+                <AssetFrame type="Offering" size="fill" imageUrl={result.offering.image} fallbackIcon={<Icons.Flame width={16} height={16} className="text-white/40" />} />
+              </span>
+              <span style={{ minWidth: 0 }}>
+                <span className="nm">{result.offering.name}</span>
+                <span className="tag">Offering</span>
+              </span>
             </div>
           )}
         </div>
@@ -4555,111 +4582,94 @@
         <div className="flex flex-col h-full pt-12 pb-32 px-6 overflow-y-auto custom-scrollbar space-y-4">
           <Header title="Chaos Shuffle" subtitle="Randomize your fate" onBack={onBack} infoTips={VIEW_TIPS.chaoshuffle} />
           {/* Role Toggle */}
-          <div className="flex gap-1 bg-zinc-900/40 p-0.5 rounded-xl border border-white/5 backdrop-blur-md shrink-0">
+          <div className="char-segments" role="tablist" aria-label="Shuffle role">
             <button
+              type="button" role="tab" aria-selected={role === 'Survivor'}
+              className={role === 'Survivor' ? 'on' : ''}
               onClick={() => setRole('Survivor')}
-              className={`flex-1 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${role === 'Survivor' ? 'bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-lg shadow-blue-500/20' : 'text-zinc-500 hover:text-zinc-300'}`}
             >
               Survivor
             </button>
             <button
+              type="button" role="tab" aria-selected={role === 'Killer'}
+              className={role === 'Killer' ? 'on' : ''}
               onClick={() => setRole('Killer')}
-              className={`flex-1 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${role === 'Killer' ? 'bg-gradient-to-r from-red-700 to-red-500 text-white shadow-lg shadow-red-500/20' : 'text-zinc-500 hover:text-zinc-300'}`}
             >
               Killer
             </button>
           </div>
-          {/* Randomization Options - Compact */}
-          <div className="p-3 rounded-xl bg-zinc-900/40 border border-white/5 backdrop-blur-md shrink-0">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-2">Randomize</p>
-            <div className="flex flex-wrap gap-1.5">
+          {/* Randomization Options */}
+          <p className="home-secttl">Randomize</p>
+          <div>
+            <button type="button" className="shuf-toggle" aria-pressed={randomizeCharacter} onClick={() => setRandomizeCharacter(!randomizeCharacter)}>
+              <span className="box" aria-hidden="true">{randomizeCharacter ? '✓' : ''}</span>
+              <span>Character<small>From {ownedCharacters.size} owned</small></span>
+            </button>
+            <button type="button" className="shuf-toggle" aria-pressed={randomizePerks} onClick={() => setRandomizePerks(!randomizePerks)}>
+              <span className="box" aria-hidden="true">{randomizePerks ? '✓' : ''}</span>
+              <span>Perks<small>No repeats of last roll</small></span>
+            </button>
+            <button type="button" className="shuf-toggle" aria-pressed={randomizeAddons} onClick={() => setRandomizeAddons(!randomizeAddons)}>
+              <span className="box" aria-hidden="true">{randomizeAddons ? '✓' : ''}</span>
+              <span>Addons</span>
+            </button>
+            {role === 'Survivor' && (
               <button
-                onClick={() => setRandomizeCharacter(!randomizeCharacter)}
-                className={`px-2 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wide transition-all border flex items-center gap-1.5 ${randomizeCharacter ? 'bg-white/10 border-white/20 text-white' : 'bg-white/5 border-white/10 text-zinc-500'}`}
+                type="button" className="shuf-toggle" aria-pressed={randomizeItem}
+                onClick={() => {
+                  const newValue = !randomizeItem;
+                  setRandomizeItem(newValue);
+                  if (!newValue) setRandomizeAddons(false);
+                }}
               >
-                <span className={`w-2 h-2 rounded-sm border ${randomizeCharacter ? 'bg-white border-white' : 'border-zinc-600'}`} />
-                Character
+                <span className="box" aria-hidden="true">{randomizeItem ? '✓' : ''}</span>
+                <span>Item</span>
               </button>
-              <button
-                onClick={() => setRandomizePerks(!randomizePerks)}
-                className={`px-2 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wide transition-all border flex items-center gap-1.5 ${randomizePerks ? 'bg-white/10 border-white/20 text-white' : 'bg-white/5 border-white/10 text-zinc-500'}`}
-              >
-                <span className={`w-2 h-2 rounded-sm border ${randomizePerks ? 'bg-white border-white' : 'border-zinc-600'}`} />
-                Perks
-              </button>
-              <button
-                onClick={() => setRandomizeAddons(!randomizeAddons)}
-                className={`px-2 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wide transition-all border flex items-center gap-1.5 ${randomizeAddons ? 'bg-white/10 border-white/20 text-white' : 'bg-white/5 border-white/10 text-zinc-500'}`}
-              >
-                <span className={`w-2 h-2 rounded-sm border ${randomizeAddons ? 'bg-white border-white' : 'border-zinc-600'}`} />
-                Addons
-              </button>
-              {role === 'Survivor' && (
-                <button
-                  onClick={() => {
-                    const newValue = !randomizeItem;
-                    setRandomizeItem(newValue);
-                    if (!newValue) setRandomizeAddons(false);
-                  }}
-                  className={`px-2 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wide transition-all border flex items-center gap-1.5 ${randomizeItem ? 'bg-white/10 border-white/20 text-white' : 'bg-white/5 border-white/10 text-zinc-500'}`}
-                >
-                  <span className={`w-2 h-2 rounded-sm border ${randomizeItem ? 'bg-white border-white' : 'border-zinc-600'}`} />
-                  Item
-                </button>
-              )}
-              <button
-                onClick={() => setRandomizeOffering(!randomizeOffering)}
-                className={`px-2 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wide transition-all border flex items-center gap-1.5 ${randomizeOffering ? 'bg-white/10 border-white/20 text-white' : 'bg-white/5 border-white/10 text-zinc-500'}`}
-              >
-                <span className={`w-2 h-2 rounded-sm border ${randomizeOffering ? 'bg-white border-white' : 'border-zinc-600'}`} />
-                Offering
-              </button>
-            </div>
+            )}
+            <button type="button" className="shuf-toggle" aria-pressed={randomizeOffering} onClick={() => setRandomizeOffering(!randomizeOffering)}>
+              <span className="box" aria-hidden="true">{randomizeOffering ? '✓' : ''}</span>
+              <span>Offering</span>
+            </button>
           </div>
           {/* Playing As - Locked Character Pick */}
           {(() => {
             const lockedChar = lockedCharacterId ? characters.find(c => c.id === lockedCharacterId) : null;
             return (
-              <div className="rounded-xl bg-zinc-900/40 border border-white/5 backdrop-blur-md overflow-hidden shrink-0">
-                <div className="p-3">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <Icons.Lock width={12} height={12} className={lockedChar ? (role === 'Killer' ? 'text-red-400' : 'text-blue-400') : 'text-zinc-500'} />
-                      <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Playing As</p>
-                      {lockedChar && (
-                        <span className="text-[10px] text-white/80 bg-white/10 px-1.5 py-0.5 rounded-md font-semibold">{lockedChar.name}</span>
-                      )}
-                    </div>
+              <div>
+                <p className="home-secttl">Playing As{lockedChar ? ` · ${lockedChar.name}` : ''}</p>
+                <div>
+                  <div className="flex items-center gap-2" style={{ minHeight: 44 }}>
+                    <p className="text-xs" style={{ color: 'var(--muted)' }}>
+                      {!lockedChar ? (`Lock a specific ${role.toLowerCase()} to always play. Perks still come from your owned pool below.`) : (`Locked to ${lockedChar.name}.`)}
+                    </p>
                     {lockedChar && (
-                      <button onClick={() => setLockedCharacterId(null)} className="text-[9px] px-1.5 py-0.5 rounded bg-red-500/20 text-red-400 hover:bg-red-500/30 border border-red-500/30 font-bold uppercase">
+                      <button type="button" onClick={() => setLockedCharacterId(null)} className="shuf-subbtn" style={{ marginLeft: 'auto' }}>
                         Clear
                       </button>
                     )}
                   </div>
-                  {!lockedChar ? (
-                    <p className="text-zinc-400 text-[10px] mb-2">Lock a specific {role.toLowerCase()} to always play. Perks still come from your owned pool below.</p>
-                  ) : (
-                    <div className="flex items-center gap-3 p-2 rounded-xl bg-white/5 border border-white/10">
-                      <div className={`w-12 h-12 rounded-lg overflow-hidden border ${role === 'Killer' ? 'border-red-500/50' : 'border-blue-500/50'}`}>
+                  {lockedChar ? (
+                    <div className="shuf-res">
+                      <span className="thumb" style={{ width: 40, height: 40, flexBasis: 40 }}>
                         <AssetFrame type={role} imageUrl={lockedChar.image} size="fill" fallbackIcon={<Icons.User width={16} height={16} className="text-zinc-400" />} />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-white text-sm font-bold">{lockedChar.name}</p>
+                      </span>
+                      <span style={{ minWidth: 0 }}>
+                        <span className="nm">{lockedChar.name}</span>
                         {lockedChar.realName && lockedChar.realName !== lockedChar.name && (
-                          <p className="text-zinc-500 text-xs">{lockedChar.realName}</p>
+                          <span className="tag">{lockedChar.realName}</span>
                         )}
-                      </div>
-                      <Icons.Lock width={14} height={14} className={role === 'Killer' ? 'text-red-400' : 'text-blue-400'} />
+                      </span>
                     </div>
-                  )}
-                  {!lockedChar && (
+                  ) : (
                     <div className="grid grid-cols-6 sm:grid-cols-8 gap-1.5 mt-2 max-h-32 overflow-y-auto custom-scrollbar">
                       {characters.map(char => (
                         <button
                           key={char.id}
+                          type="button"
                           onClick={() => { setLockedCharacterId(char.id); triggerHaptic('Light'); }}
-                          className="relative aspect-square rounded-lg border border-white/10 transition-all overflow-hidden bg-zinc-900 hover:border-white/30 hover:scale-105"
+                          className="shuf-gridbtn"
                           title={`Lock ${char.name}`}
+                          aria-label={`Lock ${char.name}`}
                         >
                           <AssetFrame type={role} imageUrl={char.image} size="fill" fallbackIcon={<Icons.User width={14} height={14} className="text-zinc-400" />} />
                         </button>
@@ -4671,41 +4681,43 @@
             );
           })()}
           {/* Character Selection - Collapsible */}
-          <div className="rounded-xl bg-zinc-900/40 border border-white/5 backdrop-blur-md overflow-hidden shrink-0">
-            <button
-              onClick={() => setShowOwnedSection(!showOwnedSection)}
-              className="w-full p-3 flex items-center justify-between hover:bg-white/5 transition-colors"
-            >
-              <div className="flex items-center gap-2">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Owned {role}s</p>
-                <span className="text-[10px] text-white/60 bg-white/10 px-1.5 py-0.5 rounded-md">{ownedCharacters.size}/{characters.length}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <button onClick={(e) => { e.stopPropagation(); selectAllCharacters(); }} className="text-[9px] px-1.5 py-0.5 rounded bg-white/5 text-zinc-400 hover:text-white border border-white/10 font-bold uppercase">All</button>
-                <button onClick={(e) => { e.stopPropagation(); selectNoneCharacters(); }} className="text-[9px] px-1.5 py-0.5 rounded bg-white/5 text-zinc-400 hover:text-white border border-white/10 font-bold uppercase">None</button>
-                <Icons.ChevronLeft width={14} height={14} className={`text-zinc-400 transition-transform ${showOwnedSection ? '-rotate-90' : 'rotate-90'}`} />
-              </div>
-            </button>
+          <div>
+            <div className="shuf-toggle" style={{ cursor: 'default' }}>
+              <button
+                type="button"
+                onClick={() => setShowOwnedSection(!showOwnedSection)}
+                className="shuf-togglebtn"
+                aria-expanded={showOwnedSection}
+              >
+                <span style={{ flex: 1 }}>Owned {role}s · {ownedCharacters.size}/{characters.length}</span>
+                <span aria-hidden="true" style={{ color: 'var(--link)' }}>{showOwnedSection ? '▾' : '▸'}</span>
+              </button>
+              <button type="button" onClick={() => selectAllCharacters()} className="shuf-subbtn">All</button>
+              <button type="button" onClick={() => selectNoneCharacters()} className="shuf-subbtn">None</button>
+            </div>
             {showOwnedSection && (
-              <div className="px-3 pb-3 space-y-2">
-                <div className="relative">
-                  <div className="absolute left-2.5 top-1/2 -translate-y-1/2 text-zinc-500"><Icons.Search width={12} height={12} /></div>
+              <div style={{ paddingBottom: 8 }}>
+                <div className="cx-searchbox" style={{ minHeight: 44, marginTop: 8 }}>
+                  <div className="text-zinc-400"><Icons.Search width={16} height={16} /></div>
                   <input
                     value={characterSearch}
                     onChange={e => setCharacterSearch(e.target.value)}
-                    placeholder="Search..."
-                    className="w-full bg-zinc-800/60 border border-white/10 rounded-lg pl-7 pr-2 py-1.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-white/20"
+                    placeholder="Search owned..."
+                    aria-label="Search owned characters"
                   />
                 </div>
-                <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto custom-scrollbar p-1">
+                <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto custom-scrollbar p-1 mt-2">
                   {filteredCharacters.map(char => {
                     const isOwned = ownedCharacters.has(char.id);
                     return (
                       <button
                         key={char.id}
+                        type="button"
                         onClick={() => toggleCharacter(char.id)}
-                        className={`relative aspect-square rounded-lg border transition-all overflow-hidden bg-zinc-900 ${isOwned ? (role === 'Killer' ? 'border-red-500/70 ring-1 ring-red-500/30' : 'border-blue-500/70 ring-1 ring-blue-500/30') : 'border-white/10 opacity-35 grayscale hover:opacity-60 hover:grayscale-0'}`}
+                        className={`shuf-gridbtn ${isOwned ? '' : 'off'}`}
                         title={char.name}
+                        aria-pressed={isOwned}
+                        aria-label={`${char.name} ${isOwned ? 'owned' : 'not owned'}`}
                       >
                         <AssetFrame
                           type={role}
@@ -4713,9 +4725,6 @@
                           size="fill"
                           fallbackIcon={<Icons.User width={16} height={16} className="text-zinc-400" />}
                         />
-                        {isOwned && (
-                          <div className={`absolute top-0.5 right-0.5 w-2 h-2 rounded-full z-10 ${role === 'Killer' ? 'bg-red-500' : 'bg-blue-500'}`} />
-                        )}
                       </button>
                     );
                   })}
@@ -4725,17 +4734,18 @@
           </div>
           {/* Results Section */}
           <div className="flex-1">
+            <p className="home-secttl">Result</p>
             <StandardView />
           </div>
           {/* Action Buttons - At bottom of page flow, not sticky */}
           <div className="space-y-2 pt-2">
             <button
+              type="button"
               onClick={rollDice}
               disabled={isSpinning || (ownedCharacters.size === 0 && !lockedCharacterId)}
-              className={`w-full py-3 bg-gradient-to-r ${role === 'Survivor' ? 'from-blue-800 to-blue-500' : 'from-red-800 to-red-500'} rounded-xl font-bold uppercase tracking-widest text-sm text-white hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2`}
+              className="shuf-spin"
             >
-              <Icons.Dices width={18} height={18} className={isSpinning ? 'animate-spin' : ''} />
-              {isSpinning ? 'Consulting Entity...' : lockedCharacterId ? `Randomize as ${characters.find(c => c.id === lockedCharacterId)?.name || role}` : 'Randomize'}
+              {isSpinning ? 'Consulting Entity...' : lockedCharacterId ? `Randomize as ${characters.find(c => c.id === lockedCharacterId)?.name || role}` : 'Spin'}
             </button>
             {(result.character || result.perks.some(p => p)) && !isSpinning && (
               <button
@@ -6381,77 +6391,99 @@
         setPerkSearch('');
       };
       return (
-        <div className="p-5 rounded-3xl bg-gradient-to-br from-zinc-900/90 to-zinc-900/60 border border-white/10 backdrop-blur-md space-y-5">
+        <div className="tool-card" style={{ marginTop: 12 }}>
           {/* Header: Name + Role */}
+          <p className="home-secttl" style={{ marginTop: 0 }}>Build name</p>
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="flex-1">
               <input
                 value={form.name}
                 onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
                 placeholder="Build name..."
-                className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-4 py-3 text-lg text-white font-bold placeholder-zinc-500 focus:outline-none focus:border-white/20"
+                aria-label="Build name"
+                className="field"
+                style={{ marginTop: 0 }}
               />
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-center">
+              <div className="char-segments" role="tablist" aria-label="Build role" style={{ margin: 0, flex: 1 }}>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={form.role === 'Survivor'}
+                  className={form.role === 'Survivor' ? 'on' : ''}
+                  onClick={() => changeRole('Survivor')}
+                >
+                  Survivor
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={form.role === 'Killer'}
+                  className={form.role === 'Killer' ? 'on' : ''}
+                  onClick={() => changeRole('Killer')}
+                >
+                  Killer
+                </button>
+              </div>
               <button
-                onClick={() => changeRole('Survivor')}
-                className="flex-1 sm:flex-none px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all"
-                style={form.role === 'Survivor' ? { background: '#0a0a0a', border: '2px solid #38bdf8', color: '#38bdf8', boxShadow: '0 4px 15px rgba(56,189,248,0.2)' } : { background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.1)', color: '#a1a1aa' }}
-              >
-                Survivor
-              </button>
-              <button
-                onClick={() => changeRole('Killer')}
-                className="flex-1 sm:flex-none px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all"
-                style={form.role === 'Killer' ? { background: '#0a0a0a', border: '2px solid #ef4444', color: '#ef4444', boxShadow: '0 4px 15px rgba(239,68,68,0.2)' } : { background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.1)', color: '#a1a1aa' }}
-              >
-                Killer
-              </button>
-              <button
+                type="button"
                 onClick={() => setForm(f => ({ ...f, favorite: !f.favorite }))}
-                className="px-3 py-2 rounded-xl text-xs font-bold uppercase transition-all"
-                style={form.favorite ? { background: '#0a0a0a', border: '2px solid #facc15', color: '#facc15' } : { background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.1)', color: '#a1a1aa' }}
+                aria-pressed={form.favorite}
+                aria-label="Toggle favorite"
+                className="shuf-subbtn"
+                style={form.favorite ? { borderColor: 'var(--link)', color: 'var(--link)' } : undefined}
               >
                 <Icons.Star width={16} height={16} className={form.favorite ? 'fill-yellow-300' : ''} />
               </button>
             </div>
           </div>
           {/* Character Selection */}
-          <div className="p-4 rounded-2xl bg-zinc-800/40 border border-white/5">
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-[11px] uppercase tracking-widest text-zinc-500 font-bold">{form.role}</p>
+          <div className="tool-card">
+            <div className="flex items-center justify-between">
+              <p className="home-secttl" style={{ margin: 0 }}>{form.role} character</p>
               <button
+                type="button"
                 onClick={() => setShowCharacterGrid(!showCharacterGrid)}
-                className="text-[10px] px-2 py-1 rounded-lg bg-white/5 text-zinc-400 hover:text-white border border-white/10 font-bold uppercase tracking-wider"
+                className="shuf-subbtn"
               >
                 {showCharacterGrid ? 'Hide' : 'Select'}
               </button>
             </div>
             {form.characterName ? (
-              <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10">
-                <div className={`w-1 h-12 rounded-full ${form.role === 'Killer' ? 'bg-red-500' : 'bg-blue-500'}`} />
-                <AssetFrame type={form.role} imageUrl={characters.find(c => c.id === form.characterId)?.image} fallbackIcon={<Icons.User width={20} height={20} className="text-zinc-400" />} />
-                <div className="flex-1">
-                  <p className="text-white font-bold">{form.characterName}</p>
-                  <p className="text-zinc-500 text-xs">Selected {form.role.toLowerCase()}</p>
-                </div>
-                <button onClick={() => pickCharacter(null)} className="p-2 rounded-lg bg-white/5 text-zinc-400 hover:text-white">
+              <div className="flex items-center gap-2">
+                <button type="button" onClick={() => setShowCharacterGrid(!showCharacterGrid)} className="slotrow" style={{ flex: 1 }} aria-expanded={showCharacterGrid}>
+                  <span className="thumb" style={{ width: 34, height: 34, flex: '0 0 34px', border: '1px solid var(--stroke)', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <AssetFrame type={form.role} imageUrl={characters.find(c => c.id === form.characterId)?.image} fallbackIcon={<Icons.User width={20} height={20} className="text-zinc-400" />} />
+                  </span>
+                  <span style={{ minWidth: 0 }}>
+                    <span className="nm">{form.characterName}</span>
+                    <span className="tag" style={{ display: 'block', fontSize: 11.5, color: 'var(--muted)' }}>Selected {form.role.toLowerCase()}</span>
+                  </span>
+                  <span className="chev">›</span>
+                </button>
+                <button type="button" onClick={() => pickCharacter(null)} className="shuf-subbtn" aria-label="Clear selected character">
                   <Icons.X width={14} height={14} />
                 </button>
               </div>
             ) : (
-              <p className="text-zinc-400 text-sm">No character selected (generic build)</p>
+              <button type="button" onClick={() => setShowCharacterGrid(true)} className="slotrow">
+                <span className="empty">No character selected (generic build)</span>
+                <span className="chev">›</span>
+              </button>
             )}
             {showCharacterGrid && (
-              <div className="mt-3 grid grid-cols-5 sm:grid-cols-8 gap-2 max-h-40 overflow-y-auto custom-scrollbar p-2 rounded-xl bg-zinc-900/50">
+              <div className="mt-3 grid grid-cols-5 sm:grid-cols-8 gap-2 max-h-40 overflow-y-auto custom-scrollbar p-2" style={{ border: '1px solid var(--stroke)' }}>
                 {characters.map(char => (
                   <button
                     key={char.id}
                     onClick={() => pickCharacter(char)}
-                    className={`aspect-square rounded-xl border-2 transition-all overflow-hidden ${form.characterId === char.id ? (form.role === 'Killer' ? 'border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.3)]' : 'border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.3)]') : 'border-white/10 hover:border-white/30'}`}
+                    className="aspect-square transition-all overflow-hidden"
+                    style={form.characterId === char.id ? { border: '1px solid var(--link)' } : { border: '1px solid var(--stroke)' }}
                     title={char.name}
+                    aria-pressed={form.characterId === char.id}
                   >
-                    <div className="w-full h-full bg-zinc-900">
+                    <div className="w-full h-full">
                       <AssetFrame type={form.role} imageUrl={char.image} size="fill" fallbackIcon={<Icons.User width={12} height={12} className="text-zinc-400" />} />
                     </div>
                   </button>
@@ -6460,33 +6492,36 @@
             )}
           </div>
           {/* Perks Grid */}
-          <div className="p-4 rounded-2xl bg-zinc-800/40 border border-white/5">
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-[11px] uppercase tracking-widest text-zinc-500 font-bold">Perks</p>
+          <div className="tool-card">
+            <div className="flex items-center justify-between gap-2">
+              <p className="home-secttl" style={{ margin: 0 }}>Perks</p>
               <div className="flex items-center gap-2">
                 <input
                   value={perkSearch}
                   onChange={e => setPerkSearch(e.target.value)}
                   placeholder="Search..."
-                  className="w-32 bg-zinc-900/60 border border-white/10 rounded-lg px-2 py-1 text-xs text-white placeholder-zinc-600 focus:outline-none"
+                  aria-label="Search perks"
+                  className="field"
+                  style={{ marginTop: 0, minHeight: 44, width: 128 }}
                 />
-                <span className="text-[10px] text-zinc-400">{perkPool.length} available</span>
+                <span className="text-[10px]" style={{ color: 'var(--muted)' }}>{perkPool.length} available</span>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-3">
               {form.perks.map((perk, idx) => (
-                <div key={idx} className="p-3 rounded-xl bg-zinc-900/50 border border-white/5">
-                  <p className="text-[10px] uppercase tracking-wider text-zinc-400 font-bold mb-2">Perk {idx + 1}</p>
+                <div key={idx} className="tool-card">
+                  <p className="home-secttl" style={{ marginTop: 0 }}>Perk {idx + 1}</p>
                   <select
                     value={perk?.id || ''}
                     onChange={e => updatePerk(idx, e.target.value)}
                     className="themed-select w-full text-sm"
+                    aria-label={`Perk ${idx + 1}`}
                   >
                     <option value="">Empty slot</option>
                     {perkPool.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
                   </select>
                   {perk?.name && (
-                    <p className="text-[11px] text-zinc-400 mt-2 truncate">{perk.name}</p>
+                    <p className="text-[11px] mt-2 truncate" style={{ color: 'var(--muted)' }}>{perk.name}</p>
                   )}
                 </div>
               ))}
@@ -6494,12 +6529,13 @@
           </div>
           {/* Item Selection (Survivor Only) */}
           {form.role === 'Survivor' && (
-            <div className="p-4 rounded-2xl bg-zinc-800/40 border border-white/5">
-              <p className="text-[11px] uppercase tracking-widest text-zinc-500 font-bold mb-3">Item</p>
+            <div className="tool-card">
+              <p className="home-secttl" style={{ marginTop: 0 }}>Item</p>
               <select
                 value={form.selectedItem?.id || ''}
                 onChange={e => pickItem(e.target.value)}
                 className="themed-select w-full text-sm"
+                aria-label="Item"
               >
                 <option value="">No item</option>
                 {survivorItems.map(item => (
@@ -6507,42 +6543,44 @@
                 ))}
               </select>
               {form.selectedItem && (
-                <div className="mt-3 p-3 rounded-xl bg-white/5 border border-white/5 flex items-center gap-3">
-                  <Icons.Package width={20} height={20} className="text-white/60" />
-                  <div>
-                    <p className="text-white font-semibold text-sm">{form.selectedItem.name}</p>
-                    <p className="text-xs" style={{ color: getRarityColor(form.selectedItem.rarity) }}>{formatRarity(form.selectedItem.rarity)} {form.selectedItem.itemType}</p>
-                  </div>
+                <div className="slotrow" style={{ cursor: 'default' }}>
+                  <span style={{ minWidth: 0 }}>
+                    <span className="nm">{form.selectedItem.name}</span>
+                    <span className="tag" style={{ display: 'block', fontSize: 11.5, color: getRarityColor(form.selectedItem.rarity) }}>{formatRarity(form.selectedItem.rarity)} {form.selectedItem.itemType}</span>
+                  </span>
                 </div>
               )}
             </div>
           )}
           {/* Addons Selection */}
-          <div className="p-4 rounded-2xl bg-zinc-800/40 border border-white/5">
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-[11px] uppercase tracking-widest text-zinc-500 font-bold">
+          <div className="tool-card">
+            <div className="flex items-center justify-between gap-2">
+              <p className="home-secttl" style={{ margin: 0 }}>
                 {form.role === 'Killer' ? 'Power Addons' : 'Item Addons'}
               </p>
               <input
                 value={addonSearch}
                 onChange={e => setAddonSearch(e.target.value)}
                 placeholder="Search..."
-                className="w-32 bg-zinc-900/60 border border-white/10 rounded-lg px-2 py-1 text-xs text-white placeholder-zinc-600 focus:outline-none"
+                aria-label="Search addons"
+                className="field"
+                style={{ marginTop: 0, minHeight: 44, width: 128 }}
               />
             </div>
             {(form.role === 'Killer' && !form.characterName) || (form.role === 'Survivor' && !form.selectedItem) ? (
-              <p className="text-zinc-400 text-xs">
+              <p className="text-xs" style={{ color: 'var(--muted)' }}>
                 {form.role === 'Killer' ? 'Select a killer to choose power addons' : 'Select an item to choose addons'}
               </p>
             ) : (
               <div className="grid grid-cols-2 gap-3">
                 {[0, 1].map(slot => (
-                  <div key={slot} className="p-3 rounded-xl bg-zinc-900/50 border border-white/5">
-                    <p className="text-[10px] uppercase tracking-wider text-zinc-400 font-bold mb-2">Addon {slot + 1}</p>
+                  <div key={slot} className="tool-card">
+                    <p className="home-secttl" style={{ marginTop: 0 }}>Addon {slot + 1}</p>
                     <select
                       value={form.selectedAddons[slot]?.id || ''}
                       onChange={e => updateAddon(slot, e.target.value)}
                       className="themed-select w-full text-sm"
+                      aria-label={`Addon ${slot + 1}`}
                     >
                       <option value="">No addon</option>
                       {availableAddons.map(a => (
@@ -6562,12 +6600,13 @@
             )}
           </div>
           {/* Offering Selection */}
-          <div className="p-4 rounded-2xl bg-zinc-800/40 border border-white/5">
-            <p className="text-[11px] uppercase tracking-widest text-zinc-500 font-bold mb-3">Offering</p>
+          <div className="tool-card">
+            <p className="home-secttl" style={{ marginTop: 0 }}>Offering</p>
             <select
               value={form.selectedOffering?.id || ''}
               onChange={e => pickOffering(e.target.value)}
               className="themed-select w-full text-sm"
+              aria-label="Offering"
             >
               <option value="">No offering</option>
               {availableOfferings.map(o => (
@@ -6575,45 +6614,52 @@
               ))}
             </select>
             {form.selectedOffering && (
-              <div className="mt-3 p-3 rounded-xl bg-white/5 border border-white/5">
-                <p className="text-white font-semibold text-sm">{form.selectedOffering.name}</p>
-                <p className="text-zinc-500 text-xs mt-1 line-clamp-2">{form.selectedOffering.description}</p>
+              <div className="slotrow" style={{ cursor: 'default' }}>
+                <span style={{ minWidth: 0 }}>
+                  <span className="nm">{form.selectedOffering.name}</span>
+                  <span className="tag" style={{ display: 'block', fontSize: 11.5, color: 'var(--muted)' }}>{form.selectedOffering.description}</span>
+                </span>
               </div>
             )}
           </div>
           {/* Tags and Notes */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" style={{ marginTop: 10 }}>
             <div>
-              <p className="text-[11px] uppercase tracking-widest text-zinc-500 font-bold mb-2">Tags</p>
+              <p className="home-secttl" style={{ marginTop: 0 }}>Tags</p>
               <input
                 value={tagInput}
                 onChange={e => setTagInput(e.target.value)}
                 placeholder="SoloQ, Tryhard, Meme..."
-                className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-zinc-500"
+                aria-label="Tags"
+                className="field"
               />
             </div>
             <div>
-              <p className="text-[11px] uppercase tracking-widest text-zinc-500 font-bold mb-2">Notes</p>
+              <p className="home-secttl" style={{ marginTop: 0 }}>Notes</p>
               <textarea
                 value={form.notes}
                 onChange={e => setForm(f => ({ ...f, notes: e.target.value }))}
                 rows={2}
                 placeholder="How to run this build..."
-                className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-zinc-500"
+                aria-label="Notes"
+                className="field"
               />
             </div>
           </div>
           {/* Action Buttons */}
-          <div className="flex gap-3 justify-end pt-2">
+          <div className="flex gap-3 justify-end pt-2" style={{ marginTop: 10 }}>
             <button
+              type="button"
               onClick={onCancel}
-              className="px-5 py-2.5 rounded-xl text-sm font-bold bg-white/5 text-zinc-300 border border-white/10 hover:text-white hover:bg-white/10 transition-colors"
+              className="shuf-subbtn"
             >
               Cancel
             </button>
             <button
+              type="button"
               onClick={handleSave}
-              className={`px-5 py-2.5 rounded-xl text-sm font-bold text-white shadow-lg transition-all hover:scale-105 ${form.role === 'Killer' ? 'bg-gradient-to-r from-red-700 to-red-500' : 'bg-gradient-to-r from-blue-700 to-blue-500'}`}
+              className="shuf-spin"
+              style={{ width: 'auto', flex: 1, marginTop: 0, minHeight: 44 }}
             >
               Save Build
             </button>
@@ -6725,50 +6771,58 @@
             'Edit or duplicate builds to iterate quickly; marking favorites stars them for Lobby and Match Log linking.'
           ]} />
           <div className="mb-4 flex flex-wrap gap-2 items-center">
-            <button onClick={() => { setEditing(null); setShowForm(true); }} className="px-4 py-2 rounded-xl bg-gradient-to-r from-red-700 to-red-500 text-white font-bold text-sm shadow-lg">New Build</button>
-            <GlassButton active={filters.role === 'Killer'} onClick={() => setFilters(f => ({ ...f, role: filters.role === 'Killer' ? 'All' : 'Killer' }))} className="text-xs py-2 px-3">Killer</GlassButton>
-            <GlassButton active={filters.role === 'Survivor'} onClick={() => setFilters(f => ({ ...f, role: filters.role === 'Survivor' ? 'All' : 'Survivor' }))} className="text-xs py-2 px-3">Survivor</GlassButton>
-            <GlassButton onClick={() => setFilters({ role: 'All', character: 'All', tag: 'All', search: '', include: '', exclude: '' })} className="text-xs py-2 px-3">Reset</GlassButton>
-            <span className="text-[11px] text-zinc-500 ml-auto uppercase tracking-wider">{filteredBuilds.length} builds</span>
+            <button type="button" onClick={() => { setEditing(null); setShowForm(true); }} className="shuf-subbtn">New Build</button>
+            <div className="chipstrip" role="group" aria-label="Filter builds by role" style={{ padding: 0 }}>
+              <button type="button" onClick={() => setFilters(f => ({ ...f, role: filters.role === 'Killer' ? 'All' : 'Killer' }))} className={filters.role === 'Killer' ? 'on' : ''} aria-pressed={filters.role === 'Killer'}>Killer</button>
+              <button type="button" onClick={() => setFilters(f => ({ ...f, role: filters.role === 'Survivor' ? 'All' : 'Survivor' }))} className={filters.role === 'Survivor' ? 'on' : ''} aria-pressed={filters.role === 'Survivor'}>Survivor</button>
+              <button type="button" onClick={() => setFilters({ role: 'All', character: 'All', tag: 'All', search: '', include: '', exclude: '' })}>Reset</button>
+            </div>
+            <span className="text-[11px] ml-auto uppercase tracking-wider" style={{ color: 'var(--muted)' }}>{filteredBuilds.length} builds</span>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-6 gap-3 mb-6">
             <div className="lg:col-span-2 flex flex-col gap-3">
-              <div className="p-3 rounded-2xl bg-zinc-900/50 border border-white/10">
-                <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold mb-2">Search</p>
-                <input value={filters.search} onChange={e => setFilters(f => ({ ...f, search: e.target.value }))} placeholder="Search name or notes" className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-zinc-500" />
+              <div className="tool-card">
+                <p className="home-secttl" style={{ marginTop: 0 }}>Search</p>
+                <div className="cx-searchbox">
+                  <input value={filters.search} onChange={e => setFilters(f => ({ ...f, search: e.target.value }))} placeholder="Search name or notes" aria-label="Search builds by name or notes" />
+                  {filters.search && <button onClick={() => setFilters(f => ({ ...f, search: '' }))} aria-label="Clear search" className="p-2 mr-1 text-zinc-300 hover:text-white transition-colors" style={{ width: 44, height: 44 }}>✕</button>}
+                </div>
               </div>
-              <div className="p-3 rounded-2xl bg-zinc-900/50 border border-white/10 grid grid-cols-2 gap-2">
+              <div className="tool-card">
+                <p className="home-secttl" style={{ marginTop: 0 }}>Filters</p>
+                <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold mb-2">Role</p>
-                  <select value={filters.role} onChange={e => setFilters(f => ({ ...f, role: e.target.value }))} className="themed-select w-full text-sm">
+                  <p className="home-secttl" style={{ marginTop: 0 }}>Role</p>
+                  <select value={filters.role} onChange={e => setFilters(f => ({ ...f, role: e.target.value }))} className="themed-select w-full text-sm" aria-label="Filter by role">
                     <option value="All">All</option>
                     <option value="Killer">Killer</option>
                     <option value="Survivor">Survivor</option>
                   </select>
                 </div>
                 <div>
-                  <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold mb-2">Character</p>
-                  <select value={filters.character} onChange={e => setFilters(f => ({ ...f, character: e.target.value }))} className="themed-select w-full text-sm">
+                  <p className="home-secttl" style={{ marginTop: 0 }}>Character</p>
+                  <select value={filters.character} onChange={e => setFilters(f => ({ ...f, character: e.target.value }))} className="themed-select w-full text-sm" aria-label="Filter by character">
                     <option value="All">All</option>
                     {killers.map(k => <option key={k.id} value={k.id}>{k.name}</option>)}
                     {survivors.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
                   </select>
                 </div>
                 <div>
-                  <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold mb-2">Tag</p>
-                  <select value={filters.tag} onChange={e => setFilters(f => ({ ...f, tag: e.target.value }))} className="themed-select w-full text-sm">
+                  <p className="home-secttl" style={{ marginTop: 0 }}>Tag</p>
+                  <select value={filters.tag} onChange={e => setFilters(f => ({ ...f, tag: e.target.value }))} className="themed-select w-full text-sm" aria-label="Filter by tag">
                     {allTags.map(t => <option key={t} value={t}>{t}</option>)}
                   </select>
                 </div>
                 <div className="grid grid-cols-1 gap-2">
                   <div>
-                    <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold mb-1">Include perk</p>
-                    <input value={filters.include} onChange={e => setFilters(f => ({ ...f, include: e.target.value }))} placeholder="Dead Hard" className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-zinc-500" />
+                    <p className="home-secttl" style={{ marginTop: 0 }}>Include perk</p>
+                    <input value={filters.include} onChange={e => setFilters(f => ({ ...f, include: e.target.value }))} placeholder="Dead Hard" aria-label="Include perk" className="field" />
                   </div>
                   <div>
-                    <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold mb-1">Exclude perk</p>
-                    <input value={filters.exclude} onChange={e => setFilters(f => ({ ...f, exclude: e.target.value }))} placeholder="No Mither" className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-zinc-500" />
+                    <p className="home-secttl" style={{ marginTop: 0 }}>Exclude perk</p>
+                    <input value={filters.exclude} onChange={e => setFilters(f => ({ ...f, exclude: e.target.value }))} placeholder="No Mither" aria-label="Exclude perk" className="field" />
                   </div>
+                </div>
                 </div>
               </div>
               {showForm && (
@@ -6787,66 +6841,66 @@
             </div>
             <div className="lg:col-span-4 space-y-3">
               {filteredBuilds.map(build => (
-                <div key={build.id} className="p-4 rounded-3xl bg-zinc-900/50 border border-white/10 hover:border-red-500/40 transition-colors">
+                <div key={build.id} className="tool-card">
                   <div className="flex flex-wrap items-center gap-2 justify-between">
                     <div className="flex items-center gap-2">
-                      <span className={`px-2 py-1 rounded-lg text-[10px] font-bold uppercase tracking-widest ${build.role === 'Killer' ? 'bg-red-600/30 text-red-200' : 'bg-blue-600/30 text-blue-200'}`}>{build.role}</span>
-                      {build.characterName && <span className="text-xs text-zinc-400 font-semibold">{build.characterName}</span>}
-                      {build.favorite && <span className="text-yellow-300 text-sm">*</span>}
+                      <span className={`px-2 py-1 text-[10px] font-bold uppercase tracking-widest ${build.role === 'Killer' ? 'bg-red-600/30 text-red-200' : 'bg-blue-600/30 text-blue-200'}`} style={{ border: '1px solid var(--stroke)' }}>{build.role}</span>
+                      {build.characterName && <span className="text-xs font-semibold" style={{ color: 'var(--muted)' }}>{build.characterName}</span>}
+                      {build.favorite && <span className="text-sm" style={{ color: 'var(--link)' }}>*</span>}
                     </div>
-                    <div className="flex gap-2 text-[11px] text-zinc-500">
+                    <div className="flex gap-2 text-[11px]" style={{ color: 'var(--muted)' }}>
                       {build.updatedAt && <span>Updated {formatDate(build.updatedAt)}</span>}
                       {build.createdAt && <span>Created {formatDate(build.createdAt)}</span>}
                     </div>
                   </div>
-                  <div className="flex flex-wrap justify-between gap-2 mt-1">
-                    <h3 className="text-lg font-bold text-white">{build.name}</h3>
-                    <div className="flex gap-2">
-                      <button onClick={() => { setEditing(build); setShowForm(true); }} className="text-xs px-3 py-1 rounded-xl bg-white/5 text-white border border-white/10">Edit</button>
-                      <button onClick={() => duplicateBuild(build)} className="text-xs px-3 py-1 rounded-xl bg-white/5 text-zinc-200 border border-white/10">Duplicate</button>
-                      <button onClick={() => { const code = encodeBuild(build); if (code) { navigator.clipboard.writeText(code).then(() => appAlert('Build share text copied!')).catch(() => appAlert('Could not copy automatically. Please copy it manually.')); } else { appAlert('Could not prepare this build to share.'); } }} className="text-xs px-3 py-1 rounded-xl bg-white/5 text-blue-200 border border-blue-500/30">Share</button>
-                      <button onClick={() => toggleFavorite(build.id)} className="text-xs px-3 py-1 rounded-xl bg-white/5 text-yellow-200 border border-yellow-500/30">{build.favorite ? 'Unfavorite' : 'Favorite'}</button>
-                      <button onClick={() => deleteBuild(build.id)} className="text-xs px-3 py-1 rounded-xl bg-red-900/50 text-red-200 border border-red-600/40">Delete</button>
-                    </div>
+                  <h4 style={{ marginTop: 6 }}>{build.name}</h4>
+                  <div className="rowbtns">
+                    <button type="button" onClick={() => { setEditing(build); setShowForm(true); }}>Edit</button>
+                    <button type="button" onClick={() => duplicateBuild(build)}>Duplicate</button>
+                    <button type="button" onClick={() => { const code = encodeBuild(build); if (code) { navigator.clipboard.writeText(code).then(() => appAlert('Build share text copied!')).catch(() => appAlert('Could not copy automatically. Please copy it manually.')); } else { appAlert('Could not prepare this build to share.'); } }}>Share</button>
+                    <button type="button" onClick={() => toggleFavorite(build.id)}>{build.favorite ? 'Unfavorite' : 'Favorite'}</button>
+                    <button type="button" onClick={() => deleteBuild(build.id)}>Delete</button>
                   </div>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {(build.perks || []).map(p => (
-                      <span key={`${build.id}-${p.id}-${p.name}`} className="px-2 py-1 rounded-xl bg-white/5 border border-white/10 text-[11px] text-white">{p.name}</span>
+                      <span key={`${build.id}-${p.id}-${p.name}`} className="px-2 py-1 text-[11px]" style={{ border: '1px solid var(--stroke)', color: 'var(--text)' }}>{p.name}</span>
                     ))}
-                    {build.perks?.length === 0 && <span className="text-[11px] text-zinc-500">No perks selected</span>}
+                    {build.perks?.length === 0 && <span className="text-[11px]" style={{ color: 'var(--muted)' }}>No perks selected</span>}
                   </div>
-                  <div className="mt-2 grid grid-cols-1 sm:grid-cols-3 gap-2 text-[12px] text-zinc-400">
-                    {build.item && <p><span className="text-zinc-500 uppercase tracking-wider text-[10px] mr-1">Item</span>{build.item}</p>}
-                    {build.addons?.length > 0 && <p><span className="text-zinc-500 uppercase tracking-wider text-[10px] mr-1">Add-ons</span>{build.addons.join(', ')}</p>}
-                    {build.offering && <p><span className="text-zinc-500 uppercase tracking-wider text-[10px] mr-1">Offering</span>{build.offering}</p>}
+                  <div className="mt-2 grid grid-cols-1 sm:grid-cols-3 gap-2 text-[12px]" style={{ color: 'var(--muted)' }}>
+                    {build.item && <p><span className="uppercase tracking-wider text-[10px] mr-1" style={{ color: 'var(--muted)' }}>Item</span>{build.item}</p>}
+                    {build.addons?.length > 0 && <p><span className="uppercase tracking-wider text-[10px] mr-1" style={{ color: 'var(--muted)' }}>Add-ons</span>{build.addons.join(', ')}</p>}
+                    {build.offering && <p><span className="uppercase tracking-wider text-[10px] mr-1" style={{ color: 'var(--muted)' }}>Offering</span>{build.offering}</p>}
                   </div>
                   <div className="mt-2 flex flex-wrap gap-2">
-                    {(build.tags || []).map(tag => <span key={tag} className="px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-wider text-zinc-300">{tag}</span>)}
+                    {(build.tags || []).map(tag => <span key={tag} className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider" style={{ border: '1px solid var(--stroke)', color: 'var(--muted)' }}>{tag}</span>)}
                   </div>
-                  {build.notes && <p className="mt-2 text-sm text-zinc-300 leading-relaxed">{build.notes}</p>}
+                  {build.notes && <p className="mt-2 text-sm leading-relaxed" style={{ color: 'var(--text)' }}>{build.notes}</p>}
                 </div>
               ))}
               {filteredBuilds.length === 0 && (
-                <div className="p-4 rounded-3xl bg-zinc-900/50 border border-white/10 text-center text-zinc-500">No builds match the current filters.</div>
+                <p className="text-sm" style={{ color: 'var(--muted)' }}>No builds match the current filters.</p>
               )}
             </div>
           </div>
           {templates?.length > 0 && (
             <div className="mt-6">
-              <h3 className="text-lg font-bold text-white mb-3">Templates / Presets</h3>
+              <p className="home-secttl">Templates / Presets</p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {templates.map(tpl => (
-                  <div key={tpl.title} className="p-4 rounded-3xl bg-zinc-900/50 border border-white/10">
+                  <div key={tpl.title} className="tool-card">
                     <div className="flex items-center justify-between mb-1">
-                      <span className={`px-2 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider ${tpl.role === 'Killer' ? 'bg-red-600/30 text-red-200' : 'bg-blue-600/30 text-blue-200'}`}>{tpl.role}</span>
-                      <span className="text-[10px] text-zinc-500 uppercase font-bold">{tpl.perks.length} perks</span>
+                      <span className={`px-2 py-1 text-[10px] font-bold uppercase tracking-wider ${tpl.role === 'Killer' ? 'bg-red-600/30 text-red-200' : 'bg-blue-600/30 text-blue-200'}`} style={{ border: '1px solid var(--stroke)' }}>{tpl.role}</span>
+                      <span className="text-[10px] uppercase font-bold" style={{ color: 'var(--muted)' }}>{tpl.perks.length} perks</span>
                     </div>
-                    <p className="text-white font-bold">{tpl.title}</p>
+                    <h4>{tpl.title}</h4>
                     <div className="flex flex-wrap gap-1 mt-2">
-                      {tpl.perks.map(p => <span key={p} className="px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] text-white">{p}</span>)}
+                      {tpl.perks.map(p => <span key={p} className="px-2 py-1 text-[11px]" style={{ border: '1px solid var(--stroke)', color: 'var(--text)' }}>{p}</span>)}
                     </div>
-                    <p className="text-xs text-zinc-400 mt-2">{tpl.note}</p>
-                    <button onClick={() => cloneTemplate(tpl)} className="mt-3 w-full py-2 rounded-xl bg-white/5 text-sm font-bold text-white border border-white/10 hover:border-red-500/40">Clone into Build</button>
+                    <p className="text-xs mt-2">{tpl.note}</p>
+                    <div className="rowbtns">
+                      <button type="button" onClick={() => cloneTemplate(tpl)}>Clone into Build</button>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -7422,7 +7476,7 @@
         </div>
       );
     };
-    const WorldleView = ({ onBack, killers = [], perks = [], worldleState, setWorldleState, isCompactLayout = false }) => {
+    const WorldleView = ({ onBack, killers = [], perks = [], worldleState, setWorldleState, isCompactLayout = false, onOpenCharacterProfile = null, onPerkTap = null }) => {
       const [mode, setMode] = useState('classic');
       const [queueType, setQueueType] = useState('daily');
       const [guessInput, setGuessInput] = useState('');
@@ -7702,15 +7756,25 @@
       const renderClassicGuess = (guess, index) => {
         const guessedKiller = killerCatalog.find(entry => entry.id === guess.id);
         if (!guessedKiller || !target) return null;
+        const canOpenKiller = typeof onOpenCharacterProfile === 'function' && (killers || []).some(k => k && k.id === guessedKiller.id);
+        const openGuessedKiller = () => {
+          if (!canOpenKiller) return;
+          const full = (killers || []).find(k => k && k.id === guessedKiller.id) || null;
+          if (full) onOpenCharacterProfile(full);
+        };
         return (
-          <div key={`${guess.id}-${index}`} className="p-3 rounded-2xl bg-zinc-900/60 border border-white/10">
+          <div key={`${guess.id}-${index}`} className="tool-card">
             <div className="flex items-center justify-between gap-3 mb-2">
-              <p className="text-sm font-bold text-white">{guessedKiller.name}</p>
-              <span className={`px-2 py-1 rounded-lg text-[10px] uppercase tracking-wider font-bold ${guess.correct ? 'bg-emerald-500/20 text-emerald-300' : 'bg-red-500/20 text-red-200'}`}>
+              {canOpenKiller ? (
+                <button type="button" onClick={openGuessedKiller} style={{ color: 'var(--link)', fontWeight: 700, fontSize: 14, background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}>{guessedKiller.name}</button>
+              ) : (
+                <p className="text-sm font-bold" style={{ color: 'var(--text)' }}>{guessedKiller.name}</p>
+              )}
+              <span className="text-[10px] uppercase tracking-wider font-bold" style={{ color: guess.correct ? '#86efac' : '#fca5a5' }}>
                 {guess.correct ? 'Solved' : 'Wrong'}
               </span>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-7 gap-2">
+            <div>
               {classicFields.map((field) => {
                 const guessedValue = guessedKiller[field.key];
                 const targetValue = target[field.key];
@@ -7718,17 +7782,17 @@
                 const yearHint = field.key === 'releaseYear' && guessedValue && targetValue && guessedValue !== targetValue
                   ? guessedValue < targetValue ? '↑' : '↓'
                   : '';
-                const palette = exact
-                  ? 'bg-emerald-500/15 border-emerald-400/30 text-emerald-200'
+                const valueColor = exact
+                  ? '#86efac'
                   : field.key === 'releaseYear'
-                    ? 'bg-amber-500/10 border-amber-400/25 text-amber-100'
-                    : 'bg-red-500/10 border-red-400/20 text-red-100';
+                    ? '#fcd34d'
+                    : '#fca5a5';
                 return (
-                  <div key={field.key} className={`p-2 rounded-xl border ${palette}`}>
-                    <p className="text-[10px] uppercase tracking-wider opacity-70 mb-1">{field.label}</p>
-                    <p className="text-xs font-semibold">
+                  <div key={field.key} className="flex items-center justify-between gap-3" style={{ borderBottom: '1px solid var(--stroke)', padding: '6px 0' }}>
+                    <span className="text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>{field.label}</span>
+                    <span className="text-xs font-semibold" style={{ color: valueColor }}>
                       {formatClassicValue(field.key, guessedValue)} {yearHint}
-                    </p>
+                    </span>
                   </div>
                 );
               })}
@@ -7736,13 +7800,33 @@
           </div>
         );
       };
+      const canOpenKillerId = (id) => typeof onOpenCharacterProfile === 'function' && (killers || []).some(k => k && k.id === id);
+      const canOpenPerkId = (id) => typeof onPerkTap === 'function' && (perks || []).some(p => p && p.id === id);
+      const openKillerById = (id) => {
+        if (typeof onOpenCharacterProfile !== 'function') return;
+        const full = (killers || []).find(k => k && k.id === id) || null;
+        if (full) onOpenCharacterProfile(full);
+      };
+      const openPerkById = (id) => {
+        if (typeof onPerkTap !== 'function') return;
+        const full = (perks || []).find(p => p && p.id === id) || null;
+        if (full) onPerkTap(full);
+      };
+      const renderTappableName = (label, onTap) => {
+        if (typeof onTap !== 'function') {
+          return (<span className="text-sm font-semibold" style={{ color: 'var(--text)' }}>{label}</span>);
+        }
+        return (<button type="button" onClick={onTap} style={{ color: 'var(--link)', fontWeight: 600, fontSize: 14, background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}>{label}</button>);
+      };
       const histogramMax = Math.max(1, ...Object.values(statsBucket.histogram || {}).map(value => Number(value) || 0));
       if (!target || activeCatalog.length === 0) {
         return (
           <div className="flex flex-col h-full pt-12 pb-32 px-6 overflow-y-auto custom-scrollbar">
             <Header title="Wordle" subtitle="Test your DBD knowledge" onBack={onBack} infoTips={VIEW_TIPS.worldle} />
-            <div className="p-6 rounded-3xl bg-zinc-900/60 border border-white/10 text-center text-zinc-400">
-              Wordle data is unavailable right now.
+            <div className="tool-card">
+              <p className="text-sm" style={{ color: 'var(--muted)' }}>
+                Wordle data is unavailable right now.
+              </p>
             </div>
           </div>
         );
@@ -7754,27 +7838,31 @@
             'Daily puzzles reset at midnight.',
             'Every game-mode also supports practice mode.',
           ]} />
-          <div className={isPhoneLayout ? 'mb-4 space-y-4' : 'p-4 rounded-3xl bg-zinc-900/50 border border-white/10 mb-4'}>
-            <div className={`flex flex-wrap gap-2 ${isPhoneLayout ? '' : 'mb-4'}`}>
+          <div className={isPhoneLayout ? 'mb-4 space-y-4' : 'mb-4'}>
+            <div className="chipstrip" role="tablist" aria-label="Wordle mode">
               {WORLDLE_MODES.map((modeId) => (
                 <button
                   type="button"
+                  role="tab"
+                  aria-selected={mode === modeId}
                   key={modeId}
                   onClick={() => setMode(modeId)}
-                  className={`px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-[0.22em] border transition-all ${mode === modeId ? 'text-white border-white/40 bg-white/10' : 'text-zinc-400 border-white/10 bg-black/20 hover:text-white'}`}
+                  className={mode === modeId ? 'on' : ''}
                 >
                   {WORLDLE_MODE_META[modeId].label}
                 </button>
               ))}
             </div>
             {practiceEnabled && (
-              <div className={`flex flex-wrap gap-2 ${isPhoneLayout ? '' : 'mb-4'}`}>
+              <div className="char-segments" role="tablist" aria-label="Puzzle queue">
                 {['daily', 'practice'].map((entry) => (
                   <button
                     type="button"
+                    role="tab"
+                    aria-selected={activeQueue === entry}
                     key={entry}
                     onClick={() => setQueueType(entry)}
-                    className={`px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-[0.22em] border ${activeQueue === entry ? 'border-cyan-400/40 text-cyan-200 bg-cyan-500/10' : 'border-white/10 text-zinc-500 bg-black/20'}`}
+                    className={activeQueue === entry ? 'on' : ''}
                   >
                     {entry === 'daily' ? 'Daily' : 'Practice'}
                   </button>
@@ -7783,38 +7871,38 @@
             )}
             <div className="grid grid-cols-1 xl:grid-cols-[1.35fr,0.85fr] gap-4">
               <div className="space-y-4">
-                <div className={`${isPhoneLayout ? 'p-4' : 'p-5'} rounded-3xl bg-zinc-900/60 border border-white/10`}>
+                <div className="tool-card">
                   <div className={`mb-4 ${isPhoneLayout ? 'space-y-3' : 'flex items-start justify-between gap-4'}`}>
                     <div>
                       <div className={`flex flex-wrap items-center gap-2 ${isPhoneLayout ? 'mb-1' : ''}`}>
-                        <p className="text-[11px] uppercase tracking-[0.28em] text-zinc-500 font-bold">{activeQueue === 'daily' ? 'Daily Puzzle' : 'Practice Queue'}</p>
+                        <p className="home-secttl" style={{ margin: 0 }}>{activeQueue === 'daily' ? 'Daily Puzzle' : 'Practice Queue'}</p>
                         {isPhoneLayout && (
-                          <span className="px-2.5 py-1 rounded-full border border-white/10 bg-black/20 text-[10px] uppercase tracking-[0.22em] text-zinc-300 font-bold">
+                          <span className="px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold" style={{ border: '1px solid var(--stroke)', color: 'var(--muted)' }}>
                             {compactPuzzleBadge}
                           </span>
                         )}
                       </div>
-                      <h2 className="text-xl md:text-2xl font-black text-white mt-1">{WORLDLE_MODE_META[mode].label}</h2>
-                      <p className="text-sm text-zinc-400 mt-2 max-w-2xl">{WORLDLE_MODE_META[mode].description}</p>
+                      <h4 className="text-xl md:text-2xl mt-1">{WORLDLE_MODE_META[mode].label}</h4>
+                      <p className="text-sm mt-2 max-w-2xl" style={{ color: 'var(--muted)' }}>{WORLDLE_MODE_META[mode].description}</p>
                     </div>
                     {!isPhoneLayout && (
                     <div className="text-right">
-                      <p className="text-[10px] uppercase tracking-wider text-zinc-500">Puzzle Key</p>
-                      <p className="text-sm text-white font-semibold">{activeQueue === 'daily' ? todayKey : `Practice-${practiceRoundLabel}`}</p>
+                      <p className="text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>Puzzle Key</p>
+                      <p className="text-sm font-semibold" style={{ color: 'var(--text)' }}>{activeQueue === 'daily' ? todayKey : `Practice-${practiceRoundLabel}`}</p>
                     </div>
                     )}
                   </div>
                   {(mode === 'classic' || mode === 'emoji') && (
                     <div className="space-y-4">
-                      <div className={isPhoneLayout ? 'space-y-3' : 'p-4 rounded-2xl bg-white/5 border border-white/10'}>
-                        <p className="text-[10px] uppercase tracking-[0.22em] text-zinc-500 font-bold mb-2">{mode === 'classic' ? 'Killer Stats' : 'Emoji Clues'}</p>
+                      <div className={isPhoneLayout ? 'space-y-3' : ''}>
+                        <p className="home-secttl" style={{ marginTop: 0 }}>{mode === 'classic' ? 'Killer Stats' : 'Emoji Clues'}</p>
                         {mode === 'classic' ? (
                           <>
                             <div className="grid grid-cols-2 gap-2 text-sm">
                               {classicFields.map(field => (
-                                <div key={field.key} className={`p-3 rounded-xl border ${revealedClassicFields[field.key] ? 'bg-emerald-500/10 border-emerald-400/20' : 'bg-black/25 border-white/5'}`}>
-                                  <p className="text-[10px] uppercase tracking-wider text-zinc-500 mb-1">{field.label}</p>
-                                  <p className={revealedClassicFields[field.key] ? 'text-emerald-200' : 'text-zinc-300'}>
+                                <div key={field.key} className="p-3" style={{ border: '1px solid var(--stroke)' }}>
+                                  <p className="text-[10px] uppercase tracking-wider mb-1" style={{ color: 'var(--muted)' }}>{field.label}</p>
+                                  <p style={{ color: revealedClassicFields[field.key] ? '#86efac' : 'var(--muted)' }}>
                                     {revealedClassicFields[field.key] ? formatClassicValue(field.key, target[field.key]) : 'Unknown'}
                                   </p>
                                 </div>
@@ -7826,7 +7914,7 @@
                             {[0, 1, 2].map((index) => {
                               const revealed = index < Math.min(3, 1 + wrongGuesses) || isFinished;
                               return (
-                                <div key={index} className="h-24 rounded-2xl bg-black/25 border border-white/10 flex items-center justify-center text-4xl">
+                                <div key={index} className="h-24 flex items-center justify-center text-4xl" style={{ border: '1px solid var(--stroke)' }}>
                                   {revealed ? (activeEmojiVariant?.displayEmojis?.[index] || '❔') : '❔'}
                                 </div>
                               );
@@ -7835,39 +7923,43 @@
                         )}
                       </div>
                       {isFinished && (
-                        <div className={`p-3 rounded-2xl border ${session.solved ? 'bg-emerald-500/10 border-emerald-400/20' : 'bg-amber-500/10 border-amber-400/20'}`}>
-                          <p className="text-[10px] uppercase tracking-[0.22em] font-bold mb-1" style={{ color: session.solved ? '#86efac' : '#fcd34d' }}>
+                        <div className="tool-card">
+                          <p className="home-secttl" style={{ marginTop: 0, color: session.solved ? '#86efac' : '#fcd34d' }}>
                             {session.solved ? 'Solved' : 'Revealed'}
                           </p>
-                          <p className="text-lg font-bold text-white">{target.name}</p>
+                          {canOpenKillerId(target.id)
+                            ? (<button type="button" onClick={() => openKillerById(target.id)} style={{ color: 'var(--link)', fontWeight: 700, fontSize: 18, background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}>{target.name}</button>)
+                            : (<p className="text-lg font-bold" style={{ color: 'var(--text)' }}>{target.name}</p>)}
                         </div>
                       )}
                     </div>
                   )}
                   {(mode === 'survivorPerk' || mode === 'killerPerk') && (
                     <div className="grid grid-cols-1 md:grid-cols-[220px,1fr] gap-4 items-center">
-                      <div className="p-4 rounded-2xl bg-black/20 border border-white/10 flex items-center justify-center min-h-[220px]">
-                        <div className="w-32 h-32 rounded-3xl overflow-hidden border border-white/10 bg-zinc-900/70 flex items-center justify-center">
+                      <div className="tool-card flex items-center justify-center" style={{ minHeight: 220 }}>
+                        <div className="w-32 h-32 overflow-hidden flex items-center justify-center" style={{ border: '1px solid var(--stroke)' }}>
                           <img src={`./${target.image}`} alt="Hidden perk icon" className="w-full h-full object-contain" style={isFinished ? { filter: 'none' } : getPerkRevealStyle()} />
                         </div>
                       </div>
                       <div className="space-y-3">
                         <div className="grid grid-cols-2 gap-3">
-                          <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
-                            <p className="text-[10px] uppercase tracking-wider text-zinc-500 mb-1">Owner</p>
-                            <p className="text-white font-semibold">{isFinished ? target.owner : 'Unknown'}</p>
+                          <div className="p-3" style={{ border: '1px solid var(--stroke)' }}>
+                            <p className="text-[10px] uppercase tracking-wider mb-1" style={{ color: 'var(--muted)' }}>Owner</p>
+                            <p className="font-semibold" style={{ color: 'var(--text)' }}>{isFinished ? target.owner : 'Unknown'}</p>
                           </div>
-                          <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
-                            <p className="text-[10px] uppercase tracking-wider text-zinc-500 mb-1">Reveal Stage</p>
-                            <p className="text-white font-semibold">{Math.min(4, wrongGuesses + 1)}/4</p>
+                          <div className="p-3" style={{ border: '1px solid var(--stroke)' }}>
+                            <p className="text-[10px] uppercase tracking-wider mb-1" style={{ color: 'var(--muted)' }}>Reveal Stage</p>
+                            <p className="font-semibold" style={{ color: 'var(--text)' }}>{Math.min(4, wrongGuesses + 1)}/4</p>
                           </div>
                         </div>
                         {isFinished && (
-                          <div className={`p-3 rounded-2xl border ${session.solved ? 'bg-emerald-500/10 border-emerald-400/20' : 'bg-amber-500/10 border-amber-400/20'}`}>
-                            <p className="text-[10px] uppercase tracking-[0.22em] font-bold mb-1" style={{ color: session.solved ? '#86efac' : '#fcd34d' }}>
+                          <div className="tool-card">
+                            <p className="home-secttl" style={{ marginTop: 0, color: session.solved ? '#86efac' : '#fcd34d' }}>
                               {session.solved ? 'Solved' : 'Revealed'}
                             </p>
-                            <p className="text-lg font-bold text-white">{target.name}</p>
+                            {canOpenPerkId(target.id)
+                              ? (<button type="button" onClick={() => openPerkById(target.id)} style={{ color: 'var(--link)', fontWeight: 700, fontSize: 18, background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}>{target.name}</button>)
+                              : (<p className="text-lg font-bold" style={{ color: 'var(--text)' }}>{target.name}</p>)}
                           </div>
                         )}
                       </div>
@@ -7875,48 +7967,55 @@
                   )}
                   {mode === 'teachables' && (
                     <div className="grid grid-cols-1 md:grid-cols-[170px,1fr] gap-4 items-start">
-                      <div className="p-4 rounded-2xl bg-black/20 border border-white/10">
-                        <div className="w-24 h-32 mx-auto rounded-2xl overflow-hidden border border-white/10 bg-zinc-900/70">
+                      <div className="tool-card">
+                        <div className="w-24 h-32 mx-auto overflow-hidden" style={{ border: '1px solid var(--stroke)' }}>
                           <AssetFrame type="Killer" size="fill" imageUrl={target.image} fallbackIcon={<Icons.Sword width={40} height={40} className="text-zinc-400" />} />
                         </div>
-                        <p className="text-base font-bold text-white mt-3 text-center">{target.name}</p>
-                        <p className="text-xs text-zinc-500 mt-1 text-center">Guess all three teachable perks. Duplicate attempts do not count.</p>
+                        <div className="mt-3 text-center">
+                          {canOpenKillerId(target.id)
+                            ? (<button type="button" onClick={() => openKillerById(target.id)} style={{ color: 'var(--link)', fontWeight: 700, fontSize: 16, background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit' }}>{target.name}</button>)
+                            : (<p className="text-base font-bold" style={{ color: 'var(--text)' }}>{target.name}</p>)}
+                        </div>
+                        <p className="text-xs mt-1 text-center" style={{ color: 'var(--muted)' }}>Guess all three teachable perks. Duplicate attempts do not count.</p>
                       </div>
                       <div className="space-y-3">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                           {target.teachables.map((perk) => {
                             const solved = solvedIds.includes(perk.id) || isFinished;
                             return (
-                              <div key={perk.id} className={`p-4 rounded-2xl border ${solved ? 'bg-emerald-500/10 border-emerald-400/20' : 'bg-white/5 border-white/10'}`}>
-                                <div className="w-16 h-16 rounded-xl overflow-hidden bg-black/30 border border-white/10 mb-3">
+                              <div key={perk.id} className="tool-card" style={solved ? { borderColor: '#34d399' } : undefined}>
+                                <div className="w-16 h-16 overflow-hidden mb-3" style={{ border: '1px solid var(--stroke)' }}>
                                   {solved ? (
                                     <AssetFrame type="Perk" size="fill" imageUrl={perk.image} fallbackIcon={<Icons.BookOpen width={24} height={24} className="text-zinc-400" />} />
                                   ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-zinc-400 text-2xl font-black">?</div>
+                                    <div className="w-full h-full flex items-center justify-center text-2xl font-black" style={{ color: 'var(--muted)' }}>?</div>
                                   )}
                                 </div>
-                                <p className="text-sm font-semibold text-white">{solved ? perk.name : 'Unknown teachable'}</p>
+                                {solved
+                                  ? (canOpenPerkId(perk.id)
+                                    ? (<button type="button" onClick={() => openPerkById(perk.id)} style={{ color: 'var(--link)', fontWeight: 600, fontSize: 14, background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}>{perk.name}</button>)
+                                    : (<p className="text-sm font-semibold" style={{ color: 'var(--text)' }}>{perk.name}</p>))
+                                  : (<p className="text-sm font-semibold" style={{ color: 'var(--muted)' }}>Unknown teachable</p>)}
                               </div>
                             );
                           })}
                         </div>
                         {isFinished && (
-                          <div className={`p-3 rounded-2xl border ${session.solved ? 'bg-emerald-500/10 border-emerald-400/20' : 'bg-amber-500/10 border-amber-400/20'}`}>
-                            <p className="text-[10px] uppercase tracking-[0.22em] font-bold mb-1" style={{ color: session.solved ? '#86efac' : '#fcd34d' }}>
+                          <div className="tool-card">
+                            <p className="home-secttl" style={{ marginTop: 0, color: session.solved ? '#86efac' : '#fcd34d' }}>
                               {session.solved ? 'Solved' : 'Revealed'}
                             </p>
-                            <p className="text-sm text-white">Target killer: <span className="font-bold">{target.name}</span></p>
+                            <p className="text-sm" style={{ color: 'var(--text)' }}>Target killer: {canOpenKillerId(target.id)
+                              ? (<button type="button" onClick={() => openKillerById(target.id)} style={{ color: 'var(--link)', fontWeight: 700, background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', fontSize: 14 }}>{target.name}</button>)
+                              : (<span className="font-bold">{target.name}</span>)}</p>
                           </div>
                         )}
                       </div>
                     </div>
                   )}
                 </div>
-                <div className="p-4 rounded-3xl bg-zinc-900/60 border border-white/10">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Icons.Search width={16} height={16} className="text-zinc-500" />
-                    <p className="text-[11px] uppercase tracking-[0.22em] text-zinc-500 font-bold">Submit Guess</p>
-                  </div>
+                <div className="tool-card">
+                  <p className="home-secttl" style={{ marginTop: 0 }}>Submit Guess</p>
                   <div className="flex flex-col md:flex-row gap-3">
                     <div className="flex-1">
                       <input
@@ -7942,18 +8041,19 @@
                         autoCapitalize="none"
                         spellCheck={false}
                         enterKeyHint="go"
-                        className="w-full bg-zinc-800/60 border border-white/10 rounded-2xl px-4 py-3 text-sm text-white placeholder-zinc-500"
+                        aria-label="Guess input"
+                        className="field"
+                        style={{ marginTop: 0 }}
                       />
                       {inputError && <p className="text-xs text-amber-300 mt-2">{inputError}</p>}
                       {inputNotice && <p className="text-xs text-cyan-300 mt-2">{inputNotice}</p>}
                       {inputSuggestions.length > 0 && !isFinished && (
-                        <div className="mt-3 flex flex-wrap gap-2">
+                        <div className="chipstrip" role="listbox" aria-label="Guess suggestions">
                           {inputSuggestions.map((option) => (
                             <button
                               type="button"
                               key={option}
                               onClick={() => handleGuessSubmit(option)}
-                              className="px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-zinc-200 text-xs font-semibold hover:bg-white/10"
                             >
                               {option}
                             </button>
@@ -7966,118 +8066,105 @@
                       onMouseDown={e => e.preventDefault()}
                       onClick={() => handleGuessSubmit()}
                       disabled={!guessInput.trim() || isFinished}
-                      className="px-5 py-3 rounded-2xl bg-gradient-to-r from-red-700 to-red-500 text-white font-bold text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+                      className="shuf-subbtn"
+                      style={{ opacity: (!guessInput.trim() || isFinished) ? 0.4 : 1 }}
                     >
                       Submit
                     </button>
-                    <button type="button" onClick={handleGiveUp} disabled={isFinished} className="px-5 py-3 rounded-2xl bg-white/5 border border-white/10 text-zinc-200 font-bold text-sm disabled:opacity-40 disabled:cursor-not-allowed">
+                    <button type="button" onClick={handleGiveUp} disabled={isFinished} className="shuf-subbtn" style={{ opacity: isFinished ? 0.4 : 1 }}>
                       {activeQueue === 'daily' ? 'Reveal' : 'Skip'}
                     </button>
                     {activeQueue === 'practice' && isFinished && (
-                      <button type="button" onClick={advancePractice} className="px-5 py-3 rounded-2xl bg-cyan-500/10 border border-cyan-400/20 text-cyan-200 font-bold text-sm">
+                      <button type="button" onClick={advancePractice} className="shuf-subbtn">
                         Next Puzzle
                       </button>
                     )}
                   </div>
                 </div>
-                <div className="p-4 rounded-3xl bg-zinc-900/60 border border-white/10">
+                <div className="tool-card">
                   <div className="flex items-center justify-between gap-3 mb-3">
-                    <p className="text-[11px] uppercase tracking-[0.22em] text-zinc-500 font-bold">Guess History</p>
-                    <span className="text-[10px] uppercase tracking-wider text-zinc-400">{guessCount} attempts</span>
+                    <p className="home-secttl" style={{ margin: 0 }}>Guess History</p>
+                    <span className="text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>{guessCount} attempts</span>
                   </div>
                   {mode === 'classic' ? (
                     <div className="space-y-3">
                       {(session.guesses || []).map(renderClassicGuess)}
-                      {(session.guesses || []).length === 0 && <p className="text-sm text-zinc-500">No guesses yet. Start with any killer name and use the stat matches to narrow the field.</p>}
+                      {(session.guesses || []).length === 0 && <p className="text-sm" style={{ color: 'var(--muted)' }}>No guesses yet. Start with any killer name and use the stat matches to narrow the field.</p>}
                     </div>
                   ) : (
                     <div className="space-y-2">
-                      {(session.guesses || []).map((guess, index) => (
-                        <div key={`${guess.id || guess.label}-${index}`} className={`p-3 rounded-2xl border ${guess.correct ? 'bg-emerald-500/10 border-emerald-400/20' : 'bg-red-500/10 border-red-400/20'}`}>
-                          <div className="flex items-center justify-between gap-3">
-                            <span className="text-sm font-semibold text-white">{guess.label}</span>
-                            <span className={`text-[10px] uppercase tracking-[0.22em] font-bold ${guess.correct ? 'text-emerald-300' : 'text-red-200'}`}>
-                              {guess.correct ? 'Correct' : 'Wrong'}
-                            </span>
+                      {(session.guesses || []).map((guess, index) => {
+                        const isKillerGuess = mode === 'emoji';
+                        const guessOpener = isKillerGuess
+                          ? (canOpenKillerId(guess.id) ? () => openKillerById(guess.id) : null)
+                          : (canOpenPerkId(guess.id) ? () => openPerkById(guess.id) : null);
+                        return (
+                          <div key={`${guess.id || guess.label}-${index}`} className="tool-card" style={guess.correct ? { borderColor: '#34d399' } : undefined}>
+                            <div className="flex items-center justify-between gap-3">
+                              {guessOpener ? renderTappableName(guess.label, guessOpener) : (<span className="text-sm font-semibold" style={{ color: 'var(--text)' }}>{guess.label}</span>)}
+                              <span className="text-[10px] uppercase tracking-wider font-bold" style={{ color: guess.correct ? '#86efac' : '#fca5a5' }}>
+                                {guess.correct ? 'Correct' : 'Wrong'}
+                              </span>
+                            </div>
                           </div>
-                        </div>
-                      ))}
-                      {(session.guesses || []).length === 0 && <p className="text-sm text-zinc-500">No guesses yet.</p>}
+                        );
+                      })}
+                      {(session.guesses || []).length === 0 && <p className="text-sm" style={{ color: 'var(--muted)' }}>No guesses yet.</p>}
                     </div>
                   )}
                 </div>
               </div>
               <div className="space-y-4">
-                <div className="p-4 rounded-3xl bg-zinc-900/60 border border-white/10">
-                  <p className="text-[11px] uppercase tracking-[0.22em] text-zinc-500 font-bold mb-3">Stats</p>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
-                      <p className="text-2xl font-black text-white">{statsBucket.played}</p>
-                      <p className="text-[10px] uppercase tracking-wider text-zinc-500 mt-1">Played</p>
-                    </div>
-                    <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
-                      <p className="text-2xl font-black text-emerald-300">{statsBucket.solved}</p>
-                      <p className="text-[10px] uppercase tracking-wider text-zinc-500 mt-1">Solved</p>
-                    </div>
-                    <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
-                      <p className="text-2xl font-black text-cyan-300">{statsBucket.averageGuesses || 0}</p>
-                      <p className="text-[10px] uppercase tracking-wider text-zinc-500 mt-1">Avg Guesses</p>
-                    </div>
-                    <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
-                      <p className="text-2xl font-black text-fuchsia-300">{activeQueue === 'daily' ? statsBucket.bestStreak : historyRows.length}</p>
-                      <p className="text-[10px] uppercase tracking-wider text-zinc-500 mt-1">{activeQueue === 'daily' ? 'Best Streak' : 'Recent Runs'}</p>
-                    </div>
-                  </div>
+                <div className="tool-card">
+                  <p className="home-secttl" style={{ marginTop: 0 }}>Stats</p>
+                  <p className="text-sm" style={{ color: 'var(--text)' }}>
+                    Played <strong>{statsBucket.played}</strong>
+                    {' · '}Solved <strong>{statsBucket.solved}</strong>
+                    {' · '}Avg guesses <strong>{statsBucket.averageGuesses || 0}</strong>
+                    {' · '}{activeQueue === 'daily' ? 'Best streak' : 'Recent runs'} <strong>{activeQueue === 'daily' ? statsBucket.bestStreak : historyRows.length}</strong>
+                  </p>
                   {activeQueue === 'daily' && (
-                    <div className="grid grid-cols-2 gap-3 mt-3">
-                      <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
-                        <p className="text-xl font-black text-white">{statsBucket.currentStreak}</p>
-                        <p className="text-[10px] uppercase tracking-wider text-zinc-500 mt-1">Current Streak</p>
-                      </div>
-                      <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
-                        <p className="text-xl font-black text-white">{statsBucket.solved && statsBucket.played ? Math.round((statsBucket.solved / statsBucket.played) * 100) : 0}%</p>
-                        <p className="text-[10px] uppercase tracking-wider text-zinc-500 mt-1">Solve Rate</p>
-                      </div>
-                    </div>
+                    <p className="text-sm mt-2" style={{ color: 'var(--text)' }}>
+                      Current streak <strong>{statsBucket.currentStreak}</strong>
+                      {' · '}Solve rate <strong>{statsBucket.solved && statsBucket.played ? Math.round((statsBucket.solved / statsBucket.played) * 100) : 0}%</strong>
+                    </p>
                   )}
                 </div>
-                <div className="p-4 rounded-3xl bg-zinc-900/60 border border-white/10">
+                <div className="tool-card">
                   <div className="flex items-center justify-between gap-3 mb-3">
-                    <p className="text-[11px] uppercase tracking-[0.22em] text-zinc-500 font-bold">Histogram</p>
-                    <span className="text-[10px] uppercase tracking-wider text-zinc-400">Solved runs only</span>
+                    <p className="home-secttl" style={{ margin: 0 }}>Histogram</p>
+                    <span className="text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>Solved runs only</span>
                   </div>
                   <div className="space-y-2">
                     {Object.entries(statsBucket.histogram || {}).map(([bucket, value]) => (
                       <div key={bucket} className="grid grid-cols-[40px,1fr,28px] items-center gap-2">
-                        <span className="text-xs text-zinc-500 font-semibold">{bucket}</span>
-                        <div className="h-2 rounded-full bg-zinc-800 overflow-hidden">
-                          <div className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-red-500" style={{ width: `${((Number(value) || 0) / histogramMax) * 100}%` }} />
+                        <span className="text-xs font-semibold" style={{ color: 'var(--muted)' }}>{bucket}</span>
+                        <div className="h-2 overflow-hidden" style={{ background: 'var(--ghost-surface)' }}>
+                          <div className="h-full" style={{ width: `${((Number(value) || 0) / histogramMax) * 100}%`, background: 'var(--link)' }} />
                         </div>
-                        <span className="text-xs text-zinc-400 text-right">{value}</span>
+                        <span className="text-xs text-right" style={{ color: 'var(--muted)' }}>{value}</span>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="p-4 rounded-[24px] bg-zinc-900/60 border border-white/10">
+                <div className="tool-card">
                   <div className="flex items-center justify-between gap-3 mb-3">
-                    <p className="text-[11px] uppercase tracking-[0.22em] text-zinc-500 font-bold">Recent Results</p>
-                    <span className="text-[10px] uppercase tracking-wider text-zinc-400">Last 30</span>
+                    <p className="home-secttl" style={{ margin: 0 }}>Recent Results</p>
+                    <span className="text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>Last 30</span>
                   </div>
                   <div className="space-y-2 max-h-80 overflow-y-auto custom-scrollbar">
                     {historyRows.map((row, index) => (
-                      <div key={`${row.completedAt || row.puzzleKey}-${index}`} className="p-3 rounded-2xl bg-white/5 border border-white/10">
-                        <div className="flex items-center justify-between gap-3">
-                          <div>
-                            <p className="text-sm font-semibold text-white">{row.targetSnapshot?.name || 'Unknown target'}</p>
-                            <p className="text-[11px] text-zinc-500 uppercase tracking-wider">{row.puzzleKey} · {row.queue}</p>
-                          </div>
-                          <span className={`px-2 py-1 rounded-lg text-[10px] uppercase tracking-[0.22em] font-bold ${row.solved ? 'bg-emerald-500/20 text-emerald-300' : 'bg-amber-500/20 text-amber-200'}`}>
-                            {row.solved ? `${row.guessCount} guesses` : 'Revealed'}
-                          </span>
+                      <div key={`${row.completedAt || row.puzzleKey}-${index}`} className="flex items-center justify-between gap-3" style={{ borderBottom: '1px solid var(--stroke)', padding: '8px 0' }}>
+                        <div>
+                          <p className="text-sm font-semibold" style={{ color: 'var(--text)' }}>{row.targetSnapshot?.name || 'Unknown target'}</p>
+                          <p className="text-[11px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>{row.puzzleKey} · {row.queue}</p>
                         </div>
+                        <span className="text-[10px] uppercase tracking-wider font-bold" style={{ color: row.solved ? '#86efac' : '#fcd34d' }}>
+                          {row.solved ? `${row.guessCount} guesses` : 'Revealed'}
+                        </span>
                       </div>
                     ))}
-                    {historyRows.length === 0 && <p className="text-sm text-zinc-500">No recorded runs for this mode yet.</p>}
+                    {historyRows.length === 0 && <p className="text-sm" style={{ color: 'var(--muted)' }}>No recorded runs for this mode yet.</p>}
                   </div>
                 </div>
               </div>
@@ -12975,7 +13062,7 @@
               />
             );
           case 'worldle':
-            return <WorldleView onBack={() => setView('home')} killers={killers} perks={perks} worldleState={worldleState} setWorldleState={setWorldleState} isCompactLayout={device.width <= 640} />;
+            return <WorldleView onBack={() => setView('home')} killers={killers} perks={perks} worldleState={worldleState} setWorldleState={setWorldleState} isCompactLayout={device.width <= 640} onOpenCharacterProfile={setProfileCharacter} onPerkTap={(perk) => setSelectedPerk(perk)} />;
           case 'cosmetics':
             return <CosmeticsView onBack={() => setView('home')} cosmeticsCatalog={cosmeticsCatalogForDisplay} onOpenCosmetic={openCosmeticProfile} fullSetPackState={cosmeticsFullSetPackState} fullSetCatalogCount={fullSetCatalogCount} onRefreshFullSetPack={refreshCosmeticsFullSetPack} cosmeticsAssetRevision={cosmeticsAssetRevision} />;
           case 'buildLab':
