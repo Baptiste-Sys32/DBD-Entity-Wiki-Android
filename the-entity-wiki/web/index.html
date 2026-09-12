@@ -894,6 +894,20 @@
     .perk-detail .meta { color: var(--muted); font-size: 12.5px; margin: 0 0 4px; }
     .perk-detail .rowbtns { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
     .perk-detail .rowbtns button { background: none; border: 1px solid var(--stroke); color: var(--text); font-size: 12.5px; font-weight: 600; padding: 8px 12px; min-height: 44px; cursor: pointer; }
+
+    /* ===== Items & addons (step E): group accordions + addon rows ===== */
+    .grp-body { padding: 2px 4px 14px 0; }
+    .grp-body .desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 0 0 8px 56px; }
+    .grp-body .sub-h { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 8px 0 2px 56px; }
+    .addon-row { display: flex; gap: 10px; padding: 10px 4px 10px 56px; border-top: 1px solid var(--stroke); }
+    .addon-row .thumb { width: 40px; height: 40px; flex: 0 0 40px; background: var(--ghost-surface); border: 1px solid var(--stroke); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .addon-row .nm { font-size: 14px; font-weight: 600; color: var(--text); }
+    .addon-row .rdot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+    .addon-row .rar { font-size: 11.5px; color: var(--muted); }
+    .addon-row .eff { font-size: 12.5px; color: var(--muted); line-height: 1.55; margin: 2px 0 0; }
+    .addon-row .star { margin-left: auto; background: none; border: none; color: var(--muted); font-size: 15px; cursor: pointer; min-width: 44px; min-height: 44px; flex-shrink: 0; align-self: flex-start; }
+    .addon-row .star.lit { color: #fbbf24; }
+    .addon-row.target-hi, .char-row.target-hi { background: rgba(34, 211, 238, 0.06); box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.12); }
   </style>
 </head>
 
@@ -9158,24 +9172,20 @@
           <Header title="Items & Addons" subtitle={mode === 'survivor' ? bloodwebItems.length + ' items' : killers.length + ' killers'} onBack={onBack} infoTips={VIEW_TIPS.items} />
           <div className="sticky top-0 z-20 -mx-6 px-6 pb-4 pointer-events-none">
             <div className="relative max-w-3xl mx-auto">
-              <div className="relative flex items-center bg-zinc-800/60 backdrop-blur-xl border border-white/10 rounded-3xl p-2 shadow-2xl pointer-events-auto">
-                <div className="pl-4 text-zinc-400"><Icons.Search width={18} height={18} /></div>
-                <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search..." className="w-full bg-transparent text-white p-3 text-sm font-medium placeholder-zinc-600 focus:outline-none" />
+              <div className="cx-searchbox pointer-events-auto">
+                <div className="text-zinc-400"><Icons.Search width={18} height={18} /></div>
+                <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search items & addons..." aria-label="Search items and addons" />
                 {search && (
-                  <button onClick={() => setSearch('')} className="p-2 mr-1 rounded-xl bg-white/5 text-zinc-300 hover:text-white hover:bg-white/10 transition-colors">
-                    <Icons.X width={18} height={18} />
-                  </button>
+                  <button onClick={() => setSearch('')} aria-label="Clear search" className="p-2 mr-1 text-zinc-300 hover:text-white transition-colors" style={{ width: 44, height: 44 }}>✕</button>
                 )}
               </div>
             </div>
           </div>
-          <div className="max-w-3xl mx-auto flex flex-wrap justify-center gap-2 mb-4">
-            <button onClick={() => { setMode('survivor'); setExpandedId(null); }} className={"px-4 py-2 rounded-xl text-xs uppercase tracking-wider transition-all " + (mode === 'survivor' ? 'bg-sky-500/20 text-sky-400 border border-sky-500/40' : 'bg-white/5 text-zinc-400 border border-white/10')}>
-              Survivor Items
-            </button>
-            <button onClick={() => { setMode('killer'); setExpandedId(null); }} className={"px-4 py-2 rounded-xl text-xs uppercase tracking-wider transition-all " + (mode === 'killer' ? 'bg-red-500/20 text-red-400 border border-red-500/40' : 'bg-white/5 text-zinc-400 border border-white/10')}>
-              Killer Addons
-            </button>
+          <div className="max-w-3xl mx-auto mb-4">
+            <div className="char-segments" role="tablist" aria-label="Items mode">
+              <button type="button" role="tab" aria-selected={mode === 'survivor'} className={mode === 'survivor' ? 'on' : ''} onClick={() => { setMode('survivor'); setExpandedId(null); }}>Survivor Items</button>
+              <button type="button" role="tab" aria-selected={mode === 'killer'} className={mode === 'killer' ? 'on' : ''} onClick={() => { setMode('killer'); setExpandedId(null); }}>Killer Addons</button>
+            </div>
           </div>
           {mode === 'survivor' && (
             <div className="max-w-3xl mx-auto flex flex-wrap justify-center gap-2 mb-4">
@@ -9203,31 +9213,30 @@
                         if (node) itemCardRefs.current[item.id] = node;
                         else delete itemCardRefs.current[item.id];
                       }}
-                      className={`p-4 rounded-3xl bg-zinc-900/40 border backdrop-blur-md cursor-pointer ${initialTargetType === 'item' && initialTargetId === item.id ? 'border-cyan-400/35 shadow-[0_0_0_1px_rgba(34,211,238,0.12)]' : 'border-white/5'}`}
-                      onClick={() => setExpandedId(isExpanded ? null : item.id)}
+                      className={`char-row ${(initialTargetType === 'item' && initialTargetId === item.id) ? 'target-hi' : ''}`}
                     >
-                      <div className="flex items-center gap-4 mb-2">
-                        <div className="w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 overflow-hidden">
-                          <AssetFrame type="Item" imageUrl={item.image} fallbackIcon={<Icons.Package width={24} height={24} className="text-white/40" />} />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-lg font-bold text-white">{item.name}</h3>
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs text-zinc-500 font-bold uppercase tracking-wider">{item.itemType || 'Item'}</span>
-                            <span className="text-[10px] px-2 py-1 rounded-md bg-white/5 font-bold" style={{ color: getRarityColor(item.rarity) }}>{formatRarity(item.rarity)}</span>
-                          </div>
-                        </div>
+                      <div className="char-rowtop">
+                        <button type="button" className="char-head" aria-expanded={isExpanded} onClick={() => setExpandedId(isExpanded ? null : item.id)}>
+                          <span className="portrait">
+                            <AssetFrame type="Item" size="fill" imageUrl={item.image} fallbackIcon={<Icons.Package width={18} height={18} className="text-white/40" />} />
+                          </span>
+                          <span style={{ minWidth: 0 }}>
+                            <span className="nm">{item.name}</span>
+                            <span className="sub">{item.itemType || 'Item'} · {formatRarity(item.rarity)}</span>
+                          </span>
+                          <span className="tok">{itemAddons.length} addons</span>
+                          <span className="chev" aria-hidden="true">{isExpanded ? '▾' : '▸'}</span>
+                        </button>
                         {onToggleFavoriteItem && (
-                          <button onClick={(e) => { e.stopPropagation(); onToggleFavoriteItem(item.id); }} className={`p-1.5 rounded-full transition-colors flex-shrink-0 ${favoriteItems.includes(item.id) ? 'bg-yellow-500/20' : 'bg-white/10 hover:bg-white/20'}`}>
-                            <Icons.Star width={16} height={16} className={favoriteItems.includes(item.id) ? 'text-yellow-400 fill-yellow-400' : 'text-zinc-500'} />
-                          </button>
+                          <button type="button" aria-label={favoriteItems.includes(item.id) ? 'Remove favorite' : 'Add favorite'} className={`char-fav ${favoriteItems.includes(item.id) ? 'lit' : ''}`} onClick={() => onToggleFavoriteItem(item.id)}>★</button>
                         )}
                       </div>
-                      {item.description && <p className="text-zinc-500 text-xs mt-2 leading-relaxed">{stripHtml(item.description)}</p>}
-                      {isExpanded && itemAddons.length > 0 && (
-                        <div className="mt-3 pt-3 border-t border-white/10">
-                          <p className="text-xs text-zinc-500 font-bold uppercase mb-2">Compatible Addons ({itemAddons.length})</p>
-                          <div className="space-y-2 max-h-64 overflow-y-auto custom-scrollbar px-1 pt-1 pb-2">
+                      {isExpanded && (
+                        <div className="grp-body">
+                          {item.description && (<p className="desc">{stripHtml(item.description)}</p>)}
+                          {itemAddons.length > 0 ? (
+                            <div>
+                              <p className="sub-h">Compatible Addons · {itemAddons.length}</p>
                             {itemAddons.map(addon => (
                               <div
                                 key={addon.id}
@@ -9236,34 +9245,25 @@
                                   if (node) addonRefs.current[addon.id] = node;
                                   else delete addonRefs.current[addon.id];
                                 }}
-                                className={`p-2 rounded-xl border flex items-start gap-3 ${initialTargetType === 'addon' && initialTargetId === addon.id ? 'bg-cyan-500/10 border-cyan-400/25' : 'bg-white/5 border-white/5'}`}
-                                style={{ boxShadow: getRarityGlow(addon.rarity, settings.rarityGlows !== false) }}
+                                className={`addon-row ${(initialTargetType === 'addon' && initialTargetId === addon.id) ? 'target-hi' : ''}`}
                               >
-                                <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex-shrink-0 overflow-hidden">
+                                <span className="thumb">
                                   <AssetFrame type="Addon" size="fill" imageUrl={addon.image} fallbackIcon={<Icons.Wrench width={16} height={16} className="text-white/40" />} />
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                  <div className="flex justify-between items-start">
-                                    <p className="text-white text-sm font-bold">{addon.name}</p>
-                                    <div className="flex items-center gap-1 flex-shrink-0">
-                                      {onToggleFavoriteAddon && (
-                                        <button onClick={(e) => { e.stopPropagation(); onToggleFavoriteAddon(addon.id); }} className={`p-1 rounded-full transition-colors ${favoriteAddons.includes(addon.id) ? 'bg-yellow-500/20' : 'bg-white/5 hover:bg-white/10'}`}>
-                                          <Icons.Star width={12} height={12} className={favoriteAddons.includes(addon.id) ? 'text-yellow-400 fill-yellow-400' : 'text-zinc-400'} />
-                                        </button>
-                                      )}
-                                      <span className="text-[10px] font-bold ml-1" style={{ color: getRarityColor(addon.rarity) }}>{formatRarity(addon.rarity)}</span>
-                                    </div>
-                                  </div>
-                                  {addon.description && <p className="text-zinc-500 text-xs mt-1">{stripHtml(addon.description)}</p>}
-                                </div>
+                                </span>
+                                <span style={{ minWidth: 0, flex: 1 }}>
+                                  <span className="nm">{addon.name}</span>
+                                  <div className="rar"><span className="rdot" style={{ background: getRarityColor(addon.rarity) }}></span>{formatRarity(addon.rarity)}</div>
+                                  {addon.description && <p className="eff">{stripHtml(addon.description)}</p>}
+                                </span>
+                                {onToggleFavoriteAddon && (
+                                  <button type="button" aria-label={favoriteAddons.includes(addon.id) ? 'Remove favorite' : 'Add favorite'} className={`star ${favoriteAddons.includes(addon.id) ? 'lit' : ''}`} onClick={() => onToggleFavoriteAddon(addon.id)}>★</button>
+                                )}
                               </div>
                             ))}
-                          </div>
-                        </div>
-                      )}
-                      {isExpanded && itemAddons.length === 0 && (
-                        <div className="mt-3 pt-3 border-t border-white/10">
-                          <p className="text-zinc-400 text-xs">No addons for this item type.</p>
+                            </div>
+                          ) : (
+                            <p className="desc">No addons for this item type.</p>
+                          )}
                         </div>
                       )}
                     </div>
@@ -9283,30 +9283,31 @@
                         if (node) killerCardRefs.current[killer.id] = node;
                         else delete killerCardRefs.current[killer.id];
                       }}
-                      className={`p-4 rounded-3xl bg-zinc-900/40 border backdrop-blur-md cursor-pointer ${initialTargetType === 'addon' && targetAddon?.role === 'killer' && targetKillerAddonHost?.id === killer.id ? 'border-cyan-400/35 shadow-[0_0_0_1px_rgba(34,211,238,0.12)]' : 'border-white/5'}`}
-                      onClick={() => setExpandedId(isExpanded ? null : killer.id)}
+                      className={`char-row ${(initialTargetType === 'addon' && targetAddon?.role === 'killer' && targetKillerAddonHost?.id === killer.id) ? 'target-hi' : ''}`}
                     >
-                      <div className="flex items-center gap-4">
-                        <div className="w-20 h-20 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 overflow-hidden">
-                          <AssetFrame
-                            type="Killer"
-                            size="fill"
-                            imageUrl={killer.image}
-                            fallbackIcon={<Icons.User width={28} height={28} className="text-zinc-500" />}
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between">
-                            <h3 className="text-lg font-bold text-white">{killer.name}</h3>
-                            <span className="text-xs text-zinc-500 font-bold uppercase tracking-wider">{powerAddons.length} addons</span>
-                          </div>
-                          <p className="text-zinc-400 text-sm">{killer.realName || killer.power || ''}</p>
-                        </div>
+                      <div className="char-rowtop">
+                        <button type="button" className="char-head" aria-expanded={isExpanded} onClick={() => setExpandedId(isExpanded ? null : killer.id)}>
+                          <span className="portrait">
+                            <AssetFrame
+                              type="Killer"
+                              size="fill"
+                              imageUrl={killer.image}
+                              fallbackIcon={<Icons.User width={18} height={18} className="text-zinc-500" />}
+                            />
+                          </span>
+                          <span style={{ minWidth: 0 }}>
+                            <span className="nm">{killer.name}</span>
+                            <span className="sub">{(typeof KILLER_GUIDES !== 'undefined' && KILLER_GUIDES[killer.name]?.powerName) || killer.realName || ''}</span>
+                          </span>
+                          <span className="tok">{powerAddons.length} addons</span>
+                          <span className="chev" aria-hidden="true">{isExpanded ? '▾' : '▸'}</span>
+                        </button>
                       </div>
-                      {isExpanded && powerAddons.length > 0 && (
-                        <div className="mt-3 pt-3 border-t border-white/10">
-                          <p className="text-xs text-zinc-500 font-bold uppercase mb-2">Power Addons</p>
-                          <div className="space-y-2 max-h-80 overflow-y-auto custom-scrollbar px-1 pt-1 pb-2">
+                      {isExpanded && (
+                        <div className="grp-body">
+                          {powerAddons.length > 0 ? (
+                            <div>
+                              <p className="sub-h">Power Addons · {powerAddons.length}</p>
                             {powerAddons.map(addon => (
                               <div
                                 key={addon.id}
@@ -9315,34 +9316,25 @@
                                   if (node) addonRefs.current[addon.id] = node;
                                   else delete addonRefs.current[addon.id];
                                 }}
-                                className={`p-2 rounded-xl border flex items-start gap-3 ${initialTargetType === 'addon' && initialTargetId === addon.id ? 'bg-cyan-500/10 border-cyan-400/25' : 'bg-white/5 border-white/5'}`}
-                                style={{ boxShadow: getRarityGlow(addon.rarity, settings.rarityGlows !== false) }}
+                                className={`addon-row ${(initialTargetType === 'addon' && initialTargetId === addon.id) ? 'target-hi' : ''}`}
                               >
-                                <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex-shrink-0 overflow-hidden">
+                                <span className="thumb">
                                   <AssetFrame type="Addon" size="fill" imageUrl={addon.image} fallbackIcon={<Icons.Wrench width={16} height={16} className="text-white/40" />} />
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                  <div className="flex justify-between items-start">
-                                    <p className="text-white text-sm font-bold">{addon.name}</p>
-                                    <div className="flex items-center gap-1 flex-shrink-0">
-                                      {onToggleFavoriteAddon && (
-                                        <button onClick={(e) => { e.stopPropagation(); onToggleFavoriteAddon(addon.id); }} className={`p-1 rounded-full transition-colors ${favoriteAddons.includes(addon.id) ? 'bg-yellow-500/20' : 'bg-white/5 hover:bg-white/10'}`}>
-                                          <Icons.Star width={12} height={12} className={favoriteAddons.includes(addon.id) ? 'text-yellow-400 fill-yellow-400' : 'text-zinc-400'} />
-                                        </button>
-                                      )}
-                                      <span className="text-[10px] font-bold ml-1" style={{ color: getRarityColor(addon.rarity) }}>{formatRarity(addon.rarity)}</span>
-                                    </div>
-                                  </div>
-                                  {addon.description && <p className="text-zinc-500 text-xs mt-1">{stripHtml(addon.description)}</p>}
-                                </div>
+                                </span>
+                                <span style={{ minWidth: 0, flex: 1 }}>
+                                  <span className="nm">{addon.name}</span>
+                                  <div className="rar"><span className="rdot" style={{ background: getRarityColor(addon.rarity) }}></span>{formatRarity(addon.rarity)}</div>
+                                  {addon.description && <p className="eff">{stripHtml(addon.description)}</p>}
+                                </span>
+                                {onToggleFavoriteAddon && (
+                                  <button type="button" aria-label={favoriteAddons.includes(addon.id) ? 'Remove favorite' : 'Add favorite'} className={`star ${favoriteAddons.includes(addon.id) ? 'lit' : ''}`} onClick={() => onToggleFavoriteAddon(addon.id)}>★</button>
+                                )}
                               </div>
                             ))}
-                          </div>
-                        </div>
-                      )}
-                      {isExpanded && powerAddons.length === 0 && (
-                        <div className="mt-3 pt-3 border-t border-white/10">
-                          <p className="text-zinc-400 text-xs">No addons found for this killer's power.</p>
+                            </div>
+                          ) : (
+                            <p className="desc">No addons found for this killer's power.</p>
+                          )}
                         </div>
                       )}
                     </div>
