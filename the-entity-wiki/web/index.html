@@ -959,11 +959,10 @@
     .tl-sub-h { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 10px 0 2px; }
     .tl-char { display: flex; align-items: center; gap: 10px; width: 100%; background: none; border: none; border-bottom: 1px solid var(--stroke); min-height: 56px; padding: 6px 4px; cursor: pointer; text-align: left; }
     .tl-char .portrait { width: 36px; height: 36px; flex: 0 0 36px; background: var(--ghost-surface); border: 1px solid var(--stroke); overflow: hidden; display: flex; align-items: center; justify-content: center; }
-    .tl-char .nm { font-size: 14px; font-weight: 600; color: var(--link); }
+    .tl-char .nm { font-size: 14px; font-weight: 600; color: var(--link); text-decoration: underline; text-underline-offset: 2px; background: none; border: none; cursor: pointer; padding: 8px 0; font-family: inherit; text-align: left; }
     .tl-char .tag { font-size: 10px; color: var(--muted); border: 1px solid var(--stroke); padding: 0 6px; margin-left: 6px; text-transform: uppercase; font-weight: 700; }
     .tl-char .chev { margin-left: auto; color: var(--muted); font-size: 14px; }
     .tl-fog { font-size: 12.5px; color: var(--muted); font-style: italic; margin: 6px 0 0 46px; line-height: 1.6; }
-    .tl-go { color: var(--link); font-size: 13px; font-weight: 600; background: none; border: 1px solid var(--stroke); min-height: 44px; padding: 8px 12px; margin: 8px 0 4px 46px; cursor: pointer; }
     .tl-map { font-size: 13.5px; color: var(--text); padding: 8px 4px; border-bottom: 1px solid var(--stroke); }
     .tl-map span { display: block; font-size: 12px; color: var(--muted); }
     .tl-years { display: flex; gap: 8px; overflow-x: auto; padding: 10px 2px; scrollbar-width: none; }
@@ -8585,11 +8584,13 @@
 
         return (
           <div>
-            <button
-              type="button"
-              onClick={() => toggleCharacter(charKey)}
-              className="tl-char"
+            <div
+              role="button"
+              tabIndex={0}
               aria-expanded={isExpanded}
+              onClick={() => toggleCharacter(charKey)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCharacter(charKey); } }}
+              className="tl-char"
             >
               {/* Portrait */}
               <span className="portrait">
@@ -8603,7 +8604,11 @@
 
               {/* Info */}
               <span style={{ minWidth: 0 }}>
-                <span className="nm">{loreChar.name}</span>
+                <button
+                  type="button"
+                  className="nm"
+                  onClick={(e) => { e.stopPropagation(); openCharacterModal(loreChar, type); }}
+                >{loreChar.name}</button>
                 {loreChar.licensed && (<span className="tag">Licensed</span>)}
                 {loreChar.realName && loreChar.realName !== loreChar.name && (
                   <span className="c" style={{ display: 'block', fontSize: 12, color: 'var(--muted)' }}>{loreChar.realName}</span>
@@ -8612,22 +8617,12 @@
 
               {/* Expand indicator */}
               <span className="chev" aria-hidden="true">{isExpanded ? '▾' : '▸'}</span>
-            </button>
+            </div>
 
             {/* Expanded lore panel */}
             {isExpanded && (
               <div>
                 <p className="tl-fog">"{loreChar.fogEntry}"</p>
-
-                {fullData && (
-                  <button
-                    type="button"
-                    onClick={() => openCharacterModal(loreChar, type)}
-                    className="tl-go"
-                  >
-                    View Full Profile →
-                  </button>
-                )}
               </div>
             )}
           </div>
