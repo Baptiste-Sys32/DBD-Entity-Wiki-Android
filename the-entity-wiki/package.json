@@ -33,6 +33,7 @@
     "verify:offline": "node scripts/verify-offline-runtime.js",
     "verify:offline:dist": "DBD_WEB_ROOT=dist node scripts/verify-offline-runtime.js",
     "test:smoke:dist": "DBD_WEB_ROOT=dist python3 scripts/smoke-test.py",
+    "parity": "node scripts/parity-check.js",
     "sync": "npx cap sync android",
     "android:prepare-release-assets": "node scripts/prepare-android-release-assets.js",
     "android:copy": "npm run build:web && npx cap copy android",

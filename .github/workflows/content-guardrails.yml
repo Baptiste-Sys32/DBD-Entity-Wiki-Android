@@ -1,15 +1,72 @@
 name: Content Guardrails
 
 on:
+  push:
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  guardrails-disabled:
-    name: Guardrails Disabled
+  guardrails:
+    name: Data gates + parity + smoke (dist)
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: the-entity-wiki
     steps:
-      - name: CI notice
-        run: echo "Content Guardrails checks are currently disabled."
+      - name: Check out app repository
+        uses: actions/checkout@v4
+
+      # Peer checkout for parity-check. Works with the default token while both
+      # repos are visible to it; if the site repo is private, add a PAT with
+      # repo scope as SITE_CHECKOUT_TOKEN and use it here instead.
+      - name: Check out site repository (parity peer)
+        uses: actions/checkout@v4
+        with:
+          repository: Baptiste-Sys32/DBD-Entity-Wiki-Website
+          path: dbd-site
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Chrome (smoke test)
+        uses: browser-actions/setup-chrome@latest
+
+      - name: Install JS + Python deps
+        run: |
+          npm ci
+          pip install websockets
+
+      - name: Resolve Chrome binary
+        run: echo "CHROME_BIN=$(which google-chrome || which chrome || which chromium)" >> $GITHUB_ENV
+
+      - name: Data contract gates
+        run: npm run check:data
+
+      - name: Generated bundles up to date
+        run: node scripts/build-data.js --check
+
+      - name: Build web app (dist)
+        run: npm run build:web
+
+      - name: Dist build up to date
+        run: node scripts/build-web.js --check
+
+      - name: Offline runtime audit (dist)
+        run: DBD_WEB_ROOT=dist node scripts/verify-offline-runtime.js
+
+      - name: Smoke test (dist, headless Chrome)
+        run: DBD_WEB_ROOT=dist python3 scripts/smoke-test.py
+
+      - name: Cross-repo parity vs site
+        run: node scripts/parity-check.js --peer ../dbd-site/the-entity-wiki --json review/parity-report.json
