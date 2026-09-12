@@ -44,10 +44,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@capacitor/android": "^5.7.8",
-    "@capacitor/cli": "^5.7.8",
-    "@capacitor/core": "^5.7.8",
-    "@capacitor/haptics": "^5.0.8",
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/app": "^8.1.1",
+    "@capacitor/cli": "^8.5.2",
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/haptics": "^8.0.2",
     "cheerio": "^1.2.0"
   },
   "devDependencies": {

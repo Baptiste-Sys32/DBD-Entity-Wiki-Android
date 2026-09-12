@@ -17,7 +17,7 @@ import websockets
 
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-WEB_ROOT = ROOT / "web"
+WEB_ROOT = ROOT / os.environ.get("DBD_WEB_ROOT", "web")
 DATABASE_PATH = ROOT / "content" / "database.json"
 COSMETICS_PATH = ROOT / "content" / "cosmetics.json"
 CHROME_BIN = os.environ.get("CHROME_BIN", "google-chrome")

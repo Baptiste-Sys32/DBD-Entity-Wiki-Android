@@ -1,8 +1,15 @@
 {
   "appId": "com.theentity.wiki",
   "appName": "The Entity's Wiki",
-  "webDir": "web",
+  "webDir": "dist",
   "server": {
     "androidScheme": "https"
+  },
+  "plugins": {
+    "SystemBars": {
+      "insetsHandling": "css",
+      "style": "DARK",
+      "initialViewportFitValueHint": "cover"
+    }
   }
 }
