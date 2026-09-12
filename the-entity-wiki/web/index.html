@@ -854,6 +854,31 @@
     .cx-result-row:hover .nm { text-decoration: underline; text-underline-offset: 2px; }
     .cx-result-row .tag { font-size: 12px; color: var(--muted); }
     .cx-result-row .chev { margin-left: auto; color: var(--muted); font-size: 18px; flex-shrink: 0; }
+
+    /* ===== Character index (step C): segments + priority-hide rows ===== */
+    .char-segments { display: flex; border: 1px solid var(--stroke); margin: 14px 0; }
+    .char-segments button { flex: 1; background: none; border: none; color: var(--muted); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; min-height: 44px; cursor: pointer; }
+    .char-segments button.on { background: var(--ghost-surface); color: var(--text); box-shadow: inset 0 -2px 0 var(--link); }
+    .char-favchip { background: none; border: 1px solid var(--stroke); color: var(--muted); font-size: 13px; font-weight: 600; padding: 8px 12px; min-height: 44px; cursor: pointer; }
+    .char-favchip[aria-pressed="true"] { border-color: var(--link); color: var(--link); }
+    .char-row { border-bottom: 1px solid var(--stroke); }
+    .char-rowtop { display: flex; align-items: center; }
+    .char-head { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; background: none; border: none; color: var(--text); min-height: 64px; padding: 8px 4px; cursor: pointer; text-align: left; }
+    .char-head .portrait { width: 40px; height: 40px; flex: 0 0 40px; background: var(--ghost-surface); border: 1px solid var(--stroke); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .char-head .nm { font-size: 15px; font-weight: 600; color: var(--link); }
+    .char-head:hover .nm { text-decoration: underline; text-underline-offset: 2px; }
+    .char-head .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+    .char-head .tok { margin-left: auto; font-size: 12px; color: var(--muted); white-space: nowrap; }
+    .char-head .chev { color: var(--link); font-size: 14px; flex-shrink: 0; }
+    .char-fav { color: var(--muted); font-size: 17px; flex-shrink: 0; background: none; border: none; cursor: pointer; min-width: 44px; min-height: 44px; }
+    .char-fav.lit { color: #fbbf24; }
+    .char-detail { padding: 2px 4px 14px 56px; font-size: 13.5px; line-height: 1.6; }
+    .char-detail .kv { display: flex; gap: 8px; margin: 3px 0; }
+    .char-detail .k { color: var(--muted); flex: 0 0 86px; flex-shrink: 0; }
+    .char-detail a, .char-detail .cx-alink { color: var(--link); }
+    .char-detail .go { display: inline-block; margin-top: 6px; color: var(--link); font-weight: 600; font-size: 13.5px; background: none; border: none; cursor: pointer; padding: 8px 0; min-height: 44px; }
+    .char-detail .rowbtns { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+    .char-detail .rowbtns button { background: none; border: 1px solid var(--stroke); color: var(--text); font-size: 12.5px; font-weight: 600; padding: 8px 12px; min-height: 44px; cursor: pointer; }
   </style>
 </head>
 
@@ -5725,7 +5750,76 @@
         </div>
       );
     };
-    const ListView = ({ data, type, filterOptions, activeFilter, setActiveFilter, allPerks = [], setView, onPerkSelect, initialSearch = '', onSearchChange, buildsByOwner = {}, onCreateBuildSeed, onBack, comparePerks = [], onPerkLongPress, favoritePerks = [], onToggleFavorite, onPerkTap, onShowLore, onShowPower, onViewProfile, settings = {} }) => {
+    const findReleaseFor = (name) => {
+      try {
+        if (typeof TIMELINE_DATA === 'undefined' || !TIMELINE_DATA.releases) return null;
+        for (const r of TIMELINE_DATA.releases) {
+          if ((r.killers || []).some(k => k.name === name) || (r.survivors || []).some(s => s.name === name)) return r;
+        }
+      } catch (e) {}
+      return null;
+    };
+    // ── Compact character row (step C): priority-hide summary, tap expands detail ──
+    const CharacterRow = ({ item, category, expanded, onToggle, perksForOwner = [], onPerkClick, isFavorite, onToggleFavorite, onShowLore, onShowPower, onViewProfile, onCreateBuild }) => {
+      const isKiller = category === 'Killer';
+      const guide = (typeof KILLER_GUIDES !== 'undefined' && isKiller) ? KILLER_GUIDES[item.name] : null;
+      const stats = (typeof KILLER_STATS !== 'undefined' && isKiller) ? KILLER_STATS[item.name] : null;
+      const release = findReleaseFor(item.name);
+      const powerName = guide?.powerName || null;
+      const sub = isKiller
+        ? [item.realName !== item.name ? item.realName : null, powerName].filter(Boolean).join(' · ')
+        : (item.realName && item.realName !== item.name ? item.realName : '');
+      const token = isKiller ? (stats?.speed || '') : `${perksForOwner.length} perk${perksForOwner.length === 1 ? '' : 's'}`;
+      return (
+        <div className="char-row">
+          <div className="char-rowtop">
+            <button type="button" className="char-head" aria-expanded={expanded} onClick={onToggle}>
+              <span className="portrait">
+                <AssetFrame type={isKiller ? 'Killer' : 'Survivor'} size="fill" imageUrl={item.image} fallbackIcon={<Icons.User width={18} height={18} className="text-zinc-500" />} />
+              </span>
+              <span style={{ minWidth: 0 }}>
+                <span className="nm">{item.name}</span>
+                {sub ? (<span className="sub">{sub}</span>) : null}
+              </span>
+              {token ? (<span className="tok">{token}</span>) : null}
+              <span className="chev" aria-hidden="true">{expanded ? '▾' : '▸'}</span>
+            </button>
+            {onToggleFavorite && (
+              <button
+                type="button" aria-label={isFavorite ? 'Remove favorite' : 'Add favorite'}
+                className={`char-fav ${isFavorite ? 'lit' : ''}`}
+                onClick={onToggleFavorite}
+              >★</button>
+            )}
+          </div>
+          {expanded && (
+            <div className="char-detail">
+              {powerName && (
+                <div className="kv"><span className="k">Power</span><span>{onShowPower ? (<button type="button" className="cx-alink" onClick={onShowPower}>{powerName}</button>) : powerName}</span></div>
+              )}
+              {release && (
+                <div className="kv"><span className="k">Chapter</span><span>{release.name}{release.displayDate ? ` · ${release.displayDate}` : ''}</span></div>
+              )}
+              {stats && (
+                <div className="kv"><span className="k">Stats</span><span>{stats.speed} · {stats.terrorRadius} · {stats.height}</span></div>
+              )}
+              {perksForOwner.length > 0 && (
+                <div className="perks">Teachables: {perksForOwner.slice(0, 3).map((p, i) => (
+                  <span key={p.id || p.name}>{i > 0 ? ' · ' : ''}<button type="button" className="cx-alink" onClick={() => onPerkClick && onPerkClick(p)}>{p.name}</button></span>
+                ))}</div>
+              )}
+              <div className="rowbtns">
+                {onViewProfile && (<button type="button" onClick={onViewProfile}>Read article →</button>)}
+                {onShowLore && (<button type="button" onClick={onShowLore}>Lore</button>)}
+                {isKiller && item.power && onShowPower && (<button type="button" onClick={onShowPower}>Power</button>)}
+                {onCreateBuild && (<button type="button" onClick={onCreateBuild}>New build</button>)}
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    };
+    const ListView = ({ data, type, filterOptions, activeFilter, setActiveFilter, allPerks = [], setView, onPerkSelect, initialSearch = '', onSearchChange, buildsByOwner = {}, onCreateBuildSeed, onBack, comparePerks = [], onPerkLongPress, favoritePerks = [], onToggleFavorite, onPerkTap, onShowLore, onShowPower, onViewProfile, settings = {}, roleCounts = null }) => {
       const scrollRef = useRef(null);
       const [localSearch, setLocalSearch] = useState(initialSearch || '');
       const [sortBy, setSortBy] = useState('name_asc');
@@ -5745,6 +5839,7 @@
         return bucket;
       }, [allPerks]);
       const [expandedId, setExpandedId] = useState(null);
+      const [showFavOnly, setShowFavOnly] = useState(false);
       const isPerkList = type === 'Perks';
       const isCharacterList = type === 'Killers' || type === 'Survivors';
       const effectiveFilter = activeFilter || 'All';
@@ -5752,7 +5847,7 @@
       const stripThe = (name) => (name || '').replace(/^The\s+/i, '');
       useEffect(() => {
         setExpandedId(null);
-      }, [localSearch, effectiveFilter, type]);
+      }, [localSearch, effectiveFilter, type, showFavOnly]);
       const filtered = useMemo(() => {
         if (!data) return [];
         const term = localSearch.toLowerCase();
@@ -5811,24 +5906,34 @@
             }
           });
         }
+        if (isCharacterList && showFavOnly) {
+          result = result.filter(item => favoritePerks.includes(item.id));
+        }
         return result;
-      }, [data, localSearch, effectiveFilter, sortBy, isCharacterList, favoritePerks, isPerkList]);
+      }, [data, localSearch, effectiveFilter, sortBy, isCharacterList, favoritePerks, isPerkList, showFavOnly]);
       return (
         <div ref={scrollRef} className="flex flex-col h-full pt-12 pb-32 overflow-y-auto custom-scrollbar">
           <div className="px-6"><Header title={type} subtitle="Database" onBack={onBack} onScrollTop={scrollToTop} infoTips={isPerkList ? VIEW_TIPS.perks : type === 'Killers' ? VIEW_TIPS.killers : VIEW_TIPS.survivors} /></div>
+          {isCharacterList && (
+            <div className="px-6">
+              <div className="char-segments" role="tablist" aria-label="Role">
+                <button type="button" role="tab" aria-selected={type === 'Killers'} className={type === 'Killers' ? 'on' : ''} onClick={() => { if (type !== 'Killers' && setView) setView('killers'); }}>Killers{roleCounts ? ` · ${roleCounts.killers}` : ''}</button>
+                <button type="button" role="tab" aria-selected={type === 'Survivors'} className={type === 'Survivors' ? 'on' : ''} onClick={() => { if (type !== 'Survivors' && setView) setView('survivors'); }}>Survivors{roleCounts ? ` · ${roleCounts.survivors}` : ''}</button>
+              </div>
+            </div>
+          )}
           <div className="sticky top-0 z-20 px-6 pb-4 pt-1 pointer-events-none">
             <div className="relative mb-3 max-w-3xl mx-auto pointer-events-auto">
-              <div className="absolute inset-0 bg-red-600 rounded-3xl blur-2xl opacity-0 transition-opacity duration-500"></div>
-              <div className="relative flex items-center bg-zinc-800/60 backdrop-blur-xl border border-white/10 rounded-3xl p-2 shadow-2xl">
-                <div className="pl-4 text-zinc-400"><Icons.Search width={18} height={18} /></div>
-                <input type="text" placeholder={`Filter ${type}...`} className="w-full bg-transparent text-white p-3 text-sm sm:text-base font-medium placeholder-zinc-600 focus:outline-none" value={localSearch} onChange={e => { setLocalSearch(e.target.value); onSearchChange && onSearchChange(e.target.value); }} />
-                {localSearch && <button onClick={() => { setLocalSearch(''); onSearchChange && onSearchChange(''); }} className="p-2 mr-1 rounded-xl bg-white/5 text-zinc-300 hover:text-white hover:bg-white/10 transition-colors"><Icons.X width={18} height={18} /></button>}
+              <div className="cx-searchbox">
+                <div className="text-zinc-400"><Icons.Search width={18} height={18} /></div>
+                <input type="text" placeholder={`Filter ${type}...`} value={localSearch} onChange={e => { setLocalSearch(e.target.value); onSearchChange && onSearchChange(e.target.value); }} aria-label={`Filter ${type}`} />
+                {localSearch && <button onClick={() => { setLocalSearch(''); onSearchChange && onSearchChange(''); }} aria-label="Clear filter" className="p-2 mr-1 text-zinc-300 hover:text-white transition-colors" style={{ width: 44, height: 44 }}>✕</button>}
               </div>
             </div>
           </div>
           {isCharacterList && (
             <div className="max-w-3xl mx-auto flex justify-center gap-2 mb-2 px-6">
-              <select value={sortBy} onChange={e => setSortBy(e.target.value)} className="themed-select compact text-sm">
+              <select value={sortBy} onChange={e => setSortBy(e.target.value)} className="themed-select compact text-sm" aria-label="Sort characters">
                 <option value="name_asc">Name A-Z</option>
                 <option value="name_desc">Name Z-A</option>
                 <option value="realname_asc">Real Name A-Z</option>
@@ -5836,6 +5941,7 @@
                 <option value="release_asc">Release ↑ (Oldest)</option>
                 <option value="release_desc">Release ↓ (Newest)</option>
               </select>
+              <button type="button" onClick={() => setShowFavOnly(v => !v)} aria-pressed={showFavOnly} className="char-favchip">★ Favorites</button>
               <span className="text-[11px] text-zinc-500 uppercase tracking-wider self-center">{filtered.length} {type.toLowerCase()}</span>
             </div>
           )}
@@ -5867,6 +5973,28 @@
               const showPerks = category === 'Killer' || category === 'Survivor';
               const perksForOwner = showPerks ? (perksByOwner[item.name] || []) : [];
               const relatedBuilds = showPerks ? (buildsByOwner[item.name] || []) : [];
+              if (showPerks) {
+                return (
+                  <CharacterRow
+                    key={item.id}
+                    item={item}
+                    category={category}
+                    expanded={expandedId === item.id}
+                    onToggle={() => setExpandedId(expandedId === item.id ? null : item.id)}
+                    perksForOwner={perksForOwner}
+                    onPerkClick={perk => {
+                      onPerkSelect && onPerkSelect(perk.name);
+                      setView && setView('perks');
+                    }}
+                    isFavorite={favoritePerks.includes(item.id)}
+                    onToggleFavorite={onToggleFavorite ? () => onToggleFavorite(item.id) : undefined}
+                    onShowLore={showPerks && onShowLore ? () => onShowLore(item) : undefined}
+                    onShowPower={category === 'Killer' && onShowPower ? () => onShowPower(item) : undefined}
+                    onViewProfile={showPerks && onViewProfile ? () => onViewProfile(item) : undefined}
+                    onCreateBuild={showPerks && onCreateBuildSeed ? () => { onCreateBuildSeed({ role: category, characterId: item.id, characterName: item.name }); setView && setView('buildLab'); } : undefined}
+                  />
+                );
+              }
               return (
                 <GlassCard
                   key={item.id}
@@ -12792,8 +12920,8 @@
             );
           case 'matches':
             return <MatchLogView onBack={() => setView('home')} matches={matches} setMatches={setMatches} killers={killers} survivors={survivors} builds={builds} maps={maps} prefs={matchPrefs} setPrefs={setMatchPrefs} onBuildUsed={markBuildUsed} onOpenAnalytics={() => setView('progression', { tab: 'analytics' })} />;
-          case 'killers': return <ListView data={visibleKillers} type="Killers" activeFilter="All" setActiveFilter={() => { }} allPerks={perks} setView={setView} onPerkSelect={setPerkSearch} initialSearch={viewContext.search || ''} buildsByOwner={buildsByOwner} onCreateBuildSeed={setBuildSeed} onBack={() => setView('home')} onShowLore={setLoreCharacter} onShowPower={setPowerKiller} favoritePerks={settings.favoriteKillers || []} onToggleFavorite={(id) => toggleFavorite('Killer', id)} onViewProfile={setProfileCharacter} settings={settings} />;
-          case 'survivors': return <ListView data={visibleSurvivors} type="Survivors" activeFilter="All" setActiveFilter={() => { }} allPerks={perks} setView={setView} onPerkSelect={setPerkSearch} initialSearch={viewContext.search || ''} buildsByOwner={buildsByOwner} onCreateBuildSeed={setBuildSeed} onBack={() => setView('home')} onShowLore={setLoreCharacter} favoritePerks={settings.favoriteSurvivors || []} onToggleFavorite={(id) => toggleFavorite('Survivor', id)} onViewProfile={setProfileCharacter} settings={settings} />;
+          case 'killers': return <ListView data={visibleKillers} type="Killers" activeFilter="All" setActiveFilter={() => { }} allPerks={perks} setView={setView} onPerkSelect={setPerkSearch} initialSearch={viewContext.search || ''} buildsByOwner={buildsByOwner} onCreateBuildSeed={setBuildSeed} onBack={() => setView('home')} onShowLore={setLoreCharacter} onShowPower={setPowerKiller} favoritePerks={settings.favoriteKillers || []} onToggleFavorite={(id) => toggleFavorite('Killer', id)} onViewProfile={setProfileCharacter} settings={settings} roleCounts={{ killers: killers.length, survivors: survivors.length }} />;
+          case 'survivors': return <ListView data={visibleSurvivors} type="Survivors" activeFilter="All" setActiveFilter={() => { }} allPerks={perks} setView={setView} onPerkSelect={setPerkSearch} initialSearch={viewContext.search || ''} buildsByOwner={buildsByOwner} onCreateBuildSeed={setBuildSeed} onBack={() => setView('home')} onShowLore={setLoreCharacter} favoritePerks={settings.favoriteSurvivors || []} onToggleFavorite={(id) => toggleFavorite('Survivor', id)} onViewProfile={setProfileCharacter} settings={settings} roleCounts={{ killers: killers.length, survivors: survivors.length }} />;
           case 'perks': return <ListView data={visiblePerks} type="Perks" filterOptions={['All', 'Survivor', 'Killer', 'Favorites', 'Exhaustion', 'Hex', 'Boon', 'Scourge', 'Obsession', 'Aura', 'Stealth', 'Gen', 'Healing']} activeFilter={perkFilter} setActiveFilter={setPerkFilter} initialSearch={perkSearch} onSearchChange={setPerkSearch} onBack={() => setView('home')} comparePerks={comparePerks} onPerkLongPress={togglePerkCompare} favoritePerks={settings.favoritePerks || []} onToggleFavorite={toggleFavoritePerk} onPerkTap={setSelectedPerk} settings={settings} />;
           case 'roulette': return <ChaosShuffleView onBack={() => setView('home')} perks={visiblePerks} killers={visibleKillers} survivors={visibleSurvivors} items={items} addons={visibleAddons} offerings={offerings} settings={settings} ownedOnlyGlobal={settings.ownedOnlyGlobal === true} />;
           case 'realms': return <RealmsView onBack={() => setView('home')} maps={maps} realms={realms} onViewLayout={setLayoutMap} initialSearch={viewContext.search || ''} />;
