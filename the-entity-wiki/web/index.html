@@ -10,7 +10,25 @@
   <script src="./vendor/babel.min.js"></script>
   <script src="./vendor/tailwindcss.min.js"></script>
   <style>
+    /* Codex redesign: vendored display serif (Bitter, variable 400-700) */
+    @font-face {
+      font-family: 'Bitter';
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url('./assets/fonts/bitter-var.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Bitter';
+      font-style: italic;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url('./assets/fonts/bitter-italic-var.woff2') format('woff2');
+    }
     :root {
+      --font-display: 'Bitter', Georgia, serif;
+      --link: #6fa8ff;
+      --link-visited: #9c86ff;
       --bg-01: #090b11;
       --bg-02: #0c111b;
       --panel: rgba(255, 255, 255, 0.04);
@@ -737,6 +755,75 @@
       appearance: textfield;
       -moz-appearance: textfield;
     }
+
+    /* ===== Codex article system (step A: article chrome for profiles) ===== */
+    .cx-article { width: 100%; }
+    .cx-alink { color: var(--link); font: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+    .cx-crumbs { font-size: 11.5px; color: var(--muted); margin: 0 0 8px; }
+    .cx-crumbs a { color: var(--muted); text-decoration: none; }
+    .cx-crumbs .cx-sep { margin: 0 6px; }
+    .cx-crumbs b { font-weight: 600; color: var(--text); }
+    .cx-title { font-family: var(--font-display); font-size: 30px; font-weight: 700; line-height: 1.15; margin: 0; padding-bottom: 10px; border-bottom: 1px solid var(--stroke); color: var(--text); }
+    .cx-hatnote { font-size: 13px; font-style: italic; color: var(--muted); margin: 8px 0 2px; }
+    .cx-hatnote a { color: var(--link); }
+    .cx-lead p { font-size: 15px; line-height: 1.7; margin: 12px 0; color: var(--text); }
+    .cx-lead p a { color: var(--link); text-decoration: none; }
+    .cx-lead p a:hover { text-decoration: underline; }
+    .cx-infobox { border: 1px solid var(--stroke); background: var(--glass-bg); font-size: 12.5px; margin: 14px 0; }
+    .cx-infobox .cx-ib-title { font-family: var(--font-display); font-size: 17px; font-weight: 700; text-align: center; padding: 12px 14px 4px; color: var(--text); }
+    .cx-infobox .cx-ib-sub { font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); text-align: center; padding-bottom: 8px; border-bottom: 1px solid var(--stroke); }
+    .cx-infobox .cx-ib-media { padding: 14px 14px 4px; }
+    .cx-infobox .cx-ib-media > * { height: 220px; overflow: hidden; }
+    .cx-infobox .cx-ib-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cx-infobox table { width: 100%; border-collapse: collapse; }
+    .cx-infobox th { text-align: left; font-weight: 600; color: var(--muted); padding: 7px 14px; width: 42%; white-space: nowrap; border-top: 1px solid var(--stroke); font-size: 12.5px; }
+    .cx-infobox td { padding: 7px 14px 7px 0; border-top: 1px solid var(--stroke); font-size: 12.5px; color: var(--text); }
+    .cx-infobox td a { color: var(--link); text-decoration: none; }
+    .cx-sec { margin-top: 26px; }
+    .cx-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; background: none; border: none; border-bottom: 1px solid var(--stroke); padding: 0 0 6px; cursor: pointer; min-height: 44px; text-align: left; }
+    .cx-sec-head h2 { font-family: var(--font-display); font-size: 22px; font-weight: 700; margin: 0; color: var(--text); }
+    .cx-sec-head .cx-toggle { font-size: 13px; color: var(--link); flex-shrink: 0; }
+    .cx-sec-head:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+    .cx-sec-body { font-size: 14px; line-height: 1.7; color: var(--text); }
+    .cx-sec-body p { margin: 12px 0; }
+    .cx-sec-body a { color: var(--link); text-decoration: none; }
+    .cx-cats { margin-top: 30px; border: 1px solid var(--stroke); padding: 12px 16px; font-size: 12.5px; color: var(--muted); }
+    .cx-cats a { color: var(--link); text-decoration: none; }
+    .cx-toolbtn { border: 1px solid var(--accent); background: transparent; color: var(--accent); font-weight: 700; padding: 8px 16px; font-size: 13px; cursor: pointer; border-radius: 0; }
+    .cx-toolbtn--primary { background: var(--accent); color: #101418; }
+
+    /* ===== App toolbar (Wikipedia-app style, 4 destinations) ===== */
+    .apptoolbar { display: flex; background: var(--nav-bg); border-top: 1px solid var(--stroke); padding-bottom: env(safe-area-inset-bottom, 0px); }
+    .apptoolbar button { flex: 1; background: none; border: none; color: var(--muted); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 10px 0 12px; font-size: 10.5px; min-height: 60px; }
+    .apptoolbar button svg { width: 22px; height: 22px; }
+    .apptoolbar button.active { color: var(--text); }
+    .apptoolbar button .tb-dot { width: 4px; height: 4px; border-radius: 50%; background: transparent; }
+    .apptoolbar button.active .tb-dot { background: var(--link); }
+
+    /* ===== Section drawer ===== */
+    .cx-scrim { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); opacity: 0; pointer-events: none; transition: opacity 200ms ease; z-index: 60; }
+    .cx-scrim--open { opacity: 1; pointer-events: auto; }
+    .cx-drawer { position: fixed; top: 0; bottom: 0; left: 0; width: min(300px, 85vw); background: var(--glass-bg); border-right: 1px solid var(--stroke); transform: translateX(-102%); transition: transform 220ms ease; z-index: 61; display: flex; flex-direction: column; }
+    .cx-drawer--open { transform: translateX(0); }
+    .cx-drawer-head { flex: 0 0 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 8px 0 16px; border-bottom: 1px solid var(--stroke); }
+    .cx-drawer-head .t { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--text); }
+    .cx-drawer-head .t small { display: block; font-family: system-ui, sans-serif; font-weight: 400; font-size: 10px; color: var(--muted); }
+    .cx-drawer-close { width: 44px; height: 44px; background: none; border: none; color: var(--text); font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .cx-drawer-list { flex: 1; overflow-y: auto; padding: 8px 0 16px; }
+    .cx-drawer-list button { display: flex; width: 100%; background: none; border: none; cursor: pointer; align-items: baseline; gap: 10px; padding: 0 16px; min-height: 44px; text-align: left; color: var(--text); font-size: 14.5px; }
+    .cx-drawer-list button .n { color: var(--muted); font-size: 12px; width: 18px; flex: 0 0 18px; }
+    .cx-drawer-list button.current { border-left: 3px solid var(--link); padding-left: 13px; }
+    .cx-drawer-list button.current .lbl { color: var(--link); font-weight: 600; }
+    .cx-drawer-list button.l2 .lbl { font-size: 13px; color: var(--muted); padding-left: 28px; }
+    .cx-drawer-foot { border-top: 1px solid var(--stroke); padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); font-size: 11.5px; color: var(--muted); }
+
+    /* ===== Profile article in light mode (shell follows vars; legacy cards adapt) ===== */
+    .light-mode .cx-profile { background: var(--glass-bg); }
+    .light-mode .cx-profile .cx-closebar { background: linear-gradient(to top, var(--glass-bg) 62%, transparent); }
+    .light-mode .cx-profile .bg-white\/5 { background-color: var(--chip); }
+    .light-mode .cx-profile .border-white\/10 { border-color: var(--stroke); }
+    .light-mode .cx-profile .bg-zinc-800\/80 { background-color: var(--chip); }
+    .light-mode .cx-profile .bg-black\/30 { background-color: var(--chip); }
   </style>
 </head>
 
@@ -1416,32 +1503,32 @@
         shadowStrong: '0 16px 60px rgba(0, 0, 0, 0.45)'
       },
       light: {
-        bg01: '#f8fafc',
-        bg02: '#e2e8f0',
-        panel: 'rgba(255, 255, 255, 0.92)',
-        stroke: '#cbd5e1',
-        chip: 'rgba(148, 163, 184, 0.18)',
-        text: '#0f172a',
-        muted: '#475569',
-        nav: 'rgba(255, 255, 255, 0.9)',
-        glass: '#e5e7eb',
-        ghost: 'rgba(15, 23, 42, 0.06)',
-        ghostStrong: 'rgba(15, 23, 42, 0.18)',
-        shadowSoft: '0 10px 35px rgba(15, 23, 42, 0.12)',
-        shadowStrong: '0 22px 70px rgba(15, 23, 42, 0.18)'
+        bg01: '#ffffff',
+        bg02: '#ffffff',
+        panel: '#ffffff',
+        stroke: '#c8ccd1',
+        chip: '#f8f9fa',
+        text: '#202122',
+        muted: '#54595d',
+        nav: '#ffffff',
+        glass: '#f8f9fa',
+        ghost: 'rgba(0, 24, 73, 0.027)',
+        ghostStrong: 'rgba(0, 24, 73, 0.082)',
+        shadowSoft: '0 1px 3px rgba(0, 0, 0, 0.08)',
+        shadowStrong: '0 4px 16px rgba(0, 0, 0, 0.16)'
       },
       oled: {
         bg01: '#000000',
         bg02: '#000000',
-        panel: 'rgba(255, 255, 255, 0.03)',
-        stroke: '#1a1a1a',
-        chip: 'rgba(255, 255, 255, 0.04)',
-        text: '#e5e7eb',
-        muted: '#94a3b8',
+        panel: 'rgba(233, 225, 210, 0.03)',
+        stroke: 'rgba(233, 225, 210, 0.14)',
+        chip: 'rgba(233, 225, 210, 0.045)',
+        text: '#eae8e2',
+        muted: '#8f8a80',
         nav: 'rgba(0, 0, 0, 0.95)',
         glass: '#0a0a0a',
-        ghost: 'rgba(255, 255, 255, 0.04)',
-        ghostStrong: 'rgba(255, 255, 255, 0.12)',
+        ghost: 'rgba(233, 225, 210, 0.04)',
+        ghostStrong: 'rgba(233, 225, 210, 0.14)',
         shadowSoft: '0 8px 30px rgba(0, 0, 0, 0.5)',
         shadowStrong: '0 16px 60px rgba(0, 0, 0, 0.6)'
       }
@@ -1579,24 +1666,6 @@
       worldle: 'dbd_worldle_v1'
     };
     const STORAGE_KEY_ACHIEVEMENTS = 'dbd_achievements_progress';
-    const ALL_NAV_OPTIONS = [
-      { id: 'perks', label: 'Perks' },
-      { id: 'buildLab', label: 'Builds' },
-      { id: 'roulette', label: 'Shuffle' },
-      { id: 'worldle', label: 'Wordle' },
-      { id: 'progression', label: 'Progression' },
-      { id: 'communityContent', label: 'Community' },
-      { id: 'cosmetics', label: 'Cosmetics' },
-      { id: 'favorites', label: 'Favorites' },
-      { id: 'killers', label: 'Killers' },
-      { id: 'survivors', label: 'Survivors' },
-      { id: 'items', label: 'Items' },
-      { id: 'offerings', label: 'Offerings' },
-      { id: 'matches', label: 'Matches' },
-      { id: 'realms', label: 'Realms' },
-      { id: 'glossary', label: 'Glossary' },
-      { id: 'prestige', label: 'Prestige' },
-    ];
     const ALL_HOME_TILES = [
       { id: 'killers', label: 'Killers', icon: 'Sword', desc: 'All killers, real names & teachables' },
       { id: 'survivors', label: 'Survivors', icon: 'Heart', desc: 'Roster with their teachables' },
@@ -1618,28 +1687,6 @@
       { id: 'import', label: 'Import Build', icon: 'Import', desc: 'Paste a shared build text' },
       { id: 'timeline', label: 'Lore Timeline', icon: 'Clock', desc: 'DBD history from 2016 to now' },
     ];
-    const NAV_ICON_MAP = {
-      home: 'Search',
-      perks: 'BookOpen',
-      buildLab: 'Wrench',
-      roulette: 'Dices',
-      worldle: 'Notepad',
-      progression: 'Target',
-      communityContent: 'MessageCircle',
-      cosmetics: 'Shirt',
-      favorites: 'Star',
-      killers: 'Sword',
-      survivors: 'Heart',
-      lobby: 'Home',
-      matches: 'List',
-      realms: 'Map',
-      items: 'Package',
-      offerings: 'Flame',
-      glossary: 'GraduationCap',
-      prestige: 'Droplet',
-      settings: 'Gear',
-      timeline: 'Clock',
-    };
     const RARITY_GLOWS = {
       common: 'rgba(81,63,49,0.5)',
       uncommon: 'rgba(27,140,34,0.45)',
@@ -1666,8 +1713,6 @@
       hapticEnabled: true,
       ownedOnlyGlobal: false,
       progressionTabOrder: [...PROGRESSION_TABS],
-      navItemsCustomized: false,
-      navItems: ['perks', 'killers', 'survivors'],
       homeTiles: ['killers', 'survivors', 'perks', 'buildLab', 'favorites', 'progression', 'communityContent', 'cosmetics', 'worldle', 'matches', 'roulette', 'realms', 'glossary', 'import', 'timeline'],
       favoritePerks: [],
       favoriteKillers: [],
@@ -2011,17 +2056,13 @@
       const rest = { ...next };
       delete rest.highContrast;
       delete rest.systemNavButtonOffset;
+      delete rest.navItems;
+      delete rest.navItemsCustomized;
       const homeTileIds = [...new Set(ALL_HOME_TILES.map(tile => tile.id))];
-      const navOptionIds = ALL_NAV_OPTIONS.map(opt => opt.id);
-      const normalizedNavItems = rest.navItemsCustomized === true
-        ? ensureOrderedSubset(rest.navItems, navOptionIds, DEFAULT_SETTINGS.navItems)
-        : [...DEFAULT_SETTINGS.navItems];
       return {
         ...DEFAULT_SETTINGS,
         ...rest,
         ownedOnlyGlobal: Boolean(rest.ownedOnlyGlobal),
-        navItemsCustomized: rest.navItemsCustomized === true,
-        navItems: normalizedNavItems,
         homeTiles: ensureOrderedFullSet(rest.homeTiles, homeTileIds, DEFAULT_SETTINGS.homeTiles),
         progressionTabOrder: ensureOrderedFullSet(rest.progressionTabOrder, PROGRESSION_TABS, DEFAULT_SETTINGS.progressionTabOrder),
       };
@@ -3664,48 +3705,100 @@
         </div>
       );
     };
-    const Navigation = ({ currentView, setView, theme, isMobile = false, onPerksReset, customNavItems = [] }) => {
-      const navItems = useMemo(() => {
-        const items = [{ id: 'home', label: 'Search' }];
-        customNavItems.forEach(id => {
-          const opt = ALL_NAV_OPTIONS.find(o => o.id === id);
-          if (opt) items.push(opt);
-        });
-        items.push({ id: 'settings', label: 'Settings' });
-        return items;
-      }, [customNavItems]);
-      const hasMany = navItems.length > 6;
-      const containerClasses = isMobile
-        ? 'nav-shell nav-scroll rounded-2xl px-3 py-2 border border-white/5 max-w-3xl w-full mx-auto'
-        : `nav-shell rounded-2xl sm:rounded-full px-3 py-2 border border-white/5 ${hasMany ? 'max-w-5xl' : 'max-w-4xl'} w-full mx-auto`;
-      const trackClasses = isMobile
-        ? 'flex items-center gap-1 justify-center w-full overflow-x-auto nav-scroll px-1'
-        : 'flex items-center gap-1 justify-center w-full';
+    // ── App toolbar (Wikipedia-app style: 4 fixed destinations) ──
+    const AppToolbar = ({ currentView, hasArticle, drawerOpen, onSearch, onSections, onSaved, onRandom }) => {
+      const tabs = [
+        { id: 'search', label: 'Search', Icon: Icons.Search, active: currentView === 'home', onTap: onSearch },
+        { id: 'sections', label: 'Sections', Icon: Icons.List, active: drawerOpen || hasArticle, onTap: onSections },
+        { id: 'saved', label: 'Saved', Icon: Icons.Star, active: currentView === 'favorites', onTap: onSaved },
+        { id: 'random', label: 'Random', Icon: Icons.Dices, active: false, onTap: onRandom },
+      ];
       return (
-        <div className="fixed bottom-0 left-0 w-full z-50 px-2 sm:px-6 pb-2 sm:pb-5 flex justify-center nav-safe-area">
-          <div className={containerClasses}>
-            <div className={trackClasses}>
-              {navItems.map((item) => {
-                const isActive = currentView === item.id;
-                const labelVisibility = (isMobile || hasMany) ? (isActive ? '' : 'hidden') : '';
-                const IconComponent = Icons[NAV_ICON_MAP[item.id]] || Icons.Zap;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => setView(item.id)}
-                    onDoubleClick={() => item.id === 'perks' && onPerksReset?.()}
-                    aria-label={item.label}
-                    className={`nav-item ${isMobile ? 'shrink-0 flex items-center justify-center gap-2 rounded-xl px-3 py-2 min-h-[44px]' : `flex-1 flex items-center justify-center gap-2 rounded-xl sm:rounded-full py-2.5 ${hasMany ? 'px-3' : ''}`} transition-all duration-200 ${isActive ? 'nav-item--active' : 'hover:text-white'}`}
-                    style={isActive ? { borderColor: theme.accent } : {}}
-                  >
-                    <IconComponent width={20} height={20} strokeWidth={isActive ? 2.3 : 2} />
-                    <span className={`text-[11px] font-semibold ${labelVisibility} ${isActive ? 'text-white' : 'text-zinc-400'}`}>{item.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+        <div className="fixed bottom-0 left-0 w-full z-[55]">
+          <nav className="apptoolbar" aria-label="App">
+            {tabs.map(({ id, label, Icon, active, onTap }) => (
+              <button key={id} type="button" onClick={onTap} aria-label={label} className={active ? 'active' : ''}>
+                <Icon width={22} height={22} strokeWidth={active ? 2.3 : 2} />
+                {label}
+                <span className="tb-dot" aria-hidden="true" />
+              </button>
+            ))}
+          </nav>
         </div>
+      );
+    };
+    // ── Collapsible article section (CxSection port: lead open, tap toggles,
+    // state persisted per scope+id, expands on cx-expand-section events) ──
+    const CxSection = ({ scope, id, title, children, defaultOpen = true }) => {
+      const storeKey = `cx-sec:${scope}:${id}`;
+      const [open, setOpen] = useState(() => {
+        try {
+          const saved = window.localStorage.getItem(storeKey);
+          return saved === null ? defaultOpen : saved === '1';
+        } catch (e) { return defaultOpen; }
+      });
+      useEffect(() => {
+        const expand = (e) => { if (e && e.detail === id) setOpen(true); };
+        window.addEventListener('cx-expand-section', expand);
+        return () => window.removeEventListener('cx-expand-section', expand);
+      }, [id]);
+      const toggle = () => setOpen((prev) => {
+        const next = !prev;
+        try { window.localStorage.setItem(storeKey, next ? '1' : '0'); } catch (e) {}
+        return next;
+      });
+      return (
+        <section className="cx-sec" data-cx-section={id}>
+          <button type="button" className="cx-sec-head" aria-expanded={open} onClick={toggle}>
+            <h2>{title}</h2>
+            <span className="cx-toggle" aria-hidden="true">{open ? '▾ hide' : '▸ show'}</span>
+          </button>
+          {open ? (<div className="cx-sec-body">{children}</div>) : null}
+        </section>
+      );
+    };
+    // ── In-article section drawer (article sections, or browse shortlist) ──
+    const BROWSE_SHORTLIST = [
+      { id: 'killers', label: 'Killers' },
+      { id: 'survivors', label: 'Survivors' },
+      { id: 'perks', label: 'Perks' },
+      { id: 'items', label: 'Items & Add-ons' },
+      { id: 'glossary', label: 'Glossary' },
+    ];
+    const SectionDrawer = ({ open, title, subtitle, sections, currentId, onJump, onBrowse, onClose }) => {
+      const closeRef = useRef(null);
+      useEffect(() => {
+        if (!open) return undefined;
+        closeRef.current?.focus();
+        const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+      }, [open, onClose]);
+      const rows = sections || BROWSE_SHORTLIST.map((s, i) => ({ ...s, num: String(i + 1) }));
+      return (
+        <React.Fragment>
+          <div className={`cx-scrim ${open ? 'cx-scrim--open' : ''}`} onClick={onClose} aria-hidden="true" />
+          <nav className={`cx-drawer ${open ? 'cx-drawer--open' : ''}`} aria-label="Sections" aria-hidden={!open} data-no-swipe>
+            <div className="cx-drawer-head">
+              <div className="t">{title}<small>{subtitle}</small></div>
+              <button type="button" ref={closeRef} onClick={onClose} className="cx-drawer-close" aria-label="Close sections">✕</button>
+            </div>
+            <div className="cx-drawer-list">
+              {(sections ? [{ id: 'lead', title: 'Lead', num: '–' }, ...sections] : rows).map((row) => (
+                <button
+                  key={row.id}
+                  type="button"
+                  className={currentId === row.id ? 'current' : ''}
+                  onClick={() => { if (sections) onJump(row.id); else onBrowse(row.id); }}
+                >
+                  <span className="n">{row.num || '–'}</span>
+                  <span className="lbl">{row.title || row.label}</span>
+                </button>
+              ))}
+            </div>
+            <div className="cx-drawer-foot">{sections ? 'Tapping a section expands it and jumps the article.' : 'Browse the wiki indexes.'}</div>
+          </nav>
+        </React.Fragment>
       );
     };
     // ── View Info Modal & Button ──
@@ -10400,9 +10493,6 @@
     );
     const SettingsView = ({ onBack, settings, setSettings, backupSummary, onCopyBackup, onDownloadBackup, onRestoreBackup }) => {
       const updateSetting = (field, value) => setSettings((prev) => {
-        if (field === 'navItems') {
-          return { ...prev, navItems: value, navItemsCustomized: true };
-        }
         return { ...prev, [field]: value };
       });
       const [showChangelog, setShowChangelog] = useState(false);
@@ -10575,48 +10665,6 @@
             { }
             <div className="p-4 rounded-3xl bg-zinc-900/40 border border-white/5 space-y-4">
               <h3 className="text-lg font-bold text-white">Customization</h3>
-              { }
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <p className="text-[11px] uppercase text-zinc-500 font-bold">Navigation Bar Items</p>
-                    <span className="text-[10px] text-zinc-500">({(settings.navItems || []).length}/6)</span>
-                  </div>
-                  <button
-                    onClick={() => updateSetting('navItems', DEFAULT_SETTINGS.navItems)}
-                    className="text-[10px] uppercase tracking-wider text-zinc-500 hover:text-white transition-colors"
-                  >
-                    Reset
-                  </button>
-                </div>
-                <p className="text-xs text-zinc-500 mb-2">Click to toggle (max 6). With 5+ items, labels appear only when selected.</p>
-                <div className="flex flex-wrap gap-2">
-                  {ALL_NAV_OPTIONS.map(opt => {
-                    const currentItems = settings.navItems || [];
-                    const isActive = currentItems.includes(opt.id);
-                    const isAtLimit = currentItems.length >= 6;
-                    const isDisabled = !isActive && isAtLimit;
-                    return (
-                      <button
-                        key={opt.id}
-                        disabled={isDisabled}
-                        onClick={() => {
-                          if (isDisabled) return;
-                          if (isActive) {
-                            updateSetting('navItems', currentItems.filter(id => id !== opt.id));
-                          } else if (currentItems.length < 6) {
-                            updateSetting('navItems', [...currentItems, opt.id]);
-                          }
-                        }}
-                        className="px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all"
-                        style={isActive ? { background: '#0a0a0a', border: '2px solid var(--accent)', color: 'var(--accent)' } : isDisabled ? { background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.05)', color: '#52525b', opacity: 0.5, cursor: 'not-allowed' } : { background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.1)', color: '#a1a1aa' }}
-                      >
-                        {opt.label}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
               { }
               <div>
                 <div className="flex items-center justify-between mb-2">
@@ -11845,14 +11893,17 @@
         </button>
       );
     };
-    const CharacterProfileModal = ({ character, onClose, allPerks = [], onPerkTap, theme, settings = {}, noteValue = '', onNoteChange, cosmeticsByBaseId = {} }) => {
+    const CharacterProfileModal = ({ character, onClose, allPerks = [], onPerkTap, theme, settings = {}, noteValue = '', onNoteChange, cosmeticsByBaseId = {}, onRegisterSections = null, registerScrollTo = null }) => {
       const isKiller = character ? (character.type === 'Killer' || character.power) : false;
       const accentColor = isKiller ? '#ef4444' : '#38bdf8';
       const stats = isKiller ? KILLER_STATS[character?.name] : null;
       const guide = isKiller ? KILLER_GUIDES[character?.name] : null;
       const teachables = allPerks.filter(p => p.owner === character?.name);
-      const [activeTab, setActiveTab] = useState('overview');
       const cosmeticsSectionRef = useRef(null);
+      const scrollRef = useRef(null);
+      const expandSection = (id) => {
+        try { window.dispatchEvent(new CustomEvent('cx-expand-section', { detail: id })); } catch (e) {}
+      };
       const cosmeticsEntries = character ? (cosmeticsByBaseId[character.id] || []) : [];
       const focusedCosmeticId = character?.cosmeticFocusId || null;
       const characterSwapGroups = useMemo(() => {
@@ -11902,107 +11953,93 @@
         return null;
       }, [character?.name]);
 
-      const tabs = isKiller
-        ? [{ id: 'overview', label: 'Overview' }, { id: 'power', label: 'Power' }, { id: 'perks', label: 'Perks' }, { id: 'lore', label: 'Lore' }]
-        : [{ id: 'overview', label: 'Overview' }, { id: 'perks', label: 'Perks' }, { id: 'lore', label: 'Lore' }];
+      const profileScope = `profile:${character?.id || 'unknown'}`;
+      const sectionList = isKiller
+        ? [{ id: 'overview', title: 'Overview', num: '1' }, { id: 'power', title: `Power: ${guide?.powerName || 'Power'}`, num: '2' }, { id: 'perks', title: 'Unique Perks', num: '3' }, { id: 'lore', title: 'Lore', num: '4' }]
+        : [{ id: 'overview', title: 'Overview', num: '1' }, { id: 'perks', title: 'Unique Perks', num: '2' }, { id: 'lore', title: 'Lore', num: '3' }];
 
       useEffect(() => {
-        setActiveTab('overview');
-      }, [character?.id, focusedCosmeticId]);
+        if (onRegisterSections) onRegisterSections(sectionList);
+        if (registerScrollTo) registerScrollTo((id) => {
+          const root = scrollRef.current;
+          if (!root) return;
+          if (id === 'lead') { root.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+          const el = root.querySelector(`[data-cx-section="${id}"]`);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        return () => {
+          if (onRegisterSections) onRegisterSections(null);
+          if (registerScrollTo) registerScrollTo(null);
+        };
+      }, [character?.id]);
 
       useEffect(() => {
-        if (!focusedCosmeticId || activeTab !== 'overview' || !cosmeticsSectionRef.current) return undefined;
+        if (!focusedCosmeticId || !cosmeticsSectionRef.current) return undefined;
+        expandSection('overview');
         const timer = window.setTimeout(() => {
           cosmeticsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }, 140);
         return () => window.clearTimeout(timer);
-      }, [focusedCosmeticId, activeTab, character?.id]);
+      }, [focusedCosmeticId, character?.id]);
 
       if (!character) return null;
 
+      const leadText = isKiller
+        ? (guide?.tldr || '')
+        : (character.lore ? character.lore.split('\n\n')[0] : '');
+
       return (
-        <div role="dialog" aria-modal="true" aria-label="Character profile" className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm" onClick={onClose}>
-          <div className="h-full overflow-y-auto custom-scrollbar" data-smoke-profile={character.id} onClick={e => e.stopPropagation()}>
+        <div role="dialog" aria-modal="true" aria-label="Character profile" className="cx-profile fixed inset-0 z-50 bg-black/95 backdrop-blur-sm" onClick={onClose}>
+          <div ref={scrollRef} className="h-full overflow-y-auto custom-scrollbar" data-smoke-profile={character.id} onClick={e => e.stopPropagation()}>
             <div className="max-w-lg mx-auto min-h-full">
-              {/* Hero Section */}
-              <div className="relative px-6 pb-4" style={{ paddingTop: 'max(1.5rem, calc(env(safe-area-inset-top, 0px) + 0.75rem))' }}>
-                <button onClick={onClose} className="absolute right-4 z-10 p-2.5 rounded-full bg-white/10 hover:bg-white/20 transition-colors" style={{ top: 'max(1rem, calc(env(safe-area-inset-top, 0px) + 0.5rem))' }}>
+              {/* Article header */}
+              <div className="px-4 cx-article" style={{ paddingTop: 'max(1rem, calc(env(safe-area-inset-top, 0px) + 0.75rem))' }}>
+                <button onClick={onClose} aria-label="Close profile" className="absolute right-4 z-10 p-2.5 rounded-full bg-white/10 hover:bg-white/20 transition-colors" style={{ top: 'max(1rem, calc(env(safe-area-inset-top, 0px) + 0.5rem))' }}>
                   <Icons.X width={20} height={20} className="text-white" />
                 </button>
-                <div className="flex items-center gap-5">
-                  <div className="w-28 h-28 rounded-2xl overflow-hidden border-2 flex-shrink-0 shadow-2xl" style={{ borderColor: accentColor, boxShadow: `0 0 30px ${accentColor}30` }}>
+                <p className="cx-crumbs">
+                  <button type="button" className="cx-alink" style={{ textDecoration: 'none' }} onClick={onClose}>{isKiller ? 'Killers' : 'Survivors'}</button>
+                  <span className="cx-sep">›</span><b>{character.name}</b>
+                </p>
+                <h1 className="cx-title">{character.name}</h1>
+                {character.realName && character.realName !== character.name && (
+                  <p className="cx-hatnote">Real name: {character.realName}</p>
+                )}
+                <div className="cx-infobox">
+                  <div className="cx-ib-title">{character.name}</div>
+                  <div className="cx-ib-sub">{isKiller ? 'Killer' : 'Survivor'}{releaseInfo ? ` - ${releaseInfo.chapter}` : ''}</div>
+                  <div className="cx-ib-media">
                     <AssetFrame type={isKiller ? 'Killer' : 'Survivor'} size="fill" imageUrl={character.image} fallbackIcon={<Icons.User width={40} height={40} className="text-zinc-500" />} />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h1 className="text-2xl font-black text-white tracking-tight">{character.name}</h1>
-                    {character.realName && character.realName !== character.name && (
-                      <p className="text-zinc-400 text-sm mt-0.5">{character.realName}</p>
+                  <table><tbody>
+                    {isKiller && guide?.powerName && (
+                      <tr><th>Power</th><td><button type="button" className="cx-alink" onClick={() => expandSection('power')}>{guide.powerName}</button></td></tr>
                     )}
-                    <div className="flex flex-wrap items-center gap-2 mt-2">
-                      {character.difficulty && (
-                        <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider" style={{ backgroundColor: `${accentColor}20`, color: accentColor }}>
-                          {character.difficulty}
-                        </span>
-                      )}
-                      {releaseInfo?.licensed && (
-                        <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-yellow-500/20 text-yellow-400">
-                          Licensed
-                        </span>
-                      )}
-                    </div>
-                    {releaseInfo && (
-                      <div className="flex items-center gap-1.5 mt-2">
-                        <Icons.Calendar width={12} height={12} className="text-zinc-500" />
-                        <span className="text-zinc-500 text-xs">{releaseInfo.date}</span>
-                        <span className="text-zinc-400 text-[10px]">• {releaseInfo.chapter}</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Tab Navigation */}
-              <div className="px-6 mb-4">
-                <div className="flex gap-1 bg-zinc-900/60 p-1 rounded-xl border border-white/5">
-                  {tabs.map(tab => (
-                    <button
-                      key={tab.id}
-                      onClick={() => setActiveTab(tab.id)}
-                      className={`flex-1 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${activeTab === tab.id ? 'text-white' : 'text-zinc-500 hover:text-zinc-300'}`}
-                      style={activeTab === tab.id ? { backgroundColor: `${accentColor}25`, color: accentColor } : {}}
-                    >
-                      {tab.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Tab Content */}
-              <div className="px-6 pb-12">
-                {/* Overview Tab */}
-                {activeTab === 'overview' && (
-                  <div className="space-y-4 animate-in fade-in duration-300">
-                    {/* Stats (Killer) */}
                     {stats && (
-                      <div className="p-4 rounded-2xl bg-red-500/10 border border-red-500/20">
-                        <p className="text-[10px] uppercase tracking-widest text-red-400 font-bold mb-3">Killer Stats</p>
-                        <div className="grid grid-cols-3 gap-3">
-                          <div className="text-center p-3 rounded-xl bg-black/30">
-                            <p className="text-white text-sm font-bold">{stats.speed}</p>
-                            <p className="text-zinc-500 text-[10px] uppercase tracking-wider mt-1">Speed</p>
-                          </div>
-                          <div className="text-center p-3 rounded-xl bg-black/30">
-                            <p className="text-white text-sm font-bold">{stats.terrorRadius}</p>
-                            <p className="text-zinc-500 text-[10px] uppercase tracking-wider mt-1">Terror Radius</p>
-                          </div>
-                          <div className="text-center p-3 rounded-xl bg-black/30">
-                            <p className="text-white text-sm font-bold">{stats.height}</p>
-                            <p className="text-zinc-500 text-[10px] uppercase tracking-wider mt-1">Height</p>
-                          </div>
-                        </div>
-                      </div>
+                      <React.Fragment>
+                        <tr><th>Speed</th><td>{stats.speed}</td></tr>
+                        <tr><th>Terror Radius</th><td>{stats.terrorRadius}</td></tr>
+                        <tr><th>Height</th><td>{stats.height}</td></tr>
+                      </React.Fragment>
                     )}
+                    {character.difficulty && (
+                      <tr><th>Difficulty</th><td>{character.difficulty}</td></tr>
+                    )}
+                    {releaseInfo && (
+                      <React.Fragment>
+                        <tr><th>Chapter</th><td>{releaseInfo.chapter}</td></tr>
+                        <tr><th>Released</th><td>{releaseInfo.date}{releaseInfo.licensed ? ' (Licensed)' : ''}</td></tr>
+                      </React.Fragment>
+                    )}
+                  </tbody></table>
+                </div>
+                {leadText ? (<div className="cx-lead"><p>{leadText}</p></div>) : null}
+              </div>
 
+              {/* Article sections */}
+              <div className="px-4 pb-12">
+                <CxSection scope={profileScope} id="overview" title="Overview" defaultOpen={true}>
+                  <div className="space-y-4">
                     {/* Quick Power Summary (Killer) */}
                     {isKiller && character.power && (
                       <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
@@ -12011,7 +12048,7 @@
                           <p className="text-[10px] uppercase tracking-widest text-red-400 font-bold">{guide?.powerName || 'Power'}</p>
                         </div>
                         <p className="text-zinc-300 text-sm leading-relaxed line-clamp-4">{stripHtml(character.power)}</p>
-                        <button onClick={() => setActiveTab('power')} className="mt-2 text-xs font-semibold transition-colors" style={{ color: accentColor }}>
+                        <button onClick={() => expandSection('power')} className="cx-alink mt-2 text-xs font-semibold transition-colors">
                           Read more →
                         </button>
                       </div>
@@ -12022,7 +12059,7 @@
                       <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
                         <div className="flex items-center justify-between mb-3">
                           <p className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">Teachable Perks</p>
-                          <button onClick={() => setActiveTab('perks')} className="text-[10px] font-bold uppercase" style={{ color: accentColor }}>View All →</button>
+                          <button onClick={() => expandSection('perks')} className="cx-alink text-[10px] font-bold uppercase">View All →</button>
                         </div>
                         <div className="flex gap-3 justify-center">
                           {teachables.slice(0, 3).map(perk => (
@@ -12117,17 +12154,18 @@
                           <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: accentColor }}>Backstory</p>
                         </div>
                         <p className="text-zinc-400 text-sm leading-relaxed line-clamp-3">{character.lore.split('\n\n')[0]}</p>
-                        <button onClick={() => setActiveTab('lore')} className="mt-2 text-xs font-semibold transition-colors" style={{ color: accentColor }}>
+                        <button onClick={() => expandSection('lore')} className="cx-alink mt-2 text-xs font-semibold transition-colors">
                           Read full lore →
                         </button>
                       </div>
                     )}
                   </div>
-                )}
+                </CxSection>
 
-                {/* Power Tab (Killer only) */}
-                {activeTab === 'power' && isKiller && (
-                  <div className="space-y-4 animate-in fade-in duration-300">
+                {/* Power Section (Killer only) */}
+                {isKiller && (
+                  <CxSection scope={profileScope} id="power" title={`Power: ${guide?.powerName || 'Power'}`} defaultOpen={false}>
+                  <div className="space-y-4">
                     {character.power && (
                       <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
                         <div className="flex items-center gap-3 mb-3">
@@ -12174,11 +12212,12 @@
                       </div>
                     )}
                   </div>
+                  </CxSection>
                 )}
 
-                {/* Perks Tab */}
-                {activeTab === 'perks' && (
-                  <div className="space-y-3 animate-in fade-in duration-300">
+                {/* Perks Section */}
+                <CxSection scope={profileScope} id="perks" title="Unique Perks" defaultOpen={false}>
+                  <div className="space-y-3">
                     {teachables.length > 0 ? teachables.map(perk => (
                       <button
                         key={perk.id}
@@ -12204,11 +12243,11 @@
                       </div>
                     )}
                   </div>
-                )}
+                </CxSection>
 
-                {/* Lore Tab */}
-                {activeTab === 'lore' && (
-                  <div className="animate-in fade-in duration-300">
+                {/* Lore Section */}
+                <CxSection scope={profileScope} id="lore" title="Lore" defaultOpen={false}>
+                  <div>
                     {character.lore ? (
                       <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
                         <div className="flex items-center gap-2 mb-4">
@@ -12228,10 +12267,10 @@
                       </div>
                     )}
                   </div>
-                )}
+                </CxSection>
               </div>
               {isKiller && (
-                <div className="px-6 pb-3">
+                <div className="px-4 pb-3">
                   <NotesEditor
                     title="Killer Notes"
                     value={noteValue}
@@ -12242,7 +12281,7 @@
               )}
 
               {/* Close Button */}
-              <div className="sticky bottom-0 px-6 pb-6 pt-3 bg-gradient-to-t from-black via-black/95 to-transparent">
+              <div className="cx-closebar sticky bottom-0 px-4 pb-28 pt-3 bg-gradient-to-t from-black via-black/95 to-transparent">
                 <button
                   onClick={onClose}
                   className="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-300 font-semibold transition-colors border border-white/10"
@@ -12318,6 +12357,29 @@
       const [powerKiller, setPowerKiller] = useState(null);
       const [profileCharacter, setProfileCharacter] = useState(null);
       const [layoutMap, setLayoutMap] = useState(null);
+      // ── Section drawer state (step A): article sections register here ──
+      const [drawerOpen, setDrawerOpen] = useState(false);
+      const [articleSections, setArticleSections] = useState(null);
+      const [drawerCurrent, setDrawerCurrent] = useState('lead');
+      const articleScrollToRef = useRef(null);
+      const openRandomCharacter = useCallback(() => {
+        const pool = [...(killers || []), ...(survivors || [])];
+        if (!pool.length) return;
+        setProfileCharacter(pool[Math.floor(Math.random() * pool.length)]);
+        triggerHaptic('Light');
+      }, [killers, survivors]);
+      const jumpToArticleSection = useCallback((id) => {
+        setDrawerCurrent(id);
+        setDrawerOpen(false);
+        if (id !== 'lead') {
+          try { window.dispatchEvent(new CustomEvent('cx-expand-section', { detail: id })); } catch (e) {}
+        }
+        const scrollTo = articleScrollToRef.current;
+        if (typeof scrollTo === 'function') {
+          window.setTimeout(() => scrollTo(id), 60);
+        }
+      }, []);
+      const closeDrawer = useCallback(() => setDrawerOpen(false), []);
       const [cosmeticsFullSetPackState, setCosmeticsFullSetPackState] = useState(() => defaultCosmeticsFullSetPackState());
       const [cosmeticsAssetRevision, setCosmeticsAssetRevision] = useState(() => getCosmeticsFullSetResolutionRevision());
       const refreshCosmeticsFullSetPack = useCallback(async (options = {}) => {
@@ -12393,6 +12455,7 @@
         setShowCompareModal(false);
       };
       const closeTopOverlay = useCallback(() => {
+        if (drawerOpen) { setDrawerOpen(false); return true; }
         if (layoutMap) { setLayoutMap(null); return true; }
         if (profileCharacter) { setProfileCharacter(null); return true; }
         if (powerKiller) { setPowerKiller(null); return true; }
@@ -12400,7 +12463,7 @@
         if (selectedPerk) { setSelectedPerk(null); return true; }
         if (showCompareModal) { setShowCompareModal(false); return true; }
         return false;
-      }, [layoutMap, profileCharacter, powerKiller, loreCharacter, selectedPerk, showCompareModal]);
+      }, [drawerOpen, layoutMap, profileCharacter, powerKiller, loreCharacter, selectedPerk, showCompareModal]);
       const closeTopOverlayRef = useRef(closeTopOverlay);
       useEffect(() => {
         closeTopOverlayRef.current = closeTopOverlay;
@@ -12639,6 +12702,8 @@
         const effectiveAccentSoft = (isLight && theme.accent === '#ffffff') ? '#e2e8f0' : theme.accentSoft;
         rootEl.style.setProperty('--accent', effectiveAccent);
         rootEl.style.setProperty('--accent-soft', effectiveAccentSoft);
+        rootEl.style.setProperty('--link', isLight ? '#3366cc' : '#6fa8ff');
+        rootEl.style.setProperty('--link-visited', isLight ? '#6a60b0' : '#9c86ff');
         rootEl.style.setProperty('--tile-border', theme.tileBorder);
         rootEl.style.setProperty('--tile-shadow', theme.tileShadow);
         rootEl.style.setProperty('--tile-gradient', theme.tileGradient);
@@ -12752,7 +12817,7 @@
         setShowCompareModal(false);
       }, [killers, survivors, perks, maps]);
       const touchStartRef = useRef(null);
-      const navOrder = ['home', ...(settings.navItems || DEFAULT_SETTINGS.navItems), 'settings'];
+      const navOrder = ['home', 'favorites'];
       const isAnyOverlayOpen = !!(layoutMap || profileCharacter || powerKiller || loreCharacter || selectedPerk || showCompareModal);
       const handleTouchStart = (e) => {
         if (!e.touches || e.touches.length !== 1) {
@@ -12873,7 +12938,25 @@
               <span className="font-semibold">Storage warning:</span> device storage is full or blocked — recent changes ({storageSaveError}) may not persist. Free up space or disable private browsing.
             </div>
           )}
-          <Navigation currentView={currentView} setView={setView} theme={theme} isMobile={device.isMobile} onPerksReset={() => setPerkSearch('')} customNavItems={settings.navItems || DEFAULT_SETTINGS.navItems} />
+          <AppToolbar
+            currentView={currentView}
+            hasArticle={!!profileCharacter}
+            drawerOpen={drawerOpen}
+            onSearch={() => setView('home')}
+            onSections={() => { setDrawerCurrent('lead'); setDrawerOpen(true); triggerHaptic('Light'); }}
+            onSaved={() => setView('favorites')}
+            onRandom={openRandomCharacter}
+          />
+          <SectionDrawer
+            open={drawerOpen}
+            title={profileCharacter ? profileCharacter.name : "Browse the wiki"}
+            subtitle={profileCharacter ? `${(profileCharacter.type === 'Killer' || profileCharacter.power) ? 'Killer' : 'Survivor'} article` : 'Sections'}
+            sections={profileCharacter ? articleSections : null}
+            currentId={profileCharacter ? drawerCurrent : null}
+            onJump={jumpToArticleSection}
+            onBrowse={(id) => { setDrawerOpen(false); setView(id); }}
+            onClose={closeDrawer}
+          />
           {/* Perk Comparison UI */}
           <FloatingCompareBadge count={comparePerks.length} onClick={() => setShowCompareModal(true)} onClear={clearCompare} theme={theme} />
           {showCompareModal && (
@@ -12920,6 +13003,8 @@
               noteValue={profileCharacter && (profileCharacter.type === 'Killer' || profileCharacter.power) ? getEntityNote('killer', profileCharacter.id) : ''}
               onNoteChange={(value) => setEntityNote('killer', profileCharacter?.id, value)}
               cosmeticsByBaseId={cosmeticsByBaseId}
+              onRegisterSections={setArticleSections}
+              registerScrollTo={(fn) => { articleScrollToRef.current = fn; }}
             />
           )}
           {/* Bottom Sheet for perk details */}
