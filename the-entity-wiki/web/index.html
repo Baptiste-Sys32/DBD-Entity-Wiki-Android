@@ -918,6 +918,10 @@
     .checkrow .box { width: 22px; height: 22px; flex: 0 0 22px; border: 1px solid var(--stroke); background: none; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--text); margin-top: 1px; }
     .checkrow .t { font-weight: 600; }
     .checkrow .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; margin-top: 2px; line-height: 1.5; }
+    .filterhead { display: flex; align-items: center; gap: 10px; width: 100%; background: none; border: none; border-bottom: 1px solid var(--stroke); color: var(--text); min-height: 52px; padding: 6px 4px; margin-top: 12px; cursor: pointer; text-align: left; font-size: 14px; }
+    .filterhead .t { font-weight: 700; }
+    .filterhead .n { font-size: 12px; color: var(--link); font-weight: 700; }
+    .filterhead .chev { margin-left: auto; color: var(--link); font-size: 14px; }
     .cx-grp { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 22px 0 0; }
     .cx-prose { font-size: 13.5px; line-height: 1.65; color: var(--muted); margin: 8px 0 0; }
     .cx-prose b, .cx-prose strong { color: var(--text); }
@@ -3235,17 +3239,6 @@
       }, []);
       return profile;
     };
-    const GlassButton = ({ children, onClick, active, className = '' }) => (
-      <button
-        onClick={onClick}
-        className={`relative px-5 py-2.5 rounded-2xl font-semibold text-sm transition-all duration-300 backdrop-blur-md glass-button ${active
-          ? 'glass-button--active translate-y-[-1px]'
-          : 'hover:text-white hover:-translate-y-0.5'
-          } ${className}`}
-      >
-        {children}
-      </button>
-    );
     const usePullToRefresh = (onRefresh, options = {}) => {
       const { threshold = 80, resistance = 2.5 } = options;
       const containerRef = useRef(null);
@@ -5732,6 +5725,8 @@
       }, [allPerks]);
       const [expandedId, setExpandedId] = useState(null);
       const [showFavOnly, setShowFavOnly] = useState(false);
+      const [showFilters, setShowFilters] = useState(false);
+      const [showSort, setShowSort] = useState(false);
       const isPerkList = type === 'Perks';
       const isCharacterList = type === 'Killers' || type === 'Survivors';
       const effectiveFilter = activeFilter || 'All';
@@ -5829,42 +5824,95 @@
             </div>
           </div>
           {(isCharacterList || isPerkList) && (
-            <div className="max-w-3xl mx-auto flex justify-center gap-2 mb-2 px-6">
-              <select value={sortBy} onChange={e => setSortBy(e.target.value)} className="themed-select compact text-sm" aria-label="Sort list">
-                <option value="name_asc">Name A-Z</option>
-                <option value="name_desc">Name Z-A</option>
-                {isCharacterList && (<React.Fragment>
-                  <option value="realname_asc">Real Name A-Z</option>
-                  <option value="realname_desc">Real Name Z-A</option>
-                  <option value="release_asc">Release ↑ (Oldest)</option>
-                  <option value="release_desc">Release ↓ (Newest)</option>
-                </React.Fragment>)}
-              </select>
+            <div className="max-w-3xl mx-auto px-6">
+              <button type="button" className="filterhead" aria-expanded={showSort} onClick={() => setShowSort(v => !v)}>
+                <span className="t">Sort</span>
+                <span className="n">{({ name_asc: 'Name A–Z', name_desc: 'Name Z–A', realname_asc: 'Real Name A–Z', realname_desc: 'Real Name Z–A', release_asc: 'Oldest First', release_desc: 'Newest First' })[sortBy] || 'Name A–Z'}</span>
+                <span className="chev" aria-hidden="true">{showSort ? '▾' : '▸'}</span>
+              </button>
+              {showSort && (
+                <div role="radiogroup" aria-label="Sort list">
+                  <div className="char-segments compact" role="presentation">
+                    {[['name_asc', 'A–Z'], ['name_desc', 'Z–A']].map(([value, label]) => (
+                      <button key={value} type="button" role="radio" aria-checked={sortBy === value} className={sortBy === value ? 'on' : ''} onClick={() => setSortBy(value)}>{label}</button>
+                    ))}
+                  </div>
+                  {isCharacterList && (
+                    <React.Fragment>
+                      <div className="char-segments compact" role="presentation">
+                        {[['realname_asc', 'Real A–Z'], ['realname_desc', 'Real Z–A']].map(([value, label]) => (
+                          <button key={value} type="button" role="radio" aria-checked={sortBy === value} className={sortBy === value ? 'on' : ''} onClick={() => setSortBy(value)}>{label}</button>
+                        ))}
+                      </div>
+                      <div className="char-segments compact" role="presentation">
+                        {[['release_asc', 'Oldest'], ['release_desc', 'Newest']].map(([value, label]) => (
+                          <button key={value} type="button" role="radio" aria-checked={sortBy === value} className={sortBy === value ? 'on' : ''} onClick={() => setSortBy(value)}>{label}</button>
+                        ))}
+                      </div>
+                    </React.Fragment>
+                  )}
+                </div>
+              )}
+              <div className="flex justify-center gap-2 mb-2">
               {isCharacterList && (
                 <button type="button" onClick={() => setShowFavOnly(v => !v)} aria-pressed={showFavOnly} className="char-favchip">★ Favorites</button>
               )}
               <span className="text-[11px] text-zinc-500 uppercase tracking-wider self-center">{filtered.length} {isPerkList ? 'perks' : type.toLowerCase()}</span>
+              </div>
             </div>
           )}
           <div className="px-6">
             {isPerkList ? (
-              <div className="max-w-3xl mx-auto flex flex-wrap justify-center gap-2 pb-4">
-                {filterOptions && filterOptions.map(opt => (
-                  <GlassButton
-                    key={opt}
-                    active={effectiveFilter === opt}
-                    onClick={() => updateFilter(effectiveFilter === opt ? 'All' : opt)}
-                    className="text-xs py-2 px-4"
-                  >
-                    {opt}
-                  </GlassButton>
-                ))}
+              <div className="max-w-3xl mx-auto pb-4">
+                {filterOptions && (
+                  <React.Fragment>
+                    <button type="button" className="filterhead" aria-expanded={showFilters} onClick={() => setShowFilters(v => !v)}>
+                      <span className="t">Filters</span>
+                      <span className="n">{effectiveFilter === 'All' ? 'All' : effectiveFilter}</span>
+                      <span className="chev" aria-hidden="true">{showFilters ? '▾' : '▸'}</span>
+                    </button>
+                    {showFilters && (
+                      <div role="group" aria-label="Filter perks">
+                        {filterOptions.map(opt => (
+                          <button
+                            key={opt}
+                            type="button"
+                            className="checkrow"
+                            aria-pressed={effectiveFilter === opt}
+                            onClick={() => updateFilter(effectiveFilter === opt ? 'All' : opt)}
+                          >
+                            <span className="box" aria-hidden="true">{effectiveFilter === opt ? '✓' : ''}</span>
+                            <span className="t">{opt}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </React.Fragment>
+                )}
               </div>
             ) : filterOptions && (
-              <div className="max-w-3xl mx-auto flex flex-wrap justify-center gap-2 pb-4">
-                {filterOptions.map(opt => (
-                  <GlassButton key={opt} active={activeFilter === opt} onClick={() => updateFilter(opt)} className="text-xs py-2 px-4">{opt}</GlassButton>
-                ))}
+              <div className="max-w-3xl mx-auto pb-4">
+                <button type="button" className="filterhead" aria-expanded={showFilters} onClick={() => setShowFilters(v => !v)}>
+                  <span className="t">Filters</span>
+                  <span className="n">{activeFilter || 'All'}</span>
+                  <span className="chev" aria-hidden="true">{showFilters ? '▾' : '▸'}</span>
+                </button>
+                {showFilters && (
+                  <div role="group" aria-label="Filter list">
+                    {filterOptions.map(opt => (
+                      <button
+                        key={opt}
+                        type="button"
+                        className="checkrow"
+                        aria-pressed={activeFilter === opt}
+                        onClick={() => updateFilter(opt)}
+                      >
+                        <span className="box" aria-hidden="true">{activeFilter === opt ? '✓' : ''}</span>
+                        <span className="t">{opt}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -7923,6 +7971,7 @@
       const [achievementSearch, setAchievementSearch] = useState('');
       const [achievementSort, setAchievementSort] = useState('name_asc');
       const [hideCompletedAchievements, setHideCompletedAchievements] = useState(false);
+      const [showAchSort, setShowAchSort] = useState(false);
       const [challengeDraft, setChallengeDraft] = useState({ name: '', description: '', side: 'any', tags: '', buildId: '' });
       const orderedTabs = useMemo(() => ensureOrderedFullSet(settings.progressionTabOrder, PROGRESSION_TABS, DEFAULT_SETTINGS.progressionTabOrder), [settings.progressionTabOrder]);
       useEffect(() => {
@@ -8121,12 +8170,27 @@
                   )}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
-                  <select value={achievementSort} onChange={e => setAchievementSort(e.target.value)} className="themed-select w-full text-sm" aria-label="Sort achievements">
-                    <option value="name_asc">A → Z</option>
-                    <option value="name_desc">Z → A</option>
-                    <option value="not_completed_first">Not Completed First</option>
-                    <option value="completed_first">Completed First</option>
-                  </select>
+                  <div>
+                    <button type="button" className="filterhead" style={{ marginTop: 0 }} aria-expanded={showAchSort} onClick={() => setShowAchSort(v => !v)} aria-label="Sort achievements">
+                      <span className="t">Sort</span>
+                      <span className="n">{({ name_asc: 'A–Z', name_desc: 'Z–A', not_completed_first: 'Uncompleted First', completed_first: 'Completed First' })[achievementSort] || 'A–Z'}</span>
+                      <span className="chev" aria-hidden="true">{showAchSort ? '▾' : '▸'}</span>
+                    </button>
+                    {showAchSort && (
+                      <div role="radiogroup" aria-label="Sort achievements">
+                        <div className="char-segments compact" role="presentation">
+                          {[['name_asc', 'A–Z'], ['name_desc', 'Z–A']].map(([value, label]) => (
+                            <button key={value} type="button" role="radio" aria-checked={achievementSort === value} className={achievementSort === value ? 'on' : ''} onClick={() => setAchievementSort(value)}>{label}</button>
+                          ))}
+                        </div>
+                        <div className="char-segments compact" role="presentation">
+                          {[['not_completed_first', 'Uncompleted First'], ['completed_first', 'Completed First']].map(([value, label]) => (
+                            <button key={value} type="button" role="radio" aria-checked={achievementSort === value} className={achievementSort === value ? 'on' : ''} onClick={() => setAchievementSort(value)}>{label}</button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                   <button type="button" className="char-favchip" aria-pressed={hideCompletedAchievements} onClick={() => setHideCompletedAchievements(v => !v)}>
                     {hideCompletedAchievements ? 'Show completed' : 'Hide completed'}
                   </button>
@@ -8181,11 +8245,11 @@
                 'For owned-only filtering and build pools, a character starts contributing their teachable perks at prestige 1.'
               ]} />
               <div className="flex gap-2 flex-wrap items-center">
-                <select value={roleFilter} onChange={e => setRoleFilter(e.target.value)} className="themed-select compact text-sm" aria-label="Filter roster by role">
-                  <option value="All">All roles</option>
-                  <option value="Killer">Killers</option>
-                  <option value="Survivor">Survivors</option>
-                </select>
+                <div className="char-segments compact" role="radiogroup" aria-label="Filter roster by role" style={{ margin: 0, flex: 1 }}>
+                  {[['All', 'All roles'], ['Killer', 'Killers'], ['Survivor', 'Survivors']].map(([value, label]) => (
+                    <button key={value} type="button" role="radio" aria-checked={roleFilter === value} className={roleFilter === value ? 'on' : ''} onClick={() => setRoleFilter(value)}>{label}</button>
+                  ))}
+                </div>
                 <button type="button" className="char-favchip" aria-pressed={showOwnedOnly} onClick={() => setShowOwnedOnly(v => !v)}>Owned only</button>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
