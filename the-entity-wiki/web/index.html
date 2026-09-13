@@ -816,7 +816,7 @@
     /* ===== Section drawer ===== */
     .cx-scrim { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); opacity: 0; pointer-events: none; transition: opacity 200ms ease; z-index: 60; }
     .cx-scrim--open { opacity: 1; pointer-events: auto; }
-    .cx-drawer { position: fixed; top: 0; bottom: 0; left: 0; width: min(300px, 85vw); background: var(--glass-bg); border-right: 1px solid var(--stroke); transform: translateX(-102%); transition: transform 220ms ease; z-index: 61; display: flex; flex-direction: column; }
+    .cx-drawer { position: fixed; top: calc(env(safe-area-inset-top, 0px) + 8px); bottom: 0; left: 0; width: min(300px, 85vw); background: var(--glass-bg); border-right: 1px solid var(--stroke); border-top: 1px solid var(--stroke); transform: translateX(-102%); transition: transform 220ms ease; z-index: 61; display: flex; flex-direction: column; }
     .cx-drawer--open { transform: translateX(0); }
     .cx-drawer-head { flex: 0 0 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 8px 0 16px; border-bottom: 1px solid var(--stroke); }
     .cx-drawer-head .t { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--text); }
@@ -3860,11 +3860,26 @@
     };
     // ── In-article section drawer (article sections, or browse shortlist) ──
     const BROWSE_SHORTLIST = [
+      { id: 'home', label: 'Home' },
       { id: 'killers', label: 'Killers' },
       { id: 'survivors', label: 'Survivors' },
       { id: 'perks', label: 'Perks' },
       { id: 'items', label: 'Items & Add-ons' },
+      { id: 'offerings', label: 'Offerings' },
+      { id: 'cosmetics', label: 'Cosmetics' },
+      { id: 'realms', label: 'Realms & Maps' },
+      { id: 'timeline', label: 'Timeline' },
       { id: 'glossary', label: 'Glossary' },
+      { id: 'gameIcons', label: 'Game Icons' },
+      { id: 'buildLab', label: 'Build Lab' },
+      { id: 'roulette', label: 'Chaos Shuffle' },
+      { id: 'worldle', label: 'Worldle' },
+      { id: 'matches', label: 'Match Log' },
+      { id: 'progression', label: 'Progression' },
+      { id: 'prestige', label: 'Prestige Calculator' },
+      { id: 'communityContent', label: 'Community' },
+      { id: 'favorites', label: 'Favorites' },
+      { id: 'settings', label: 'Settings' },
     ];
     const SectionDrawer = ({ open, title, subtitle, sections, currentId, onJump, onBrowse, onClose }) => {
       const closeRef = useRef(null);
