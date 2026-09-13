@@ -12164,13 +12164,14 @@
       }, [character?.id]);
 
       useEffect(() => {
-        if (!focusedCosmeticId || !cosmeticsSectionRef.current) return undefined;
-        expandSection('overview');
+        if (!focusedCosmeticId) return undefined;
+        if (cosmeticsEntries.length === 0) return undefined;
+        expandSection('cosmetics');
         const timer = window.setTimeout(() => {
           cosmeticsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 140);
+        }, 220);
         return () => window.clearTimeout(timer);
-      }, [focusedCosmeticId, character?.id]);
+      }, [focusedCosmeticId, character?.id, cosmeticsEntries.length]);
 
       if (!character) return null;
 
@@ -12212,7 +12213,7 @@
                         <tr><th>Height</th><td>{stats.height}</td></tr>
                       </React.Fragment>
                     )}
-                    {character.difficulty && (
+                    {isKiller && character.difficulty && (
                       <tr><th>Difficulty</th><td>{character.difficulty}</td></tr>
                     )}
                     {releaseInfo && (
@@ -12262,7 +12263,24 @@
                       </div>
                     )}
 
-                    {cosmeticsEntries.length > 0 && (
+                    {/* Lore Preview */}
+                    {character.lore && (
+                      <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Icons.BookOpen width={14} height={14} style={{ color: accentColor }} />
+                          <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: accentColor }}>Backstory</p>
+                        </div>
+                        <p className="text-zinc-400 text-sm leading-relaxed line-clamp-3">{character.lore.split('\n\n')[0]}</p>
+                        <button onClick={() => expandSection('lore')} className="cx-alink mt-2 text-xs font-semibold transition-colors">
+                          Read full lore →
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </CxSection>
+
+                {cosmeticsEntries.length > 0 && (
+                  <CxSection scope={profileScope} id="cosmetics" title={`Cosmetics (${cosmeticsEntries.length})`} defaultOpen={false}>
                       <div
                         ref={cosmeticsSectionRef}
                         data-smoke-cosmetics={character.id}
@@ -12334,23 +12352,8 @@
                           </div>
                         ))}
                       </div>
+                  </CxSection>
                     )}
-
-                    {/* Lore Preview */}
-                    {character.lore && (
-                      <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Icons.BookOpen width={14} height={14} style={{ color: accentColor }} />
-                          <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: accentColor }}>Backstory</p>
-                        </div>
-                        <p className="text-zinc-400 text-sm leading-relaxed line-clamp-3">{character.lore.split('\n\n')[0]}</p>
-                        <button onClick={() => expandSection('lore')} className="cx-alink mt-2 text-xs font-semibold transition-colors">
-                          Read full lore →
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </CxSection>
 
                 {/* Power Section (Killer only) */}
                 {isKiller && (
@@ -12407,25 +12410,33 @@
 
                 {/* Perks Section */}
                 <CxSection scope={profileScope} id="perks" title="Unique Perks" defaultOpen={false}>
-                  <div className="space-y-3">
+                  <div>
                     {teachables.length > 0 ? teachables.map(perk => (
-                      <button
-                        key={perk.id}
-                        onClick={() => onPerkTap && onPerkTap(perk)}
-                        className="w-full text-left p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/15 transition-colors flex items-start gap-4"
-                      >
-                        <AssetFrame type="Perk" imageUrl={perk.image} fallbackIcon={<Icons.BookOpen width={20} height={20} className="text-white/60" />} />
-                        <div className="flex-1">
-                          <p className="text-white text-sm font-bold">{perk.name}</p>
+                      <div key={perk.id} className="perk-row">
+                        <button
+                          type="button"
+                          onClick={() => onPerkTap && onPerkTap(perk)}
+                          className="perk-head"
+                          aria-label={`Open ${perk.name}`}
+                        >
+                          <span className="diamond" aria-hidden="true">
+                            <span><AssetFrame type="Perk" size="fill" imageUrl={perk.image} fallbackIcon={<Icons.BookOpen width={16} height={16} className="text-white/40" />} /></span>
+                          </span>
+                          <span style={{ minWidth: 0 }}>
+                            <span className="nm">{perk.name}</span>
+                          </span>
+                          <span className="chev" aria-hidden="true">›</span>
+                        </button>
+                        <div className="perk-detail">
                           <PerkDescriptionBlock
                             perk={perk}
                             settings={settings}
                             accentColor={accentColor}
                             compactLines={3}
-                            className="text-zinc-500 text-xs mt-1.5 leading-relaxed"
+                            className="desc"
                           />
                         </div>
-                      </button>
+                      </div>
                     )) : (
                       <div className="text-center py-12">
                         <Icons.BookOpen width={40} height={40} className="mx-auto text-zinc-700 mb-3" />
@@ -12461,12 +12472,14 @@
               </div>
               {isKiller && (
                 <div className="px-4 pb-3">
+                  <CxSection scope={profileScope} id="notes" title="Killer Notes" defaultOpen={false}>
                   <NotesEditor
                     title="Killer Notes"
                     value={noteValue}
                     onChange={onNoteChange}
                     placeholder="Matchups, addon ideas, macro notes, or personal reminders for this killer..."
                   />
+                  </CxSection>
                 </div>
               )}
 
