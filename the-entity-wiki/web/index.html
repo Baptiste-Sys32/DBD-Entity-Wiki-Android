@@ -939,6 +939,20 @@
     .light-mode table.cx-wikitable th { color: var(--muted); border-color: var(--stroke); }
     .light-mode table.cx-wikitable td { color: var(--text); border-color: var(--stroke); }
     .ghostbtn { display: block; width: 100%; background: none; border: 1px solid var(--stroke); color: var(--text); font-size: 13.5px; font-weight: 600; min-height: 48px; margin-top: 10px; cursor: pointer; }
+    .ghostbtn.solid { background: var(--text); color: var(--bg-01); border-color: var(--text); }
+    .ghostbtn.danger { border-color: #ef4444; color: #ef4444; }
+    /* ===== Shared dialog shell (step O): square panel, serif title, ghost footer ===== */
+    .dlg { background: var(--glass-bg); border: 1px solid var(--stroke); width: 100%; max-height: 94%; display: flex; flex-direction: column; }
+    .dlg .dhead { display: flex; align-items: flex-start; gap: 10px; padding: 16px 16px 12px; border-bottom: 1px solid var(--stroke); }
+    .dlg .dhead .over { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 0 0 4px; }
+    .dlg .dhead h2 { font-family: var(--font-display); font-size: 20px; font-weight: 700; margin: 0; color: var(--text); }
+    .dlg .dhead .x { margin-left: auto; width: 44px; height: 44px; flex: 0 0 44px; background: none; border: 1px solid var(--stroke); color: var(--text); font-size: 16px; cursor: pointer; }
+    .dlg .dbody { padding: 6px 16px 14px; overflow-y: auto; font-size: 14px; line-height: 1.65; color: var(--text); }
+    .dlg .dfoot { padding: 12px 16px 16px; border-top: 1px solid var(--stroke); display: flex; gap: 10px; }
+    .dlg .dfoot .ghostbtn { margin-top: 0; }
+    .dlg .tipr { border-bottom: 1px solid var(--stroke); padding: 10px 0; }
+    .dlg .tipr .a { font-weight: 700; font-size: 13.5px; color: var(--text); }
+    .dlg .tipr .d { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.55; }
     .diamond-lg { width: 64px; height: 64px; flex: 0 0 64px; transform: rotate(45deg); border: 2px solid var(--stroke); background: var(--ghost-surface); margin: 6px; overflow: hidden; }
     .diamond-lg > span { transform: rotate(-45deg); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
 
@@ -950,7 +964,11 @@
     .addon-row .thumb { width: 40px; height: 40px; flex: 0 0 40px; background: var(--ghost-surface); border: 1px solid var(--stroke); overflow: hidden; display: flex; align-items: center; justify-content: center; }
     .addon-row .nm { font-size: 14px; font-weight: 600; color: var(--text); }
     .addon-row .rdot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
-    .addon-row .rar { font-size: 11.5px; color: var(--muted); }
+    .addon-row .rar { font-size: 11.5px; color: var(--link); font-weight: 600; white-space: nowrap; }
+    /* ===== Home quick-random result (step O): flat panel + addon rows ===== */
+    .rnd { border: 1px solid var(--stroke); background: var(--glass-bg); padding: 14px; margin-top: 12px; }
+    .rnd .over { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 0; }
+    .rnd h3 { font-family: var(--font-display); font-size: 19px; margin: 4px 0 0; color: var(--text); }
     .addon-row .eff { font-size: 12.5px; color: var(--muted); line-height: 1.55; margin: 2px 0 0; }
     .addon-row .star { margin-left: auto; background: none; border: none; color: var(--muted); font-size: 15px; cursor: pointer; min-width: 44px; min-height: 44px; flex-shrink: 0; align-self: flex-start; }
     .addon-row .star.lit { color: #fbbf24; }
@@ -985,6 +1003,15 @@
     .cos-row .linkmode { display: inline-block; font-size: 10.5px; border: 1px solid var(--stroke); color: var(--muted); padding: 0 6px; margin-left: 6px; font-weight: 400; }
     .cos-row .chev { margin-left: auto; color: var(--link); font-size: 14px; flex-shrink: 0; }
     .cos-row.target-hi { background: rgba(34, 211, 238, 0.06); box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.12); }
+    /* ===== Profile cosmetic cards (step O): square cards, plain meta lines ===== */
+    .cos-card { border: 1px solid var(--stroke); background: var(--glass-bg); overflow: hidden; height: 100%; display: flex; flex-direction: column; }
+    .cos-card .art { aspect-ratio: 1; background: var(--ghost-surface); border-bottom: 1px solid var(--stroke); overflow: hidden; display: flex; }
+    .cos-card .art.tall { aspect-ratio: 3/4; }
+    .cos-card .art > * { width: 100%; height: 100%; }
+    .cos-card .meta { padding: 10px 12px 12px; display: flex; flex: 1; flex-direction: column; }
+    .cos-card .nm { color: var(--text); font-size: 13.5px; font-weight: 700; line-height: 1.3; }
+    .cos-card .sub { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+    .cos-card .sub .rar { color: var(--link); }
     .cos-showmore { display: block; width: 100%; background: none; border: 1px solid var(--stroke); color: var(--text); font-size: 14px; font-weight: 600; min-height: 48px; margin-top: 16px; cursor: pointer; }
     .cos-packnote { border: 1px solid var(--stroke); background: var(--glass-bg); padding: 12px 14px; font-size: 12.5px; color: var(--muted); line-height: 1.6; margin-top: 14px; }
     .cos-packnote b { color: var(--text); }
@@ -1208,6 +1235,7 @@
       Copy: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>,
       Share: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" x2="15.42" y1="13.51" y2="17.49" /><line x1="15.41" x2="8.59" y1="6.51" y2="10.49" /></svg>,
       Star: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>,
+      Bookmark: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" /></svg>,
       MessageCircle: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>,
       Package: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16.5 9.4 7.55 4.24" /><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" /><polyline points="3.27 6.96 12 12.01 20.73 6.96" /><line x1="12" x2="12" y1="22.08" y2="12" /></svg>,
       Flame: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" /></svg>,
@@ -1478,65 +1506,41 @@
         name: "Blood Red",
         accent: "#ef4444",
         accentSoft: "#7f1d1d",
-        tileGradient: "linear-gradient(145deg, #0f0f10, #190c0e)",
-        tileBorder: "rgba(127,29,29,0.6)",
-        tileShadow: "0 0 25px rgba(239,68,68,0.25)"
       },
       abyss: {
         name: "Abyss Blue",
         accent: "#38bdf8",
         accentSoft: "#0f172a",
-        tileGradient: "linear-gradient(145deg, #0b0d15, #101827)",
-        tileBorder: "rgba(56,189,248,0.4)",
-        tileShadow: "0 0 25px rgba(56,189,248,0.2)"
       },
       midnight: {
         name: "Midnight Navy",
         accent: "#1d4ed8",
         accentSoft: "#0a142f",
-        tileGradient: "linear-gradient(145deg, #0b1021, #0f1934)",
-        tileBorder: "rgba(29,78,216,0.45)",
-        tileShadow: "0 0 28px rgba(29,78,216,0.26)"
       },
       ember: {
         name: "Ember",
         accent: "#f97316",
         accentSoft: "#1f130a",
-        tileGradient: "linear-gradient(145deg, #120d0a, #1b0f09)",
-        tileBorder: "rgba(249,115,22,0.45)",
-        tileShadow: "0 0 25px rgba(249,115,22,0.25)"
       },
       void: {
         name: "Void Purple",
         accent: "#7c3aed",
         accentSoft: "#140a1f",
-        tileGradient: "linear-gradient(145deg, #0f0b14, #150d1c)",
-        tileBorder: "rgba(124,58,237,0.45)",
-        tileShadow: "0 0 25px rgba(124,58,237,0.25)"
       },
       rose: {
         name: "Rose Bloom",
         accent: "#f472b6",
         accentSoft: "#2a0f1f",
-        tileGradient: "linear-gradient(145deg, #150912, #20101b)",
-        tileBorder: "rgba(244,114,182,0.5)",
-        tileShadow: "0 0 28px rgba(244,114,182,0.24)"
       },
       ghost: {
         name: "Ghost White",
         accent: "#ffffff",
         accentSoft: "#1a1a1a",
-        tileGradient: "linear-gradient(145deg, #0a0a0a, #121212)",
-        tileBorder: "rgba(255,255,255,0.3)",
-        tileShadow: "0 0 25px rgba(255,255,255,0.15)"
       },
       nord: {
         name: "Nord",
         accent: "#88C0D0",
         accentSoft: "#3B4252",
-        tileGradient: "linear-gradient(145deg, #2E3440, #3B4252)",
-        tileBorder: "rgba(136,192,208,0.25)",
-        tileShadow: "0 0 25px rgba(136,192,208,0.12)",
         palette: {
           bg01: '#2E3440',
           bg02: '#3B4252',
@@ -1573,9 +1577,6 @@
         name: "Catppuccin Macchiato",
         accent: "#8aadf4",
         accentSoft: "#363a4f",
-        tileGradient: "linear-gradient(145deg, #1e2030, #24273a)",
-        tileBorder: "rgba(138,173,244,0.32)",
-        tileShadow: "0 0 28px rgba(138,173,244,0.16)",
         palette: {
           bg01: '#1e2030',
           bg02: '#24273a',
@@ -1612,9 +1613,6 @@
         name: "Tokyo Night",
         accent: "#7aa2f7",
         accentSoft: "#2f334d",
-        tileGradient: "linear-gradient(145deg, #16161e, #1a1b26)",
-        tileBorder: "rgba(122,162,247,0.34)",
-        tileShadow: "0 0 30px rgba(122,162,247,0.18)",
         palette: {
           bg01: '#16161e',
           bg02: '#1a1b26',
@@ -1651,9 +1649,6 @@
         name: "Everforest",
         accent: "#7fbbb3",
         accentSoft: "#2f383c",
-        tileGradient: "linear-gradient(145deg, #272e33, #2d353b)",
-        tileBorder: "rgba(127,187,179,0.3)",
-        tileShadow: "0 0 28px rgba(127,187,179,0.14)",
         palette: {
           bg01: '#272e33',
           bg02: '#2d353b',
@@ -1690,9 +1685,6 @@
         name: "Rosé Pine Moon",
         accent: "#c4a7e7",
         accentSoft: "#393552",
-        tileGradient: "linear-gradient(145deg, #232136, #2a273f)",
-        tileBorder: "rgba(196,167,231,0.32)",
-        tileShadow: "0 0 28px rgba(196,167,231,0.16)",
         palette: {
           bg01: '#232136',
           bg02: '#2a273f',
@@ -1916,9 +1908,14 @@
       visceral: 'rgba(207,12,70,0.55)',
       event: 'rgba(255,215,0,0.45)',
     };
-    const getRarityGlow = (rarity, enabled = true) => {
-      if (!enabled) return 'none';
+    const rarLabel = (rarity) => {
       const r = (rarity || '').toLowerCase();
+      if (r === 'veryrare') return 'Very rare';
+      if (r === 'ultrarare') return 'Ultra rare';
+      return r.charAt(0).toUpperCase() + r.slice(1);
+    };
+    const getRarityGlow = (rarity, enabled = true) => {
+      if (!enabled) return 'none';      const r = (rarity || '').toLowerCase();
       const color = RARITY_GLOWS[r] || RARITY_GLOWS.common;
       return `0 0 12px ${color}, 0 0 4px ${color}`;
     };
@@ -2031,19 +2028,34 @@
         panel.setAttribute('role', 'alertdialog');
         panel.setAttribute('aria-modal', 'true');
         panel.setAttribute('aria-label', title || 'App message');
-        panel.className = 'w-full max-w-sm rounded-2xl bg-zinc-900 border border-white/10 shadow-2xl p-5 space-y-4';
+        panel.className = 'dlg';
+        panel.style.maxWidth = '24rem';
+        panel.style.width = '100%';
         if (title) {
-          const heading = document.createElement('h3');
-          heading.className = 'text-base font-bold text-white';
+          const head = document.createElement('div');
+          head.className = 'dhead';
+          const titles = document.createElement('div');
+          const over = document.createElement('p');
+          over.className = 'over';
+          over.textContent = 'Please confirm';
+          titles.appendChild(over);
+          const heading = document.createElement('h2');
           heading.textContent = title;
-          panel.appendChild(heading);
+          titles.appendChild(heading);
+          head.appendChild(titles);
+          panel.appendChild(head);
         }
-        const body = document.createElement('p');
-        body.className = 'text-sm text-zinc-300 leading-relaxed whitespace-pre-line';
-        body.textContent = String(message || '');
+        const body = document.createElement('div');
+        body.className = 'dbody';
+        const bodyText = document.createElement('p');
+        bodyText.className = 'cx-prose';
+        bodyText.style.color = 'var(--text)';
+        bodyText.style.whiteSpace = 'pre-line';
+        bodyText.textContent = String(message || '');
+        body.appendChild(bodyText);
         panel.appendChild(body);
         const row = document.createElement('div');
-        row.className = 'flex gap-3 justify-end';
+        row.className = 'dfoot';
         const makeButton = (label, action, classes) => {
           const button = document.createElement('button');
           button.type = 'button';
@@ -2053,9 +2065,9 @@
           row.appendChild(button);
         };
         if (cancelLabel) {
-          makeButton(cancelLabel, 'cancel', 'px-4 py-2 rounded-xl bg-white/5 text-zinc-200 border border-white/10 text-sm hover:bg-white/10 transition-colors');
+          makeButton(cancelLabel, 'cancel', 'ghostbtn');
         }
-        makeButton(confirmLabel, 'confirm', `px-4 py-2 rounded-xl text-white text-sm font-semibold transition-colors ${danger ? 'bg-red-600/90 hover:bg-red-600' : 'bg-red-600/80 hover:bg-red-600'}`);
+        makeButton(confirmLabel, 'confirm', danger ? 'ghostbtn danger' : 'ghostbtn solid');
         panel.appendChild(row);
         backdrop.appendChild(panel);
         const finish = (value) => {
@@ -3803,7 +3815,7 @@
       const tabs = [
         { id: 'search', label: 'Search', Icon: Icons.Search, active: currentView === 'home', onTap: onSearch },
         { id: 'sections', label: 'Sections', Icon: Icons.List, active: drawerOpen || hasArticle, onTap: onSections },
-        { id: 'saved', label: 'Saved', Icon: Icons.Star, active: currentView === 'favorites', onTap: onSaved },
+        { id: 'saved', label: 'Saved', Icon: Icons.Bookmark, active: currentView === 'favorites', onTap: onSaved },
         { id: 'settings', label: 'Settings', Icon: Icons.Gear, active: currentView === 'settings', onTap: onSettings },
       ];
       return (
@@ -3910,42 +3922,39 @@
       );
     };
     // ── View Info Modal & Button ──
-    const ViewInfoModal = ({ tips, onClose }) => (
+    const ViewInfoModal = ({ overline = '', title = 'Controls & Tips', tips, onClose }) => (
       <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4" onClick={onClose}>
         <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-        <div className="relative w-full max-w-sm rounded-2xl border border-white/10 bg-zinc-900/95 backdrop-blur-xl shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
-          <div className="px-5 pt-5 pb-3 border-b border-white/10 flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-sky-500/15 border border-sky-500/20 flex items-center justify-center"><Icons.Info width={16} height={16} className="text-sky-400" /></div>
-              <h3 className="text-base font-bold text-white">Controls & Tips</h3>
+        <div className="dlg relative w-full max-w-sm" onClick={e => e.stopPropagation()}>
+          <div className="dhead">
+            <div>
+              {overline ? (<p className="over">{overline}</p>) : null}
+              <h2>{title}</h2>
             </div>
-            <button onClick={onClose} aria-label="Close" className="p-1.5 rounded-lg hover:bg-white/10 transition-colors text-zinc-400 hover:text-white"><Icons.X width={18} height={18} /></button>
+            <button type="button" onClick={onClose} aria-label="Close" className="x">✕</button>
           </div>
-          <div className="px-5 py-4 max-h-[60vh] overflow-y-auto custom-scrollbar space-y-2.5">
+          <div className="dbody custom-scrollbar">
             {tips.map((tip, i) => (
-              <div key={i} className="flex items-start gap-3 py-2 px-3 rounded-xl bg-white/[0.03] border border-white/5">
-                <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></div>
-                <div>
-                  <p className="text-[13px] font-semibold text-white leading-snug">{tip.action}</p>
-                  <p className="text-[11px] text-zinc-400 leading-relaxed mt-0.5">{tip.description}</p>
-                </div>
+              <div key={i} className="tipr">
+                <div className="a">{tip.action}</div>
+                <div className="d">{tip.description}</div>
               </div>
             ))}
           </div>
-          <div className="px-5 py-3 border-t border-white/5">
-            <button onClick={onClose} className="w-full py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm font-semibold text-zinc-300 hover:text-white hover:bg-white/10 transition-colors">Got it</button>
+          <div className="dfoot">
+            <button type="button" onClick={onClose} className="ghostbtn">Got it</button>
           </div>
         </div>
       </div>
     );
-    const ViewInfoButton = ({ tips }) => {
+    const ViewInfoButton = ({ tips, overline = '', title = 'Controls & Tips' }) => {
       const [open, setOpen] = useState(false);
       return (
         <>
-          <button onClick={() => setOpen(true)} className="p-2 rounded-xl bg-white/5 border border-white/10 text-zinc-400 hover:text-sky-400 hover:bg-sky-500/10 hover:border-sky-500/20 transition-all" title="Controls & Tips">
+          <button onClick={() => setOpen(true)} className="p-2 border text-zinc-400 transition-all" style={{ borderColor: 'var(--stroke)', color: 'var(--muted)', minWidth: 44, minHeight: 44 }} title="Controls & Tips">
             <Icons.Info width={16} height={16} />
           </button>
-          {open && <ViewInfoModal tips={tips} onClose={() => setOpen(false)} />}
+          {open && <ViewInfoModal tips={tips} overline={overline} title={title} onClose={() => setOpen(false)} />}
         </>
       );
     };
@@ -3963,7 +3972,7 @@
         { action: 'Tap a Perk', description: 'Opens a detailed perk view with full description.' },
         { action: 'Long Press a Perk', description: 'Hold down on a perk card for 0.5s to add it to the comparison tray (up to 4 perks).' },
         { action: 'Favorite', description: 'Tap the star icon on any perk to bookmark it. Use the Favorites filter to see only your picks.' },
-        { action: 'Quick Filters', description: 'Use the tag buttons (Exhaustion, Hex, Boon, etc.) to narrow the list. Tap an active filter again to clear it.' },
+        { action: 'Quick Filters', description: 'Use the Filters header (Exhaustion, Hex, Boon, etc.) to narrow the list. Tap an active filter again to clear it.' },
         { action: 'Search', description: 'Type in the search bar to filter by perk name, owner, or description.' },
       ],
       killers: [
@@ -4087,7 +4096,7 @@
       <div className="mb-6 sm:mb-8 px-2 flex items-center justify-between">
         <div className="flex items-center gap-3">
           {onBack && (
-            <button onClick={onBack} className="mr-1 sm:mr-3 p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white transition-all">
+            <button onClick={onBack} className="mr-1 sm:mr-3 p-2.5 border transition-all" style={{ borderColor: 'var(--stroke)', color: 'var(--text)', minWidth: 44, minHeight: 44 }}>
               <Icons.ChevronLeft width={22} height={22} />
             </button>
           )}
@@ -4095,8 +4104,8 @@
             onClick={onScrollTop}
             className={onScrollTop ? 'cursor-pointer hover:opacity-80 transition-opacity' : ''}
           >
-            <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">{title}</h1>
-            <p className="text-sm text-slate-400 mt-1">{subtitle}</p>
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight" style={{ color: 'var(--text)' }}>{title}</h1>
+            <p className="text-sm mt-1" style={{ color: 'var(--muted)' }}>{subtitle}</p>
           </div>
         </div>
         {infoTips && <ViewInfoButton tips={infoTips} />}
@@ -5173,134 +5182,104 @@
             {randomResult && (
               <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
                 {randomResult.type === 'help' && (
-                  <div className="p-6 rounded-3xl bg-gradient-to-br from-purple-900/40 to-zinc-900/60 border border-purple-500/20">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 rounded-xl bg-purple-500/20">
-                        <Icons.Dices width={24} height={24} className="text-purple-400" />
-                      </div>
-                      <h3 className="text-lg font-bold text-white">Quick Random</h3>
-                    </div>
-                    <p className="text-sm text-zinc-400 mb-4">Generate random addons and offerings instantly!</p>
-                    <div className="space-y-2 text-xs">
-                      <p className="text-zinc-300"><span className="text-purple-400 font-mono">random:killer</span> — Random killer + 2 addons</p>
-                      <p className="text-zinc-300"><span className="text-purple-400 font-mono">random:trapper</span> — 2 random Trapper addons</p>
-                      <p className="text-zinc-300"><span className="text-purple-400 font-mono">random:huntress</span> — 2 random Huntress addons</p>
-                      <p className="text-zinc-300"><span className="text-purple-400 font-mono">random:medkit</span> — Random Med-Kit + 2 addons</p>
-                      <p className="text-zinc-300"><span className="text-purple-400 font-mono">random:toolbox</span> — Random Toolbox + 2 addons</p>
-                      <p className="text-zinc-300"><span className="text-purple-400 font-mono">random:offering</span> — 1 random offering</p>
+                  <div className="rnd">
+                    <p className="over">Quick Random</p>
+                    <p className="cx-prose" style={{ color: 'var(--text)' }}>Generate random addons and offerings instantly!</p>
+                    <div className="cx-prose" style={{ fontSize: 12.5 }}>
+                      <p><b>random:killer</b> — Random killer + 2 addons</p>
+                      <p><b>random:trapper</b> — 2 random Trapper addons</p>
+                      <p><b>random:huntress</b> — 2 random Huntress addons</p>
+                      <p><b>random:medkit</b> — Random Med-Kit + 2 addons</p>
+                      <p><b>random:toolbox</b> — Random Toolbox + 2 addons</p>
+                      <p><b>random:offering</b> — 1 random offering</p>
                     </div>
                   </div>
                 )}
 
                 {randomResult.type === 'killer' && (
-                  <div className="p-5 rounded-3xl bg-gradient-to-br from-red-900/30 to-zinc-900/60 border border-red-500/20 shadow-lg shadow-red-500/5">
-                    <div className="flex items-center gap-4 mb-4">
-                      <AssetFrame type="Killer" imageUrl={randomResult.killer.image} fallbackIcon={<Icons.User width={28} height={28} className="text-zinc-500" />} />
-                      <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-red-400 mb-1">Killer Addons</p>
-                        <h3 className="text-xl font-bold text-white">{randomResult.killer.name}</h3>
-                      </div>
-                    </div>
-                    <div className="space-y-2">
+                  <div className="rnd">
+                    <p className="over">Killer Addons</p>
+                    <h3>{randomResult.killer.name}</h3>
+                    <div>
                       {randomResult.addons.map((addon, idx) => (
-                        <div
-                          key={addon.id || idx}
-                          className="p-3 rounded-xl bg-white/5 border border-white/5"
-                          style={{ boxShadow: getRarityGlow(addon.rarity) }}
-                        >
-                          <div className="flex items-start gap-3">
-                            <div className="w-10 h-10 rounded-lg flex-shrink-0 overflow-hidden">
-                              <AssetFrame type="Addon" imageUrl={addon.image} size="fill" fallbackIcon={<Icons.Wrench width={16} height={16} className="text-white/40" />} />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="font-bold text-sm" style={{ color: getRarityColor(addon.rarity) }}>{addon.name}</p>
-                              <p className="text-zinc-500 text-xs mt-1 line-clamp-2">{addon.description}</p>
-                            </div>
-                          </div>
+                        <div key={addon.id || idx} className="addon-row">
+                          <span className="thumb" aria-hidden="true">
+                            <span style={{ width: '100%', height: '100%', display: 'flex' }}><AssetFrame type="Addon" size="fill" imageUrl={addon.image} fallbackIcon={<Icons.Wrench width={16} height={16} className="text-white/40" />} /></span>
+                          </span>
+                          <span style={{ minWidth: 0 }}>
+                            <span className="nm">{addon.name}</span> <span className="rar">{rarLabel(addon.rarity)}</span>
+                            <p className="eff">{addon.description}</p>
+                          </span>
                         </div>
                       ))}
                     </div>
                     <div className="flex gap-2 mt-4">
-                      <button onClick={rerollRandom} className="flex-1 py-2.5 rounded-xl bg-red-600/20 border border-red-500/30 text-red-300 text-xs font-bold uppercase tracking-wider hover:bg-red-600/30 transition-colors flex items-center justify-center gap-2">
-                        <Icons.Dices width={14} height={14} /> Re-roll
+                      <button type="button" onClick={rerollRandom} className="ghostbtn" style={{ marginTop: 0, flex: 1 }}>
+                        Re-roll
                       </button>
-                      <button onClick={clearRandom} className="py-2.5 px-4 rounded-xl bg-white/5 border border-white/10 text-zinc-400 text-xs font-bold uppercase tracking-wider hover:bg-white/10 transition-colors">
-                        <Icons.X width={14} height={14} />
+                      <button type="button" onClick={clearRandom} className="ghostbtn" style={{ marginTop: 0, flex: '0 0 52px' }} aria-label="Clear result">
+                        ✕
                       </button>
                     </div>
                   </div>
                 )}
 
                 {randomResult.type === 'item' && (
-                  <div className="p-5 rounded-3xl bg-gradient-to-br from-blue-900/30 to-zinc-900/60 border border-blue-500/20 shadow-lg shadow-blue-500/5">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0">
-                        <AssetFrame type="Item" imageUrl={randomResult.item?.image} size="fill" fallbackIcon={<Icons.Package width={24} height={24} className="text-zinc-500" />} />
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-blue-400 mb-1">Item Addons</p>
-                        <h3 className="text-xl font-bold text-white">{randomResult.item?.name || randomResult.itemType}</h3>
-                      </div>
-                    </div>
-                    <div className="space-y-2">
+                  <div className="rnd">
+                    <p className="over">Item Addons</p>
+                    <h3>{randomResult.item?.name || randomResult.itemType}</h3>
+                    <div>
                       {randomResult.addons.map((addon, idx) => (
-                        <div
-                          key={addon.id || idx}
-                          className="p-3 rounded-xl bg-white/5 border border-white/5"
-                          style={{ boxShadow: getRarityGlow(addon.rarity) }}
-                        >
-                          <div className="flex items-start gap-3">
-                            <div className="w-10 h-10 rounded-lg flex-shrink-0 overflow-hidden">
-                              <AssetFrame type="Addon" imageUrl={addon.image} size="fill" fallbackIcon={<Icons.Wrench width={16} height={16} className="text-white/40" />} />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="font-bold text-sm" style={{ color: getRarityColor(addon.rarity) }}>{addon.name}</p>
-                              <p className="text-zinc-500 text-xs mt-1 line-clamp-2">{addon.description}</p>
-                            </div>
-                          </div>
+                        <div key={addon.id || idx} className="addon-row">
+                          <span className="thumb" aria-hidden="true">
+                            <span style={{ width: '100%', height: '100%', display: 'flex' }}><AssetFrame type="Addon" imageUrl={addon.image} size="fill" fallbackIcon={<Icons.Wrench width={16} height={16} className="text-white/40" />} /></span>
+                          </span>
+                          <span style={{ minWidth: 0 }}>
+                            <span className="nm">{addon.name}</span> <span className="rar">{rarLabel(addon.rarity)}</span>
+                            <p className="eff">{addon.description}</p>
+                          </span>
                         </div>
                       ))}
                     </div>
                     <div className="flex gap-2 mt-4">
-                      <button onClick={rerollRandom} className="flex-1 py-2.5 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-300 text-xs font-bold uppercase tracking-wider hover:bg-blue-600/30 transition-colors flex items-center justify-center gap-2">
-                        <Icons.Dices width={14} height={14} /> Re-roll
+                      <button type="button" onClick={rerollRandom} className="ghostbtn" style={{ marginTop: 0, flex: 1 }}>
+                        Re-roll
                       </button>
-                      <button onClick={clearRandom} className="py-2.5 px-4 rounded-xl bg-white/5 border border-white/10 text-zinc-400 text-xs font-bold uppercase tracking-wider hover:bg-white/10 transition-colors">
-                        <Icons.X width={14} height={14} />
+                      <button type="button" onClick={clearRandom} className="ghostbtn" style={{ marginTop: 0, flex: '0 0 52px' }} aria-label="Clear result">
+                        ✕
                       </button>
                     </div>
                   </div>
                 )}
 
                 {randomResult.type === 'offering' && (
-                  <div className="p-5 rounded-3xl bg-gradient-to-br from-amber-900/30 to-zinc-900/60 border border-amber-500/20 shadow-lg shadow-amber-500/5">
-                    <div className="flex flex-col items-center text-center">
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-amber-400 mb-3">Random Offering</p>
-                      <div
-                        className="w-20 h-20 rounded-2xl overflow-hidden mb-3"
-                        style={{ boxShadow: getRarityGlow(randomResult.offering.rarity) }}
-                      >
-                        <AssetFrame type="Offering" imageUrl={randomResult.offering.image} size="fill" fallbackIcon={<Icons.Flame width={32} height={32} className="text-amber-500" />} />
-                      </div>
-                      <h3 className="text-lg font-bold" style={{ color: getRarityColor(randomResult.offering.rarity) }}>{randomResult.offering.name}</h3>
-                      <p className="text-zinc-500 text-xs mt-2 max-w-xs line-clamp-3">{randomResult.offering.description}</p>
+                  <div className="rnd">
+                    <p className="over">Random Offering</p>
+                    <h3>{randomResult.offering.name}</h3>
+                    <div className="addon-row">
+                      <span className="thumb" aria-hidden="true">
+                        <span style={{ width: '100%', height: '100%', display: 'flex' }}><AssetFrame type="Offering" imageUrl={randomResult.offering.image} size="fill" fallbackIcon={<Icons.Flame width={16} height={16} className="text-white/40" />} /></span>
+                      </span>
+                      <span style={{ minWidth: 0 }}>
+                        <span className="rar">{rarLabel(randomResult.offering.rarity)}</span>
+                        <p className="eff">{randomResult.offering.description}</p>
+                      </span>
                     </div>
                     <div className="flex gap-2 mt-4">
-                      <button onClick={rerollRandom} className="flex-1 py-2.5 rounded-xl bg-amber-600/20 border border-amber-500/30 text-amber-300 text-xs font-bold uppercase tracking-wider hover:bg-amber-600/30 transition-colors flex items-center justify-center gap-2">
-                        <Icons.Dices width={14} height={14} /> Re-roll
+                      <button type="button" onClick={rerollRandom} className="ghostbtn" style={{ marginTop: 0, flex: 1 }}>
+                        Re-roll
                       </button>
-                      <button onClick={clearRandom} className="py-2.5 px-4 rounded-xl bg-white/5 border border-white/10 text-zinc-400 text-xs font-bold uppercase tracking-wider hover:bg-white/10 transition-colors">
-                        <Icons.X width={14} height={14} />
+                      <button type="button" onClick={clearRandom} className="ghostbtn" style={{ marginTop: 0, flex: '0 0 52px' }} aria-label="Clear result">
+                        ✕
                       </button>
                     </div>
                   </div>
                 )}
 
                 {!randomResult.type && (
-                  <div className="p-5 rounded-3xl bg-zinc-900/60 border border-white/10 text-center">
-                    <Icons.AlertCircle width={32} height={32} className="text-zinc-400 mx-auto mb-2" />
-                    <p className="text-zinc-400 text-sm">No match found for "<span className="text-white">{searchTerm.slice(7)}</span>"</p>
-                    <p className="text-zinc-400 text-xs mt-1">Try a killer name (trapper, huntress) or item type (medkit, toolbox)</p>
+                  <div className="rnd" style={{ textAlign: 'center' }}>
+                    <p className="cx-prose" style={{ color: 'var(--text)' }}>No match found for "<b>{searchTerm.slice(7)}</b>"</p>
+                    <p className="cx-prose">Try a killer name (trapper, huntress) or item type (medkit, toolbox)</p>
                   </div>
                 )}
               </div>
@@ -5481,105 +5460,85 @@
           </div>
           { }
           {showImportModal && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm" onClick={cancelImport}>
-              <div className="bg-zinc-900 border border-white/10 rounded-2xl p-6 w-full max-w-md mx-4 max-h-[85vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-xl font-bold text-white">{importPreview ? 'Confirm Import' : 'Import Build'}</h2>
-                  <button onClick={cancelImport} className="p-2 rounded-lg bg-white/5 text-zinc-400 hover:text-white">
-                    <Icons.X width={18} height={18} />
-                  </button>
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={cancelImport}>
+              <div className="dlg relative w-full max-w-md" onClick={e => e.stopPropagation()}>
+                <div className="dhead">
+                  <div>
+                    <p className="over">Build Lab · Shared build</p>
+                    <h2>{importPreview ? 'Confirm Import' : 'Import Build'}</h2>
+                  </div>
+                  <button type="button" onClick={cancelImport} className="x" aria-label="Close">✕</button>
                 </div>
 
                 {!importPreview ? (
-                  <>
-                    <p className="text-sm text-zinc-400 mb-4">Paste shared build text from a friend to import it into your Build Lab.</p>
+                  <React.Fragment>
+                  <div className="dbody custom-scrollbar">
+                    <p className="cx-prose">Paste shared build text from a friend to import it into your Build Lab.</p>
                     <textarea
                       value={importCode}
                       onChange={e => { setImportCode(e.target.value); setImportError(''); }}
                       placeholder="Paste shared build text here..."
-                      className="w-full h-24 bg-zinc-800/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-white/20 resize-none font-mono text-sm"
+                      className="themed-area"
+                      style={{ minHeight: 96 }}
                     />
-                    {importError && <p className="text-red-400 text-sm mt-2">{importError}</p>}
-                    <div className="flex gap-3 mt-4">
-                      <button onClick={cancelImport} className="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold hover:bg-white/10 transition-colors">Cancel</button>
-                      <button onClick={handleImportBuild} className="flex-1 px-4 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-500 transition-colors">Preview</button>
-                    </div>
-                  </>
+                    {importError && <p className="cx-prose" style={{ color: '#f87171' }}>{importError}</p>}
+                  </div>
+                  <div className="dfoot">
+                    <button type="button" onClick={cancelImport} className="ghostbtn">Cancel</button>
+                    <button type="button" onClick={handleImportBuild} className="ghostbtn solid">Preview</button>
+                  </div>
+                  </React.Fragment>
                 ) : (
-                  <>
+                  <React.Fragment>
                     {/* Build Preview */}
-                    <div className="space-y-4">
-                      {/* Build Name & Role */}
-                      <div className="p-4 rounded-xl bg-zinc-800/50 border border-white/5">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className={`px-2 py-1 rounded-lg text-[10px] font-bold uppercase tracking-widest ${importPreview.role === 'Killer' ? 'bg-red-600/30 text-red-200' : 'bg-blue-600/30 text-blue-200'}`}>
-                            {importPreview.role}
-                          </span>
-                          {importPreview.characterName && (
-                            <span className="text-xs text-zinc-400">{importPreview.characterName}</span>
-                          )}
-                        </div>
-                        <h3 className="text-lg font-bold text-white">{importPreview.name}</h3>
-                      </div>
+                    <div className="dbody custom-scrollbar">
+                      <p className="cx-grp" style={{ marginTop: 0 }}>Build</p>
+                      <p className="cx-prose" style={{ color: 'var(--text)' }}>
+                        <b>{importPreview.name}</b> · {importPreview.role}{importPreview.characterName ? ` · ${importPreview.characterName}` : ''}
+                      </p>
 
                       {/* Perks */}
                       {importPreview.perks?.length > 0 && (
                         <div>
-                          <p className="text-xs text-zinc-500 uppercase tracking-wider mb-2">Perks</p>
-                          <div className="flex flex-wrap gap-2">
-                            {importPreview.perks.map((p, idx) => (
-                              <span key={`${p.id}-${idx}`} className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-sm text-white">{p.name}</span>
-                            ))}
-                          </div>
+                          <p className="cx-grp">Perks</p>
+                          <p className="cx-prose" style={{ color: 'var(--text)' }}>{importPreview.perks.map(p => p.name).join(' · ')}</p>
                         </div>
                       )}
 
                       {/* Item, Addons, Offering */}
-                      <div className="grid grid-cols-1 gap-2 text-sm">
+                      <div className="cx-prose">
                         {importPreview.item && (
-                          <div className="flex items-center gap-2">
-                            <span className="text-zinc-500 text-xs uppercase tracking-wider">Item:</span>
-                            <span className="text-zinc-300">{importPreview.item}</span>
-                          </div>
+                          <p>Item: <b>{importPreview.item}</b></p>
                         )}
                         {importPreview.addons?.length > 0 && (
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-zinc-500 text-xs uppercase tracking-wider">Add-ons:</span>
-                            <span className="text-zinc-300">{importPreview.addons.join(', ')}</span>
-                          </div>
+                          <p>Add-ons: <b>{importPreview.addons.join(', ')}</b></p>
                         )}
                         {importPreview.offering && (
-                          <div className="flex items-center gap-2">
-                            <span className="text-zinc-500 text-xs uppercase tracking-wider">Offering:</span>
-                            <span className="text-zinc-300">{importPreview.offering}</span>
-                          </div>
+                          <p>Offering: <b>{importPreview.offering}</b></p>
                         )}
                         {importPreview.notes && (
-                          <div className="mt-2">
-                            <span className="text-zinc-500 text-xs uppercase tracking-wider">Notes:</span>
-                            <p className="text-zinc-400 text-sm mt-1">{importPreview.notes}</p>
-                          </div>
+                          <p>Notes: {importPreview.notes}</p>
                         )}
                       </div>
 
                       {/* Warnings */}
                       {importWarnings.length > 0 && (
-                        <div className="p-3 rounded-xl bg-yellow-500/10 border border-yellow-500/30">
-                          <p className="text-yellow-300 text-xs font-bold uppercase tracking-wider mb-1">Warnings</p>
-                          <ul className="text-yellow-200/80 text-xs space-y-0.5">
+                        <div>
+                          <p className="cx-grp">Warnings</p>
+                          <ul className="cx-prose" style={{ paddingLeft: 18, fontStyle: 'italic' }}>
                             {importWarnings.map((w, i) => (
-                              <li key={i}>• {w}</li>
+                              <li key={i}>{w}</li>
                             ))}
                           </ul>
                         </div>
                       )}
                     </div>
 
-                    <div className="flex gap-3 mt-6">
-                      <button onClick={() => { setImportPreview(null); setImportWarnings([]); }} className="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold hover:bg-white/10 transition-colors">Back</button>
-                      <button onClick={confirmImport} className="flex-1 px-4 py-3 rounded-xl bg-green-600 text-white font-semibold hover:bg-green-500 transition-colors">Save Build</button>
+                    <div className="dfoot">
+                      <button type="button" onClick={() => { setImportPreview(null); setImportWarnings([]); }} className="ghostbtn">Back</button>
+                      <button type="button" onClick={confirmImport} className="ghostbtn solid">Save Build</button>
                     </div>
-                  </>
+                  </React.Fragment>
                 )}
               </div>
             </div>
@@ -6685,54 +6644,6 @@
               </div>
             </div>
           )}
-        </div>
-      );
-    };
-    const PremadeBuildsView = ({ onBack }) => {
-      const [search, setSearch] = useState('');
-      const filtered = PREMADE_BUILDS.filter(b => {
-        if (!search.trim()) return true;
-        const term = search.toLowerCase();
-        return b.title.toLowerCase().includes(term) || b.perks.some(p => p.toLowerCase().includes(term));
-      });
-      return (
-        <div className="flex flex-col h-full pt-12 pb-32 px-6 overflow-y-auto custom-scrollbar">
-          <Header title="Premade Builds" subtitle="Ready-to-run perk combos" onBack={onBack} infoTips={VIEW_TIPS.premadebuilds} />
-          <div className="sticky top-0 z-20 -mx-6 px-6 pb-4 pointer-events-none">
-            <div className="relative max-w-3xl mx-auto">
-              <div className="absolute inset-0 bg-red-600 rounded-3xl blur-2xl opacity-0 transition-opacity duration-500"></div>
-              <div className="relative flex items-center bg-zinc-800/60 backdrop-blur-xl border border-white/10 rounded-3xl p-2 shadow-2xl pointer-events-auto">
-                <div className="pl-4 text-zinc-400"><Icons.Search width={18} height={18} /></div>
-                <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search builds or perks..." className="w-full bg-transparent text-white p-3 text-sm sm:text-base font-medium placeholder-zinc-600 focus:outline-none" />
-                {search && (
-                  <button onClick={() => setSearch('')} className="p-2 mr-1 rounded-xl bg-white/5 text-zinc-300 hover:text-white hover:bg-white/10 transition-colors">
-                    <Icons.X width={18} height={18} />
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-          <div className="pb-32 space-y-4 -mx-6 px-6">
-            {filtered.map((sheet) => (
-              <div key={sheet.title} className="p-4 rounded-3xl bg-zinc-900/40 border border-white/5 backdrop-blur-md">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="inline-flex items-center px-2 py-1 rounded-lg bg-white/5 border border-white/5">
-                    <span className={`w-1.5 h-1.5 rounded-full ${sheet.role === 'Killer' ? 'bg-red-500' : 'bg-blue-500'} mr-2 shadow-[0_0_5px_currentColor]`}></span>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">{sheet.role}</span>
-                  </div>
-                  <p className="text-xs text-zinc-500 font-bold uppercase tracking-wider">4 perks</p>
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">{sheet.title}</h3>
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {sheet.perks.map(p => (
-                    <span key={p} className="px-3 py-1 rounded-xl bg-white/5 border border-white/10 text-xs text-white font-semibold">{p}</span>
-                  ))}
-                </div>
-                <p className="text-zinc-400 text-sm leading-relaxed">{sheet.note}</p>
-              </div>
-            ))}
-            {filtered.length === 0 && <div className="text-center text-zinc-500 pt-8">No builds match that search.</div>}
-          </div>
         </div>
       );
     };
@@ -8827,6 +8738,7 @@
       const [mode, setMode] = useState(initialMode);
       const [filterType, setFilterType] = useState('All');
       const [sortBy, setSortBy] = useState('rarity');
+      const [showSort, setShowSort] = useState(false);
       const itemCardRefs = useRef({});
       const killerCardRefs = useRef({});
       const addonRefs = useRef({});
@@ -8977,13 +8889,23 @@
               <select value={filterType} onChange={e => setFilterType(e.target.value)} className="themed-select compact text-sm">
                 {itemTypes.map(t => <option key={t} value={t}>{t === 'All' ? 'All Types' : t.charAt(0).toUpperCase() + t.slice(1)}</option>)}
               </select>
-              <select value={sortBy} onChange={e => setSortBy(e.target.value)} className="themed-select compact text-sm">
-                <option value="rarity">Sort by Rarity</option>
-                <option value="name">Sort A-Z</option>
-              </select>
               <span className="text-[11px] text-zinc-500 uppercase tracking-wider self-center">{filteredItems.length} items</span>
             </div>
           )}
+          <div className="max-w-3xl mx-auto px-6">
+            <button type="button" className="filterhead" aria-expanded={showSort} onClick={() => setShowSort(v => !v)} aria-label="Sort items and addons">
+              <span className="t">Sort</span>
+              <span className="n">{sortBy === 'name' ? 'A–Z' : 'Rarity'}</span>
+              <span className="chev" aria-hidden="true">{showSort ? '▾' : '▸'}</span>
+            </button>
+            {showSort && (
+              <div className="char-segments compact" role="radiogroup" aria-label="Sort items and addons">
+                {[['rarity', 'Rarity'], ['name', 'A–Z']].map(([value, label]) => (
+                  <button key={value} type="button" role="radio" aria-checked={sortBy === value} className={sortBy === value ? 'on' : ''} onClick={() => setSortBy(value)}>{label}</button>
+                ))}
+              </div>
+            )}
+          </div>
           <div className="pb-32 space-y-3 -mx-6 px-6">
             {mode === 'survivor' && (
               filteredItems.length === 0 ? <div className="text-center text-zinc-500 mt-12">No items found.</div> :
@@ -9136,6 +9058,7 @@
       const [filterSecret, setFilterSecret] = useState(false);
       const [sortBy, setSortBy] = useState('rarity');
       const [expandedId, setExpandedId] = useState(null);
+      const [showSort, setShowSort] = useState(false);
       const offeringRefs = useRef({});
       const RARITY_ORDER = { common: 1, uncommon: 2, rare: 3, veryrare: 4, ultrarare: 5, visceral: 6, event: 7 };
       const getRarityOrder = (r) => RARITY_ORDER[(r || '').toLowerCase()] || 0;
@@ -9247,11 +9170,21 @@
           </div>
           <div className="max-w-3xl mx-auto flex flex-wrap items-center gap-2 mb-4 px-6">
             <button type="button" onClick={() => setFilterSecret(v => !v)} aria-pressed={filterSecret} className="char-favchip">Shroud only</button>
-            <select value={sortBy} onChange={e => setSortBy(e.target.value)} className="themed-select compact text-sm ml-2" aria-label="Sort offerings">
-              <option value="rarity">Sort by Rarity</option>
-              <option value="name">Sort A-Z</option>
-            </select>
             <span className="text-[11px] text-zinc-500 uppercase tracking-wider self-center ml-2">{filtered.length} offerings</span>
+          </div>
+          <div className="max-w-3xl mx-auto px-6">
+            <button type="button" className="filterhead" aria-expanded={showSort} onClick={() => setShowSort(v => !v)} aria-label="Sort offerings">
+              <span className="t">Sort</span>
+              <span className="n">{sortBy === 'name' ? 'A–Z' : 'Rarity'}</span>
+              <span className="chev" aria-hidden="true">{showSort ? '▾' : '▸'}</span>
+            </button>
+            {showSort && (
+              <div className="char-segments compact" role="radiogroup" aria-label="Sort offerings">
+                {[['rarity', 'Rarity'], ['name', 'A–Z']].map(([value, label]) => (
+                  <button key={value} type="button" role="radio" aria-checked={sortBy === value} className={sortBy === value ? 'on' : ''} onClick={() => setSortBy(value)}>{label}</button>
+                ))}
+              </div>
+            )}
           </div>
           <div className="pb-32 -mx-6 px-6">
             {filtered.length === 0 && <div className="text-center text-zinc-500 mt-12">No offerings found.</div>}
@@ -9363,21 +9296,16 @@
         ? (entry.groupLabel || 'Character swaps')
         : (entry.collectionName || entry.sourceBucket || entry.groupLabel || 'Cosmetic');
       const pieceLabel = entry.pieceType || (isCharacterSwap ? 'Outfit' : 'Cosmetic');
-      const roleChipClasses = entry.baseCharacterType === 'Killer'
-        ? 'bg-red-500/10 text-red-200 border-red-500/20'
-        : 'bg-sky-500/10 text-sky-200 border-sky-500/20';
-      const badgeStyle = {
-        borderColor: `${accentColor}30`,
-        color: focused ? accentColor : '#d4d4d8',
-        backgroundColor: focused ? `${accentColor}16` : 'rgba(255,255,255,0.04)'
-      };
+      const linkStateLabel = !isCharacterSwap && pieceLabel === 'Outfit'
+        ? (outfitLinkMode === 'linked' ? 'Linked' : outfitLinkMode === 'partially_linked' ? 'Partial' : null)
+        : null;
       return (
         <div
           data-smoke-target={focused ? 'true' : undefined}
-          className="rounded-[1.35rem] border overflow-hidden transition-all h-full flex flex-col"
-          style={focused ? { borderColor: `${accentColor}aa`, boxShadow: `0 0 0 1px ${accentColor}25, 0 18px 40px rgba(0,0,0,0.28)` } : { borderColor: 'rgba(255,255,255,0.08)', background: 'rgba(0,0,0,0.18)' }}
+          className="cos-card"
+          style={focused ? { borderColor: 'var(--link)', boxShadow: '0 0 0 1px var(--link)' } : undefined}
         >
-          <div className={`${isCharacterSwap ? 'aspect-[3/4]' : 'aspect-square'} bg-black/30`}>
+          <div className={isCharacterSwap ? 'art tall' : 'art'}>
             <AssetFrame
               type={isCharacterSwap ? entry.baseCharacterType : 'Image'}
               size="fill"
@@ -9390,48 +9318,30 @@
               }
             />
           </div>
-          <div className="p-3.5 flex flex-1 flex-col gap-3">
-            <div className="flex flex-wrap gap-1.5">
-              {isCharacterSwap ? (
-                <span className="inline-flex items-center rounded-full border px-2 py-1 text-[10px] font-bold uppercase tracking-[0.16em] bg-fuchsia-500/10 text-fuchsia-200 border-fuchsia-500/20">
-                  Character swaps
-                </span>
-              ) : (
-                <span className="inline-flex items-center rounded-full border px-2 py-1 text-[10px] font-bold uppercase tracking-[0.16em]" style={badgeStyle}>
-                  {pieceLabel}
-                </span>
-              )}
-              <span className={`inline-flex items-center rounded-full border px-2 py-1 text-[10px] font-bold uppercase tracking-[0.16em] ${roleChipClasses}`}>
-                {entry.baseCharacterType}
-              </span>
-              {!isCharacterSwap && pieceLabel === 'Outfit' && (
-                <span className={`inline-flex items-center rounded-full border px-2 py-1 text-[10px] font-bold uppercase tracking-[0.16em] ${getOutfitLinkModeChipClasses(outfitLinkMode)}`}>
-                  {getOutfitLinkModeLabel(outfitLinkMode)}
-                </span>
-              )}
-              {entry.rarity && (
-                <span className="inline-flex items-center rounded-full border px-2 py-1 text-[10px] font-bold uppercase tracking-[0.16em] bg-white/5 text-zinc-200 border-white/10">
-                  {entry.rarity}
-                </span>
-              )}
-            </div>
-            <div className="flex-1">
-              <p className="text-white text-sm font-bold leading-tight">{entry.name}</p>
-              <p className="text-[11px] uppercase tracking-[0.16em] text-zinc-500 mt-1">{entry.baseCharacterName}</p>
-              <p className="text-xs text-zinc-400 mt-2 leading-snug">{collectionLabel}</p>
-              {!isCharacterSwap && boundSlotsLabel && pieceLabel === 'Outfit' && (
-                <p className="text-[11px] text-zinc-500 mt-1">Binds: {boundSlotsLabel}</p>
-              )}
-            </div>
+          <div className="meta">
+            <p className="nm">{entry.name}</p>
+            <p className="sub">
+              {isCharacterSwap ? 'Character swap' : pieceLabel}{entry.rarity ? (<span> · <span className="rar">{entry.rarity}</span></span>) : null}
+            </p>
+            <p className="sub">{entry.baseCharacterType} · {entry.baseCharacterName}</p>
+            <p className="sub">{collectionLabel}</p>
+            {!isCharacterSwap && boundSlotsLabel && pieceLabel === 'Outfit' && (
+              <p className="sub">Binds: {boundSlotsLabel}</p>
+            )}
+            {linkStateLabel && (
+              <p className="sub">{linkStateLabel}</p>
+            )}
             {focused && (
-              <p className="text-[10px] uppercase tracking-[0.18em] font-bold" style={{ color: accentColor }}>
+              <p className="sub" style={{ color: 'var(--link)', fontWeight: 700 }}>
                 Search Match
               </p>
             )}
             {typeof onOpen === 'function' && (
               <button
+                type="button"
                 onClick={() => onOpen(entry)}
-                className="w-full py-2.5 rounded-xl bg-white/5 border border-white/10 text-[11px] text-white uppercase tracking-[0.18em] hover:bg-white/10 transition-colors mt-auto"
+                className="cx-alink"
+                style={{ marginTop: 8, minHeight: 44 }}
               >
                 Open Base Profile
               </button>
@@ -11704,34 +11614,17 @@
                       <div
                         ref={cosmeticsSectionRef}
                         data-smoke-cosmetics={character.id}
-                        className="p-4 rounded-2xl bg-white/5 border border-white/10 scroll-mt-24 space-y-4"
+                        className="scroll-mt-24 space-y-4"
                         style={focusedCosmeticId ? { borderColor: `${accentColor}55`, boxShadow: `0 0 0 1px ${accentColor}15` } : {}}
                       >
-                        <div className="flex items-center justify-between gap-3">
-                          <div>
-                            <p className="text-[10px] uppercase tracking-widest font-bold" style={{ color: accentColor }}>Character Cosmetics</p>
-                            <p className="text-xs text-zinc-500 mt-1">Character swaps and all cosmetics linked to this character.</p>
-                          </div>
-                          <div className="flex flex-wrap justify-end gap-2">
-                            <span className="px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] uppercase tracking-wider text-zinc-400">
-                              {cosmeticsEntries.length} total
-                            </span>
-                            {characterSwapGroups.length > 0 && (
-                              <span className="px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] uppercase tracking-wider text-zinc-500">
-                                {characterSwapGroups.reduce((total, group) => total + group.entries.length, 0)} swaps
-                              </span>
-                            )}
-                            {fullSetGroups.length > 0 && (
-                              <span className="px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] uppercase tracking-wider text-zinc-500">
-                                {fullSetGroups.reduce((total, group) => total + group.entries.length, 0)} cosmetics
-                              </span>
-                            )}
-                            {linkedFullSetCount > 0 && (
-                              <span className="px-2 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[10px] uppercase tracking-wider text-emerald-300">
-                                {linkedFullSetCount} linked outfits
-                              </span>
-                            )}
-                          </div>
+                        <div>
+                          <p className="cx-grp" style={{ marginTop: 0 }}>Character Cosmetics</p>
+                          <p className="cx-prose">
+                            {cosmeticsEntries.length} total
+                            {characterSwapGroups.length > 0 && (<span> · {characterSwapGroups.reduce((total, group) => total + group.entries.length, 0)} swaps</span>)}
+                            {fullSetGroups.length > 0 && (<span> · {fullSetGroups.reduce((total, group) => total + group.entries.length, 0)} cosmetics</span>)}
+                            {linkedFullSetCount > 0 && (<span> · {linkedFullSetCount} linked outfits</span>)}
+                          </p>
                         </div>
 
                         {characterSwapGroups.map((group) => (
@@ -12313,9 +12206,6 @@
         rootEl.style.setProperty('--accent-soft', effectiveAccentSoft);
         rootEl.style.setProperty('--link', isLight ? '#3366cc' : '#6fa8ff');
         rootEl.style.setProperty('--link-visited', isLight ? '#6a60b0' : '#9c86ff');
-        rootEl.style.setProperty('--tile-border', theme.tileBorder);
-        rootEl.style.setProperty('--tile-shadow', theme.tileShadow);
-        rootEl.style.setProperty('--tile-gradient', theme.tileGradient);
         rootEl.style.setProperty('--full-panel-bg', fullPanelBg);
         rootEl.style.setProperty('--full-panel-border', fullPanelBorder);
         rootEl.style.setProperty('--full-button-bg', fullButtonBg);
