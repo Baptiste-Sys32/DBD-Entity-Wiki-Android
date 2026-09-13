@@ -486,6 +486,18 @@
       border-radius: 10px;
       background-position: right 0.6rem center;
     }
+    .themed-area {
+      width: 100%;
+      background: var(--glass-bg);
+      border: 1px solid var(--stroke);
+      border-radius: 0;
+      color: var(--text);
+      font-family: ui-monospace, monospace;
+      font-size: 13px;
+      padding: 12px;
+    }
+    .themed-area::placeholder { color: var(--muted); }
+    .themed-area:focus { outline: none; border-color: var(--link); }
 
     .light-mode .themed-select {
       color: #0f172a;
@@ -764,6 +776,7 @@
     .cx-crumbs .cx-sep { margin: 0 6px; }
     .cx-crumbs b { font-weight: 600; color: var(--text); }
     .cx-title { font-family: var(--font-display); font-size: 30px; font-weight: 700; line-height: 1.15; margin: 0; padding-bottom: 10px; border-bottom: 1px solid var(--stroke); color: var(--text); }
+    .cx-title small { display: block; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-weight: 400; font-size: 12px; color: var(--muted); margin-top: 4px; }
     .cx-hatnote { font-size: 13px; font-style: italic; color: var(--muted); margin: 8px 0 2px; }
     .cx-hatnote a { color: var(--link); }
     .cx-lead p { font-size: 15px; line-height: 1.7; margin: 12px 0; color: var(--text); }
@@ -895,6 +908,18 @@
     .perk-detail .meta { color: var(--muted); font-size: 12.5px; margin: 0 0 4px; }
     .perk-detail .rowbtns { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
     .perk-detail .rowbtns button { background: none; border: 1px solid var(--stroke); color: var(--text); font-size: 12.5px; font-weight: 600; padding: 8px 12px; min-height: 44px; cursor: pointer; }
+
+    /* ===== Settings (step M): checkbox rows ===== */
+    .checkrow { display: flex; align-items: flex-start; gap: 12px; width: 100%; background: none; border: none; border-bottom: 1px solid var(--stroke); min-height: 56px; padding: 10px 4px; cursor: pointer; text-align: left; color: var(--text); font-size: 14px; }
+    .checkrow .box { width: 22px; height: 22px; flex: 0 0 22px; border: 1px solid var(--stroke); background: none; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--text); margin-top: 1px; }
+    .checkrow .t { font-weight: 600; }
+    .checkrow .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; margin-top: 2px; line-height: 1.5; }
+    .cx-grp { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 22px 0 0; }
+    .cx-prose { font-size: 13.5px; line-height: 1.65; color: var(--muted); margin: 8px 0 0; }
+    .cx-prose b, .cx-prose strong { color: var(--text); }
+    .ghostbtn { display: block; width: 100%; background: none; border: 1px solid var(--stroke); color: var(--text); font-size: 13.5px; font-weight: 600; min-height: 48px; margin-top: 10px; cursor: pointer; }
+    .diamond-lg { width: 64px; height: 64px; flex: 0 0 64px; transform: rotate(45deg); border: 2px solid var(--stroke); background: var(--ghost-surface); margin: 6px; overflow: hidden; }
+    .diamond-lg > span { transform: rotate(-45deg); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
 
     /* ===== Items & addons (step E): group accordions + addon rows ===== */
     .grp-body { padding: 2px 4px 14px 0; }
@@ -2209,7 +2234,7 @@
         const params = new URLSearchParams(window.location.search || '');
         const view = params.get('view') || 'home';
         const context = {};
-        ['search', 'mode', 'tab', 'targetId', 'targetType'].forEach((key) => {
+        ['search', 'mode', 'tab', 'targetId', 'targetType', 'perkId', 'mapId', 'characterId', 'cosmeticFocusId', 'section', 'expandedIconId'].forEach((key) => {
           const value = params.get(key);
           if (value) context[key] = value;
         });
@@ -2235,6 +2260,7 @@
       return {
         ...DEFAULT_SETTINGS,
         ...rest,
+        colorMode: rest.colorMode === 'light' ? 'light' : 'oled',
         ownedOnlyGlobal: Boolean(rest.ownedOnlyGlobal),
         progressionTabOrder: ensureOrderedFullSet(rest.progressionTabOrder, PROGRESSION_TABS, DEFAULT_SETTINGS.progressionTabOrder),
       };
@@ -3286,117 +3312,6 @@
         </div>
       );
     };
-    const BottomSheet = ({ isOpen, onClose, perk, settings = {}, noteValue = '', onNoteChange }) => {
-      const [dragY, setDragY] = useState(0);
-      const [isDragging, setIsDragging] = useState(false);
-      const startYRef = useRef(0);
-      if (!isOpen || !perk) return null;
-      const handleTouchStart = (e) => {
-        startYRef.current = e.touches[0].clientY;
-        setIsDragging(true);
-      };
-      const handleTouchMove = (e) => {
-        if (!isDragging) return;
-        const diff = e.touches[0].clientY - startYRef.current;
-        if (diff > 0) setDragY(diff);
-      };
-      const handleTouchEnd = () => {
-        setIsDragging(false);
-        if (dragY > 100) {
-          onClose();
-        }
-        setDragY(0);
-      };
-      const accentColor = perk.type === 'Killer' ? '#ef4444' : '#38bdf8';
-      return (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label="Perk details"
-          className="fixed inset-0 z-50 flex items-end justify-center bottom-sheet-backdrop"
-          style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}
-          onClick={onClose}
-        >
-          <div
-            className="w-full max-w-lg bg-zinc-900 rounded-t-3xl p-6 pb-10 bottom-sheet-content"
-            style={{
-              maxHeight: '85vh',
-              transform: `translateY(${dragY}px)`,
-              transition: isDragging ? 'none' : 'transform 0.2s ease-out'
-            }}
-            onClick={e => e.stopPropagation()}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            {/* Drag handle */}
-            <div className="flex justify-center mb-4">
-              <div className="w-12 h-1.5 rounded-full bg-zinc-600"></div>
-            </div>
-            {/* Perk header */}
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-16 h-16 rounded-xl overflow-hidden bg-white/5 border border-white/10 flex-shrink-0 flex items-center justify-center">
-                <AssetFrame
-                  type="Perk"
-                  size="fill"
-                  imageUrl={perk.image}
-                  fallbackIcon={<Icons.Zap width={24} height={24} className="text-zinc-400" />}
-                />
-              </div>
-              <div className="flex-1">
-                <div className="inline-flex items-center px-2 py-1 rounded-md bg-white/5 mb-2">
-                  <span className="w-1.5 h-1.5 rounded-full mr-2" style={{ backgroundColor: accentColor }}></span>
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-300">{perk.type} Perk</span>
-                </div>
-                <h2 className="text-xl font-bold text-white">{perk.name}</h2>
-                {perk.owner && <p className="text-sm text-zinc-400 mt-1">{perk.owner}</p>}
-              </div>
-            </div>
-            {/* Perk description */}
-            <div className="overflow-y-auto" style={{ maxHeight: 'calc(85vh - 200px)' }}>
-              <PerkDescriptionBlock
-                perk={perk}
-                settings={settings}
-                accentColor={accentColor}
-                className="text-zinc-300 text-sm"
-                lineClassName="leading-relaxed"
-              />
-
-              {/* Synergy suggestions */}
-              {PERK_SYNERGIES[perk.name] && (
-                <div className="mt-4 pt-4 border-t border-white/10">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Icons.Zap width={14} height={14} style={{ color: accentColor }} />
-                    <span className="text-[11px] uppercase tracking-wider font-bold" style={{ color: accentColor }}>Works Well With</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {PERK_SYNERGIES[perk.name].map(synergy => (
-                      <span
-                        key={synergy}
-                        className="px-3 py-1.5 rounded-xl text-xs font-semibold border"
-                        style={{
-                          background: '#0a0a0a',
-                          borderColor: `${accentColor}40`,
-                          color: accentColor
-                        }}
-                      >
-                        {synergy}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-              <NotesEditor
-                title="Perk Notes"
-                value={noteValue}
-                onChange={onNoteChange}
-                placeholder="Matchups, builds, or reminders for this perk..."
-              />
-            </div>
-          </div>
-        </div>
-      );
-    };
     const InfoCallout = ({ title = 'How this tab works', lines = [] }) => (
       <div className="mb-4 rounded-2xl bg-white/5 border border-white/10 p-3 flex items-start gap-3">
         <div className="w-9 h-9 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-white shrink-0">
@@ -3421,7 +3336,8 @@
           onChange={e => onChange && onChange(e.target.value)}
           rows={4}
           placeholder={placeholder}
-          className="w-full bg-zinc-800/60 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-zinc-500"
+          className="themed-area"
+          style={{ fontFamily: 'inherit' }}
         />
         <p className="text-[10px] text-zinc-400 mt-1">Stored locally only. Not included when sharing builds.</p>
       </div>
@@ -4090,8 +4006,7 @@
       ],
       timeline: [
         { action: 'Tap a Release', description: 'Tap any chapter/release card to expand it and see its killers, survivors, and maps.' },
-        { action: 'Character Lore', description: 'Tap a character within an expanded release to read their fog entry lore.' },
-        { action: 'View Full Profile', description: 'Tap "View Full Profile" inside the lore section to open the character\'s full detail modal.' },
+        { action: 'Character Lore', description: 'Tap a character name within an expanded release to open their full article page.' },
         { action: 'Year Filter', description: 'Use the year pills to filter the timeline to a specific year.' },
       ],
       glossary: [
@@ -4167,189 +4082,6 @@
         {infoTips && <ViewInfoButton tips={infoTips} />}
       </div>
     );
-    const GlassCard = ({ item, category, expanded = false, onToggle, perksForOwner = [], onPerkClick, buildsForOwner = [], onCreateBuild, isInCompare = false, onLongPress, isFavorite = false, onToggleFavorite, onPerkTap, onShowLore, onShowPower, onViewProfile, settings = {} }) => {
-      let subtext = '';
-      let accentTone = 'var(--accent)';
-      let fallbackIcon = <Icons.Zap width={20} height={20} />;
-      const isCharacter = category === 'Killer' || category === 'Survivor';
-      const isPerk = category === 'Perk';
-      const [pressTimer, setPressTimer] = useState(null);
-      const longPressTriggered = useRef(false);
-      const handleTouchStart = () => {
-        if (!onLongPress) return;
-        longPressTriggered.current = false;
-        const timer = setTimeout(() => {
-          longPressTriggered.current = true;
-          onLongPress();
-        }, 500);
-        setPressTimer(timer);
-      };
-      const handleTouchEnd = () => {
-        if (pressTimer) {
-          clearTimeout(pressTimer);
-          setPressTimer(null);
-        }
-      };
-      const handlePerkClick = () => {
-        if (longPressTriggered.current) {
-          longPressTriggered.current = false;
-          return;
-        }
-        if (onPerkTap) onPerkTap();
-      };
-      const handleCharacterClick = () => {
-        if (onViewProfile) { onViewProfile(); return; }
-        if (onToggle) onToggle();
-      };
-      if (category === 'Killer') {
-        subtext = item.realName || item.name;
-        accentTone = '#ef4444';
-        fallbackIcon = <Icons.Sword width={24} height={24} className="opacity-20" />;
-      } else if (category === 'Survivor') {
-        subtext = item.role;
-        accentTone = '#38bdf8';
-        fallbackIcon = <Icons.Heart width={24} height={24} className="opacity-20" />;
-      } else if (isPerk) {
-        subtext = item.owner || 'Universal';
-        accentTone = item.type === 'Killer' ? '#ef4444' : '#38bdf8';
-        fallbackIcon = <Icons.BookOpen width={20} height={20} className="opacity-20" />;
-      }
-      return (
-        <div
-          className={`group relative overflow-hidden rounded-2xl glass-panel backdrop-blur-md p-4 mb-4 transition-all duration-200 ${isCharacter || (isPerk && onPerkTap) ? 'cursor-pointer' : ''} ${isInCompare ? 'ring-2 ring-purple-500' : ''}`}
-          style={expanded ? { borderColor: accentTone, boxShadow: '0 10px 30px rgba(0,0,0,0.4)' } : {}}
-          onClick={isCharacter ? handleCharacterClick : (isPerk && onPerkTap ? handlePerkClick : undefined)}
-          onTouchStart={isPerk ? handleTouchStart : undefined}
-          onTouchEnd={isPerk ? handleTouchEnd : undefined}
-          onTouchCancel={isPerk ? handleTouchEnd : undefined}
-          onMouseDown={isPerk ? handleTouchStart : undefined}
-          onMouseUp={isPerk ? handleTouchEnd : undefined}
-          onMouseLeave={isPerk ? handleTouchEnd : undefined}
-        >
-          {/* Checkmark overlay for selected perks */}
-          {isInCompare && (
-            <div className="absolute top-2 right-2 z-20 w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center">
-              <Icons.Check width={14} height={14} className="text-white" />
-            </div>
-          )}
-          {/* Star button for favorite perks/killers/survivors */}
-          {(isPerk || isCharacter) && onToggleFavorite && (
-            <button
-              onClick={(e) => { e.stopPropagation(); onToggleFavorite(); }}
-              className={`absolute top-2 ${isInCompare ? 'right-10' : 'right-2'} z-20 p-1.5 rounded-full transition-colors ${isFavorite ? 'bg-yellow-500/20' : 'bg-white/10 hover:bg-white/20'}`}
-            >
-              <Icons.Star width={16} height={16} className={isFavorite ? 'text-yellow-400 fill-yellow-400' : 'text-zinc-500'} />
-            </button>
-          )}
-          <div className="absolute left-0 top-0 bottom-0 w-1" style={{ background: accentTone, opacity: 0.6 }}></div>
-          <div className="relative z-10 flex items-start gap-3">
-            <div className="flex-1 py-1">
-              <div className="inline-flex items-center px-2 py-1 rounded-md chip mb-2">
-                <span className="w-1.5 h-1.5 rounded-full mr-2" style={{ backgroundColor: accentTone }}></span>
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-300">{category}</span>
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-1 tracking-tight">{item.name}</h3>
-              <p className="text-zinc-400 text-sm font-medium">{subtext}</p>
-              {/* Show power description when expanded for killers */}
-              {isCharacter && expanded && category === 'Killer' && item.power && (
-                <p className="text-zinc-500 text-xs mt-2 leading-relaxed">{item.power}</p>
-              )}
-              {/* Show killer stats when expanded */}
-              {isCharacter && expanded && category === 'Killer' && KILLER_STATS[item.name] && (
-                <div className="flex flex-wrap gap-2 mt-2">
-                  <span className="px-2 py-1 rounded-lg bg-red-500/10 border border-red-500/20 text-[10px] font-bold text-red-400">
-                    TR: {KILLER_STATS[item.name].terrorRadius}
-                  </span>
-                  <span className="px-2 py-1 rounded-lg bg-red-500/10 border border-red-500/20 text-[10px] font-bold text-red-400">
-                    Speed: {KILLER_STATS[item.name].speed}
-                  </span>
-                  <span className="px-2 py-1 rounded-lg bg-red-500/10 border border-red-500/20 text-[10px] font-bold text-red-400">
-                    Height: {KILLER_STATS[item.name].height}
-                  </span>
-                </div>
-              )}
-              {isPerk && onLongPress && (
-                <p className="text-zinc-400 text-[10px] mt-1">Long press to compare</p>
-              )}
-            </div>
-            <div className={isPerk ? 'perk-icon-hover' : ''}>
-              <AssetFrame type={category} imageUrl={item.image} fallbackIcon={fallbackIcon} />
-            </div>
-          </div>
-          {item.description && (
-            <div className="mt-4 pt-3 border-t border-white/5">
-              {isPerk ? (
-                <div className="text-zinc-300/90 text-xs font-medium tracking-wide">
-                  <span className="text-zinc-500 mr-2 uppercase text-[10px] font-bold">Effect</span>
-                  <PerkDescriptionBlock
-                    perk={item}
-                    settings={settings}
-                    accentColor={accentTone}
-                    compactLines={3}
-                    className="inline"
-                    lineClassName="leading-relaxed"
-                  />
-                </div>
-              ) : (
-                <p className="text-zinc-300/90 text-xs leading-relaxed font-medium tracking-wide">
-                  <span className="text-zinc-500 mr-2 uppercase text-[10px] font-bold">Effect</span>
-                  {stripHtml(item.description)}
-                </p>
-              )}
-            </div>
-          )}
-          {/* Lore button for characters when expanded */}
-          {isCharacter && expanded && onShowLore && (
-            <div className="mt-4 pt-3 border-t border-white/5">
-              <div className="flex gap-2">
-                <button
-                  onClick={(e) => { e.stopPropagation(); onShowLore(); }}
-                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 text-sm font-semibold transition-colors flex items-center justify-center gap-2"
-                >
-                  <Icons.BookOpen width={16} height={16} />
-                  Lore
-                </button>
-                {category === 'Killer' && item.power && onShowPower && (
-                  <button
-                    onClick={(e) => { e.stopPropagation(); onShowPower(); }}
-                    className="flex-1 py-2.5 rounded-xl bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 text-red-400 text-sm font-semibold transition-colors flex items-center justify-center gap-2"
-                  >
-                    <Icons.Zap width={16} height={16} />
-                    Power
-                  </button>
-                )}
-              </div>
-            </div>
-          )}
-          {isCharacter && expanded && perksForOwner.length > 0 && (
-            <div className="mt-4 pt-3 border-t border-white/5">
-              <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-widest mb-3">Teachables</p>
-              <div className="space-y-2">
-                {perksForOwner.slice(0, 3).map(perk => (
-                  <button
-                    key={perk.id}
-                    onClick={(e) => { e.stopPropagation(); onPerkClick && onPerkClick(perk); }}
-                    className="w-full text-left p-3 rounded-xl bg-white/5 border border-white/5 hover:border-white/15 transition-colors flex items-start gap-3"
-                  >
-                    <AssetFrame type="Perk" imageUrl={perk.image} fallbackIcon={<Icons.BookOpen width={18} height={18} className="text-white/60" />} />
-                    <div className="flex-1">
-                      <p className="text-white text-sm font-bold">{perk.name}</p>
-                      <PerkDescriptionBlock
-                        perk={perk}
-                        settings={settings}
-                        accentColor={accentTone}
-                        compactLines={2}
-                        className="text-zinc-500 text-xs mt-1 leading-relaxed"
-                      />
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      );
-    };
     const ChaosShuffleView = ({ onBack, perks, killers = [], survivors = [], items = [], addons = [], offerings = [], settings = {}, ownedOnlyGlobal = false }) => {
       const [role, setRole] = useState('Survivor');
       const [isSpinning, setIsSpinning] = useState(false);
@@ -8571,13 +8303,11 @@
       const scrollRef = useRef(null);
       const [expandedRelease, setExpandedRelease] = useState(null);
       const [expandedCharacter, setExpandedCharacter] = useState(null);
-      const [selectedCharacter, setSelectedCharacter] = useState(null);
       const [search, setSearch] = useState('');
       const [yearFilter, setYearFilter] = useState('all');
 
       // Theme colors
       const accent = theme.accent || '#38bdf8';
-      const accentSoft = theme.accentSoft || '#0f172a';
 
 
       // Get timeline data sorted chronologically
@@ -8659,11 +8389,12 @@
         setExpandedCharacter(expandedCharacter === charKey ? null : charKey);
       };
 
-      // Open full character modal
-      const openCharacterModal = (loreChar, type) => {
+      // Open the full character article page
+      const openCharacterPage = (loreChar, type) => {
         const fullData = findCharacterData(loreChar, type);
-        if (fullData) {
-          setSelectedCharacter({ ...fullData, fogEntry: loreChar.fogEntry, type: type === 'killers' ? 'Killer' : 'Survivor' });
+        if (fullData && setView) {
+          triggerHaptic('Light');
+          setView('profile', { characterId: fullData.id });
         }
       };
 
@@ -8709,7 +8440,7 @@
                 <button
                   type="button"
                   className="nm"
-                  onClick={(e) => { e.stopPropagation(); openCharacterModal(loreChar, type); }}
+                  onClick={(e) => { e.stopPropagation(); openCharacterPage(loreChar, type); }}
                 >{loreChar.name}</button>
                 {loreChar.licensed && (<span className="tag">Licensed</span>)}
                 {loreChar.realName && loreChar.realName !== loreChar.name && (
@@ -8904,99 +8635,6 @@
             )}
           </div>
 
-          {/* Character detail modal */}
-          {selectedCharacter && (
-            <div
-              className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-end justify-center animate-fadeIn"
-              onClick={() => setSelectedCharacter(null)}
-            >
-              <div
-                className="w-full max-w-lg max-h-[85vh] bg-zinc-900 rounded-t-3xl overflow-hidden animate-slideUp"
-                onClick={(e) => e.stopPropagation()}
-              >
-                {/* Modal header */}
-                <div
-                  className="sticky top-0 backdrop-blur-xl border-b p-4 flex items-center gap-4"
-                  style={{ backgroundColor: `${accentSoft}95`, borderColor: `${accent}20` }}
-                >
-                  <div
-                    className="w-14 h-14 rounded-xl overflow-hidden border-2"
-                    style={{ borderColor: `${accent}50` }}
-                  >
-                    <AssetFrame
-                      type={selectedCharacter.type}
-                      size="fill"
-                      imageUrl={selectedCharacter.image}
-                      fallbackIcon={<Icons.User width={20} height={20} />}
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <p
-                      className="text-[10px] font-bold uppercase tracking-wider"
-                      style={{ color: accent }}
-                    >
-                      {selectedCharacter.type}
-                    </p>
-                    <h2 className="text-lg font-bold text-white">{selectedCharacter.name}</h2>
-                    {selectedCharacter.realName && selectedCharacter.realName !== selectedCharacter.name && (
-                      <p className="text-xs text-zinc-500">{selectedCharacter.realName}</p>
-                    )}
-                  </div>
-                  <button
-                    onClick={() => setSelectedCharacter(null)}
-                    className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors"
-                  >
-                    <Icons.X width={18} height={18} />
-                  </button>
-                </div>
-
-                {/* Modal content */}
-                <div className="p-5 pb-20 overflow-y-auto max-h-[calc(85vh-90px)]">
-                  {/* Fog entry */}
-                  {selectedCharacter.fogEntry && (
-                    <div className="mb-5">
-                      <p className="text-[10px] uppercase tracking-wider font-bold mb-2" style={{ color: accent }}>
-                        How They Entered The Fog
-                      </p>
-                      <p className="text-zinc-300 text-sm leading-relaxed">{selectedCharacter.fogEntry}</p>
-                    </div>
-                  )}
-
-                  {/* Full lore */}
-                  {selectedCharacter.lore && (
-                    <div className="mb-5">
-                      <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-bold mb-2">Full Lore</p>
-                      <p className="text-zinc-300 text-sm leading-relaxed whitespace-pre-line">{selectedCharacter.lore}</p>
-                    </div>
-                  )}
-
-                  {/* Power (for killers) */}
-                  {selectedCharacter.type === 'Killer' && selectedCharacter.power && (
-                    <div className="mb-5">
-                      <p className="text-[10px] uppercase tracking-wider font-bold mb-2" style={{ color: accent }}>Power</p>
-                      <p className="text-zinc-300 text-sm leading-relaxed">{selectedCharacter.power}</p>
-                    </div>
-                  )}
-
-                  {/* Open full view button */}
-                  <button
-                    onClick={() => {
-                      setSelectedCharacter(null);
-                      setView(selectedCharacter.type === 'Killer' ? 'killers' : 'survivors');
-                    }}
-                    className="w-full py-2.5 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2 border"
-                    style={{
-                      backgroundColor: `${accent}20`,
-                      borderColor: `${accent}30`,
-                      color: accent
-                    }}
-                  >
-                    View All {selectedCharacter.type === 'Killer' ? 'Killers' : 'Survivors'}
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       );
     };
@@ -10782,24 +10420,13 @@
         role="switch"
         aria-checked={checked}
         onClick={() => onChange(!checked)}
-        className={`w-full flex items-start gap-3 rounded-2xl border px-3 py-3 transition-all text-left select-none touch-manipulation ${checked ? 'bg-white/10 border-white/20' : 'bg-white/5 border-white/10 hover:border-white/20'}`}
+        className="checkrow"
         style={{ WebkitTapHighlightColor: 'transparent' }}
       >
-        <span
-          aria-hidden="true"
-          className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-all"
-          style={{
-            background: checked ? 'var(--accent)' : 'rgba(255,255,255,0.03)',
-            borderColor: checked ? 'var(--accent)' : 'var(--stroke)',
-            boxShadow: checked ? '0 8px 18px rgba(0,0,0,0.28)' : 'none',
-            color: checked ? '#ffffff' : 'transparent'
-          }}
-        >
-          <Icons.Check width={12} height={12} />
-        </span>
+        <span aria-hidden="true" className="box">{checked ? '✓' : ''}</span>
         <span className="min-w-0 flex-1 pointer-events-none">
-          <span className="block text-sm font-medium text-white leading-tight">{label}</span>
-          {description && <span className="mt-1 block text-xs leading-relaxed text-zinc-400">{description}</span>}
+          <span className="t">{label}</span>
+          {description && <span className="sub">{description}</span>}
         </span>
       </button>
     );
@@ -10846,88 +10473,58 @@
         <div className="flex flex-col h-full pt-12 pb-32 px-6 overflow-y-auto custom-scrollbar">
           <Header title="Settings" subtitle="App preferences" onBack={onBack} infoTips={VIEW_TIPS.settings} />
           <div className="pb-32 -mx-6 px-6 space-y-4">
-            <div className="p-4 rounded-3xl bg-zinc-900/40 border border-white/5">
-              <h3 className="text-lg font-bold text-white mb-2">App Info</h3>
-              <p className="text-sm text-zinc-400">App Version: <span className="text-white font-semibold">{META.appVersion}</span></p>
-              <p className="text-sm text-zinc-400">Game Update / Data Updated: <span className="text-white font-semibold">{META.gameVersion} / {META.lastSynced}</span></p>
+            <section>
+              <p className="cx-grp">App Info</p>
+              <p className="cx-prose">App <b>{META.appVersion}</b> · Game <b>{META.gameVersion}</b> · Synced <b>{META.lastSynced}</b></p>
               <button
                 onClick={() => setShowChangelog(!showChangelog)}
-                className="mt-3 flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-zinc-300 hover:text-white hover:bg-white/10 transition-all"
+                className="ghostbtn"
+                aria-expanded={showChangelog}
               >
-                <Icons.List width={16} height={16} />
-                <span className="text-sm font-semibold">{showChangelog ? 'Hide Changelog' : 'View Changelog'}</span>
-                <Icons.ChevronLeft width={14} height={14} className={`transition-transform ${showChangelog ? '-rotate-90' : 'rotate-90'}`} />
+                {showChangelog ? 'Hide Changelog' : 'View Changelog'}
               </button>
-            </div>
+            </section>
             {/* Changelog Section */}
             {showChangelog && (
-              <div className="p-4 rounded-3xl bg-zinc-900/40 border border-white/5 space-y-4">
-                <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                  <Icons.Clock width={20} height={20} className="text-zinc-500" />
-                  Update History
-                </h3>
-                <div className="space-y-4 max-h-96 overflow-y-auto custom-scrollbar pr-2">
+              <section>
+                <p className="cx-grp">Update History</p>
+                <div style={{ marginTop: 8 }}>
                   {CHANGELOG.map((entry, idx) => (
-                    <div key={entry.version} className={`p-3 rounded-2xl border ${idx === 0 ? 'bg-white/5 border-white/20' : 'bg-white/[0.02] border-white/5'}`}>
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-2">
-                          <span className={`text-sm font-bold ${idx === 0 ? 'text-white' : 'text-zinc-300'}`}>v{entry.version}</span>
-                          {idx === 0 && <span className="text-[9px] uppercase tracking-wider bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded font-bold">Latest</span>}
-                        </div>
-                        <span className="text-xs text-zinc-500">{entry.date}</span>
+                    <div key={entry.version} className="perk-row">
+                      <div className="perk-head" style={{ cursor: 'default' }}>
+                        <span style={{ minWidth: 0 }}>
+                          <span className="nm">v{entry.version}</span>
+                          {idx === 0 && <span className="tag">Latest</span>}
+                        </span>
+                        <span className="chev" style={{ textDecoration: 'none' }}>{entry.date}</span>
                       </div>
-                      <ul className="space-y-1">
-                        {entry.changes.map((change, i) => (
-                          <li key={i} className="text-sm text-zinc-400 flex items-start gap-2">
-                            <span className="text-zinc-400 mt-1">•</span>
-                            <span>{change}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="perk-detail">
+                        <ul style={{ margin: 0, paddingLeft: 18 }} className="desc">
+                          {entry.changes.map((change, i) => (
+                            <li key={i}>{change}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   ))}
                 </div>
-              </div>
+              </section>
             )}
-            <div className="p-4 rounded-3xl bg-zinc-900/40 border border-white/5 space-y-3">
-              <h3 className="text-lg font-bold text-white">Theme</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                <div>
-                  <p className="text-[11px] uppercase text-zinc-500 font-bold mb-1">Appearance</p>
-                  <select value={settings.colorMode || 'dark'} onChange={e => updateSetting('colorMode', e.target.value)} className="themed-select w-full text-sm">
-                    <option value="dark">Dark</option>
-                    <option value="oled">OLED Black</option>
-                    <option value="light">Light</option>
-                  </select>
-                </div>
-                <div>
-                  <p className="text-[11px] uppercase text-zinc-500 font-bold mb-1">Font Size</p>
-                  <select value={settings.fontSize} onChange={e => updateSetting('fontSize', e.target.value)} className="themed-select w-full text-sm">
-                    <option value="small">Small</option>
-                    <option value="default">Default</option>
-                    <option value="large">Large</option>
-                  </select>
-                </div>
+            <section>
+              <p className="cx-grp">Theme</p>
+              <div className="char-segments" role="radiogroup" aria-label="Theme">
+                <button type="button" role="radio" aria-checked={(settings.colorMode || 'oled') !== 'light'} className={(settings.colorMode || 'oled') !== 'light' ? 'on' : ''} onClick={() => updateSetting('colorMode', 'oled')}>OLED Black</button>
+                <button type="button" role="radio" aria-checked={settings.colorMode === 'light'} className={settings.colorMode === 'light' ? 'on' : ''} onClick={() => updateSetting('colorMode', 'light')}>Light</button>
               </div>
-              {settings.themePreference === 'manual' && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  {Object.entries(THEMES).map(([key, val]) => (
-                    <button
-                      key={key}
-                      onClick={() => updateSetting('manualTheme', key)}
-                      className={`p-3 rounded-2xl border text-left transition-all ${settings.manualTheme === key ? 'bg-white/10 text-white' : 'bg-white/5 text-zinc-300 hover:border-white/20'}`}
-                      style={{ background: val.tileGradient, boxShadow: val.tileShadow, borderColor: settings.manualTheme === key ? val.accent : val.tileBorder }}
-                    >
-                      <p className="text-sm font-bold">{val.name}</p>
-                      <p className="text-[11px] text-zinc-400 mt-1 flex items-center gap-2">
-                        {val.palette ? 'Full Palette' : 'Accent'}
-                        <span className="inline-flex w-3 h-3 rounded-full border border-white/20" style={{ backgroundColor: val.accent }}></span>
-                      </p>
-                    </button>
-                  ))}
-                </div>
-              )}
-              <div className="space-y-2">
+              <div style={{ marginTop: 12 }}>
+                <p className="cx-grp" style={{ marginTop: 0 }}>Font Size</p>
+                <select value={settings.fontSize} onChange={e => updateSetting('fontSize', e.target.value)} className="themed-select w-full text-sm">
+                  <option value="small">Small</option>
+                  <option value="default">Default</option>
+                  <option value="large">Large</option>
+                </select>
+              </div>
+              <div style={{ marginTop: 8 }}>
                 <SettingsToggleRow
                   checked={settings.showTemplates}
                   onChange={(value) => updateSetting('showTemplates', value)}
@@ -10953,76 +10550,40 @@
                   description="Filters supported views and randomizers to the characters and perks you own."
                 />
               </div>
-            </div>
-            <div className="p-4 rounded-3xl bg-zinc-900/40 border border-white/5 space-y-3">
-              <h3 className="text-lg font-bold text-white">Perk Descriptions</h3>
-              <p className="text-sm text-zinc-400">Choose which perk wording the app should show when both legacy and post-9.5.0 text are available.</p>
-              <div className="grid grid-cols-2 gap-2">
+            </section>
+            <section>
+              <p className="cx-grp">Perk Descriptions</p>
+              <p className="cx-prose">Choose which perk wording the app should show when both legacy and post-9.5.0 text are available.</p>
+              <div className="char-segments" role="radiogroup" aria-label="Perk wording">
                 {[
                   { id: 'legacy', label: 'Legacy', description: 'Keep the original one-block descriptions already stored in the app.' },
                   { id: 'post95', label: 'Post-9.5.0', description: 'Use the newer multiline wording and highlight percentage values when available.' }
                 ].map(option => (
                   <button
                     key={option.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={settings.perkDescriptionMode === option.id}
+                    className={settings.perkDescriptionMode === option.id ? 'on' : ''}
                     onClick={() => updateSetting('perkDescriptionMode', option.id)}
-                    className={`p-3 rounded-2xl border text-left transition-all ${settings.perkDescriptionMode === option.id ? 'bg-white/10 text-white' : 'bg-white/5 text-zinc-300 hover:border-white/20'}`}
-                    style={settings.perkDescriptionMode === option.id ? { borderColor: 'var(--accent)', color: 'var(--accent)' } : {}}
                   >
-                    <p className="text-sm font-bold">{option.label}</p>
-                    <p className="text-[11px] text-zinc-500 mt-1 leading-relaxed">{option.description}</p>
+                    {option.label}
                   </button>
                 ))}
               </div>
-            </div>
-            { }
-            <div className="p-4 rounded-3xl bg-zinc-900/40 border border-white/5 space-y-4">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <h3 className="text-lg font-bold text-white">Data Backup</h3>
-                  <p className="text-sm text-zinc-400 mt-1">Export the full local app state or restore it later. Restores replace your current local data.</p>
-                </div>
-                <span className="px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] uppercase tracking-wider text-zinc-400">
-                  Backup
-                </span>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {[
-                  { label: 'Builds', value: backupSummary?.builds || 0 },
-                  { label: 'Matches', value: backupSummary?.matches || 0 },
-                  { label: 'Notes', value: backupSummary?.notes || 0 },
-                  { label: 'Owned', value: backupSummary?.ownedCharacters || 0 },
-                  { label: 'Challenges', value: backupSummary?.challenges || 0 },
-                  { label: 'Wordle Games', value: backupSummary?.worldleGamesPlayed || 0 }
-                ].map((item) => (
-                  <div key={item.label} className="rounded-2xl border border-white/8 bg-black/20 px-3 py-3">
-                    <p className="text-[10px] uppercase tracking-[0.16em] text-zinc-500 font-bold">{item.label}</p>
-                    <p className="text-lg font-bold text-white mt-2">{item.value}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                <button
-                  onClick={onCopyBackup}
-                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-zinc-300 hover:text-white hover:bg-white/10 transition-all"
-                >
-                  <Icons.Copy width={16} height={16} />
-                  <span className="text-sm font-semibold">Copy Backup Text</span>
-                </button>
-                <button
-                  onClick={onDownloadBackup}
-                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-zinc-300 hover:text-white hover:bg-white/10 transition-all"
-                >
-                  <Icons.Import width={16} height={16} className="rotate-180" />
-                  <span className="text-sm font-semibold">Download Backup File</span>
-                </button>
-                <button
-                  onClick={() => backupFileInputRef.current?.click()}
-                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-zinc-300 hover:text-white hover:bg-white/10 transition-all"
-                >
-                  <Icons.Import width={16} height={16} />
-                  <span className="text-sm font-semibold">Load Backup File</span>
-                </button>
-              </div>
+              <p className="cx-prose">{(settings.perkDescriptionMode === 'post95'
+                ? 'Use the newer multiline wording and highlight percentage values when available.'
+                : 'Keep the original one-block descriptions already stored in the app.')}</p>
+            </section>
+            <section>
+              <p className="cx-grp">Data Backup</p>
+              <p className="cx-prose">Export the full local app state or restore it later. Restores replace your current local data.</p>
+              <p className="cx-prose">
+                <b>{backupSummary?.builds || 0}</b> builds · <b>{backupSummary?.matches || 0}</b> matches · <b>{backupSummary?.notes || 0}</b> notes · <b>{backupSummary?.ownedCharacters || 0}</b> owned · <b>{backupSummary?.challenges || 0}</b> challenges · <b>{backupSummary?.worldleGamesPlayed || 0}</b> wordle games
+              </p>
+              <button onClick={onCopyBackup} className="ghostbtn">Copy Backup Text</button>
+              <button onClick={onDownloadBackup} className="ghostbtn">Download Backup File</button>
+              <button onClick={() => backupFileInputRef.current?.click()} className="ghostbtn">Load Backup File</button>
               <input
                 ref={backupFileInputRef}
                 type="file"
@@ -11030,9 +10591,9 @@
                 className="hidden"
                 onChange={handleBackupFileChange}
               />
-              <div className="space-y-2">
+              <div style={{ marginTop: 16 }}>
                 <div className="flex items-center justify-between gap-3">
-                  <p className="text-[11px] uppercase tracking-[0.16em] text-zinc-500 font-bold">Restore from Backup</p>
+                  <p className="cx-grp" style={{ marginTop: 0 }}>Restore from Backup</p>
                   {restorePreview?.meta?.appVersion && (
                     <span className="text-[10px] uppercase tracking-wider text-zinc-500">
                       backup from v{restorePreview.meta.appVersion}
@@ -11044,40 +10605,21 @@
                   onChange={(event) => refreshBackupPreview(event.target.value)}
                   rows={7}
                   placeholder="Paste a full backup here..."
-                  className="w-full bg-zinc-800/60 border border-white/10 rounded-2xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-white/20 font-mono"
+                  className="themed-area"
+                  style={{ marginTop: 8 }}
                 />
                 {backupError && (
-                  <div className="rounded-2xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-200">
-                    {backupError}
-                  </div>
+                  <p className="cx-prose" style={{ color: '#f87171' }}>{backupError}</p>
                 )}
                 {backupPreview?.summary && !backupError && (
-                  <div className="rounded-2xl border border-white/8 bg-black/20 px-4 py-4 space-y-3">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] uppercase tracking-wider text-zinc-300">
-                        Backup format {backupPreview.summary.schemaVersion || 0}
-                      </span>
-                      {backupPreview.summary.exportedAt && (
-                        <span className="px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] uppercase tracking-wider text-zinc-500">
-                          {new Date(backupPreview.summary.exportedAt).toLocaleString()}
-                        </span>
-                      )}
-                    </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                      {[
-                        { label: 'Builds', value: backupPreview.summary.builds },
-                        { label: 'Matches', value: backupPreview.summary.matches },
-                        { label: 'Notes', value: backupPreview.summary.notes },
-                        { label: 'Owned', value: backupPreview.summary.ownedCharacters },
-                        { label: 'Challenges', value: backupPreview.summary.challenges },
-                        { label: 'Wordle Games', value: backupPreview.summary.worldleGamesPlayed }
-                      ].map((item) => (
-                        <div key={item.label} className="rounded-xl border border-white/8 bg-white/5 px-3 py-2">
-                          <p className="text-[10px] uppercase tracking-[0.16em] text-zinc-500 font-bold">{item.label}</p>
-                          <p className="text-sm font-bold text-white mt-1">{item.value}</p>
-                        </div>
-                      ))}
-                    </div>
+                  <div style={{ marginTop: 8 }}>
+                    <p className="cx-prose">
+                      Backup format <b>{backupPreview.summary.schemaVersion || 0}</b>
+                      {backupPreview.summary.exportedAt && (<span> · {new Date(backupPreview.summary.exportedAt).toLocaleString()}</span>)}
+                    </p>
+                    <p className="cx-prose">
+                      <b>{backupPreview.summary.builds}</b> builds · <b>{backupPreview.summary.matches}</b> matches · <b>{backupPreview.summary.notes}</b> notes · <b>{backupPreview.summary.ownedCharacters}</b> owned · <b>{backupPreview.summary.challenges}</b> challenges · <b>{backupPreview.summary.worldleGamesPlayed}</b> wordle games
+                    </p>
                     <button
                       onClick={async () => {
                         if (!restorePreview) return;
@@ -11089,42 +10631,31 @@
                         setBackupError('');
                         appAlert('Backup restored.');
                       }}
-                      className="w-full py-3 rounded-2xl bg-white/5 border border-white/10 text-white font-semibold hover:bg-white/10 transition-colors"
+                      className="ghostbtn"
                     >
                       Restore Backup
                     </button>
                   </div>
                 )}
               </div>
-            </div>
-            <div className="p-4 rounded-3xl bg-zinc-900/40 border border-white/5">
-              <h3 className="text-lg font-bold text-white mb-2">Special Thanks</h3>
-              <ul className="text-sm text-zinc-400 space-y-1">
+            </section>
+            <section>
+              <p className="cx-grp">Special Thanks</p>
+              <ul className="cx-prose" style={{ paddingLeft: 18, marginBottom: 0 }}>
                 {META.thanks.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <span className="text-red-500">•</span>
-                    <span>{item}</span>
-                  </li>
+                  <li key={i}>{item}</li>
                 ))}
               </ul>
-            </div>
-            <div className="p-4 rounded-3xl bg-zinc-900/40 border border-white/5">
-              <h3 className="text-lg font-bold text-white mb-2">Disclaimer</h3>
-              <p className="text-sm text-zinc-400">This app is a work in progress! Core features are stable, but you might encounter some bugs or weird features as I continue developing it. Not official, I do not own any of the logos or liscences, just built with love for the game.</p>
-            </div>
-            <div className="p-4 rounded-3xl bg-zinc-900/40 border border-white/5">
-              <h3 className="text-lg font-bold text-white mb-2">Contact</h3>
-              <div className="space-y-1 text-sm text-zinc-300">
-                <div className="flex items-center gap-2">
-                  <span className="text-zinc-500 uppercase text-[10px] font-bold tracking-wide">Email</span>
-                  <span className="font-semibold text-white">{META.contact?.email}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-zinc-500 uppercase text-[10px] font-bold tracking-wide">Discord</span>
-                  <span className="font-semibold text-white">{META.contact?.discord || 'Coming soon'}</span>
-                </div>
-              </div>
-            </div>
+            </section>
+            <section>
+              <p className="cx-grp">Disclaimer</p>
+              <p className="cx-prose">This app is a work in progress! Core features are stable, but you might encounter some bugs or weird features as I continue developing it. Not official, I do not own any of the logos or liscences, just built with love for the game.</p>
+            </section>
+            <section>
+              <p className="cx-grp">Contact</p>
+              <p className="cx-prose">Email <b>{META.contact?.email}</b></p>
+              <p className="cx-prose" style={{ marginTop: 2 }}>Discord <b>{META.contact?.discord || 'Coming soon'}</b></p>
+            </section>
           </div>
         </div>
       );
@@ -11351,13 +10882,19 @@
         </div>
       );
     };
-    const GameIconsView = ({ onBack, theme }) => {
+    const GameIconsView = ({ onBack, theme, initialExpandedId = '', onOpenIcon }) => {
       const scrollRef = useRef(null);
       const [search, setSearch] = useState('');
       const [filter, setFilter] = useState('All');
-      const [expandedId, setExpandedId] = useState(null);
+      const [expandedId, setExpandedId] = useState(initialExpandedId || null);
       const [viewMode, setViewMode] = useState('glossary'); // 'glossary' | 'grid'
-      const [flashcardIcon, setFlashcardIcon] = useState(null);
+      useEffect(() => {
+        if (!initialExpandedId) return;
+        setViewMode('glossary');
+        setFilter('All');
+        setSearch('');
+        setExpandedId(initialExpandedId);
+      }, [initialExpandedId]);
       const filters = ['All', 'Health', 'Buff', 'Debuff', 'Killer', 'Proficiency', 'Activity'];
       const categoryLabels = { health: 'Health State', buff: 'Buff', debuff: 'Debuff', killer: 'Killer Power', proficiency: 'Proficiency', activity: 'Activity' };
 
@@ -11444,56 +10981,6 @@
       };
 
       // Flashcard Modal for Trial Grid
-      const FlashcardModal = ({ icon, onClose }) => {
-        if (!icon) return null;
-        const isBuff = icon.type === 'buff';
-        const isDebuff = icon.type === 'debuff';
-        const borderColor = isBuff ? '#22c55e' : isDebuff ? '#ef4444' : accentColor;
-        return (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" onClick={onClose}>
-            <div className="absolute inset-0 bg-black/85 backdrop-blur-sm" />
-            <div
-              className="relative w-full max-w-sm rounded-3xl overflow-hidden border-2 shadow-2xl"
-              style={{ borderColor, background: '#0a0a0a', boxShadow: `0 0 40px ${borderColor}40` }}
-              onClick={e => e.stopPropagation()}
-            >
-              {/* Close button */}
-              <button onClick={onClose} className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
-                <Icons.X width={18} height={18} className="text-white" />
-              </button>
-              {/* Icon + Name */}
-              <div className="flex flex-col items-center pt-8 pb-4 px-6">
-                <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-4 border-2" style={{ borderColor: `${borderColor}60`, backgroundColor: `${borderColor}15` }}>
-                  <div className="w-14 h-14">
-                    <AssetFrame
-                      type="GameIcon"
-                      size="fill"
-                      imageUrl={icon.icon}
-                      fallbackIcon={<Icons.Zap width={32} height={32} style={{ color: borderColor }} />}
-                    />
-                  </div>
-                </div>
-                <h2 className="text-xl font-black text-white tracking-tight text-center" style={{ borderBottom: `3px solid ${borderColor}`, paddingBottom: '4px' }}>
-                  {icon.name}
-                </h2>
-                <span className="text-[10px] font-bold uppercase tracking-widest mt-2 px-3 py-1 rounded-full" style={{ backgroundColor: `${borderColor}20`, color: borderColor }}>
-                  {categoryLabels[icon.category] || icon.category}
-                </span>
-              </div>
-              {/* What it does */}
-              <div className="px-6 pb-3">
-                <p className="text-[11px] font-bold uppercase tracking-widest text-zinc-500 mb-2">What it does</p>
-                <p className="text-zinc-200 text-sm leading-relaxed">{icon.description}</p>
-              </div>
-              {/* Quick tip */}
-              <div className="px-6 pb-8">
-                <p className="text-[11px] font-bold uppercase tracking-widest mb-2" style={{ color: borderColor }}>Quick Tip</p>
-                <p className="text-zinc-300 text-sm leading-relaxed font-medium">{getQuickTip(icon)}</p>
-              </div>
-            </div>
-          </div>
-        );
-      };
 
       return (
         <div ref={scrollRef} className="flex flex-col h-full pt-12 pb-32 overflow-y-auto custom-scrollbar">
@@ -11554,7 +11041,7 @@
                   return (
                     <button
                       key={icon.id}
-                      onClick={() => setFlashcardIcon(icon)}
+                      onClick={() => { if (onOpenIcon) onOpenIcon(icon); else { setViewMode('glossary'); setExpandedId(icon.id); } }}
                       title={icon.name}
                       style={{
                         position: 'relative',
@@ -11643,9 +11130,6 @@
               )}
             </div>
           )}
-
-          {/* Flashcard Modal (Trial Grid) */}
-          {flashcardIcon && <FlashcardModal icon={flashcardIcon} onClose={() => setFlashcardIcon(null)} />}
         </div>
       );
     };
@@ -11682,333 +11166,6 @@
             <Icons.BookOpen width={18} height={18} />
             <span>Compare ({count}/4)</span>
           </button>
-        </div>
-      );
-    };
-    const LoreModal = ({ character, onClose }) => {
-      if (!character) return null;
-      const isKiller = character.type === 'Killer' || character.power;
-      const accentColor = isKiller ? '#ef4444' : '#38bdf8';
-      return (
-        <div role="dialog" aria-modal="true" aria-label="Character lore" className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={onClose}>
-          <div
-            className="relative w-full max-w-lg max-h-[85vh] overflow-hidden rounded-3xl bg-zinc-900 border border-white/10 shadow-2xl"
-            onClick={e => e.stopPropagation()}
-          >
-            {/* Header */}
-            <div className="sticky top-0 z-10 flex items-center justify-between p-4 bg-zinc-900/95 backdrop-blur border-b border-white/10">
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-1">Backstory</p>
-                <h2 className="text-lg font-bold text-white pb-1" style={{ borderBottom: `2px solid ${accentColor}`, display: 'inline-block' }}>{character.name}</h2>
-                {character.realName && character.realName !== character.name && (
-                  <p className="text-sm text-zinc-400">{character.realName}</p>
-                )}
-              </div>
-              <button
-                onClick={onClose}
-                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-              >
-                <Icons.X width={20} height={20} className="text-white" />
-              </button>
-            </div>
-            {/* Lore Content */}
-            <div className="p-4 overflow-y-auto max-h-[70vh] custom-scrollbar">
-              {character.lore ? (
-                <div className="space-y-4 text-zinc-300 text-sm leading-relaxed">
-                  {character.lore.split('\n\n').map((paragraph, i) => (
-                    <p key={i}>{paragraph}</p>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-zinc-500 italic">The Fog obscures this knowledge...</p>
-              )}
-            </div>
-            {/* Close Button */}
-            <div className="p-4 pb-6 border-t border-white/10" style={{ paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom))' }}>
-              <button
-                onClick={onClose}
-                className="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-300 font-semibold transition-colors"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      );
-    };
-    const PowerModal = ({ killer, onClose }) => {
-      const [activeTab, setActiveTab] = useState('survivor');
-      if (!killer || !killer.power) return null;
-      const guide = KILLER_GUIDES[killer.name];
-      const powerName = guide?.powerName || "Power";
-      const survivorTips = guide?.survivorTips || "No survivor tips available yet.";
-      const killerTips = guide?.killerTips || "No killer tips available yet.";
-      return (
-        <div role="dialog" aria-modal="true" aria-label="Killer power" className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={onClose}>
-          <div
-            className="relative w-full max-w-lg max-h-[85vh] overflow-hidden rounded-3xl bg-zinc-900 border border-red-500/20 shadow-2xl"
-            onClick={e => e.stopPropagation()}
-          >
-            {/* Header */}
-            <div className="sticky top-0 z-10 flex items-center justify-between p-4 bg-zinc-900/95 backdrop-blur border-b border-white/10">
-              <div className="flex items-center gap-3">
-                <div className="w-14 h-14 rounded-xl bg-zinc-800/80 flex items-center justify-center border border-red-500/40 overflow-hidden">
-                  {(() => {
-                    const safeName = killer.name.toLowerCase().replace(/ /g, '_').replace(/'/g, '');
-                    const iconPath = `./dbd_images/powers/${safeName}_power.png`;
-                    return (
-                      <div className="w-12 h-12">
-                        <AssetFrame
-                          type="Power"
-                          size="fill"
-                          imageUrl={iconPath}
-                          fallbackIcon={<Icons.Zap width={24} height={24} className="text-red-500" />}
-                        />
-                      </div>
-                    );
-                  })()}
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-red-500 mb-0.5">{powerName}</p>
-                  <h2 className="text-lg font-bold text-white">{killer.name}</h2>
-                </div>
-              </div>
-              <button
-                onClick={onClose}
-                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-              >
-                <Icons.X width={20} height={20} className="text-white" />
-              </button>
-            </div>
-            {/* Tabs */}
-            <div className="flex border-b border-white/10">
-              <button
-                onClick={() => setActiveTab('survivor')}
-                className={`flex-1 py-3 text-sm font-bold transition-colors ${activeTab === 'survivor' ? 'text-sky-400 border-b-2 border-sky-400 bg-sky-500/10' : 'text-zinc-500 hover:text-zinc-300'}`}
-              >
-                <span className="flex items-center justify-center gap-2">
-                  <Icons.Heart width={16} height={16} />
-                  Survivor Tips
-                </span>
-              </button>
-              <button
-                onClick={() => setActiveTab('killer')}
-                className={`flex-1 py-3 text-sm font-bold transition-colors ${activeTab === 'killer' ? 'text-red-400 border-b-2 border-red-400 bg-red-500/10' : 'text-zinc-500 hover:text-zinc-300'}`}
-              >
-                <span className="flex items-center justify-center gap-2">
-                  <Icons.Sword width={16} height={16} />
-                  Killer Tips
-                </span>
-              </button>
-            </div>
-            {/* Content */}
-            <div className="p-4 overflow-y-auto max-h-[55vh] custom-scrollbar">
-              <div className={`p-4 rounded-2xl ${activeTab === 'survivor' ? 'bg-sky-500/10 border border-sky-500/20' : 'bg-red-500/10 border border-red-500/20'}`}>
-                <div className="flex items-center gap-2 mb-3">
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${activeTab === 'survivor' ? 'bg-sky-500/30' : 'bg-red-500/30'}`}>
-                    {activeTab === 'survivor' ? <Icons.Heart width={18} height={18} className="text-sky-400" /> : <Icons.Sword width={18} height={18} className="text-red-400" />}
-                  </div>
-                  <h3 className={`font-bold ${activeTab === 'survivor' ? 'text-sky-400' : 'text-red-400'}`}>
-                    {activeTab === 'survivor' ? 'How to Counter' : 'How to Play'}
-                  </h3>
-                </div>
-                <p className="text-zinc-300 text-sm leading-relaxed">
-                  {activeTab === 'survivor' ? survivorTips : killerTips}
-                </p>
-              </div>
-            </div>
-            {/* Close Button */}
-            <div className="p-4 border-t border-white/10">
-              <button
-                onClick={onClose}
-                className="w-full py-3 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-400 font-semibold transition-colors"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      );
-    };
-    const MapLayoutModal = ({ map, onClose, noteValue = '', onNoteChange }) => {
-      const [currentIndex, setCurrentIndex] = useState(0);
-      const [layoutBroken, setLayoutBroken] = useState(false);
-      useEffect(() => {
-        setLayoutBroken(false);
-        setCurrentIndex(0);
-      }, [map?.name]);
-      useEffect(() => {
-        setLayoutBroken(false);
-      }, [currentIndex]);
-      if (!map) return null;
-      const layouts = getMapLayoutsForName(map.name);
-      const hasMultiple = layouts.length > 1;
-      return (
-        <div role="dialog" aria-modal="true" aria-label="Map layout" className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm" onClick={onClose}>
-          <div
-            className="relative w-full max-w-2xl max-h-[90vh] flex flex-col rounded-3xl bg-zinc-900 border border-white/10 shadow-2xl"
-            onClick={e => e.stopPropagation()}
-          >
-            {/* Header */}
-            <div className="flex-shrink-0 flex items-center justify-between p-4 bg-zinc-900/95 backdrop-blur border-b border-white/10 rounded-t-3xl">
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-1">Map Details</p>
-                <h2 className="text-lg font-bold text-white pb-1" style={{ borderBottom: '2px solid #ef4444', display: 'inline-block' }}>{map.name}</h2>
-                {map.realm && <p className="text-xs text-zinc-500 mt-1">{map.realm}</p>}
-                {hasMultiple && layouts[currentIndex].label && (
-                  <p className="text-xs text-zinc-400 mt-1">{layouts[currentIndex].label}</p>
-                )}
-              </div>
-              <button
-                onClick={onClose}
-                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-              >
-                <Icons.X width={20} height={20} className="text-white" />
-              </button>
-            </div>
-            {/* Layout Image - scrollable area */}
-            <div className="flex-1 overflow-y-auto p-4 flex flex-col items-center">
-              <div className="w-full space-y-4">
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                  <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold mb-2">Overview</p>
-                  <p className="text-sm text-zinc-300 leading-relaxed">{map.description || 'No description available for this map yet.'}</p>
-                </div>
-                {layouts.length > 0 ? (
-                  <div className="relative w-full aspect-square max-h-[55vh] bg-zinc-800 rounded-2xl overflow-hidden flex items-center justify-center">
-                    {!layoutBroken ? (
-                      <img
-                        src={`./dbd_images/${layouts[currentIndex].path}`}
-                        alt={`${map.name} layout`}
-                        className="max-w-full max-h-full object-contain"
-                        onError={() => setLayoutBroken(true)}
-                      />
-                    ) : (
-                      <div className="flex flex-col items-center justify-center gap-3 text-zinc-500 px-6 text-center">
-                        <Icons.Map width={36} height={36} className="text-zinc-400" />
-                        <p className="text-sm font-medium">Map layout unavailable in the offline bundle.</p>
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <div className="w-full aspect-square max-h-[40vh] rounded-2xl bg-zinc-800/70 border border-white/10 flex flex-col items-center justify-center text-center px-6">
-                    <Icons.Map width={36} height={36} className="text-zinc-400 mb-3" />
-                    <p className="text-sm font-medium text-zinc-400">No layout art bundled for this map.</p>
-                  </div>
-                )}
-              </div>
-              {hasMultiple && (
-                <div className="flex gap-2 mt-4 flex-wrap justify-center">
-                  {layouts.map((layout, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentIndex(idx)}
-                      className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors ${currentIndex === idx ? 'bg-red-500 text-white' : 'bg-white/10 text-zinc-400 hover:bg-white/20'}`}
-                    >
-                      {layout.label || `Layout ${idx + 1}`}
-                    </button>
-                  ))}
-                </div>
-              )}
-              <div className="w-full">
-                <NotesEditor
-                  title="Map Notes"
-                  value={noteValue}
-                  onChange={onNoteChange}
-                  placeholder="Tiles to watch, favorite loops, spawn notes, or personal callouts..."
-                />
-              </div>
-            </div>
-            {/* Close Button - fixed at bottom */}
-            <div className="flex-shrink-0 p-4 pt-3 pb-5 border-t border-white/10">
-              <button
-                onClick={onClose}
-                className="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-300 font-semibold transition-colors"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      );
-    };
-    const PerkCompareModal = ({ perks, onClose, onRemove, theme, settings = {} }) => {
-      if (!perks || perks.length === 0) return null;
-      const accentColor = theme?.accent || '#38bdf8';
-      return (
-        <div role="dialog" aria-modal="true" aria-label="Perk comparison" className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={onClose}>
-          <div
-            className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl bg-zinc-900 shadow-2xl"
-            style={{ border: `1px solid ${accentColor}40` }}
-            onClick={e => e.stopPropagation()}
-          >
-            {/* Header */}
-            <div
-              className="sticky top-0 z-10 flex items-center justify-between p-4 backdrop-blur"
-              style={{
-                background: `linear-gradient(180deg, ${accentColor}15, transparent)`,
-                borderBottom: `1px solid ${accentColor}30`
-              }}
-            >
-              <h2 className="text-lg font-bold text-white">Compare Perks ({perks.length}/4)</h2>
-              <button
-                onClick={onClose}
-                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-              >
-                <Icons.X width={20} height={20} className="text-white" />
-              </button>
-            </div>
-            {/* Perk Cards Grid */}
-            <div className="p-4 grid grid-cols-2 gap-4">
-              {perks.map(perk => (
-                <div
-                  key={perk.id}
-                  className="relative p-4 rounded-2xl border"
-                  style={{
-                    background: `linear-gradient(145deg, ${accentColor}10, transparent)`,
-                    borderColor: `${accentColor}20`
-                  }}
-                >
-                  {/* Remove button */}
-                  <button
-                    onClick={() => onRemove(perk)}
-                    className="absolute top-2 right-2 p-1 rounded-full bg-red-500/20 hover:bg-red-500/40 transition-colors"
-                  >
-                    <Icons.X width={14} height={14} className="text-red-400" />
-                  </button>
-                  {/* Perk Image */}
-                  <div className="flex justify-center mb-3">
-                    <AssetFrame type="Perk" imageUrl={perk.image} size="large" />
-                  </div>
-                  {/* Perk Name */}
-                  <h3 className="text-center text-white font-bold text-sm mb-1">{perk.name}</h3>
-                  <p className="text-center text-xs text-zinc-500 mb-3">
-                    {perk.type} • {perk.owner || 'Universal'}
-                  </p>
-                  {/* Description */}
-                  <PerkDescriptionBlock
-                    perk={perk}
-                    settings={settings}
-                    accentColor={accentColor}
-                    className="text-xs text-zinc-400"
-                    lineClassName="leading-relaxed"
-                  />
-                </div>
-              ))}
-            </div>
-            {/* Close Button */}
-            <div className="p-4 border-t border-white/10">
-              <button
-                onClick={onClose}
-                className="w-full py-3 rounded-xl font-semibold transition-colors"
-                style={{
-                  background: `${accentColor}20`,
-                  color: accentColor
-                }}
-              >
-                Close Comparison
-              </button>
-            </div>
-          </div>
         </div>
       );
     };
@@ -12079,7 +11236,171 @@
         </button>
       );
     };
-    const CharacterProfileModal = ({ character, onClose, allPerks = [], onPerkTap, theme, settings = {}, noteValue = '', onNoteChange, cosmeticsByBaseId = {}, onRegisterSections = null, registerScrollTo = null }) => {
+    const PerkDetailView = ({ perk, settings = {}, noteValue = '', onNoteChange, isFavorite = false, onToggleFavorite, isInCompare = false, onCompare, onOpenOwner, onBack }) => {
+      if (!perk) {
+        return (
+          <div className="flex flex-col h-full pt-12 pb-32 px-6 overflow-y-auto custom-scrollbar">
+            <Header title="Perk" subtitle="Not found" onBack={onBack} />
+            <p className="cx-prose">That perk is no longer in the database.</p>
+            <button type="button" onClick={onBack} className="ghostbtn">Go Back</button>
+          </div>
+        );
+      }
+      const accentColor = perk.type === 'Killer' ? '#ef4444' : '#38bdf8';
+      return (
+        <div className="flex flex-col h-full pt-12 pb-32 px-6 overflow-y-auto custom-scrollbar">
+          <Header title="Perk" subtitle={`${perk.type || ''} Perk`} onBack={onBack} />
+          <div className="max-w-3xl mx-auto w-full pb-8">
+            <p className="cx-crumbs" style={{ marginTop: 12 }}>
+              <button type="button" className="cx-alink" style={{ textDecoration: 'none' }} onClick={onBack}>Perks</button>
+              <span className="cx-sep">›</span><b>{perk.name}</b>
+            </p>
+            <h1 className="cx-title">{perk.name}</h1>
+            <p className="cx-prose" style={{ fontStyle: 'italic' }}>
+              {perk.type ? `${perk.type} Perk` : 'Perk'}
+              {perk.owner ? (<span> · <button type="button" className="cx-alink" onClick={() => onOpenOwner && onOpenOwner(perk)}>{perk.owner}</button></span>) : null}
+            </p>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '20px 0 4px' }}>
+              <span className="diamond-lg" aria-hidden="true">
+                <span><AssetFrame type="Perk" size="fill" imageUrl={perk.image} fallbackIcon={<Icons.BookOpen width={24} height={24} className="text-white/40" />} /></span>
+              </span>
+            </div>
+            <div className="cx-prose" style={{ color: 'var(--text)' }}>
+              <PerkDescriptionBlock perk={perk} settings={settings} accentColor={accentColor} />
+            </div>
+            {PERK_SYNERGIES[perk.name] && (
+              <div style={{ marginTop: 16 }}>
+                <p className="cx-grp" style={{ marginTop: 0 }}>Works Well With</p>
+                <p className="cx-prose" style={{ color: 'var(--text)' }}>{PERK_SYNERGIES[perk.name].join(' · ')}</p>
+              </div>
+            )}
+            <NotesEditor
+              title="Perk Notes"
+              value={noteValue}
+              onChange={onNoteChange}
+              placeholder="Matchups, builds, or reminders for this perk..."
+            />
+            <div style={{ marginTop: 16 }}>
+              {onToggleFavorite && (
+                <button type="button" onClick={onToggleFavorite} aria-pressed={!!isFavorite} className="ghostbtn">
+                  {isFavorite ? '★ Favorited' : '★ Favorite'}
+                </button>
+              )}
+              {onCompare && (
+                <button type="button" onClick={onCompare} aria-pressed={!!isInCompare} className="ghostbtn">
+                  {isInCompare ? 'Compare −' : 'Compare +'}
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    };
+    const MapDetailView = ({ map, noteValue = '', onNoteChange, onBack }) => {
+      const [currentIndex, setCurrentIndex] = useState(0);
+      const [layoutBroken, setLayoutBroken] = useState(false);
+      useEffect(() => {
+        setLayoutBroken(false);
+        setCurrentIndex(0);
+      }, [map?.name]);
+      useEffect(() => {
+        setLayoutBroken(false);
+      }, [currentIndex]);
+      if (!map) {
+        return (
+          <div className="flex flex-col h-full pt-12 pb-32 px-6 overflow-y-auto custom-scrollbar">
+            <Header title="Map" subtitle="Not found" onBack={onBack} />
+            <p className="cx-prose">That map is no longer in the database.</p>
+            <button type="button" onClick={onBack} className="ghostbtn">Go Back</button>
+          </div>
+        );
+      }
+      const layouts = getMapLayoutsForName(map.name);
+      const hasMultiple = layouts.length > 1;
+      return (
+        <div className="flex flex-col h-full pt-12 pb-32 px-6 overflow-y-auto custom-scrollbar">
+          <Header title="Map" subtitle={map.realm || 'Realm'} onBack={onBack} />
+          <div className="max-w-3xl mx-auto w-full pb-8">
+            <p className="cx-crumbs" style={{ marginTop: 12 }}>
+              <button type="button" className="cx-alink" style={{ textDecoration: 'none' }} onClick={onBack}>Realms</button>
+              <span className="cx-sep">›</span><b>{map.name}</b>
+            </p>
+            <h1 className="cx-title">{map.name}{map.realm ? (<small>{map.realm}</small>) : null}</h1>
+            <p className="cx-prose" style={{ color: 'var(--text)' }}>{map.description || 'No description available for this map yet.'}</p>
+            <p className="cx-grp">Layout{hasMultiple && layouts[currentIndex] && layouts[currentIndex].label ? ` · ${layouts[currentIndex].label}` : ''}</p>
+            {layouts.length > 0 ? (
+              <div style={{ marginTop: 8, border: '1px solid var(--stroke)', background: 'var(--glass-bg)', minHeight: 240, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                {!layoutBroken ? (
+                  <img
+                    src={`./dbd_images/${layouts[currentIndex].path}`}
+                    alt={`${map.name} layout`}
+                    style={{ maxWidth: '100%', maxHeight: '55vh', objectFit: 'contain' }}
+                    onError={() => setLayoutBroken(true)}
+                  />
+                ) : (
+                  <p className="cx-prose" style={{ textAlign: 'center', padding: 24 }}>Map layout unavailable in the offline bundle.</p>
+                )}
+              </div>
+            ) : (
+              <p className="cx-prose" style={{ textAlign: 'center', padding: 24, border: '1px solid var(--stroke)', marginTop: 8 }}>No layout art bundled for this map.</p>
+            )}
+            {hasMultiple && (
+              <div className="char-segments" role="tablist" aria-label="Map layouts">
+                {layouts.map((layout, idx) => (
+                  <button key={idx} type="button" role="tab" aria-selected={currentIndex === idx} className={currentIndex === idx ? 'on' : ''} onClick={() => setCurrentIndex(idx)}>
+                    {layout.label || `Layout ${idx + 1}`}
+                  </button>
+                ))}
+              </div>
+            )}
+            <NotesEditor
+              title="Map Notes"
+              value={noteValue}
+              onChange={onNoteChange}
+              placeholder="Tiles to watch, favorite loops, spawn notes, or personal callouts..."
+            />
+          </div>
+        </div>
+      );
+    };
+    const CompareView = ({ perks, settings = {}, onRemove, onBack }) => {
+      return (
+        <div className="flex flex-col h-full pt-12 pb-32 px-6 overflow-y-auto custom-scrollbar">
+          <Header title="Compare Perks" subtitle={`${(perks || []).length}/4 selected`} onBack={onBack} />
+          <div className="max-w-3xl mx-auto w-full pb-8">
+            {(perks || []).length === 0 ? (
+              <div>
+                <p className="cx-prose">No perks selected. Long-press a perk in the browser to add it here.</p>
+                <button type="button" onClick={onBack} className="ghostbtn">Go Back</button>
+              </div>
+            ) : (
+              <div>
+                {(perks || []).map(perk => (
+                  <div key={perk.id} className="perk-row">
+                    <div className="perk-head" style={{ cursor: 'default' }}>
+                      <span className="diamond" aria-hidden="true">
+                        <span><AssetFrame type="Perk" size="fill" imageUrl={perk.image} fallbackIcon={<Icons.BookOpen width={16} height={16} className="text-white/40" />} /></span>
+                      </span>
+                      <span style={{ minWidth: 0 }}>
+                        <span className="nm">{perk.name}</span> <span className="tag">{perk.type || 'Perk'}</span>
+                      </span>
+                      {onRemove && (
+                        <button type="button" onClick={() => onRemove(perk)} className="cx-alink" style={{ marginLeft: 'auto', minHeight: 44 }} aria-label={`Remove ${perk.name}`}>Remove</button>
+                      )}
+                    </div>
+                    <div className="perk-detail">
+                      <PerkDescriptionBlock perk={perk} settings={settings} className="desc" />
+                      {perk.owner ? (<p className="meta">{perk.type} · {perk.owner}</p>) : null}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    };
+    const CharacterProfileModal = ({ character, onClose, allPerks = [], onPerkTap, theme, settings = {}, noteValue = '', onNoteChange, cosmeticsByBaseId = {}, onRegisterSections = null, registerScrollTo = null, bare = false, initialSection = '' }) => {
       const isKiller = character ? (character.type === 'Killer' || character.power) : false;
       const accentColor = isKiller ? '#ef4444' : '#38bdf8';
       const stats = isKiller ? KILLER_STATS[character?.name] : null;
@@ -12160,6 +11481,18 @@
       }, [character?.id]);
 
       useEffect(() => {
+        if (!initialSection) return undefined;
+        expandSection(initialSection);
+        const timer = window.setTimeout(() => {
+          try {
+            const root = scrollRef.current;
+            const el = root ? root.querySelector(`[data-cx-section="${initialSection}"]`) : null;
+            if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } catch (e) {}
+        }, 260);
+        return () => window.clearTimeout(timer);
+      }, [initialSection, character?.id]);
+      useEffect(() => {
         if (!focusedCosmeticId) return undefined;
         if (cosmeticsEntries.length === 0) return undefined;
         expandSection('cosmetics');
@@ -12176,8 +11509,11 @@
         : (character.lore ? character.lore.split('\n\n')[0] : '');
 
       return (
-        <div role="dialog" aria-modal="true" aria-label="Character profile" className="cx-profile fixed inset-0 z-50 bg-black/95 backdrop-blur-sm" onClick={onClose}>
-          <div ref={scrollRef} className="h-full overflow-y-auto custom-scrollbar" data-smoke-profile={character.id} onClick={e => e.stopPropagation()}>
+        <div
+          {...(bare ? {} : { role: 'dialog', 'aria-modal': 'true', 'aria-label': 'Character profile', onClick: onClose })}
+          className={bare ? 'cx-profile h-full' : 'cx-profile fixed inset-0 z-50 bg-black/95 backdrop-blur-sm'}
+        >
+          <div ref={scrollRef} className="h-full overflow-y-auto custom-scrollbar" data-smoke-profile={character.id} onClick={bare ? undefined : (e => e.stopPropagation())}>
             <div className="max-w-lg mx-auto min-h-full">
               {/* Article header */}
               <div className="px-4 cx-article" style={{ paddingTop: 'max(1rem, calc(env(safe-area-inset-top, 0px) + 0.75rem))' }}>
@@ -12546,16 +11882,20 @@
           window.Capacitor.Plugins.App.exitApp();
         }
       };
+      const openCharacterPage = useCallback((character, extra = {}) => {
+        if (!character || !character.id) return;
+        triggerHaptic('Light');
+        setView('profile', { characterId: character.id, ...extra });
+      }, []);
+      const openPerkPage = useCallback((perk) => {
+        if (!perk || !perk.id) return;
+        triggerHaptic('Light');
+        setView('perk', { perkId: perk.id });
+      }, []);
       const [perkFilter, setPerkFilter] = useState('All');
       const [perkSearch, setPerkSearch] = useState('');
       const [buildSeed, setBuildSeed] = useState(null);
       const [comparePerks, setComparePerks] = useState([]);
-      const [showCompareModal, setShowCompareModal] = useState(false);
-      const [selectedPerk, setSelectedPerk] = useState(null);
-      const [loreCharacter, setLoreCharacter] = useState(null);
-      const [powerKiller, setPowerKiller] = useState(null);
-      const [profileCharacter, setProfileCharacter] = useState(null);
-      const [layoutMap, setLayoutMap] = useState(null);
       // ── Section drawer state (step A): article sections register here ──
       const [drawerOpen, setDrawerOpen] = useState(false);
       const [articleSections, setArticleSections] = useState(null);
@@ -12564,9 +11904,8 @@
       const openRandomCharacter = useCallback(() => {
         const pool = [...(killers || []), ...(survivors || [])];
         if (!pool.length) return;
-        setProfileCharacter(pool[Math.floor(Math.random() * pool.length)]);
-        triggerHaptic('Light');
-      }, [killers, survivors]);
+        openCharacterPage(pool[Math.floor(Math.random() * pool.length)]);
+      }, [killers, survivors, openCharacterPage]);
       const jumpToArticleSection = useCallback((id) => {
         setDrawerCurrent(id);
         setDrawerOpen(false);
@@ -12633,11 +11972,8 @@
         if (!cosmetic) return;
         const baseCharacter = allCharactersById.get(cosmetic.baseCharacterId);
         if (!baseCharacter) return;
-        setProfileCharacter({
-          ...baseCharacter,
-          cosmeticFocusId: cosmetic.id
-        });
-      }, [allCharactersById]);
+        openCharacterPage(baseCharacter, { cosmeticFocusId: cosmetic.id });
+      }, [allCharactersById, openCharacterPage]);
       const togglePerkCompare = (perk) => {
         setComparePerks(prev => {
           const exists = prev.find(p => p.id === perk.id);
@@ -12651,18 +11987,11 @@
       };
       const clearCompare = () => {
         setComparePerks([]);
-        setShowCompareModal(false);
       };
       const closeTopOverlay = useCallback(() => {
         if (drawerOpen) { setDrawerOpen(false); return true; }
-        if (layoutMap) { setLayoutMap(null); return true; }
-        if (profileCharacter) { setProfileCharacter(null); return true; }
-        if (powerKiller) { setPowerKiller(null); return true; }
-        if (loreCharacter) { setLoreCharacter(null); return true; }
-        if (selectedPerk) { setSelectedPerk(null); return true; }
-        if (showCompareModal) { setShowCompareModal(false); return true; }
         return false;
-      }, [drawerOpen, layoutMap, profileCharacter, powerKiller, loreCharacter, selectedPerk, showCompareModal]);
+      }, [drawerOpen]);
       const closeTopOverlayRef = useRef(closeTopOverlay);
       useEffect(() => {
         closeTopOverlayRef.current = closeTopOverlay;
@@ -12750,10 +12079,9 @@
       }, [isAndroidNative, cosmeticsFullSetPackState.isReady, cosmeticsFullSetPackState.status, refreshCosmeticsFullSetPack]);
       useEffect(() => {
         if (!launchContext.profileId) return;
-        const target = allCharactersById.get(launchContext.profileId);
-        if (!target) return;
-        setProfileCharacter({
-          ...target,
+        if (!allCharactersById.get(launchContext.profileId)) return;
+        setView('profile', {
+          characterId: launchContext.profileId,
           ...(launchContext.cosmeticId ? { cosmeticFocusId: launchContext.cosmeticId } : {})
         });
       }, [launchContext, allCharactersById]);
@@ -12767,21 +12095,18 @@
                 const view = params.get('view');
                 if (!view) return;
                 const context = {};
-                ['search', 'mode', 'tab', 'targetId', 'targetType'].forEach((key) => {
+                ['search', 'mode', 'tab', 'targetId', 'targetType', 'perkId', 'mapId', 'characterId', 'cosmeticFocusId', 'section', 'expandedIconId'].forEach((key) => {
                   const value = params.get(key);
                   if (value) context[key] = value;
                 });
                 setView(view, context);
                 const deepProfileId = params.get('profileId') || '';
-                if (deepProfileId) {
-                  const target = allCharactersById.get(deepProfileId);
-                  if (target) {
-                    const deepCosmeticId = params.get('cosmeticId') || '';
-                    setProfileCharacter({
-                      ...target,
-                      ...(deepCosmeticId ? { cosmeticFocusId: deepCosmeticId } : {})
-                    });
-                  }
+                if (deepProfileId && allCharactersById.get(deepProfileId)) {
+                  const deepCosmeticId = params.get('cosmeticId') || '';
+                  setView('profile', {
+                    characterId: deepProfileId,
+                    ...(deepCosmeticId ? { cosmeticFocusId: deepCosmeticId } : {})
+                  });
                 }
                 triggerHaptic('Light');
               } catch (error) {
@@ -13006,18 +12331,12 @@
         setNotes(restoredNotes);
         setWorldleState(restoredWorldle);
         setMatchPrefs(restoredPrefs);
-        setSelectedPerk(null);
-        setLoreCharacter(null);
-        setPowerKiller(null);
-        setProfileCharacter(null);
-        setLayoutMap(null);
         setBuildSeed(null);
         setComparePerks([]);
-        setShowCompareModal(false);
       }, [killers, survivors, perks, maps]);
       const touchStartRef = useRef(null);
       const navOrder = ['home', 'favorites'];
-      const isAnyOverlayOpen = !!(layoutMap || profileCharacter || powerKiller || loreCharacter || selectedPerk || showCompareModal);
+      const isAnyOverlayOpen = !!drawerOpen;
       const handleTouchStart = (e) => {
         if (!e.touches || e.touches.length !== 1) {
           touchStartRef.current = null;
@@ -13055,9 +12374,11 @@
           }
         }
       };
+      const profileRouteCharacter = currentView === 'profile' ? allCharactersById.get(viewContext.characterId) : null;
+      const profileRouteIsKiller = !!profileRouteCharacter && (profileRouteCharacter.type === 'Killer' || profileRouteCharacter.power);
       const renderContent = () => {
         switch (currentView) {
-          case 'home': return <HomeView setView={setView} data={{ killers: visibleKillers, survivors: visibleSurvivors, perks: visiblePerks }} theme={theme} builds={builds} maps={maps} challenges={progression?.challenges || []} setBuildSeed={setBuildSeed} perks={visiblePerks} items={items} addons={visibleAddons} offerings={offerings} cosmeticsCatalog={cosmeticsCatalogForDisplay} allCharacters={[...killers, ...survivors]} onOpenCharacterProfile={setProfileCharacter} onPerkTap={(perk) => setSelectedPerk(perk)} />;
+          case 'home': return <HomeView setView={setView} data={{ killers: visibleKillers, survivors: visibleSurvivors, perks: visiblePerks }} theme={theme} builds={builds} maps={maps} challenges={progression?.challenges || []} setBuildSeed={setBuildSeed} perks={visiblePerks} items={items} addons={visibleAddons} offerings={offerings} cosmeticsCatalog={cosmeticsCatalogForDisplay} allCharacters={[...killers, ...survivors]} onOpenCharacterProfile={openCharacterPage} onPerkTap={openPerkPage} />;
           case 'progression':
             return (
               <ProgressionView
@@ -13078,7 +12399,7 @@
               />
             );
           case 'worldle':
-            return <WorldleView onBack={() => setView('home')} killers={killers} perks={perks} worldleState={worldleState} setWorldleState={setWorldleState} isCompactLayout={device.width <= 640} onOpenCharacterProfile={setProfileCharacter} onPerkTap={(perk) => setSelectedPerk(perk)} />;
+            return <WorldleView onBack={() => setView('home')} killers={killers} perks={perks} worldleState={worldleState} setWorldleState={setWorldleState} isCompactLayout={device.width <= 640} onOpenCharacterProfile={openCharacterPage} onPerkTap={openPerkPage} />;
           case 'cosmetics':
             return <CosmeticsView onBack={() => setView('home')} cosmeticsCatalog={cosmeticsCatalogForDisplay} onOpenCosmetic={openCosmeticProfile} fullSetPackState={cosmeticsFullSetPackState} fullSetCatalogCount={fullSetCatalogCount} onRefreshFullSetPack={refreshCosmeticsFullSetPack} cosmeticsAssetRevision={cosmeticsAssetRevision} />;
           case 'buildLab':
@@ -13102,14 +12423,14 @@
             );
           case 'matches':
             return <MatchLogView onBack={() => setView('home')} matches={matches} setMatches={setMatches} killers={killers} survivors={survivors} builds={builds} maps={maps} prefs={matchPrefs} setPrefs={setMatchPrefs} onBuildUsed={markBuildUsed} onOpenAnalytics={() => setView('progression', { tab: 'analytics' })} />;
-          case 'killers': return <ListView data={visibleKillers} type="Killers" activeFilter="All" setActiveFilter={() => { }} allPerks={perks} setView={setView} onPerkSelect={setPerkSearch} initialSearch={viewContext.search || ''} buildsByOwner={buildsByOwner} onCreateBuildSeed={setBuildSeed} onBack={() => setView('home')} onShowLore={setLoreCharacter} onShowPower={setPowerKiller} favoritePerks={settings.favoriteKillers || []} onToggleFavorite={(id) => toggleFavorite('Killer', id)} onViewProfile={setProfileCharacter} settings={settings} roleCounts={{ killers: killers.length, survivors: survivors.length }} />;
-          case 'survivors': return <ListView data={visibleSurvivors} type="Survivors" activeFilter="All" setActiveFilter={() => { }} allPerks={perks} setView={setView} onPerkSelect={setPerkSearch} initialSearch={viewContext.search || ''} buildsByOwner={buildsByOwner} onCreateBuildSeed={setBuildSeed} onBack={() => setView('home')} onShowLore={setLoreCharacter} favoritePerks={settings.favoriteSurvivors || []} onToggleFavorite={(id) => toggleFavorite('Survivor', id)} onViewProfile={setProfileCharacter} settings={settings} roleCounts={{ killers: killers.length, survivors: survivors.length }} />;
-          case 'perks': return <ListView data={visiblePerks} type="Perks" filterOptions={['All', 'Survivor', 'Killer', 'Favorites', 'Exhaustion', 'Hex', 'Boon', 'Scourge', 'Obsession', 'Aura', 'Stealth', 'Gen', 'Healing']} activeFilter={perkFilter} setActiveFilter={setPerkFilter} initialSearch={perkSearch} onSearchChange={setPerkSearch} onBack={() => setView('home')} comparePerks={comparePerks} onPerkLongPress={togglePerkCompare} favoritePerks={settings.favoritePerks || []} onToggleFavorite={toggleFavoritePerk} onPerkTap={setSelectedPerk} settings={settings} />;
+          case 'killers': return <ListView data={visibleKillers} type="Killers" activeFilter="All" setActiveFilter={() => { }} allPerks={perks} setView={setView} onPerkSelect={setPerkSearch} initialSearch={viewContext.search || ''} buildsByOwner={buildsByOwner} onCreateBuildSeed={setBuildSeed} onBack={() => setView('home')} onShowLore={(item) => openCharacterPage(item, { section: 'lore' })} onShowPower={(item) => openCharacterPage(item, { section: 'power' })} favoritePerks={settings.favoriteKillers || []} onToggleFavorite={(id) => toggleFavorite('Killer', id)} onViewProfile={openCharacterPage} settings={settings} roleCounts={{ killers: killers.length, survivors: survivors.length }} />;
+          case 'survivors': return <ListView data={visibleSurvivors} type="Survivors" activeFilter="All" setActiveFilter={() => { }} allPerks={perks} setView={setView} onPerkSelect={setPerkSearch} initialSearch={viewContext.search || ''} buildsByOwner={buildsByOwner} onCreateBuildSeed={setBuildSeed} onBack={() => setView('home')} onShowLore={(item) => openCharacterPage(item, { section: 'lore' })} favoritePerks={settings.favoriteSurvivors || []} onToggleFavorite={(id) => toggleFavorite('Survivor', id)} onViewProfile={openCharacterPage} settings={settings} roleCounts={{ killers: killers.length, survivors: survivors.length }} />;
+          case 'perks': return <ListView data={visiblePerks} type="Perks" filterOptions={['All', 'Survivor', 'Killer', 'Favorites', 'Exhaustion', 'Hex', 'Boon', 'Scourge', 'Obsession', 'Aura', 'Stealth', 'Gen', 'Healing']} activeFilter={perkFilter} setActiveFilter={setPerkFilter} initialSearch={perkSearch} onSearchChange={setPerkSearch} onBack={() => setView('home')} comparePerks={comparePerks} onPerkLongPress={togglePerkCompare} favoritePerks={settings.favoritePerks || []} onToggleFavorite={toggleFavoritePerk} onPerkTap={openPerkPage} settings={settings} />;
           case 'roulette': return <ChaosShuffleView onBack={() => setView('home')} perks={visiblePerks} killers={visibleKillers} survivors={visibleSurvivors} items={items} addons={visibleAddons} offerings={offerings} settings={settings} ownedOnlyGlobal={settings.ownedOnlyGlobal === true} />;
-          case 'realms': return <RealmsView onBack={() => setView('home')} maps={maps} realms={realms} onViewLayout={setLayoutMap} initialSearch={viewContext.search || ''} />;
+          case 'realms': return <RealmsView onBack={() => setView('home')} maps={maps} realms={realms} onViewLayout={(map) => setView('map', { mapId: map.id })} initialSearch={viewContext.search || ''} />;
           case 'glossary': return <GlossaryView onBack={() => setView('home')} />;
           case 'prestige': return <PrestigeCalculatorView onBack={() => setView('home')} />;
-          case 'gameIcons': return <GameIconsView onBack={() => setView('home')} theme={theme} />;
+          case 'gameIcons': return <GameIconsView onBack={() => setView('home')} theme={theme} initialExpandedId={viewContext.expandedIconId || ''} onOpenIcon={(icon) => setView('gameIcons', { expandedIconId: icon.id })} />;
           case 'items': return <ItemsView onBack={() => setView('home')} items={items} addons={visibleAddons} killers={visibleKillers} settings={settings} initialSearch={viewContext.search || ''} initialMode={viewContext.mode || 'survivor'} initialTargetId={viewContext.targetId || ''} initialTargetType={viewContext.targetType || ''} favoriteItems={settings.favoriteItems || []} favoriteAddons={settings.favoriteAddons || []} onToggleFavoriteItem={(id) => toggleFavorite('Item', id)} onToggleFavoriteAddon={(id) => toggleFavorite('Addon', id)} />;
           case 'offerings': return <OfferingsView onBack={() => setView('home')} offerings={offerings} initialSearch={viewContext.search || ''} initialTargetId={viewContext.targetId || ''} favoriteOfferings={settings.favoriteOfferings || []} onToggleFavoriteOffering={(id) => toggleFavorite('Offering', id)} />;
           case 'communityContent':
@@ -13117,8 +12438,70 @@
             return <CommunityContentView onBack={() => setView('home')} communityContent={communityContent} />;
           case 'timeline': return <TimelineView onBack={() => setView('home')} setView={setView} killers={killers} survivors={survivors} theme={theme} />;
           case 'settings': return <SettingsView onBack={() => setView('home')} settings={settings} setSettings={setSettings} backupSummary={appBackupSummary} onCopyBackup={copyAppBackup} onDownloadBackup={downloadAppBackup} onRestoreBackup={restoreAppBackup} />;
-          case 'favorites': return <FavoritesView onBack={() => setView('home')} settings={settings} killers={killers} survivors={survivors} perks={perks} items={items} addons={addons} offerings={offerings} toggleFavorite={toggleFavorite} setView={setView} onPerkTap={setSelectedPerk} />;
-          default: return <HomeView setView={setView} data={{ killers: visibleKillers, survivors: visibleSurvivors, perks: visiblePerks }} theme={theme} builds={builds} maps={maps} challenges={progression?.challenges || []} setBuildSeed={setBuildSeed} perks={visiblePerks} items={items} addons={visibleAddons} offerings={offerings} cosmeticsCatalog={cosmeticsCatalogForDisplay} allCharacters={[...killers, ...survivors]} onOpenCharacterProfile={setProfileCharacter} onPerkTap={(perk) => setSelectedPerk(perk)} />;
+          case 'profile': {
+            const profileChar = allCharactersById.get(viewContext.characterId);
+            if (!profileChar) {
+              return (
+                <div className="flex flex-col h-full pt-12 pb-32 px-6 overflow-y-auto custom-scrollbar">
+                  <Header title="Article" subtitle="Not found" onBack={goBack} />
+                  <p className="cx-prose">That character is no longer in the database.</p>
+                  <button type="button" onClick={goBack} className="ghostbtn">Go Back</button>
+                </div>
+              );
+            }
+            const isKillerProfile = profileChar.type === 'Killer' || profileChar.power;
+            return (
+              <CharacterProfileModal
+                character={{ ...profileChar, ...(viewContext.cosmeticFocusId ? { cosmeticFocusId: viewContext.cosmeticFocusId } : {}) }}
+                onClose={goBack}
+                allPerks={perks}
+                onPerkTap={openPerkPage}
+                theme={theme}
+                settings={settings}
+                noteValue={isKillerProfile ? getEntityNote('killer', profileChar.id) : ''}
+                onNoteChange={(value) => setEntityNote('killer', profileChar.id, value)}
+                cosmeticsByBaseId={cosmeticsByBaseId}
+                onRegisterSections={setArticleSections}
+                registerScrollTo={(fn) => { articleScrollToRef.current = fn; }}
+                bare={true}
+                initialSection={viewContext.section || ''}
+              />
+            );
+          }
+          case 'perk': {
+            const detailPerk = (perks || []).find(p => p.id === viewContext.perkId) || null;
+            return (
+              <PerkDetailView
+                perk={detailPerk}
+                settings={settings}
+                noteValue={detailPerk ? getEntityNote('perk', detailPerk.id) : ''}
+                onNoteChange={(value) => { if (detailPerk) setEntityNote('perk', detailPerk.id, value); }}
+                isFavorite={detailPerk ? (settings.favoritePerks || []).includes(detailPerk.id) : false}
+                onToggleFavorite={detailPerk ? () => toggleFavoritePerk(detailPerk.id) : undefined}
+                isInCompare={detailPerk ? comparePerks.some(p => p.id === detailPerk.id) : false}
+                onCompare={detailPerk ? () => togglePerkCompare(detailPerk) : undefined}
+                onOpenOwner={(p) => {
+                  const owner = [...(killers || []), ...(survivors || [])].find(c => c.name === p.owner);
+                  if (owner) openCharacterPage(owner);
+                }}
+                onBack={goBack}
+              />
+            );
+          }
+          case 'map': {
+            const detailMap = (maps || []).find(m => m.id === viewContext.mapId) || null;
+            return (
+              <MapDetailView
+                map={detailMap}
+                noteValue={detailMap ? getEntityNote('map', detailMap.id) : ''}
+                onNoteChange={(value) => { if (detailMap) setEntityNote('map', detailMap.id, value); }}
+                onBack={goBack}
+              />
+            );
+          }
+          case 'compare': return <CompareView perks={comparePerks} settings={settings} onRemove={togglePerkCompare} onBack={goBack} />;
+          case 'favorites': return <FavoritesView onBack={() => setView('home')} settings={settings} killers={killers} survivors={survivors} perks={perks} items={items} addons={addons} offerings={offerings} toggleFavorite={toggleFavorite} setView={setView} onPerkTap={openPerkPage} />;
+          default: return <HomeView setView={setView} data={{ killers: visibleKillers, survivors: visibleSurvivors, perks: visiblePerks }} theme={theme} builds={builds} maps={maps} challenges={progression?.challenges || []} setBuildSeed={setBuildSeed} perks={visiblePerks} items={items} addons={visibleAddons} offerings={offerings} cosmeticsCatalog={cosmeticsCatalogForDisplay} allCharacters={[...killers, ...survivors]} onOpenCharacterProfile={openCharacterPage} onPerkTap={openPerkPage} />;
         }
       };
       return (
@@ -13139,7 +12522,7 @@
           )}
           <AppToolbar
             currentView={currentView}
-            hasArticle={!!profileCharacter}
+            hasArticle={currentView === 'profile'}
             drawerOpen={drawerOpen}
             onSearch={() => setView('home')}
             onSections={() => { setDrawerCurrent('lead'); setDrawerOpen(true); triggerHaptic('Light'); }}
@@ -13148,73 +12531,16 @@
           />
           <SectionDrawer
             open={drawerOpen}
-            title={profileCharacter ? profileCharacter.name : "Browse the wiki"}
-            subtitle={profileCharacter ? `${(profileCharacter.type === 'Killer' || profileCharacter.power) ? 'Killer' : 'Survivor'} article` : 'Sections'}
-            sections={profileCharacter ? articleSections : null}
-            currentId={profileCharacter ? drawerCurrent : null}
+            title={profileRouteCharacter ? profileRouteCharacter.name : "Browse the wiki"}
+            subtitle={profileRouteCharacter ? `${profileRouteIsKiller ? 'Killer' : 'Survivor'} article` : 'Sections'}
+            sections={profileRouteCharacter ? articleSections : null}
+            currentId={profileRouteCharacter ? drawerCurrent : null}
             onJump={jumpToArticleSection}
             onBrowse={(id) => { setDrawerOpen(false); setView(id); }}
             onClose={closeDrawer}
           />
-          {/* Perk Comparison UI */}
-          <FloatingCompareBadge count={comparePerks.length} onClick={() => setShowCompareModal(true)} onClear={clearCompare} theme={theme} />
-          {showCompareModal && (
-            <PerkCompareModal
-              perks={comparePerks}
-              onClose={() => setShowCompareModal(false)}
-              onRemove={togglePerkCompare}
-              theme={theme}
-              settings={settings}
-            />
-          )}
-          {/* Lore Modal */}
-          {loreCharacter && (
-            <LoreModal
-              character={loreCharacter}
-              onClose={() => setLoreCharacter(null)}
-            />
-          )}
-          {/* Power Modal */}
-          {powerKiller && (
-            <PowerModal
-              killer={powerKiller}
-              onClose={() => setPowerKiller(null)}
-            />
-          )}
-          {/* Map Layout Modal */}
-          {layoutMap && (
-            <MapLayoutModal
-              map={layoutMap}
-              onClose={() => setLayoutMap(null)}
-              noteValue={getEntityNote('map', layoutMap?.id)}
-              onNoteChange={(value) => setEntityNote('map', layoutMap?.id, value)}
-            />
-          )}
-          {/* Character Profile Modal */}
-          {profileCharacter && (
-            <CharacterProfileModal
-              character={profileCharacter}
-              onClose={() => setProfileCharacter(null)}
-              allPerks={perks}
-              onPerkTap={(perk) => { setProfileCharacter(null); setSelectedPerk(perk); }}
-              theme={theme}
-              settings={settings}
-              noteValue={profileCharacter && (profileCharacter.type === 'Killer' || profileCharacter.power) ? getEntityNote('killer', profileCharacter.id) : ''}
-              onNoteChange={(value) => setEntityNote('killer', profileCharacter?.id, value)}
-              cosmeticsByBaseId={cosmeticsByBaseId}
-              onRegisterSections={setArticleSections}
-              registerScrollTo={(fn) => { articleScrollToRef.current = fn; }}
-            />
-          )}
-          {/* Bottom Sheet for perk details */}
-          <BottomSheet
-            isOpen={selectedPerk !== null}
-            onClose={() => setSelectedPerk(null)}
-            perk={selectedPerk}
-            settings={settings}
-            noteValue={getEntityNote('perk', selectedPerk?.id)}
-            onNoteChange={(value) => setEntityNote('perk', selectedPerk?.id, value)}
-          />
+          {/* Perk Comparison UI (page route, no overlay) */}
+          <FloatingCompareBadge count={comparePerks.length} onClick={() => setView('compare')} onClear={clearCompare} theme={theme} />
         </div>
       );
     };

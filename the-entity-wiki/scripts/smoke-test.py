@@ -150,6 +150,8 @@ def main():
     database = load_json(DATABASE_PATH)
     cosmetics = load_json(COSMETICS_PATH)
     killer = database["killers"][0]
+    perks = database["perks"]
+    maps = database["maps"]
     addon = next(entry for entry in database["addons"] if entry.get("role") == "killer")
     offering = next(entry for entry in database["offerings"] if not entry.get("retired"))
     cosmetic = next(
@@ -204,17 +206,33 @@ def main():
             "label": "killer-profile",
             "params": {"view": "killers", "profileId": killer["id"]},
             "check": lambda state: (
-                state["smokeView"] == "killers" or (_ for _ in ()).throw(RuntimeError(f"killer-profile: expected killers, found {state['smokeView']}")),
-                state["smokeProfile"] == killer["id"] or (_ for _ in ()).throw(RuntimeError("killer-profile: modal did not open")),
+                state["smokeView"] == "profile" or (_ for _ in ()).throw(RuntimeError(f"killer-profile: expected profile, found {state['smokeView']}")),
+                state["smokeProfile"] == killer["id"] or (_ for _ in ()).throw(RuntimeError("killer-profile: profile page missing")),
             ),
         },
         {
             "label": "survivor-profile-cosmetic",
             "params": {"view": "survivors", "profileId": cosmetic["baseCharacterId"], "cosmeticId": cosmetic["id"]},
             "check": lambda state: (
-                state["smokeView"] == "survivors" or (_ for _ in ()).throw(RuntimeError(f"survivor-profile-cosmetic: expected survivors, found {state['smokeView']}")),
-                state["smokeProfile"] == cosmetic["baseCharacterId"] or (_ for _ in ()).throw(RuntimeError("survivor-profile-cosmetic: profile modal missing")),
+                state["smokeView"] == "profile" or (_ for _ in ()).throw(RuntimeError(f"survivor-profile-cosmetic: expected profile, found {state['smokeView']}")),
+                state["smokeProfile"] == cosmetic["baseCharacterId"] or (_ for _ in ()).throw(RuntimeError("survivor-profile-cosmetic: profile page missing")),
                 state["smokeTarget"] or (_ for _ in ()).throw(RuntimeError("survivor-profile-cosmetic: focused cosmetic missing")),
+            ),
+        },
+        {
+            "label": "perk-page",
+            "params": {"view": "perk", "perkId": perks[0]["id"]},
+            "check": lambda state: (
+                state["smokeView"] == "perk" or (_ for _ in ()).throw(RuntimeError(f"perk-page: expected perk, found {state['smokeView']}")),
+                (perks[0]["name"] in state["text"]) or (_ for _ in ()).throw(RuntimeError("perk-page: perk name missing")),
+            ),
+        },
+        {
+            "label": "map-page",
+            "params": {"view": "map", "mapId": maps[0]["id"]},
+            "check": lambda state: (
+                state["smokeView"] == "map" or (_ for _ in ()).throw(RuntimeError(f"map-page: expected map, found {state['smokeView']}")),
+                (maps[0]["name"] in state["text"]) or (_ for _ in ()).throw(RuntimeError("map-page: map name missing")),
             ),
         },
         {
