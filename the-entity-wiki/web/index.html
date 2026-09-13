@@ -852,6 +852,10 @@
     .home-feat .snip { font-size: 13px; line-height: 1.55; color: var(--text); margin: 0 0 6px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     .home-feat .go { font-size: 13px; color: var(--link); font-weight: 600; }
     .home-secttl { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 26px 0 10px; }
+    .mp-welcome { border: 1px solid var(--stroke); background: var(--glass-bg); padding: 26px 20px; text-align: center; margin: 18px 0 0; }
+    .mp-welcome-title { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--text); margin: 0; line-height: 1.25; }
+    .mp-welcome-name { color: var(--link); }
+    .mp-welcome-sub { margin: 8px 0 0; font-size: 14px; color: var(--muted); }
     .home-linklist { border-top: 1px solid var(--stroke); }
     .home-linkrow { display: flex; align-items: center; gap: 12px; width: 100%; background: none; border: none; border-bottom: 1px solid var(--stroke); color: var(--text); font-size: 15px; min-height: 52px; padding: 8px 4px; cursor: pointer; text-align: left; }
     .home-linkrow .lbl { flex: 1; min-width: 0; color: var(--link); }
@@ -3802,12 +3806,12 @@
       );
     };
     // ── App toolbar (Wikipedia-app style: 4 fixed destinations) ──
-    const AppToolbar = ({ currentView, hasArticle, drawerOpen, onSearch, onSections, onSaved, onRandom }) => {
+    const AppToolbar = ({ currentView, hasArticle, drawerOpen, onSearch, onSections, onSaved, onSettings }) => {
       const tabs = [
         { id: 'search', label: 'Search', Icon: Icons.Search, active: currentView === 'home', onTap: onSearch },
         { id: 'sections', label: 'Sections', Icon: Icons.List, active: drawerOpen || hasArticle, onTap: onSections },
         { id: 'saved', label: 'Saved', Icon: Icons.Star, active: currentView === 'favorites', onTap: onSaved },
-        { id: 'random', label: 'Random', Icon: Icons.Dices, active: false, onTap: onRandom },
+        { id: 'settings', label: 'Settings', Icon: Icons.Gear, active: currentView === 'settings', onTap: onSettings },
       ];
       return (
         <div className="fixed bottom-0 left-0 w-full z-[55]">
@@ -5424,36 +5428,10 @@
               </div>
             ) : (
               <div>
-                {(() => {
-                  const dateKey = getWorldleDateKey();
-                  const featType = ['killer', 'survivor', 'perk'][hashString(dateKey) % 3];
-                  const featPool = featType === 'killer' ? killers : featType === 'survivor' ? survivors : perks;
-                  const feat = pickDeterministicEntry(featPool || [], `featured:${dateKey}:${featType}`);
-                  if (!feat) return null;
-                  const isPerk = featType === 'perk';
-                  const snip = isPerk
-                    ? stripHtml(feat.descriptionPost95 || feat.description || '')
-                    : featType === 'killer'
-                      ? ((typeof KILLER_GUIDES !== 'undefined' && KILLER_GUIDES[feat.name]?.tldr) || '')
-                      : (feat.lore ? feat.lore.split('\n\n')[0] : '');
-                  const openFeat = () => { if (isPerk) { onPerkTap && onPerkTap(feat); } else { onOpenCharacterProfile && onOpenCharacterProfile(feat); } };
-                  return (
-                    <div>
-                      <p className="home-secttl">Featured today</p>
-                      <button type="button" className="home-feat" onClick={openFeat}>
-                        <span className="thumb">
-                          <AssetFrame type={isPerk ? 'Perk' : featType === 'killer' ? 'Killer' : 'Survivor'} size="fill" imageUrl={feat.image} fallbackIcon={<Icons.Zap width={24} height={24} className="text-zinc-500" />} />
-                        </span>
-                        <span style={{ minWidth: 0 }}>
-                          <span className="kicker">{featType === 'killer' ? 'Killer of the day' : featType === 'survivor' ? 'Survivor of the day' : 'Perk of the day'}</span>
-                          <h3>{feat.name}</h3>
-                          {snip ? (<span className="snip">{snip}</span>) : null}
-                          <span className="go">Read article →</span>
-                        </span>
-                      </button>
-                    </div>
-                  );
-                })()}
+                <div className="mp-welcome">
+                  <p className="mp-welcome-title">Welcome to <span className="mp-welcome-name">The Entity's Wiki</span>,</p>
+                  <p className="mp-welcome-sub">The free DBD encyclopedia.</p>
+                </div>
                 <p className="home-secttl">Browse the wiki</p>
                 <div className="home-linklist">
                   {[
@@ -11949,11 +11927,6 @@
       const [articleSections, setArticleSections] = useState(null);
       const [drawerCurrent, setDrawerCurrent] = useState('lead');
       const articleScrollToRef = useRef(null);
-      const openRandomCharacter = useCallback(() => {
-        const pool = [...(killers || []), ...(survivors || [])];
-        if (!pool.length) return;
-        openCharacterPage(pool[Math.floor(Math.random() * pool.length)]);
-      }, [killers, survivors, openCharacterPage]);
       const jumpToArticleSection = useCallback((id) => {
         setDrawerCurrent(id);
         setDrawerOpen(false);
@@ -12576,7 +12549,7 @@
             onSearch={() => setView('home')}
             onSections={() => { setDrawerCurrent('lead'); setDrawerOpen(true); triggerHaptic('Light'); }}
             onSaved={() => setView('favorites')}
-            onRandom={openRandomCharacter}
+            onSettings={() => setView('settings')}
           />
           <SectionDrawer
             open={drawerOpen}
