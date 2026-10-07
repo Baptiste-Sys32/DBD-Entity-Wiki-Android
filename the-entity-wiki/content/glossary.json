@@ -513,6 +513,10 @@
       {
         "term": "Reset",
         "def": "Everyone heal and spread."
+      },
+      {
+        "term": "Intent System",
+        "def": "In-match Survivor text-message wheel (8 predefined messages, 1s anti-spam cooldown). Opened by holding scroll-button (mouse) or right d-pad (controller); customizable under Settings > Gameplay > Messages. Mute players via Match Details; opting out shows a \"no\" icon to others."
       }
     ]
   },
@@ -641,6 +645,18 @@
       {
         "term": "Tome / Archives / Rift",
         "def": "Challenge tracks and battle-pass style progression."
+      },
+      {
+        "term": "Abandon",
+        "def": "Leave-trial option when bots ruin the match: the last human Survivor (all others bots), or the Killer (all remaining Survivors bots with at least 1 not Dying). Counts as an MMR draw."
+      },
+      {
+        "term": "Surrender",
+        "def": "Leave-trial option when all Survivors are simultaneously in the Dying State. Survivors count as Surrendered; counts as an MMR loss."
+      },
+      {
+        "term": "End Trial",
+        "def": "Killer option when all remaining Survivors are bots in the Dying State. Remaining bot Survivors are Sacrificed; MMR follows total match results."
       }
     ]
   },

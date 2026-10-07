@@ -1,5 +1,13 @@
 [
   {
+    "version": "5.34.1",
+    "date": "October 7, 2026",
+    "changes": [
+      "UPDATE : Synced to Dead by Daylight 10.2.0 mid-chapter patch notes with 58 perk updates, perk renames (Object of Obsession, Sole Survivor), Nier Automata and Rift Academia cosmetics, and new glossary entries",
+      "UPDATE : Added Survivor Intent System, Abandon, Surrender, and End Trial glossary coverage"
+    ]
+  },
+  {
     "version": "5.34.0",
     "date": "September 6, 2026",
     "changes": [

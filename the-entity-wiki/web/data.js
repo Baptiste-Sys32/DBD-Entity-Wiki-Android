@@ -871,7 +871,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "You get excited in anticipation of hooking your prey.\n\nWhile transporting a body, your Terror Radius is increased by 12 meters and you have 6/12/18% Haste.\n\nHaste increases Killer movement speed.",
       "image": "dbd_images/perks/IconPerks_agitation.png",
-      "descriptionPost95": "While carrying a Survivor: - You gain 6/12/18% Haste. - Your Terror Radius is 12m larger."
+      "descriptionPost95": "While carrying a Survivor: - You gain 14/16/18% Haste. - Your Terror Radius is 12m larger."
     },
     {
       "id": "7c61d214-5247-405b-80d6-2ddf7e9d7ad1",
@@ -961,7 +961,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "Unlocks potential in one's aura reading ability. Each time a generator is fully repaired, Survivors within 16 meters of the completed generator will be revealed for 5 seconds.\n\nWhen the last generator is fully repaired, all the Survivors' auras are revealed for 5/7/10 seconds.",
       "image": "dbd_images/perks/IconPerks_bitterMurmur.png",
-      "descriptionPost95": "Whenever a Generator is completed, you see the Auras of Survivors within 16m of it for 5s. When all Generators are completed, you see the Auras of all Survivors for 5/7/10s."
+      "descriptionPost95": "Whenever a Generator is completed, you see the Auras of Survivors within 20m of it for 10s. When all Generators are completed, you see the Auras of all Survivors for 16/18/20s."
     },
     {
       "id": "c56e61f3-0d14-46d0-86d9-7a0207a309e8",
@@ -988,7 +988,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "It’s as if a latent part of yourself has awakened. You feel like you can reach out beyond yourself for assistance.\n\nWhen you or the Obsession are injured, you both see each other's auras.\n\nAfter completing a healing action on the Obsession, or having the Obsession complete a healing action on you, you both gain a 5/6/7% Haste status effect until no longer within 16 meters of each other.\n\nReduces the odds of being the Obsession.\n\nIf you are the Obsession, this perk deactivates.\n\nThe Killer can only be obsessed with one Survivor at a time.\n\nHaste increases Survivor movement speed.",
       "image": "dbd_images/perks/IconPerks_bloodPact.png",
-      "descriptionPost95": "While you are not the Obsession: - While you or the Obsession are injured, you see each other's Auras. - Whenever you finish healing the Obsession, or they finish healing you, while within 16m of each other, you both gain 5/6/7% Haste. When the trial starts, you are less likely to be the Obsession."
+      "descriptionPost95": "While you are not the Obsession: - While you or the Obsession are injured, you see each other's Auras. - Whenever you finish healing the Obsession, or they finish healing you, while within 16m of each other, you both gain 5/6/7% Haste. While you are the Obsession, if you are hooked another Survivor becomes the Obsession. When the trial starts, you are less likely to be the Obsession."
     },
     {
       "id": "416727d0-e932-4c3d-9668-55ae8b17be7b",
@@ -1024,7 +1024,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "To capture your prey, you must first extinguish their hope.\n\nWhenever you snuff a Boon Totem, the totem is destroyed instead.\n\nWhen you destroy a Boon Totem this way, the auras of all Survivors inside the Boon Totem range are revealed to you for 6/7/8 seconds.",
       "image": "dbd_images/perks/IconPerks_shatteredHope.png",
-      "descriptionPost95": "Whenever you snuff a Boon Totem: - You see the Auras of all Survivors within its range for 6/7/8s. - It is destroyed."
+      "descriptionPost95": "Whenever you snuff a Boon Totem, it is destroyed. Whenever a Totem is blessed, cleansed or destroyed: - Dull Totems are blocked for 16/18/20s. - Hex Totems are blocked for 16/18/20s. - You see the Auras of Boon Totems for 16/18/20s."
     },
     {
       "id": "765775d3-949e-47fe-b752-55b5abef864c",
@@ -1096,7 +1096,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Animals seem to trust you as they often stay calm in your presence.\n\n- Reduces chances of alerting woodland creatures by 100%.\n- Allows you to overcome the urge to scream.\n- Allows you to open chests and cleanse/bless Totems silently, but at 40/35/30% reduced speed.",
       "image": "dbd_images/perks/IconPerks_calmSpirit.png",
-      "descriptionPost95": "You do not scare Crows or scream. You bless and cleanse Totems, and unlock Chests silently, but 40/35/30% slower."
+      "descriptionPost95": "You do not scare Crows or scream. You bless and cleanse Totems, and unlock Chests silently and 8/9/10% faster."
     },
     {
       "id": "48e14117-8981-4d95-8429-3d17e54c13d1",
@@ -1150,7 +1150,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Unlocks potential in one's aura reading ability.\n\nEach time a generator is completed, Dark Sense activates.\n\nWhile Dark Sense is active, the Killer entering a 24-meter radius around you reveals their aura for 5/7/10 seconds.\n\nOnce the aura's duration expires, Dark Sense deactivates.",
       "image": "dbd_images/perks/IconPerks_darkSense.png",
-      "descriptionPost95": "Whenever a Generator is completed, when the Killer gets within 24m of you, you see their Aura for 5/7/10s."
+      "descriptionPost95": "Whenever a Generator is completed, when the Killer gets within 20m of you, for 13/14/15s: - You see the Aura of Pallets and Windows within 32m. - You see the Auras of other Survivors. - You see the Killer's Aura."
     },
     {
       "id": "c6f5369e-23a7-4e61-8bf3-b1345ed3c1b2",
@@ -1177,7 +1177,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "When you hook a Survivor, Dead Man’s Switch activates. The first Survivor that stops repairing a generator causes The Entity to block it for 25/30/35 seconds.\n\nThe affected generator is highlighted by a white aura.\n\nDead Man’s Switch cannot reactivate while it is blocking a generator.",
       "image": "dbd_images/perks/IconPerks_deadMansSwitch.png",
-      "descriptionPost95": "When you hook a Survivor, the first time a Survivor stops repairing a Generator, it is blocked for 25/30/35s. Cooldown: 25/30/35s."
+      "descriptionPost95": "When you hook a Survivor, the first time a Survivor stops repairing a Generator for more than 2s, it is blocked for 30/35/40s. Cooldown: 30/35/40s."
     },
     {
       "id": "a706b265-6d9b-4501-9bcb-59a260fcbb87",
@@ -1207,7 +1207,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "While a Survivor sees your aura, you see their aura.\n\nEvery 40/35/30 seconds, reveal your aura to the Survivor with the lowest chase time for 3 seconds.",
       "image": "dbd_images/perks/IconPerks_deerstalker.png",
-      "descriptionPost95": "Every 40/35/30s, the Survivor with the least time in chase sees your Aura for 3s. While a Survivor sees your Aura, you see their Aura."
+      "descriptionPost95": "Every 40/35/30s, the Survivor with the least time in chase sees your Aura for 4s. While a Survivor sees your Aura, you see their Aura."
     },
     {
       "id": "996509d8-617e-4b69-9fe0-d74e1a12c58b",
@@ -1270,7 +1270,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "Your horrifying emanation strikes at a supernaturally long distance.\n\nYour Terror Radius is increased by 20/25/30%.",
       "image": "dbd_images/perks/IconPerks_distressing.png",
-      "descriptionPost95": "Your Terror Radius is 20/25/30% larger."
+      "descriptionPost95": "Survivors within your Terror Radius repair 6/7/8% slower. Your Terror Radius is 30% larger."
     },
     {
       "id": "c25de189-b41d-4ba3-ad7b-442f1576994e",
@@ -1328,7 +1328,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "The increased pressure of losing your prey fills you with anger and gives you unsuspected motivation.\n\nEach time the Survivors complete repairs on a generator, Fire Up grows in power.\n\n- For each generator completed, gain a 4/5/6% stackable buff that grants a speed bonus to picking up, dropping, vaulting, damaging generators, and breaking pallets and breakable walls for the remainder of the trial.",
       "image": "dbd_images/perks/IconPerks_fireUp.png",
-      "descriptionPost95": "Whenever a Generator is completed, earn 1 Token, up to 5. For each Token: - You basic-break Pallets and Breakable Walls 4/5/6% faster. - You damage Generators 4/5/6% faster. - You pick-up and drop Survivors 4/5/6% faster. - You basic-vault Windows 4/5/6% faster."
+      "descriptionPost95": "Whenever a Generator is completed, earn 1 Token, up to 5. For each Token: - You basic-break Pallets and Breakable Walls 6/7/8% faster. - You damage Generators 6/7/8% faster. - You pick-up and drop Survivors 6/7/8% faster. - You basic-vault Windows 6/7/8% faster."
     },
     {
       "id": "3e2dd367-1d00-4a3b-857e-81ef3d03fb90",
@@ -1472,7 +1472,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "A Hex rooting its power on hope. The false hope of Survivors fills you with excitement and strengthens your Totems.\n\nFor each Dull and Hex Totem remaining on the map gain a token.\n\n- Survivors' cleansing and blessing speed is reduced by 8/10/12% for each token.\n\nThe Hex effects persist as long as the related Hex Totem is standing.",
       "image": "dbd_images/perks/IconPerks_hexThrillOfTheHunt.png",
-      "descriptionPost95": "When the trial starts, a Dull Totem ignites. For each Dull and Hex Totem remaining, you have 1 Token. For each Token, Survivors bless and cleanse totems 8/9/10% slower."
+      "descriptionPost95": "The first time you hook a Survivor, a Dull Totem ignites. When you hook a Survivor, block all Hex Totems for 4/5/6s for each lit Hex Totem."
     },
     {
       "id": "f8d54b63-7495-447f-9f0b-a95f72ad174b",
@@ -1481,7 +1481,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "A Hex that gains The Entity’s favor when blood is spilled.\n\nInjuring a Survivor will call upon The Entity to block pallets from being pulled down within a 24/28/32 meter radius of the Survivor location for 15 seconds.\n\nThe Hex effects persist as long as the related Hex Totem is standing.",
       "image": "dbd_images/perks/IconPerks_hexBloodFavour.png",
-      "descriptionPost95": "When the trial starts, a Dull Totem ignites. Whenever you damage a Survivor, Upright Pallets within 24/28/32m of them are blocked for 15s."
+      "descriptionPost95": "When the trial starts, a Dull Totem ignites. Whenever a healthy Survivor becomes injured by your basic-attack, Upright Pallets within 32m of them are blocked for 13/14/15s."
     },
     {
       "id": "10f3eee2-e1d7-4e3b-9973-ac8d24c07005",
@@ -1544,7 +1544,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "Unlocks the stealth ability.\n\nStanding still for 3/2/1 seconds grants you the Undetectable status effect until you move or act again.\n\nUndetectable hides the Killer's aura, Terror Radius, and Red Stain.",
       "image": "dbd_images/perks/IconPerks_insidious.png",
-      "descriptionPost95": "After being idle for 3/2/1s, you gain Undetectable until you act."
+      "descriptionPost95": "After being idle for 2s, you gain Undetectable. Whenever you act, this ends after 6/7/8s."
     },
     {
       "id": "592d38d7-2e45-4128-80b8-c596d60b7099",
@@ -1553,7 +1553,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "The trauma caused by your brutal attacks makes crying for help painfully difficult.\n\n- When a Survivor drops a pallet, if they move 6 meters away from it within 6 seconds, they gain 5% Hindered for 3/4/5 seconds.\n\nHindered reduces Survivor movement speed.",
       "image": "dbd_images/perks/IconPerks_knockOut.png",
-      "descriptionPost95": "Whenever a Survivor drops a Pallet, for the next 6s, if they move 6m away from it, they gain 5% Hindered for 3/4/5s."
+      "descriptionPost95": "Whenever a Survivor drops a Pallet, for the next 6s, if they move 10m away from it, they gain 20% Hindered for 2/3/4s. This ends early if the Pallet is broken."
     },
     {
       "id": "3d0dea2c-ec15-41e2-a118-3a70b0cd3d82",
@@ -1562,7 +1562,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "Your powerful hold on the Survivors causes escapes to be nearly impossible.\n\nEffects of Survivor struggling are reduced by 75%. Time to struggle out of your grasp is increased by 4/8/12%.",
       "image": "dbd_images/perks/IconPerks_ironGrasp.png",
-      "descriptionPost95": "While carrying a Survivor: - They wiggle 4/8/12% slower. - Their wiggle is 75% weaker."
+      "descriptionPost95": "While carrying a Survivor: - They wiggle 10/11/12% slower. - Their wiggle is 75% weaker."
     },
     {
       "id": "939a90d0-0096-479b-ab9a-fbabc42470ab",
@@ -1754,7 +1754,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "Everything turns to dust. It is as inescapable as the coming of the night.\n\n3 seconds after injuring a Survivor by any means, Dissolution activates for 12/16/20 seconds. While Dissolution is active, if a Survivor fast vaults over a pallet inside of your Terror Radius, The Entity will break the pallet at the end of the vault, and Dissolution deactivates.",
       "image": "dbd_images/perks/IconPerks_dissolution.png",
-      "descriptionPost95": "3s after a Survivor takes damage, for 12/16/20s, the next time a Survivor fast-vaults a Pallet while within your Terror Radius, it is destroyed."
+      "descriptionPost95": "3s after a Survivor takes damage from a basic-attack, for 13/14/15s, the next time a Survivor fast-vaults a Pallet while within your Terror Radius, it is destroyed."
     },
     {
       "id": "1638c14c-e018-4825-9ed1-21d1d0615ad1",
@@ -1781,7 +1781,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "Decades of research have culminated in you: something faster, stronger, and more dangerous than any human.\n\nWhen a Survivor performs a fast vault within 12 meters of you, this perk activates. The next time you vault a window, your vaulting speed is increased by 30/35/40%.\n\nThis perk deactivates after vaulting a window.\n\nThis perk has a 25 second cooldown.",
       "image": "dbd_images/perks/IconPerks_superiorAnatomy.png",
-      "descriptionPost95": "Whenever a Survivor fast-vaults within 12m of you, the next time you basic-vault a window, it is 30/35/40% faster. Cooldown: 25s."
+      "descriptionPost95": "Whenever a Survivor medium or fast-vaults within 12m of you, the next time you basic-vault a Window, you basic-vault Windows 30/35/40% faster for 10s. Cooldown: 20s."
     },
     {
       "id": "2e5382d0-70a2-4143-b270-4743bfa0d516",
@@ -1808,7 +1808,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "The machinations of the weak and craven draw your ire. Your anger forces Survivors to reveal themselves.\n\nWhenever you damage a generator, reveal the aura of all Survivors standing within 24 meters of your position for 3/4/5 seconds.",
       "image": "dbd_images/perks/IconPerks_nowhereToHide.png",
-      "descriptionPost95": "Whenever you damage a Generator, for 3/4/5s, you see the Auras of Survivors within 18m of it."
+      "descriptionPost95": "Whenever you damage a Generator, for 3/4/5s, you see the Auras of Survivors within 24m of it."
     },
     {
       "id": "3b04e69f-2975-481b-9cc0-5eb5eafd81e1",
@@ -1835,7 +1835,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "First you pick your prey. Then you pick it apart.\n\nWhile you are chasing the Obsession, this perk activates.\n\nDamaging generators and breaking walls or pallets gives you a 7% Haste Status for 8/9/10 seconds.\n\nWhenever you hit the Survivor with the total most time in chase with a basic attack, they become the obsession.\n\nThe Killer can only be obsessed with one Survivor at a time.\n\nHaste increases Killer movement speed.",
       "image": "dbd_images/perks/IconPerks_gameAfoot.png",
-      "descriptionPost95": "While chasing the Obsession, whenever you basic-break Pallets or Breakable Walls, or damage Generators, you gain 7% Haste for 8/9/10s. Whenever you damage the Survivor with the most chase time with a basic-attack, they become the Obsession."
+      "descriptionPost95": "While chasing the Obsession, whenever you basic-break a Pallet or Breakable Wall, or damage a Generator, you gain 10% Haste for 8/9/10s. Whenever you damage the Survivor with the most chase time with a basic-attack, they become the Obsession."
     },
     {
       "id": "9c388a3b-74ce-4b9b-90be-d71b6c459ac7",
@@ -1880,7 +1880,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "Free from your shackles, you are born anew and prepared to eliminate your creators.\n\nWhen you damage a generator, it becomes Compromised. Only one generator can be Compromised at a time.\n\nWhen the Compromised generator is completed, you gain Undetectable and 8% Haste for 40/50/60 seconds.\n\nUndetectable hides the Killer's aura, Terror Radius, and Red Stain.\n\nHaste increases Killer movement speed.",
       "image": "dbd_images/perks/IconPerks_machineLearning.png",
-      "descriptionPost95": "Whenever you damage a Generator, it becomes compromised. When that Generator is completed by Survivors: - You gain 8% Haste for 40/50/60s. - You gain Undetectable for 40/50/60s. Only one Generator can be compromised at a time."
+      "descriptionPost95": "Whenever you damage a Generator, it becomes compromised. When any compromised Generator is completed by Survivors: - You gain 8% Haste for 40/50/60s. - You gain Undetectable for 40/50/60s. Other Generators lose compromised. Up to 3 Generators can be compromised at a time."
     },
     {
       "id": "a723238b-4fcb-4720-98dc-9361b4f7b7d4",
@@ -1943,7 +1943,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "Pain lingers in the air, an alluring aroma that excites the impulses.\n\nThis perk activates for 24/27/30 seconds after a Survivor becomes injured by any means.\n\nAfter vaulting a window, you gain 7% Haste for 10 seconds.\n\nHaste increases Killer movement speed.\n\n\"I heard it. Running. It was getting closer!” - Anonymous Testimony, 09/09/1979",
       "image": "dbd_images/perks/IconPerks_unbound.png",
-      "descriptionPost95": "Whenever a healthy Survivor becomes injured, for the next 24/27/30s, whenever you basic-vault a window, gain 7% Haste for 10s."
+      "descriptionPost95": "Whenever a Survivor takes damage, for the next 26/28/30s, whenever you basic-vault a Window, you gain 5% Haste for 25s."
     },
     {
       "id": "f5d6a865-79b9-451f-b15b-82bfce4bcff8",
@@ -1961,7 +1961,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "Hope is the delusion that keeps its victims alive.\n\nWhen a Survivor misses a healing or repair Skill Check, gain 3 tokens, up to 18/24/30.\n\nWhen you perform the damage action on a generator, if you have any tokens, consume all of them. For each token consumed, the generator loses 1% total progress and then becomes blocked for 1 second. Then, once the generator is unblocked, it starts regressing.\n\nThis perk goes on cooldown for 60 seconds.\n\n\"Erratic behavior in machinery could be related to [REDACTED], further testing required.” - OSS Report, 12/02/1943",
       "image": "dbd_images/perks/IconPerks_undone.png",
-      "descriptionPost95": "Whenever a Survivor misses a basic Skill Check, earn 3 Tokens, up to 18/24/30. Whenever you damage a Generator, spend all Tokens. For each Token spent: - The Generator loses 1% progress. - The Generator is blocked for 1s. When that Generator is unblocked, it begins regressing. Cooldown: 60s."
+      "descriptionPost95": "Whenever you hook a Survivor, you earn 1 Token, up to 3. Whenever you damage a Generator, spend all Tokens. For each Token spent: - The Generator loses 8/9/10% progress. - The Generator is blocked for 8/9/10s."
     },
     {
       "id": "ea191a8e-1892-4bf8-8482-c383ed038e6e",
@@ -1988,7 +1988,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "When everything is going right, you are an inescapable inevitability.\n\nIncreases the duration you are blinded by any means and the duration of pallet stuns by 15%.\n\nIncreases regular vault speed by 15/20/25%.\n\n“Run all you want. I will not be denied.” - Vecna",
       "image": "dbd_images/perks/IconPerks_darkArrogance.png",
-      "descriptionPost95": "You basic-vault Windows 15/20/25% faster. Whenever you are blinded or Pallet-stunned, the duration is 15% longer."
+      "descriptionPost95": "You basic-vault Windows 15/20/25% faster. Your missed basic-attack cooldown is 15/20/25% shorter. Whenever you are blinded or Pallet-stunned, the duration is 25% longer."
     },
     {
       "id": "ce81c2eb-6f00-4be9-aae0-61616aa1c06a",
@@ -2015,7 +2015,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "The power you wield over the land strikes terror in the hearts of all who cross your path.\n\nThe first time each totem and each chest is interacted with by a Survivor, that totem or chest is blocked by the Entity for 8/12/16 seconds.\n\nThe auras of blocked totems and chests are revealed to you in white.\n\n\"Tragic, is it not? How powerless you must feel.\" - Dracula",
       "image": "dbd_images/perks/IconPerks_Dominance.png",
-      "descriptionPost95": "The first time each Chest is being unlocked and each Totem is being blessed or cleansed by a Survivor, it is blocked for 8/12/16s."
+      "descriptionPost95": "The first time each Totem is being blessed or cleansed by a Survivor: - It is blocked for 25s. - That Survivor screams. - You see their Aura for 3/4/5s."
     },
     {
       "id": "178688f3-64ba-4e06-85a4-2ec75c3fb211",
@@ -2051,7 +2051,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "You've been driven to the absolute depths of pain, and now you're ready to inflict that pain on others.\n\nAfter you damage Survivors 8 times with basic attacks, a Dull Totem becomes a Hex Totem, cursing all Survivors.\n\nWhen you damage a Survivor with a basic attack, they gain 5% Hindered for 10/12.5/15 seconds.\n\nThe effects last until the Hex Totem is cleansed.\n\nHindered reduces Survivor movement speed.\n\n\"All of the liabilities of this world are due to the inadequacies of the person involved.\" - Ken Kaneki",
       "image": "dbd_images/perks/T_UI_iconPerks_NothingButMisery.png",
-      "descriptionPost95": "After you damage Survivors with a basic-attack 8 times, a Dull Totem ignites. Whenever you damage a Survivor with a basic-attack, they gain 5% Hindered for 10/12.5/15s."
+      "descriptionPost95": "After you damage Survivors with a basic-attack 4 times, a Dull Totem ignites. Whenever you damage a Survivor with a basic-attack: - They gain 5% Hindered for 10/12.5/15s. - They vault 10% slower for 10/12.5/15s."
     },
     {
       "id": "84437572-9948-4a9f-a580-907e74b4d9de",
@@ -2078,7 +2078,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "Try as they might, you know how to stay one step ahead of your guests.\n\nWhen you damage a generator, it becomes Compromised. Only one generator can be Compromised at a time.\n\nWhen the Compromised generator is completed, your successful basic attack cooldowns are 25% faster for 40/50/60 seconds.\n\n\"You only think you are in control...\" - Springtrap",
       "image": "dbd_images/perks/IconPerks_HelpWanted.png",
-      "descriptionPost95": "Whenever you damage a Generator, it is compromised. When that Generator is completed by Survivors, your basic-attack cooldowns are 25% shorter for 40/50/60s. Only 1 Generator can be compromised at a time."
+      "descriptionPost95": "Whenever you damage a Generator, it is compromised. When that Generator is completed by Survivors: - Your successful basic-attack cooldowns are 25% shorter for 70/80/90s. - Generators not being repaired regress at 150% speed for 70/80/90s. - Other Generators lose compromised. Up to 3 Generators can be compromised at a time."
     },
     {
       "id": "1ab5bdd8-1ddf-4c96-a6cb-e2594762ed28",
@@ -2105,7 +2105,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "The scent of blood is in the air. Time to feast.\n\nWhenever you hook a Survivor for the first time, gain 1 token, up to a maximum of 4.\n\nWhen you have 4 tokens, all Survivors scream and are inflicted with Exposed for 40/50/60 seconds.\n\nExposed Survivors are downed by basic attacks, even if uninjured.\n\n“Weeping Ginevra’s blood streams/The devil smells the weak.” —Fabbro Barone’s “Ginevra”",
       "image": "dbd_images/perks/IconPerks_Ravenous.png",
-      "descriptionPost95": "The first time you hook each Survivor, you earn 1 Token. When you have 4 Tokens, all Survivors: - Scream. - Gain Exposed for 40/50/60s."
+      "descriptionPost95": "The first time you hook each Survivor, you earn 1 Token. For each Token: - Gain 4% Haste while carrying Survivors. - Hook Survivors 4% faster. When you have 4 Tokens, all Survivors: - Scream. - Gain Exposed for 80/85/90s."
     },
     {
       "id": "db9dc9dd-87a4-4d5f-8752-23dcdde0ae00",
@@ -2132,7 +2132,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Unlocks potential in one's aura reading ability. While you are on the hook, all Survivor's auras are revealed to all other Survivors. If The Killer is within a 8/12/16 meter range, The Killer's aura is revealed to you and all other Survivors.\n\nWhile a Survivor other than you is on the hook, all other Survivors’ auras are revealed to you. If The Killer is within a 8/12/16 meter range of the hooked Survivor, The Killer's aura is revealed to you.",
       "image": "dbd_images/perks/IconPerks_kindred.png",
-      "descriptionPost95": "While you are hooked, all Survivors see each others' Auras. While the Killer is within 8/12/16m, all Survivors sees the Killer's Aura. While another Survivor is hooked, you see the Auras of other Survivors. While the Killer is within 8/12/16m of the hooked Survivor, you see the Killer's Aura."
+      "descriptionPost95": "While you are hooked, all Survivors see each others' Auras. While the Killer is within 14/15/16m, all Survivors sees the Killer's Aura. While another Survivor is hooked, you see the Auras of other Survivors. While the Killer is within 14/15/16m of the hooked Survivor, you see the Killer's Aura."
     },
     {
       "id": "856e54dd-d045-4ca3-980b-b774404c4a67",
@@ -2231,7 +2231,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "Your fervent care of the hooks found in the basement have aroused The Entity's interest.\n\nAt the start of the trial, 4 random hooks are changed into scourge hooks. You see their auras in white.\n\n- Scourge Hooks grant 10/15/20% faster Entity progression if the Killer is not within 24 meters.\n\nBasement hooks count as Scourge Hooks.",
       "image": "dbd_images/perks/IconPerks_scourgeHookMonstrousShrine.png",
-      "descriptionPost95": "When the trial starts: - 4 random Hooks become Scourge Hooks. - The Basement Hooks become Scourge Hooks. While you are at least 24m away from a Survivor on a Scourge Hook, they are sacrificed 10/15/20% faster."
+      "descriptionPost95": "When the trial starts: - 4 random Hooks become Scourge Hooks. - The Basement Hooks become Scourge Hooks. While you are at least 24m away from a Survivor on a Scourge Hook, Generators not being repaired regress at 150/175/200% speed."
     },
     {
       "id": "8c9bf71f-68ba-456e-bacb-6b5219a761b1",
@@ -2258,7 +2258,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "It is inconceivable to leave someone behind. Once the exit gates are powered, you gain the following effects:\n\n- 50/75/100% bonus action speed when healing and unhooking other Survivors.\n- When unhooking a Survivor, increase the Haste they gain by 10%.\n- The auras of all other Survivors are revealed to you.\n\nHaste increases Survivor movement speed.",
       "image": "dbd_images/perks/IconPerks_noOneLeftBehind.png",
-      "descriptionPost95": "When all Generators are completed: - You heal other Survivors 50/75/100% faster. - You unhook other Survivors 50/75/100% faster. - Whenever you unhook a Survivor, they gain 10% more Haste. - You see the Auras of other Survivors."
+      "descriptionPost95": "When all Generators are completed: - You heal other Survivors 80/90/100% faster. - You unhook other Survivors 80/90/100% faster. - Whenever you unhook a Survivor, they gain 10% more Haste. - You see the Auras of other Survivors."
     },
     {
       "id": "8adf88bc-7a4d-400d-9bdb-917d37d01ed2",
@@ -2280,7 +2280,7 @@ var DATABASE = {
     },
     {
       "id": "42701511-01fb-4eac-b660-5268afd34953",
-      "name": "Bound by Obsession",
+      "name": "Object of Obsession",
       "aliases": [
         "Object of Obsession"
       ],
@@ -2288,7 +2288,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "A supernatural bond links you to the Killer.\n\nWhile your aura is revealed to the Killer, the Killer's aura becomes visible to you and you gain a 2/4/6% bonus to healing, repairing and cleansing speed.\n\nIf you are the Obsession, your aura is revealed to the Killer for 3 seconds once every 30 seconds.\n\nIncreases your chances of being the Obsession.\n\nThe Killer can only be obsessed with one Survivor at a time.",
       "image": "dbd_images/perks/IconPerks_objectOfObsession.png",
-      "descriptionPost95": "While you are the Obsession, every 30s, the Killer sees your Aura for 3s. While the Killer sees your Aura: - You see their Aura. - You cleanse totems 2/4/6% faster. - You heal 2/4/6% faster. - You repair 2/4/6% faster. When the trial starts, you are more likely to be the Obsession."
+      "descriptionPost95": "While you are the Obsession, every 30s, the Killer sees your Aura for 4s. While the Killer sees your Aura: - You see their Aura. - You bless and cleanse Totems 8/9/10% faster. - You heal 8/9/10% faster. - You repair 8/9/10% faster. When the trial starts, you are more likely to be the Obsession."
     },
     {
       "id": "e62ef844-923b-46c0-bc8c-932bf316e667",
@@ -2324,7 +2324,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "You have a knack for finding medicine.\n\n- Unlocking chests is 75/100/125% faster.\n- The hearing distance for noises from unlocking chests is reduced by 12 meters.\n- Pharmacy guarantees an Emergency Med-kit upon completing the interaction.",
       "image": "dbd_images/perks/IconPerks_pharmacy.png",
-      "descriptionPost95": "Whenever you unlock a Chest, it will contain a rare Med-Kit. You unlock Chests 75/100/125% faster. The range at which the Killer hears you unlocking Chests is 12m shorter."
+      "descriptionPost95": "Whenever you unlock a Chest, it will contain a rare Med-Kit. You unlock and rummage Chests 75/100/125% faster. You can rummage each Chest 1 time. The range at which the Killer hears you unlocking Chests is 12m shorter."
     },
     {
       "id": "223a4acf-7db9-4c9b-9b3c-c185af95faf3",
@@ -2346,7 +2346,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Unlocks potential in one's aura reading ability. Reveal unopened chests and items when within a 32/48/64 meter range. Increases the odds of finding an item of higher rarity from chests by 50%.",
       "image": "dbd_images/perks/IconPerks_plunderersInstinct.png",
-      "descriptionPost95": "Within 32/48/64m of locked Chests and dropped items, you see their Auras. Whenever you unlock a Chest, you are 50% more likely to find an item of higher rarity."
+      "descriptionPost95": "You see the Auras of Chests and Items. You unlock Chests 150/175/200% faster. Whenever you unlock a Chest, you are 50% more likely to find an item of higher rarity."
     },
     {
       "id": "4154f760-078c-4df9-92a5-abf8fbd74508",
@@ -2382,7 +2382,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "You have the undeniable capability to sense danger. Get an auditory warning when looking in the direction of the Killer in a 45 degree cone within a range of 36 meters. Premonition has a cooldown of 60/45/30 seconds each time it activates.",
       "image": "dbd_images/perks/IconPerks_premonition.png",
-      "descriptionPost95": "While the Killer is within 36m of you and inside a 45 degree cone, whenever you look at them, you hear a sound cue. Cooldown: 60/45/30s."
+      "descriptionPost95": "While not chased by the Killer, whenever you look in the Killer's direction within 32m: - You are notified. - You see the Killer's Aura for 3s. Cooldown: 55/50/45s."
     },
     {
       "id": "15f879c3-7043-4a13-8239-ab465e0d361f",
@@ -2436,7 +2436,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "You’re accustomed to being hunted by malicious forces, and you’ve begun using it to your advantage.\n\nRepressed Alliance activates after repairing generators for a total of 55/50/45 seconds.\n\nWhen repairing a generator while the perk is active, press the Active Ability Button 1 to call upon The Entity to block the generator for 30 seconds. The perk deactivates.\n\nThis interaction is not available if other Survivors are repairing the generator.\n\nAffected generators will be revealed by a white aura to all Survivors.",
       "image": "dbd_images/perks/IconPerks_repressedAlliance.png",
-      "descriptionPost95": "After repairing Generators for 55/50/45s, while repairing a Generator alone, use Active Ability Button 1 to block that generator for 15s."
+      "descriptionPost95": "After repairing Generators for 40/35/30s, while repairing a Generator alone, use Active Ability Button 1 to block that generator for 15s."
     },
     {
       "id": "8e3bbf89-2207-4bdd-8878-9a14409adf97",
@@ -2445,7 +2445,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "You are motivated in dire situations. Grants 3/6/9% additional speed when repairing, sabotaging, healing, unhooking, vaulting, cleansing or blessing a Totem, opening exit gates, and unlocking while injured.",
       "image": "dbd_images/perks/IconPerks_resilience.png",
-      "descriptionPost95": "While injured: - You bless and cleanse Totems 3/6/9% faster. - You heal 3/6/9% faster. - You open Exit Gates 3/6/9% faster. - You repair 3/6/9% faster. - You sabotage Hooks 3/6/9% faster. - You unhook Survivors 3/6/9% faster. - You unlock chests 3/6/9% faster. - You vault 3/6/9% faster."
+      "descriptionPost95": "While injured: - You bless and cleanse Totems 7/8/9% faster. - You heal 7/8/9% faster. - You open Exit Gates 7/8/9% faster. - You repair 7/8/9% faster. - You sabotage Hooks 7/8/9% faster. - You unhook Survivors 7/8/9% faster. - You unlock chests 7/8/9% faster. - You vault 7/8/9% faster."
     },
     {
       "id": "0c30ec56-706d-4479-a682-d53690316656",
@@ -2499,7 +2499,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Life's unforgiving. Sometimes it's best to look out for yourself.\n\nWhen another Survivor is hooked, you gain Elusive for 20/25/30 seconds.",
       "image": "dbd_images/perks/IconPerks_self-Preservation.png",
-      "descriptionPost95": "Whenever another Survivor is hooked, you gain Elusive for 20/25/30s."
+      "descriptionPost95": "Whenever another Survivor is hooked, you gain Elusive for 13/14/15s."
     },
     {
       "id": "0263eccc-a7a1-4a3b-bd37-240444e29d90",
@@ -2625,7 +2625,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Your presence psychically projects itself to those in danger.\n\nWhenever another Survivor is injured, they can see your aura.\n\nYou heal other Survivors 25/30/35% fast",
       "image": "dbd_images/perks/IconPerks_empathicConnection.png",
-      "descriptionPost95": "You heal other Survivors 25/30/35% faster.\n\nInjured Survivors see your Aura."
+      "descriptionPost95": "You heal other Survivors 30/35/40% faster.\n\nInjured Survivors see your Aura."
     },
     {
       "id": "37b07615-cebd-4af1-99d9-624ab6e88316",
@@ -2697,7 +2697,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "You are an expert in combat medicine. Patients leave your care reinvigorated.\n\nUpon completing a healing action on another Survivor, the targeted Survivor gets a 12/14/16% speed boost to healing, opening chests, cleansing and blessing Totems.\n\nSurvivors keep the bonus until they lose a health state.",
       "image": "dbd_images/perks/IconPerks_betterThanNew.png",
-      "descriptionPost95": "Whenever you finish healing another Survivor, until they take damage: - They bless and cleanse Totems 12/14/16% faster. - They heal 12/14/16% faster. - They unlock Chests 12/14/16% faster."
+      "descriptionPost95": "Whenever you finish healing another Survivor, until they take damage: - They bless and cleanse Totems 40/45/50% faster. - They heal 40/45/50% faster. - They unlock Chests 40/45/50% faster."
     },
     {
       "id": "53ad7029-6338-4658-aff4-bdfc74e705a3",
@@ -2760,7 +2760,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "You revel in the community spirit of a competition, and inspire others to follow suit.\n\nWhenever you finish repairing a generator with at least one other Survivor, this perk activates.\n\nYou and other survivors who finished repairing the generator with you get 5% increased repair progress speed for 100/110/120 seconds.\n\nSurvivors can only have one instance of this perk's ability active at once.",
       "image": "dbd_images/perks/IconPerks_friendlyCompetition.png",
-      "descriptionPost95": "Whenever you finish repairing a Generator with at least 1 other Survivor, Survivors who finished repairing it repair 5% faster for 100/110/120s."
+      "descriptionPost95": "Whenever you finish repairing a Generator with at least 1 other Survivor, Survivors who finished repairing it repair 10% faster for 80/85/90s."
     },
     {
       "id": "dfcae0d8-6b49-45d7-a514-f936fd98252a",
@@ -2895,7 +2895,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Your keen insight is something best shared with others.\n\nPress and hold the Ability Button 1 near a Dull or Hex Totem to bless it and create a Boon Totem. Soft chimes ring out in a 24 meter range.\n\nSurvivors inside your Boon Totem’s range see the aura of all chests and all generators in blue.\n\nIf you have a lit Boon Totem, you cleanse or bless Totems 6/8/10% faster.\n\nYou can only bless one Totem at a time. All equipped Boon perks are active on your Boon Totem.\n\n\"A shift in reality. Heavy with hidden meanings\" – Return",
       "image": "dbd_images/perks/IconPerks_boonIllumination.png",
-      "descriptionPost95": "While next to a totem, use Active Ability Button 1 to bless it, creating a unique Boon totem that combines all your Boons. Survivors within the Boon's range: - See the Auras of Chests. - See the Auras of Generators. While you have a Boon Totem, you bless and cleanse 6/8/10% faster."
+      "descriptionPost95": "While next to a Totem, use Active Ability Button 1 to bless it, creating a unique Boon Totem that combines all your Boons. Survivors within the Boon's range: - See the Auras of Chests. - See the Auras of Generators. While you have a Boon Totem, you bless 150/175/200% faster."
     },
     {
       "id": "aacfa2e9-4883-4fe5-aa6f-6d57708f8a17",
@@ -3039,7 +3039,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Once per Trial, if you are not on Death Hook, you can activate Shoulder The Burden before unhooking a Survivor.\n\nWhen they are unhooked, they lose 1 Hook State and you gain 1 Hook State, scream, and become Exposed for a brief duration.",
       "image": "assets/perks/shouldertheburden.png",
-      "descriptionPost95": "Once per trial, while you do not have 2 Hook States and are next to a hooked Survivor, use Active Ability Button 2 to unhook them: - They lose 1 Hook State. - You gain 1 Hook State. - You scream. - You gain Exposed for 60/50/40s."
+      "descriptionPost95": "Once per trial, while you do not have 2 Hook States and are next to a hooked Survivor, use Active Ability Button 2 to unhook them: - They lose 1 Hook State. - You gain 1 Hook State. - You scream. - You become Injured. - You become Broken for 160/140/120s."
     },
     {
       "id": "ed3358b4-6226-4e58-84d7-a08b3d019375",
@@ -3048,7 +3048,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Helping those in need comes easily, no matter how dire things get.\n\nWhen you heal another Survivor, for each Hook State they have, heal 30/40/50% faster and gain 3% progress for succeeding great Skill Checks.\n\n\"Look at me. My name's Orela, and I'm gonna make sure you're all right.\" - Orela Rose",
       "image": "dbd_images/perks/T_UI_iconsPerks_DoNoHarm.png",
-      "descriptionPost95": "While healing another Survivor: - For each Hook State they have, you heal 30/40/50% faster. - Whenever you hit a great basic Skill Check, you gain 3% more progress."
+      "descriptionPost95": "While healing another Survivor: - For each Hook State they have, you heal 30/35/40% faster. - Whenever you hit a great basic Skill Check, you gain 3% more progress. - Increase the odds of triggering a Skill Check by 5%."
     },
     {
       "id": "c1e6614f-811c-444a-b118-74635c34a5f0",
@@ -3129,7 +3129,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Faulty amps, sweaty dives, broken-down vans… nothing makes you feel more alive.\n\nWhile injured, not Broken and repairing a generator, gain 1 token for each regular great Skill Check success.\n\nWhen you have 6/5/4 tokens, spend all tokens and gain 100% healing speed until you stop healing.\n\nLose 1 token when you fail a regular Skill Check.\n\nBroken prevents Survivors from being healed.\n\n“Remind me to teach you how to patch your own pedals, Krit.” — Vee Boonyasak",
       "image": "dbd_images/perks/IconPerks_RoadLife.png",
-      "descriptionPost95": "While injured, not Broken and repairing a Generator: - Whenever you hit a basic great Skill Check, you earn 1 Token. - Whenever you miss a basic Skill Check, you lose 1 token. When you have 6/5/4 Tokens, spend all Tokens to heal 100% faster until you stop healing."
+      "descriptionPost95": "While injured and repairing a Generator: - Whenever you hit a basic great Skill Check, you earn 1 Token. - Whenever you miss a basic Skill Check, you lose 1 Token. - When you have 6/5/4 Tokens, you can heal yourself. Spend all Tokens to heal yourself 10% faster. - When you stop healing, this ends after 4s."
     },
     {
       "id": "fb8b1e06-d1ed-4300-b44e-aeb7448770b2",
@@ -3215,7 +3215,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "You have developed an efficient way to get off hooks.\n\n- Unlocks the ability to attempt to unhook yourself.\n- Grants up to 3 extra escape attempts on the hook.\n- Hook escape attempts have a 2/3/4% increased chance to succeed.",
       "image": "dbd_images/perks/IconPerks_slipperyMeat.png",
-      "descriptionPost95": "You can attempt to unhook yourself up to 6 times and have 2/3/4% more chance to succeed."
+      "descriptionPost95": "Other Survivors unhook you 90/95/100% faster. Whenever you are unhooked, you gain 5% more Haste."
     },
     {
       "id": "b1658b77-2755-4191-a180-5a56f80a863c",
@@ -3233,11 +3233,11 @@ var DATABASE = {
       "type": "Survivor",
       "description": "You have the undeniable capability to sense danger. Get an auditory warning when looking in the direction of Totems in a 45-degree cone within a range of 8/10/12 meters. Small Game has a cooldown of 14/12/10 seconds each time it activates. For each Dull Totem and Hex Totem cleansed by any player, gain a Token. Small Game's detection cone is reduced by 5 degrees per token.",
       "image": "dbd_images/perks/IconPerks_smallGame.png",
-      "descriptionPost95": "Within 8/10/12m of you, whenever you look at a Totem in a 45 degree cone, you hear a sound cue. Cooldown: 14/12/10s. Whenever a Survivor cleanses a Totem, you earn 1 Token, up to 5. For each Token, the cone is 5 degrees smaller."
+      "descriptionPost95": "Within 10/11/12m of a Totem, you see its Aura."
     },
     {
       "id": "b761a0e2-a9a3-476f-9c81-ca0f0b6e8dc4",
-      "name": "Down To The Last",
+      "name": "Sole Survivor",
       "aliases": [
         "Sole Survivor"
       ],
@@ -3245,7 +3245,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "As more of your friends fall to the Killer, you become shrouded in isolation and the Killer's aura-reading abilities towards you are disrupted.\n\nEvery time a fellow Survivor is killed or sacrificed, gain a token. For each token, your aura cannot be read by The Killer within a max range of 20/22/24 meters.\n\nWhen you're the last Survivor alive:\n- Gain 75% action speed when repairing generators.\n- Gain 50% action speed while opening an exit gate or the Hatch.\n\nIncreases your chances of being The Killer's Obsession.\n\nThe Killer can only be obsessed with one Survivor at a time.",
       "image": "dbd_images/perks/IconPerks_soleSurvivor.png",
-      "descriptionPost95": "Whenever a Survivor dies, you earn 1 Token. For each Token, within 20/22/24m, the Killer cannot see your Aura. When all other Survivors are dead: - You repair 75% faster. - You open Exit Gates and the Hatch 50% faster. When the trial starts, you are more likely to be the Obsession."
+      "descriptionPost95": "Whenever you are hooked or complete a Generator, you earn 1 Token, up to 6. For each Token, other Survivors open Exit Gates 10% faster. When you are the last Survivor, if you have at least 3 Tokens: - You can unlock the Hatch. - For each Token, the Killer cannot see your Aura for 6/8/10s."
     },
     {
       "id": "bb05b400-dd71-4fbf-bce8-ae9fc9b812ca",
@@ -3254,7 +3254,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Sharing painful experiences has the power to heal.\n\nWhile injured, healing a Survivor without using a Med-kit also heals you at a 50/60/70% conversion rate.",
       "image": "dbd_images/perks/IconPerks_solidarity.png",
-      "descriptionPost95": "While injured and healing another Survivor without a Med-Kit, you also gain healing progress at 50/60/70% speed."
+      "descriptionPost95": "While injured and healing another Survivor , you also gain healing progress at 65/70/75% speed."
     },
     {
       "id": "04c95215-eb62-4457-bb56-078c7897c043",
@@ -3272,7 +3272,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "The crows found in the world can communicate with you directly.\n\n100% of the time, cawing crows give you a visual cue when you are within a 20/28/36 meter range.\n\nSpies From The Shadows has a cooldown of 5 seconds.",
       "image": "dbd_images/perks/IconPerks_spiesFromTheShadows.png",
-      "descriptionPost95": "Whenever a Survivor scares a Crow within 20/28/36m of you, you are alerted. Cooldown: 5s."
+      "descriptionPost95": "Whenever a Survivor scares a Crow within 36/38/40m of you, you are alerted. Cooldown: 3s."
     },
     {
       "id": "bb7692fd-9dae-4fbd-9442-ec18c742f5ba",
@@ -3281,7 +3281,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "An unnatural tingle warns you of impending doom.\n\nGet notified when the Killer is looking at you with a clear line of sight within a 36-meter range. Your speed while repairing, sabotaging, healing, unhooking, cleansing, blessing, opening exit gates and unlocking is increased by 2/4/6%.\n- The effects of Spine Chill linger for 0.5 seconds after the Killer looks away or is out of range.",
       "image": "dbd_images/perks/IconPerks_spineChill.png",
-      "descriptionPost95": "Within 36m, whenever the Killer looks at you, you hear a sound cue. Within 36m, while the Killer is looking at you: - You bless and cleanse Totems 2/4/6% faster. - You heal 2/4/6% faster. - You open Exit Gates 2/4/6% faster. - You repair Generators 2/4/6% faster. - You sabotage Hooks 2/4/6% faster. - You unhook Survivors 2/4/6% faster. - You unlock Chests 2/4/6% faster."
+      "descriptionPost95": "Whenever the Killer looks at you within 40m: - You are notified. - You cannot scream for 12s. - You vault 10% faster for 12s. Cooldown: 40/35/30s."
     },
     {
       "id": "434be009-2075-4c07-89cc-2a5f757e2361",
@@ -3308,7 +3308,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Getting close to the Killer fills you with determination. For each 15 seconds you are standing within the Killer Terror Radius and not in a chase, you gain a token up to a maximum of 2/3/4 tokens.\n\nWhen Stake Out has at least 1 token, good Skill Checks are considered great Skill Checks, consume 1 token, and grant an additional 1% bonus to generator repair progress.",
       "image": "dbd_images/perks/IconPerks_stakeOut.png",
-      "descriptionPost95": "After hiding for 15s within the Killer's Terror Radius, you earn 1 Token, up to 2/3/4. Whenever you hit a good basic Skill Check, spend 1 Token: - The good Skill Check becomes a great Skill Check. - You gain 1% more progress."
+      "descriptionPost95": "After hiding for 15s within 24m of the Killer, while in their Terror Radius, you earn 1 Token, up to 2/3/4. While you have at least 1 Token, basic Skill Checks are replaced by special Skill Checks. Special Skill Checks grant +4% more progress. Whenever you hit or miss a special Skill Check, spend 1 Token."
     },
     {
       "id": "9a392989-fabc-44be-83ba-b7822d21a379",
@@ -3398,7 +3398,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "You perform at your best when you are under extreme stress. Great Skill Check success zones when repairing and healing get 10/20/30% bigger when you are injured.",
       "image": "dbd_images/perks/IconPerks_thisIsNotHappening.png",
-      "descriptionPost95": "While injured, great basic Skill Check zones are 10/20/30% bigger."
+      "descriptionPost95": "Good basic Skill Check zones are 150/175/200% bigger."
     },
     {
       "id": "7a59d54a-7917-4877-8ca5-bc4fecd81669",
@@ -3443,7 +3443,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "You recuperate faster from missed attacks made with your main weapon. The cooldown after missed basic attacks is reduced by 20/25/30%.",
       "image": "dbd_images/perks/IconPerks_unrelenting.png",
-      "descriptionPost95": "Whenever you miss a basic-attack, your cooldown is 20/25/30% shorter."
+      "descriptionPost95": "Whenever you miss a basic-attack, your missed basic-attack cooldown is 30/35/40% shorter. Your successful basic-attack cooldown is 10% shorter."
     },
     {
       "id": "a813e86c-fc29-41ed-b631-d09a089bcacc",
@@ -3470,7 +3470,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "You look over your friends even in dire situations.\n\nYou and Survivors within 16 meters recover 44/55/66% faster from the Blindness, Broken, Exhausted, Exposed, Hemorrhage, Hindered, Mangled and Oblivious status effects.\n\nSurvivors can only be affected by one Vigil's effect at a time.\n\nOnce out of range, this effect persists for 15 seconds.",
       "image": "dbd_images/perks/IconPerks_vigil.png",
-      "descriptionPost95": "All Survivors within 16m of you lose Exhausted 30/35/40% faster. This effect ends 15s after they leave your range."
+      "descriptionPost95": "All Survivors within 16m of you lose Exhausted 20/25/30% faster. This effect ends 15s after they leave your range."
     },
     {
       "id": "05d826d9-af67-4cf9-a5db-05e348d22a12",
@@ -3488,7 +3488,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Unlocks potential in one's aura reading ability. Once all generators are powered, exit gates are revealed to you. While opening the exit gates, reveal your aura to other Survivors.\n\nWhile this perk is active, open the exit gates 8/10/12.5% faster for each Survivor still alive.",
       "image": "dbd_images/perks/IconPerks_wakeUp.png",
-      "descriptionPost95": "When all Generators are completed: - You see the Auras of Exit Gate Switches. - While opening an Exit Gate, other Survivors see your Aura. - For each Survivor alive, you open Exit Gates 8/10/12.5% faster."
+      "descriptionPost95": "When all Generators are completed: - You see the Auras of Exit Gate Switches. - While opening an Exit Gate, other Survivors see your Aura. - For each Survivor alive, you open Exit Gates 8/9/10% faster, and an additional 20% faster for each other Survivor alive."
     },
     {
       "id": "0cb402a7-dd11-4510-ac67-70955c658ee8",
@@ -3497,7 +3497,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Helping others heightens your morale.\n\nWhen you rescue a Survivor from a hook, gain a 100% speed increase while healing others for 30/60/90 seconds.",
       "image": "dbd_images/perks/IconPerks_wellMakeIt.png",
-      "descriptionPost95": "Whenever you unhook a Survivor, for 30/60/90s, you heal other Survivors 100% faster."
+      "descriptionPost95": "Whenever you unhook a Survivor, for 70/80/90s, you heal other Survivors 100% faster."
     },
     {
       "id": "d1858747-451d-45e7-a643-34e9370a08b5",
@@ -3515,7 +3515,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "You have a rudimentary understanding of The Entity's voice.\n\nSporadically hear The Entity's whisper when standing within a 48/40/32 meter range of a Survivor.",
       "image": "dbd_images/perks/IconPerks_whispers.png",
-      "descriptionPost95": "While within 48/40/32m of a Survivor, you randomly hear whispers."
+      "descriptionPost95": "While within 28/26/24m of a Survivor, you randomly hear whispers. While outside of 28/26/24m of a Survivor, you gain 5% Haste."
     },
     {
       "id": "c332140b-588d-4288-a4ea-22f6655460d9",
@@ -3524,7 +3524,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Unlocks potential in one's aura reading ability. Auras of pallets, breakable walls, and vault locations are revealed to you when within a 24/28/32 meter range.",
       "image": "dbd_images/perks/IconPerks_windowsOfOpportunity.png",
-      "descriptionPost95": "Within 24/28/32m of you: - You see the Auras of Pallets. - You see the Auras of Breakable Walls. - You see the Auras of Windows."
+      "descriptionPost95": "Within 24m of you, you see the Auras of Windows. You vault Windows 10% faster. Whenever you vault a Window, cooldown: 40/35/30s."
     },
     {
       "id": "52b3b35a-9194-4423-8351-9498c2936230",
@@ -3632,7 +3632,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "While you are in the Killer's Terror Radius or are being chased by the Killer:\n- You see the auras of the 5 closest Pallets and Windows.\n- After you drop a Pallet, you start moving 50% earlier.\n\nWhenever you drop a Pallet, Five Moves Ahead goes on cooldown for 40/35/30 seconds.",
       "image": "assets/perks/fivemovesahead.png",
-      "descriptionPost95": "While you are in the Killer's Terror Radius or chased by the Killer: - You see the Auras of the 5 closest Pallets and Windows. - After you drop a Pallet, you start moving 50% earlier. - Whenever you drop a Pallet, cooldown: 40/35/30s."
+      "descriptionPost95": "While you are in the Killer's Terror Radius or chased by the Killer: - You see the Auras of the 5 closest Pallets. - After you drop a Pallet, you start moving 50% earlier. - Whenever you drop a Pallet, cooldown: 40/35/30s."
     },
     {
       "id": "akc-perk-003-flowstate",
@@ -3641,7 +3641,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Whenever a Generator is completed, earn 1 Token, up to 5.\n\nFor each Token, you bless and cleanse Totems 8/9/10% faster, heal 8/9/10% faster, and unhook Survivors 8/9/10% faster.",
       "image": "assets/perks/flowstate.png",
-      "descriptionPost95": "Whenever a Generator is completed, earn 1 Token, up to 5. For each Token: - You bless and cleanse Totems 8/9/10% faster. - You heal 8/9/10% faster. - You unhook Survivors 8/9/10% faster."
+      "descriptionPost95": "Whenever a Generator is completed, earn 1 Token, up to 5. For each Token: - You bless and cleanse Totems 13/14/15% faster. - You heal 13/14/15% faster. - You unhook Survivors 13/14/15% faster."
     },
     {
       "id": "k43p01-hex-scared-to-death",

@@ -1,17 +1,17 @@
 # Release Sync Summary
 
-Generated: 2026-09-06T10:54:03.885Z
-Run generatedAt: 2026-09-06T10:54:03.834Z
+Generated: 2026-10-07T06:46:37.725Z
+Run generatedAt: 2026-10-07T06:46:37.674Z
 Status: ok
-Mode: fast
-Duration: 0m 11s
+Mode: full
+Duration: 9m 20s
 
 ## File Delta Overview
 
 - Added: 0
-- Modified: 5
+- Modified: 6
 - Removed: 0
-- Total changed: 5
+- Total changed: 6
 
 ## Description Sync Overview
 
@@ -34,11 +34,16 @@ Duration: 0m 11s
 
 - [OK] health-check-community-sources (0m 0s)
 - [OK] health-check-map-layout-sources (0m 0s)
-- [OK] health-check-description-sources (0m 1s)
-- [OK] sync-catalog-updates (0m 2s)
+- [OK] health-check-description-sources (0m 7s)
+- [OK] sync-catalog-updates (0m 25s)
 - [OK] sync-community-content (0m 1s)
 - [OK] sync-map-layouts (0m 0s)
-- [OK] sync-descriptions (0m 1s)
+- [OK] sync-descriptions (0m 6s)
+- [OK] sync-game-icons (0m 0s)
+- [OK] sync-offering-fixes (0m 0s)
+- [OK] discover-cosmetics (7m 57s)
+- [OK] normalize-cosmetics (0m 0s)
+- [OK] sync-cosmetic-assets (0m 38s)
 - [OK] build-data (0m 0s)
 - [OK] normalize-images-check (0m 0s)
 - [OK] build-data-check (0m 0s)
@@ -51,12 +56,13 @@ Duration: 0m 11s
 ### Added Files (0)
 - None
 
-### Modified Files (5)
-- content/addon-description-report.json
+### Modified Files (6)
 - content/community-content.json
 - review/description-sync-report.json
 - review/map-layouts-audit.json
 - web/community-content.js
+- web/cosmetics.js
+- web/data.js
 
 ### Removed Files (0)
 - None

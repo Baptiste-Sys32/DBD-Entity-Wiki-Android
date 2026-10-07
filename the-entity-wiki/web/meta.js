@@ -1,7 +1,7 @@
 var META = {
   "appVersion": "5.34.1",
-  "gameVersion": "10.1.2",
-  "lastSynced": "September 12, 2026",
+  "gameVersion": "10.2.0",
+  "lastSynced": "October 7, 2026",
   "contact": {
     "email": "hexplosions.happen@gmail.com",
     "discord": "hexplosions_happen"

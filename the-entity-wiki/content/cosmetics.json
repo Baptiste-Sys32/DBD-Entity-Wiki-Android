@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-09-12T09:40:52.607Z",
+  "generatedAt": "2026-10-07T06:45:57.392Z",
   "metadata": {
-    "sourceDiscoveryGeneratedAt": "2026-09-12T09:40:46.791Z",
-    "characterSwapCount": 112,
-    "fullSetCount": 4245,
-    "cosmeticCount": 4245,
+    "sourceDiscoveryGeneratedAt": "2026-10-07T06:45:56.990Z",
+    "characterSwapCount": 120,
+    "fullSetCount": 4267,
+    "cosmeticCount": 4267,
     "linkedFullSetCount": 57,
     "linkedCosmeticCount": 57,
     "fullSetLinkModeCounts": {
-      "unlinked": 4188,
+      "unlinked": 4210,
       "partially_linked": 7,
       "linked": 50
     },
     "cosmeticLinkModeCounts": {
-      "unlinked": 4188,
+      "unlinked": 4210,
       "partially_linked": 7,
       "linked": 50
     }
@@ -158,7 +158,7 @@
       "pieceType": "Outfit",
       "sourceBucket": "Character swaps",
       "assetFileTitleCandidates": [
-        "File:CC108 charSelect portrait.png"
+        "File:CC111 charSelect portrait.png"
       ],
       "description": "Character swaps outfit for The Artist"
     },
@@ -558,6 +558,44 @@
         "File:CC001 charSelect portrait.png"
       ],
       "description": "Character swaps outfit for The Doctor"
+    },
+    {
+      "id": "the-dredge--belial",
+      "name": "Belial",
+      "baseCharacterId": "ff93ca55-15c2-485b-bc3d-335ef9f1d32f",
+      "baseCharacterName": "The Dredge",
+      "baseCharacterType": "Killer",
+      "groupKey": "costume",
+      "groupLabel": "Costume",
+      "collectionName": "Character swaps",
+      "image": "./dbd_images/cosmetics/character_swaps/the-dredge--belial.png",
+      "aliases": [
+        "belial",
+        "costume",
+        "character swap",
+        "character swaps",
+        "hud swap",
+        "the dredge"
+      ],
+      "sourceKind": "wiki-category",
+      "sourcePage": "The Dredge/Belial",
+      "assetProvenance": "official-portrait-exception",
+      "status": "ready",
+      "rarity": "Costume",
+      "outfitLinkMode": "character_swap",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": true,
+      "pieceType": "Outfit",
+      "sourceBucket": "Character swaps",
+      "assetFileTitleCandidates": [
+        "File:CategoryIcon_outfits.png",
+        "File:CC113 charSelect portrait.png"
+      ],
+      "description": "Character swaps outfit for The Dredge",
+      "assetIsPlaceholder": true,
+      "assetPlaceholderSource": "File:CategoryIcon_outfits.png"
     },
     {
       "id": "the-dredge--eddie-s-tribute",
@@ -1065,6 +1103,41 @@
       "description": "Character swaps outfit for The Knight"
     },
     {
+      "id": "the-legion--emil",
+      "name": "Emil",
+      "baseCharacterId": "06dc1383-c914-4a14-ad32-8354823bc8bd",
+      "baseCharacterName": "The Legion",
+      "baseCharacterType": "Killer",
+      "groupKey": "costume",
+      "groupLabel": "Costume",
+      "collectionName": "Character swaps",
+      "image": "./dbd_images/cosmetics/character_swaps/the-legion--emil.png",
+      "aliases": [
+        "emil",
+        "costume",
+        "character swap",
+        "character swaps",
+        "hud swap",
+        "the legion"
+      ],
+      "sourceKind": "wiki-category",
+      "sourcePage": "Frank, Julie, Susie, Joey/Emil",
+      "assetProvenance": "official-portrait-exception",
+      "status": "ready",
+      "rarity": "Costume",
+      "outfitLinkMode": "character_swap",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": true,
+      "pieceType": "Outfit",
+      "sourceBucket": "Character swaps",
+      "assetFileTitleCandidates": [
+        "File:CC110 charSelect portrait.png"
+      ],
+      "description": "Character swaps outfit for The Legion"
+    },
+    {
       "id": "the-legion--robbie-the-rabbit",
       "name": "Robbie The Rabbit",
       "baseCharacterId": "06dc1383-c914-4a14-ad32-8354823bc8bd",
@@ -1175,6 +1248,44 @@
         "File:CC077 charSelect portrait.png"
       ],
       "description": "Character swaps outfit for The Nurse"
+    },
+    {
+      "id": "the-nurse--mephisto",
+      "name": "Mephisto",
+      "baseCharacterId": "3191f632-4d35-4464-8c2d-db185d06209f",
+      "baseCharacterName": "The Nurse",
+      "baseCharacterType": "Killer",
+      "groupKey": "costume",
+      "groupLabel": "Costume",
+      "collectionName": "Character swaps",
+      "image": "./dbd_images/cosmetics/character_swaps/the-nurse--mephisto.png",
+      "aliases": [
+        "mephisto",
+        "costume",
+        "character swap",
+        "character swaps",
+        "hud swap",
+        "the nurse"
+      ],
+      "sourceKind": "wiki-category",
+      "sourcePage": "Sally Smithson/Mephisto",
+      "assetProvenance": "official-portrait-exception",
+      "status": "ready",
+      "rarity": "Costume",
+      "outfitLinkMode": "character_swap",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": true,
+      "pieceType": "Outfit",
+      "sourceBucket": "Character swaps",
+      "assetFileTitleCandidates": [
+        "File:CategoryIcon_outfits.png",
+        "File:CC112 charSelect portrait.png"
+      ],
+      "description": "Character swaps outfit for The Nurse",
+      "assetIsPlaceholder": true,
+      "assetPlaceholderSource": "File:CategoryIcon_outfits.png"
     },
     {
       "id": "the-nurse--the-collector",
@@ -1423,7 +1534,7 @@
       "pieceType": "Outfit",
       "sourceBucket": "Character swaps",
       "assetFileTitleCandidates": [
-        "File:CC111 charSelect portrait.png"
+        "File:CC119 charSelect portrait.png"
       ],
       "description": "Character swaps outfit for The Spirit"
     },
@@ -2295,6 +2406,42 @@
       "description": "Character swaps outfit for Cheryl Mason"
     },
     {
+      "id": "david-king--barbarian",
+      "name": "Barbarian",
+      "baseCharacterId": "bf7d5108-7017-4428-a012-865b2bc8e72f",
+      "baseCharacterName": "David King",
+      "baseCharacterType": "Survivor",
+      "groupKey": "costume",
+      "groupLabel": "Costume",
+      "collectionName": "Character swaps",
+      "image": "./dbd_images/cosmetics/character_swaps/david-king--barbarian.png",
+      "aliases": [
+        "barbarian",
+        "costume",
+        "character swap",
+        "character swaps",
+        "hud swap",
+        "david king"
+      ],
+      "sourceKind": "wiki-category",
+      "sourcePage": "David King/Barbarian",
+      "assetProvenance": "official-portrait-exception",
+      "status": "ready",
+      "rarity": "Costume",
+      "outfitLinkMode": "character_swap",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": true,
+      "pieceType": "Outfit",
+      "sourceBucket": "Character swaps",
+      "assetFileTitleCandidates": [
+        "File:SurvivorDavid.png",
+        "File:CC114 charSelect portrait.png"
+      ],
+      "description": "Character swaps outfit for David King"
+    },
+    {
       "id": "david-king--highwayman",
       "name": "Highwayman",
       "baseCharacterId": "bf7d5108-7017-4428-a012-865b2bc8e72f",
@@ -2433,7 +2580,7 @@
       "pieceType": "Outfit",
       "sourceBucket": "Character swaps",
       "assetFileTitleCandidates": [
-        "File:CC109 charSelect portrait.png"
+        "File:CC117 charSelect portrait.png"
       ],
       "description": "Character swaps outfit for Dwight Fairfield"
     },
@@ -2653,6 +2800,41 @@
         "File:CC075 charSelect portrait.png"
       ],
       "description": "Character swaps outfit for Felix Richter"
+    },
+    {
+      "id": "feng-min--2b",
+      "name": "2B",
+      "baseCharacterId": "5083636a-b37d-4747-a37b-adaf4db26161",
+      "baseCharacterName": "Feng Min",
+      "baseCharacterType": "Survivor",
+      "groupKey": "legendary",
+      "groupLabel": "Legendary",
+      "collectionName": "Character swaps",
+      "image": "./dbd_images/cosmetics/character_swaps/feng-min--2b.png",
+      "aliases": [
+        "2b",
+        "legendary",
+        "character swap",
+        "character swaps",
+        "hud swap",
+        "feng min"
+      ],
+      "sourceKind": "wiki-category",
+      "sourcePage": "Feng Min/2B",
+      "assetProvenance": "official-portrait-exception",
+      "status": "ready",
+      "rarity": "Legendary",
+      "outfitLinkMode": "character_swap",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": true,
+      "pieceType": "Outfit",
+      "sourceBucket": "Character swaps",
+      "assetFileTitleCandidates": [
+        "File:CC108 charSelect portrait.png"
+      ],
+      "description": "Character swaps outfit for Feng Min"
     },
     {
       "id": "jake-park--levi-ackerman",
@@ -3406,7 +3588,7 @@
       "pieceType": "Outfit",
       "sourceBucket": "Character swaps",
       "assetFileTitleCandidates": [
-        "File:CC110 charSelect portrait.png"
+        "File:CC118 charSelect portrait.png"
       ],
       "description": "Character swaps outfit for Rick Grimes"
     },
@@ -3481,6 +3663,42 @@
         "File:CC013 charSelect portrait.png"
       ],
       "description": "Character swaps outfit for Steve Harrington"
+    },
+    {
+      "id": "taurie-cain--necromancer",
+      "name": "Necromancer",
+      "baseCharacterId": "b4cb7d83-e55b-40ae-b9d5-a767569a90cf",
+      "baseCharacterName": "Taurie Cain",
+      "baseCharacterType": "Survivor",
+      "groupKey": "costume",
+      "groupLabel": "Costume",
+      "collectionName": "Character swaps",
+      "image": "./dbd_images/cosmetics/character_swaps/taurie-cain--necromancer.png",
+      "aliases": [
+        "necromancer",
+        "costume",
+        "character swap",
+        "character swaps",
+        "hud swap",
+        "taurie cain"
+      ],
+      "sourceKind": "wiki-category",
+      "sourcePage": "Taurie Cain/Necromancer",
+      "assetProvenance": "official-portrait-exception",
+      "status": "ready",
+      "rarity": "Costume",
+      "outfitLinkMode": "character_swap",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": true,
+      "pieceType": "Outfit",
+      "sourceBucket": "Character swaps",
+      "assetFileTitleCandidates": [
+        "File:SurvivorTaurie.png",
+        "File:CC116 charSelect portrait.png"
+      ],
+      "description": "Character swaps outfit for Taurie Cain"
     },
     {
       "id": "thalita-lyra--sasha-braus",
@@ -3953,6 +4171,41 @@
       "description": "Character swaps outfit for Yui Kimura"
     },
     {
+      "id": "yui-kimura--a2",
+      "name": "A2",
+      "baseCharacterId": "2db2c972-199f-4b87-ac8b-a64a1bf601e4",
+      "baseCharacterName": "Yui Kimura",
+      "baseCharacterType": "Survivor",
+      "groupKey": "legendary",
+      "groupLabel": "Legendary",
+      "collectionName": "Character swaps",
+      "image": "./dbd_images/cosmetics/character_swaps/yui-kimura--a2.png",
+      "aliases": [
+        "a2",
+        "legendary",
+        "character swap",
+        "character swaps",
+        "hud swap",
+        "yui kimura"
+      ],
+      "sourceKind": "wiki-category",
+      "sourcePage": "Yui Kimura/A2",
+      "assetProvenance": "official-portrait-exception",
+      "status": "ready",
+      "rarity": "Legendary",
+      "outfitLinkMode": "character_swap",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": true,
+      "pieceType": "Outfit",
+      "sourceBucket": "Character swaps",
+      "assetFileTitleCandidates": [
+        "File:CC109 charSelect portrait.png"
+      ],
+      "description": "Character swaps outfit for Yui Kimura"
+    },
+    {
       "id": "yun-jin-lee--terumi-fujino",
       "name": "Terumi Fujino",
       "baseCharacterId": "89b61397-648b-47a8-a42b-2ec334a911ae",
@@ -4058,6 +4311,42 @@
       "assetFileTitleCandidates": [
         "File:US Head032.png",
         "File:CC102 charSelect portrait.png"
+      ],
+      "description": "Character swaps outfit for Zarina Kassir"
+    },
+    {
+      "id": "zarina-kassir--sorceress",
+      "name": "Sorceress",
+      "baseCharacterId": "fb437383-7baa-4242-af8c-cf9da40718e1",
+      "baseCharacterName": "Zarina Kassir",
+      "baseCharacterType": "Survivor",
+      "groupKey": "costume",
+      "groupLabel": "Costume",
+      "collectionName": "Character swaps",
+      "image": "./dbd_images/cosmetics/character_swaps/zarina-kassir--sorceress.png",
+      "aliases": [
+        "sorceress",
+        "costume",
+        "character swap",
+        "character swaps",
+        "hud swap",
+        "zarina kassir"
+      ],
+      "sourceKind": "wiki-category",
+      "sourcePage": "Zarina Kassir/Sorceress",
+      "assetProvenance": "official-portrait-exception",
+      "status": "ready",
+      "rarity": "Costume",
+      "outfitLinkMode": "character_swap",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": true,
+      "pieceType": "Outfit",
+      "sourceBucket": "Character swaps",
+      "assetFileTitleCandidates": [
+        "File:Mikaela Reid Sister Sorceress Cosmetic Promo.jpg",
+        "File:CC115 charSelect portrait.png"
       ],
       "description": "Character swaps outfit for Zarina Kassir"
     }
@@ -31031,6 +31320,78 @@
       "description": "Her desire for revenge went unfulfilled, as her father's killer disappeared into darkness."
     },
     {
+      "id": "the-houndmaster--titanium-skull--weapon--k38-w01-04",
+      "name": "Titanium Skull",
+      "baseCharacterId": "3a6584b9-00a5-450a-b1aa-7375ba3dec60",
+      "baseCharacterName": "The Houndmaster",
+      "baseCharacterType": "Killer",
+      "groupKey": "cosmetic",
+      "groupLabel": "DLC",
+      "collectionName": "CHAPTER 34: Doomed Course",
+      "image": "./dbd_images/cosmetics/full_sets/the-houndmaster--titanium-skull--weapon--k38-w01-04.png",
+      "aliases": [
+        "titanium skull",
+        "chapter 34: doomed course",
+        "dlc",
+        "weapon",
+        "the houndmaster",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-template",
+      "sourcePage": "Template:Houndmaster's DLC Cosmetics",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Common",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Weapon",
+      "sourceBucket": "DLC",
+      "assetFileTitleCandidates": [
+        "File:K38_W01_04.png"
+      ],
+      "description": "It was the finest weapon she have ever laid eyes upon, and paid a hefty price for it."
+    },
+    {
+      "id": "the-houndmaster--houndmaster-s-mask--head--k38-head008",
+      "name": "Houndmaster's Mask",
+      "baseCharacterId": "3a6584b9-00a5-450a-b1aa-7375ba3dec60",
+      "baseCharacterName": "The Houndmaster",
+      "baseCharacterType": "Killer",
+      "groupKey": "cosmetic",
+      "groupLabel": "Event",
+      "collectionName": "Twisted Masquerade 2025",
+      "image": "./dbd_images/cosmetics/full_sets/the-houndmaster--houndmaster-s-mask--head--k38-head008.png",
+      "aliases": [
+        "houndmaster's mask",
+        "twisted masquerade 2025",
+        "event",
+        "head",
+        "the houndmaster",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-template",
+      "sourcePage": "Template:Houndmaster's Event Cosmetics",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Event",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Head",
+      "sourceBucket": "Event",
+      "assetFileTitleCandidates": [
+        "File:K38_Head008.png"
+      ],
+      "description": "A mask she found herself wearing at the masquerade ball."
+    },
+    {
       "id": "the-houndmaster--crimson-longcoat--body--k38-body01-p01",
       "name": "Crimson Longcoat",
       "baseCharacterId": "3a6584b9-00a5-450a-b1aa-7375ba3dec60",
@@ -36458,6 +36819,48 @@
         "File:K30 outfit 014.png"
       ],
       "description": "The thieves heard of an ancient relic hidden in a cave. An encampment had surrounded the cave, so they knew they'd have to be careful."
+    },
+    {
+      "id": "the-knight--blighted-knight--outfit--k30-outfit-022",
+      "name": "Blighted Knight",
+      "baseCharacterId": "14a78919-7b60-484c-9f27-a5d3e3efd66f",
+      "baseCharacterName": "The Knight",
+      "baseCharacterType": "Killer",
+      "groupKey": "cosmetic",
+      "groupLabel": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
+      "image": "./dbd_images/cosmetics/full_sets/the-knight--blighted-knight--outfit--k30-outfit-022.png",
+      "aliases": [
+        "blighted knight",
+        "hallowed blight",
+        "outfit",
+        "the knight",
+        "head",
+        "body",
+        "weapon",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Hallowed Blight Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Weapon"
+      ],
+      "bindSummary": "Head + Body + Weapon",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Hallowed Blight",
+      "assetFileTitleCandidates": [
+        "File:K30 outfit 022.png"
+      ],
+      "description": "The subject seldom strayed from the infernal trifecta, drawing on their wicked talents. Fitting that he now holds them dearer than ever."
     },
     {
       "id": "the-knight--eredin-s-end--outfit--k30-outfit-018",
@@ -54603,6 +55006,48 @@
       "description": "The machete suited him well. It was large, powerful, and left his victim screaming in a pool of blood."
     },
     {
+      "id": "the-slasher--blighted-slasher--outfit--k43-outfit-008",
+      "name": "Blighted Slasher",
+      "baseCharacterId": "0a13ef17-04da-4e6b-9783-4dbd724d4cde",
+      "baseCharacterName": "The Slasher",
+      "baseCharacterType": "Killer",
+      "groupKey": "cosmetic",
+      "groupLabel": "Hallowed Blight",
+      "collectionName": "HALLOWED BLIGHT",
+      "image": "./dbd_images/cosmetics/full_sets/the-slasher--blighted-slasher--outfit--k43-outfit-008.png",
+      "aliases": [
+        "blighted slasher",
+        "hallowed blight",
+        "outfit",
+        "the slasher",
+        "head",
+        "body",
+        "weapon",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Hallowed Blight Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Weapon"
+      ],
+      "bindSummary": "Head + Body + Weapon",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Hallowed Blight",
+      "assetFileTitleCandidates": [
+        "File:K43 outfit 008.png"
+      ],
+      "description": "So profound was the subject’s malevolence that gnarled black roots burst from his flesh."
+    },
+    {
       "id": "the-slasher--death-forsaken--outfit--k43-outfit-007",
       "name": "Death Forsaken",
       "baseCharacterId": "0a13ef17-04da-4e6b-9783-4dbd724d4cde",
@@ -56430,6 +56875,49 @@
         "File:HK_Head006_01.png"
       ],
       "description": "A short, messy bob decorated with a patterned headband."
+    },
+    {
+      "id": "the-spirit--top-student--outfit--spirit-outfit-006-01",
+      "name": "Top Student",
+      "baseCharacterId": "c5b56576-0afb-4f1e-ac73-bac5bd3ee9a0",
+      "baseCharacterName": "The Spirit",
+      "baseCharacterType": "Killer",
+      "groupKey": "cosmetic",
+      "groupLabel": "Arcane Academia",
+      "collectionName": "HIT THE BOOKS",
+      "image": "./dbd_images/cosmetics/full_sets/the-spirit--top-student--outfit--spirit-outfit-006-01.png",
+      "aliases": [
+        "top student",
+        "hit the books",
+        "arcane academia",
+        "outfit",
+        "the spirit",
+        "head",
+        "body",
+        "weapon",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Arcane Academia Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Weapon"
+      ],
+      "bindSummary": "Head + Body + Weapon",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Arcane Academia",
+      "assetFileTitleCandidates": [
+        "File:Spirit outfit 006 01.png"
+      ],
+      "description": "A uniform dating from when her mother was healthy and her father employed. These days are long gone."
     },
     {
       "id": "the-spirit--shimmering-birthright--outfit--hk-outfit-010-01",
@@ -58732,7 +59220,7 @@
       "description": "Outfit cosmetic for The Spirit"
     },
     {
-      "id": "the-spirit--top-student--outfit--spirit-outfit-006-01",
+      "id": "the-spirit--top-student--outfit--spirit-outfit-006-01-2",
       "name": "Top Student",
       "baseCharacterId": "c5b56576-0afb-4f1e-ac73-bac5bd3ee9a0",
       "baseCharacterName": "The Spirit",
@@ -58740,7 +59228,7 @@
       "groupKey": "cosmetic",
       "groupLabel": "Darkness Among Us Mid-Chapter Featured",
       "collectionName": "Darkness Among Us Mid-Chapter Featured",
-      "image": "./dbd_images/cosmetics/full_sets/the-spirit--top-student--outfit--spirit-outfit-006-01.png",
+      "image": "./dbd_images/cosmetics/full_sets/the-spirit--top-student--outfit--spirit-outfit-006-01-2.png",
       "aliases": [
         "top student",
         "darkness among us mid-chapter featured",
@@ -67205,6 +67693,48 @@
         "File:K35 outfit 014.png"
       ],
       "description": "The entire police department was on high alert after a detective went missing during a murder investigation.Design inspired by Shyboi."
+    },
+    {
+      "id": "the-unknown--sister-sunshine--outfit--k35-outfit-019",
+      "name": "Sister Sunshine",
+      "baseCharacterId": "b1367d52-b93a-49f0-b8b3-64c202e12efb",
+      "baseCharacterName": "The Unknown",
+      "baseCharacterType": "Killer",
+      "groupKey": "cosmetic",
+      "groupLabel": "Gameplay Expo",
+      "collectionName": "GamePlay Expo",
+      "image": "./dbd_images/cosmetics/full_sets/the-unknown--sister-sunshine--outfit--k35-outfit-019.png",
+      "aliases": [
+        "sister sunshine",
+        "gameplay expo",
+        "outfit",
+        "the unknown",
+        "head",
+        "body",
+        "weapon",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Gameplay Expo Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Weapon"
+      ],
+      "bindSummary": "Head + Body + Weapon",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Gameplay Expo",
+      "assetFileTitleCandidates": [
+        "File:K35 outfit 019.png"
+      ],
+      "description": "Pink had always been her color. She lifted her phone for a better angle, determined to capture the entire costume in frame."
     },
     {
       "id": "the-unknown--bonfire-faire--outfit--k35-outfit-010",
@@ -81745,6 +82275,42 @@
         "File:CM Head013 01.png"
       ],
       "description": "A new pair of glasses purchased online to complete her look."
+    },
+    {
+      "id": "claudette-morel--claudette-s-mask--head--cm-head032",
+      "name": "Claudette’s Mask",
+      "baseCharacterId": "405e213e-cdf1-4463-895d-086fc20c02e9",
+      "baseCharacterName": "Claudette Morel",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Event",
+      "collectionName": "Twisted Masquerade 2025",
+      "image": "./dbd_images/cosmetics/full_sets/claudette-morel--claudette-s-mask--head--cm-head032.png",
+      "aliases": [
+        "claudette’s mask",
+        "twisted masquerade 2025",
+        "event",
+        "head",
+        "claudette morel",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-template",
+      "sourcePage": "Template:Claudette's Event Cosmetics",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Event",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Head",
+      "sourceBucket": "Event",
+      "assetFileTitleCandidates": [
+        "File:CM_Head032.png"
+      ],
+      "description": "A mask she found herself wearing at the masquerade ball."
     },
     {
       "id": "claudette-morel--vigo-s-pupil--outfit--claudette-outfit-019",
@@ -110027,6 +110593,42 @@
       "description": "He pinned a feather he found to his hat."
     },
     {
+      "id": "jake-park--jake-s-mask--head--jp-head031",
+      "name": "Jake’s Mask",
+      "baseCharacterId": "5c47d285-0f5b-4f87-9fc3-0c6772e922a8",
+      "baseCharacterName": "Jake Park",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Event",
+      "collectionName": "Twisted Masquerade 2025",
+      "image": "./dbd_images/cosmetics/full_sets/jake-park--jake-s-mask--head--jp-head031.png",
+      "aliases": [
+        "jake’s mask",
+        "twisted masquerade 2025",
+        "event",
+        "head",
+        "jake park",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-template",
+      "sourcePage": "Template:Jake's Event Cosmetics",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Event",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Head",
+      "sourceBucket": "Event",
+      "assetFileTitleCandidates": [
+        "File:JP_Head031.png"
+      ],
+      "description": "A mask he found himself wearing at the masquerade ball."
+    },
+    {
       "id": "jake-park--monk-shoes--legs--jp-legs019",
       "name": "Monk Shoes",
       "baseCharacterId": "5c47d285-0f5b-4f87-9fc3-0c6772e922a8",
@@ -131495,6 +132097,48 @@
       "description": "After a grueling series of races, Meg wants nothing more than to return home and get back to basics."
     },
     {
+      "id": "meg-thomas--as-it-falls--outfit--mt-outfit-037",
+      "name": "As It Falls",
+      "baseCharacterId": "244c9c48-8bd5-4d8f-ba48-6d0d09a5f3d2",
+      "baseCharacterName": "Meg Thomas",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Autumn Fashion",
+      "collectionName": "Autumn Fashion",
+      "image": "./dbd_images/cosmetics/full_sets/meg-thomas--as-it-falls--outfit--mt-outfit-037.png",
+      "aliases": [
+        "as it falls",
+        "autumn fashion",
+        "outfit",
+        "meg thomas",
+        "head",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Autumn Fashion Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Autumn Fashion",
+      "assetFileTitleCandidates": [
+        "File:MT outfit 037.png"
+      ],
+      "description": "The autumn air carried a melancholic quality. It filled her with bittersweet longing for all she had missed out on."
+    },
+    {
       "id": "meg-thomas--cat-fostering--outfit--mt-outfit-016",
       "name": "Cat Fostering",
       "baseCharacterId": "244c9c48-8bd5-4d8f-ba48-6d0d09a5f3d2",
@@ -135209,6 +135853,48 @@
         "File:S28 outfit 031 02.png"
       ],
       "description": "When she entered the shop, she felt a strong energy wrapping around her, almost suffocating her."
+    },
+    {
+      "id": "mikaela-reid--sister-sorceress--outfit--s28-outfit-035",
+      "name": "Sister Sorceress",
+      "baseCharacterId": "c3cbdf22-6974-461a-bcf3-dd9d9037bbad",
+      "baseCharacterName": "Mikaela Reid",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Gameplay Expo",
+      "collectionName": "GamePlay Expo",
+      "image": "./dbd_images/cosmetics/full_sets/mikaela-reid--sister-sorceress--outfit--s28-outfit-035.png",
+      "aliases": [
+        "sister sorceress",
+        "gameplay expo",
+        "outfit",
+        "mikaela reid",
+        "head",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Gameplay Expo Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Gameplay Expo",
+      "assetFileTitleCandidates": [
+        "File:S28 outfit 035.png"
+      ],
+      "description": "With the Expo coming up, Mikaela finally convinced Sable to cosplay together as the bewitching sorceress sisters from her favorite RPG."
     },
     {
       "id": "mikaela-reid--esoteric-elegance--outfit--s28-outfit-024",
@@ -142103,6 +142789,78 @@
       "description": "She lived life to the fullest, both in her work and in her social life."
     },
     {
+      "id": "orela-rose--orela-s-mask--head--s46-head010",
+      "name": "Orela’s Mask",
+      "baseCharacterId": "dd41f4c8-4261-48ed-82cb-bec07d601e3e",
+      "baseCharacterName": "Orela Rose",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Event",
+      "collectionName": "Twisted Masquerade 2025",
+      "image": "./dbd_images/cosmetics/full_sets/orela-rose--orela-s-mask--head--s46-head010.png",
+      "aliases": [
+        "orela’s mask",
+        "twisted masquerade 2025",
+        "event",
+        "head",
+        "orela rose",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-template",
+      "sourcePage": "Template:Orela's Event Cosmetics",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Event",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Head",
+      "sourceBucket": "Event",
+      "assetFileTitleCandidates": [
+        "File:S46_Head010.png"
+      ],
+      "description": "A mask she found herself wearing at the masquerade ball."
+    },
+    {
+      "id": "orela-rose--twitchy-orela--body--s46-torso008",
+      "name": "Twitchy Orela",
+      "baseCharacterId": "dd41f4c8-4261-48ed-82cb-bec07d601e3e",
+      "baseCharacterName": "Orela Rose",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Exclusive",
+      "collectionName": "Given to selected Twitch affiliates/partners",
+      "image": "./dbd_images/cosmetics/full_sets/orela-rose--twitchy-orela--body--s46-torso008.png",
+      "aliases": [
+        "twitchy orela",
+        "given to selected twitch affiliates/partners",
+        "exclusive",
+        "body",
+        "orela rose",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-template",
+      "sourcePage": "Template:Orela's Exclusive Cosmetics",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Body",
+      "sourceBucket": "Exclusive",
+      "assetFileTitleCandidates": [
+        "File:S46_Torso008.png"
+      ],
+      "description": "Twitchy Orela is twitching."
+    },
+    {
       "id": "orela-rose--blood-and-beads--body--s46-torso01-p01",
       "name": "Blood and Beads",
       "baseCharacterId": "dd41f4c8-4261-48ed-82cb-bec07d601e3e",
@@ -142137,6 +142895,42 @@
         "File:S46 Torso01 P01.png"
       ],
       "description": "She felt a chill in the night when she heard Emily calling to her from the fog."
+    },
+    {
+      "id": "orela-rose--murder-mill--body--s46-torso011-03",
+      "name": "Murder Mill",
+      "baseCharacterId": "dd41f4c8-4261-48ed-82cb-bec07d601e3e",
+      "baseCharacterName": "Orela Rose",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Special",
+      "collectionName": "The Casting of Frank Stone",
+      "image": "./dbd_images/cosmetics/full_sets/orela-rose--murder-mill--body--s46-torso011-03.png",
+      "aliases": [
+        "murder mill",
+        "the casting of frank stone",
+        "special",
+        "body",
+        "orela rose",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-template",
+      "sourcePage": "Template:Orela's Special Cosmetics",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Body",
+      "sourceBucket": "Special",
+      "assetFileTitleCandidates": [
+        "File:S46 Torso011 03.png"
+      ],
+      "description": "Vintage memorabilia from a cursed production."
     },
     {
       "id": "orela-rose--sanguinary-goddess-braids--head--s46-head01-p01",
@@ -145813,6 +146607,42 @@
       "description": "Flecks of color danced with the darkness around her."
     },
     {
+      "id": "sable-ward--sable-s-mask--head--s41-head018",
+      "name": "Sable’s Mask",
+      "baseCharacterId": "69703a45-e940-4e72-8499-37c99562aa22",
+      "baseCharacterName": "Sable Ward",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Event",
+      "collectionName": "Twisted Masquerade 2025",
+      "image": "./dbd_images/cosmetics/full_sets/sable-ward--sable-s-mask--head--s41-head018.png",
+      "aliases": [
+        "sable’s mask",
+        "twisted masquerade 2025",
+        "event",
+        "head",
+        "sable ward",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-template",
+      "sourcePage": "Template:Sable's Event Cosmetics",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Event",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Head",
+      "sourceBucket": "Event",
+      "assetFileTitleCandidates": [
+        "File:S41_Head018.png"
+      ],
+      "description": "A mask she found herself wearing at the masquerade ball."
+    },
+    {
       "id": "sable-ward--twitchy-sable--body--s41-torso007",
       "name": "Twitchy Sable",
       "baseCharacterId": "69703a45-e940-4e72-8499-37c99562aa22",
@@ -146522,6 +147352,48 @@
         "File:S41 outfit 020.png"
       ],
       "description": "Sable laughed at the slasher flick on TV, throwing popcorn in the air and catching most of them in her mouth."
+    },
+    {
+      "id": "sable-ward--sister-shadow--outfit--s41-outfit-023",
+      "name": "Sister Shadow",
+      "baseCharacterId": "69703a45-e940-4e72-8499-37c99562aa22",
+      "baseCharacterName": "Sable Ward",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Gameplay Expo",
+      "collectionName": "GamePlay Expo",
+      "image": "./dbd_images/cosmetics/full_sets/sable-ward--sister-shadow--outfit--s41-outfit-023.png",
+      "aliases": [
+        "sister shadow",
+        "gameplay expo",
+        "outfit",
+        "sable ward",
+        "head",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Gameplay Expo Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Gameplay Expo",
+      "assetFileTitleCandidates": [
+        "File:S41 outfit 023.png"
+      ],
+      "description": "After weeks of pleading, Mikaela finally convinced a begrudging Sable to cosplay as the sinister counterpart to her favorite video game heroine."
     },
     {
       "id": "sable-ward--cemetery-grotesque--outfit--s41-outfit-011",
@@ -147279,6 +148151,48 @@
         "File:S53 outfit 01 03.png"
       ],
       "description": "Whenever Shane rolled into a new town, he looked for a place to stay and, most importantly, a job."
+    },
+    {
+      "id": "shane-wiigwaas--case-study--outfit--s53-outfit-007",
+      "name": "Case Study",
+      "baseCharacterId": "bbb83024-f7b6-40cf-b060-5339820478e4",
+      "baseCharacterName": "Shane Wiigwaas",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Autumn Fashion",
+      "collectionName": "Autumn Fashion",
+      "image": "./dbd_images/cosmetics/full_sets/shane-wiigwaas--case-study--outfit--s53-outfit-007.png",
+      "aliases": [
+        "case study",
+        "autumn fashion",
+        "outfit",
+        "shane wiigwaas",
+        "head",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Autumn Fashion Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Autumn Fashion",
+      "assetFileTitleCandidates": [
+        "File:S53 outfit 007.png"
+      ],
+      "description": "Shane was honored to return to his alma mater as a guest lecturer, assembling a variety of interesting cases to discuss."
     },
     {
       "id": "shane-wiigwaas--white-woodland-regalia--outfit--s53-outfit-006-01",
@@ -148162,6 +149076,42 @@
       "description": "Her superiors knew she was special, and often sent her on unique missions."
     },
     {
+      "id": "taurie-cain--gold-tier--body--s45-torso01-04",
+      "name": "Gold Tier",
+      "baseCharacterId": "b4cb7d83-e55b-40ae-b9d5-a767569a90cf",
+      "baseCharacterName": "Taurie Cain",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "DLC",
+      "collectionName": "CHAPTER 34: Doomed Course",
+      "image": "./dbd_images/cosmetics/full_sets/taurie-cain--gold-tier--body--s45-torso01-04.png",
+      "aliases": [
+        "gold tier",
+        "chapter 34: doomed course",
+        "dlc",
+        "body",
+        "taurie cain",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-template",
+      "sourcePage": "Template:Taurie's DLC Cosmetics",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Common",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Body",
+      "sourceBucket": "DLC",
+      "assetFileTitleCandidates": [
+        "File:S45_Torso01_04.png"
+      ],
+      "description": "Only the most revered elders wore gold, but she hoped to join their ranks one day."
+    },
+    {
       "id": "taurie-cain--taurie-cain--head--s45-head01",
       "name": "Taurie Cain",
       "baseCharacterId": "b4cb7d83-e55b-40ae-b9d5-a767569a90cf",
@@ -148395,6 +149345,78 @@
       "description": "Others in the organization looked down on her, jealous of her heightened abilities."
     },
     {
+      "id": "taurie-cain--taurie-s-mask--head--s45-head013",
+      "name": "Taurie’s Mask",
+      "baseCharacterId": "b4cb7d83-e55b-40ae-b9d5-a767569a90cf",
+      "baseCharacterName": "Taurie Cain",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Event",
+      "collectionName": "Twisted Masquerade 2025",
+      "image": "./dbd_images/cosmetics/full_sets/taurie-cain--taurie-s-mask--head--s45-head013.png",
+      "aliases": [
+        "taurie’s mask",
+        "twisted masquerade 2025",
+        "event",
+        "head",
+        "taurie cain",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-template",
+      "sourcePage": "Template:Taurie's Event Cosmetics",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Event",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Head",
+      "sourceBucket": "Event",
+      "assetFileTitleCandidates": [
+        "File:S45_Head013.png"
+      ],
+      "description": "A mask she found herself wearing at the masquerade ball."
+    },
+    {
+      "id": "taurie-cain--twitchy-taurie--body--s45-torso007",
+      "name": "Twitchy Taurie",
+      "baseCharacterId": "b4cb7d83-e55b-40ae-b9d5-a767569a90cf",
+      "baseCharacterName": "Taurie Cain",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Exclusive",
+      "collectionName": "Given to selected Twitch affiliates/partners",
+      "image": "./dbd_images/cosmetics/full_sets/taurie-cain--twitchy-taurie--body--s45-torso007.png",
+      "aliases": [
+        "twitchy taurie",
+        "given to selected twitch affiliates/partners",
+        "exclusive",
+        "body",
+        "taurie cain",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-template",
+      "sourcePage": "Template:Taurie's Exclusive Cosmetics",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Body",
+      "sourceBucket": "Exclusive",
+      "assetFileTitleCandidates": [
+        "File:S45_Torso007.png"
+      ],
+      "description": "Twitchy Taurie is twitching."
+    },
+    {
       "id": "taurie-cain--red-drenched-robes--body--s45-torso01-p01",
       "name": "Red Drenched Robes",
       "baseCharacterId": "b4cb7d83-e55b-40ae-b9d5-a767569a90cf",
@@ -148429,6 +149451,42 @@
         "File:S45 Torso01 P01.png"
       ],
       "description": "Her superiors knew she was special, that she could suffer unlike any other."
+    },
+    {
+      "id": "taurie-cain--murder-mill--body--s45-torso009-03",
+      "name": "Murder Mill",
+      "baseCharacterId": "b4cb7d83-e55b-40ae-b9d5-a767569a90cf",
+      "baseCharacterName": "Taurie Cain",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Special",
+      "collectionName": "The Casting of Frank Stone",
+      "image": "./dbd_images/cosmetics/full_sets/taurie-cain--murder-mill--body--s45-torso009-03.png",
+      "aliases": [
+        "murder mill",
+        "the casting of frank stone",
+        "special",
+        "body",
+        "taurie cain",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-template",
+      "sourcePage": "Template:Taurie's Special Cosmetics",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Body",
+      "sourceBucket": "Special",
+      "assetFileTitleCandidates": [
+        "File:S45_Torso009_03.png"
+      ],
+      "description": "Vintage memorabilia from a cursed production."
     },
     {
       "id": "taurie-cain--sanguinary-cultist--head--s45-head01-p01",
@@ -152805,6 +153863,42 @@
       "description": "A shirt adorned with silver patterns that reminded him of the ornaments of his time."
     },
     {
+      "id": "vittorio-toscano--vittorio-s-mask--head--s34-head024",
+      "name": "Vittorio’s Mask",
+      "baseCharacterId": "7a7d1989-8fc1-4923-8122-775eac3fa293",
+      "baseCharacterName": "Vittorio Toscano",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Event",
+      "collectionName": "Twisted Masquerade 2025",
+      "image": "./dbd_images/cosmetics/full_sets/vittorio-toscano--vittorio-s-mask--head--s34-head024.png",
+      "aliases": [
+        "vittorio’s mask",
+        "twisted masquerade 2025",
+        "event",
+        "head",
+        "vittorio toscano",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-template",
+      "sourcePage": "Template:Vittorio's Event Cosmetics",
+      "assetProvenance": "official-piece-icon",
+      "status": "ready",
+      "rarity": "Event",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [],
+      "bindSummary": "",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Head",
+      "sourceBucket": "Event",
+      "assetFileTitleCandidates": [
+        "File:S34_Head024.png"
+      ],
+      "description": "A mask he found himself wearing at the masquerade ball."
+    },
+    {
       "id": "vittorio-toscano--red-stained-black-jacket--body--s34-torso01-p01",
       "name": "Red-Stained Black Jacket",
       "baseCharacterId": "7a7d1989-8fc1-4923-8122-775eac3fa293",
@@ -153775,6 +154869,48 @@
         "File:S34 Legs025 02.png"
       ],
       "description": "The quest for knowledge is fraught with peril, capable of bringing about ruin and redemption."
+    },
+    {
+      "id": "vittorio-toscano--dawn-anew--outfit--s34-outfit-027",
+      "name": "Dawn Anew",
+      "baseCharacterId": "7a7d1989-8fc1-4923-8122-775eac3fa293",
+      "baseCharacterName": "Vittorio Toscano",
+      "baseCharacterType": "Survivor",
+      "groupKey": "cosmetic",
+      "groupLabel": "Autumn Fashion",
+      "collectionName": "Autumn Fashion",
+      "image": "./dbd_images/cosmetics/full_sets/vittorio-toscano--dawn-anew--outfit--s34-outfit-027.png",
+      "aliases": [
+        "dawn anew",
+        "autumn fashion",
+        "outfit",
+        "vittorio toscano",
+        "head",
+        "body",
+        "legs",
+        "unlinked",
+        "unlinked outfit"
+      ],
+      "sourceKind": "wiki-collection-page",
+      "sourcePage": "Autumn Fashion Collection",
+      "assetProvenance": "official-outfit-icon",
+      "status": "ready",
+      "rarity": "Very Rare",
+      "outfitLinkMode": "unlinked",
+      "boundSlots": [
+        "Head",
+        "Body",
+        "Legs"
+      ],
+      "bindSummary": "Head + Body + Legs",
+      "isLinkedSet": false,
+      "isCharacterSwap": false,
+      "pieceType": "Outfit",
+      "sourceBucket": "Autumn Fashion",
+      "assetFileTitleCandidates": [
+        "File:S34 outfit 027.png"
+      ],
+      "description": "His uncle was an early riser, but Vittorio was already in the courtyard when the jaunty man stepped beneath the archway."
     },
     {
       "id": "vittorio-toscano--sanguine-traveler--outfit--s34-outfit-021",

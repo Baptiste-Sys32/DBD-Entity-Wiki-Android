@@ -1,24 +1,22 @@
 {
-  "generatedAt": "2026-09-06T10:54:03.834Z",
+  "generatedAt": "2026-10-07T06:46:37.674Z",
   "artifacts": {
     "reportPath": "review/sync-all-updates-report.json",
     "releaseSummaryPath": "review/release-summary.md"
   },
   "options": {
-    "includeAssets": false,
-    "mode": "fast",
-    "rawArgs": [
-      "--skip-assets"
-    ]
+    "includeAssets": true,
+    "mode": "full",
+    "rawArgs": []
   },
-  "durationMs": 11800,
+  "durationMs": 560548,
   "status": "ok",
   "failedStep": null,
   "steps": [
     {
       "name": "health-check-community-sources",
       "command": "node scripts/sync-community-content.js --health-check",
-      "durationMs": 545,
+      "durationMs": 746,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -26,7 +24,7 @@
     {
       "name": "health-check-map-layout-sources",
       "command": "node scripts/sync-map-layouts.js --health-check",
-      "durationMs": 505,
+      "durationMs": 419,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -34,7 +32,7 @@
     {
       "name": "health-check-description-sources",
       "command": "node scripts/sync-descriptions.js --health-check",
-      "durationMs": 1881,
+      "durationMs": 7432,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -42,7 +40,7 @@
     {
       "name": "sync-catalog-updates",
       "command": "node scripts/sync-catalog-updates.js",
-      "durationMs": 2100,
+      "durationMs": 25721,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -50,7 +48,7 @@
     {
       "name": "sync-community-content",
       "command": "node scripts/sync-community-content.js",
-      "durationMs": 1530,
+      "durationMs": 1362,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -58,7 +56,7 @@
     {
       "name": "sync-map-layouts",
       "command": "node scripts/sync-map-layouts.js --upgrade-legacy",
-      "durationMs": 514,
+      "durationMs": 375,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -66,7 +64,47 @@
     {
       "name": "sync-descriptions",
       "command": "node scripts/sync-descriptions.js",
-      "durationMs": 1857,
+      "durationMs": 6515,
+      "exitCode": 0,
+      "signal": null,
+      "status": "ok"
+    },
+    {
+      "name": "sync-game-icons",
+      "command": "node scripts/sync-game-icons.js",
+      "durationMs": 48,
+      "exitCode": 0,
+      "signal": null,
+      "status": "ok"
+    },
+    {
+      "name": "sync-offering-fixes",
+      "command": "node scripts/sync-offering-fixes.js",
+      "durationMs": 44,
+      "exitCode": 0,
+      "signal": null,
+      "status": "ok"
+    },
+    {
+      "name": "discover-cosmetics",
+      "command": "node scripts/discover-cosmetics.js",
+      "durationMs": 477020,
+      "exitCode": 0,
+      "signal": null,
+      "status": "ok"
+    },
+    {
+      "name": "normalize-cosmetics",
+      "command": "node scripts/normalize-cosmetics.js",
+      "durationMs": 400,
+      "exitCode": 0,
+      "signal": null,
+      "status": "ok"
+    },
+    {
+      "name": "sync-cosmetic-assets",
+      "command": "node scripts/sync-cosmetic-assets.js",
+      "durationMs": 38153,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -74,7 +112,7 @@
     {
       "name": "build-data",
       "command": "node scripts/build-data.js",
-      "durationMs": 434,
+      "durationMs": 397,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -82,7 +120,7 @@
     {
       "name": "normalize-images-check",
       "command": "node scripts/normalize-images.js --check",
-      "durationMs": 149,
+      "durationMs": 136,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -90,7 +128,7 @@
     {
       "name": "build-data-check",
       "command": "node scripts/build-data.js --check",
-      "durationMs": 424,
+      "durationMs": 348,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -98,7 +136,7 @@
     {
       "name": "audit-cosmetics",
       "command": "node scripts/audit-cosmetics.js",
-      "durationMs": 263,
+      "durationMs": 186,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -106,7 +144,7 @@
     {
       "name": "verify-teachables",
       "command": "node scripts/verify-teachables.js",
-      "durationMs": 83,
+      "durationMs": 72,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -114,7 +152,7 @@
     {
       "name": "verify-perk-descriptions",
       "command": "node scripts/verify-perk-descriptions.js",
-      "durationMs": 71,
+      "durationMs": 54,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -122,7 +160,7 @@
     {
       "name": "verify-data-contracts",
       "command": "node scripts/verify-data-contracts.js",
-      "durationMs": 108,
+      "durationMs": 84,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -130,7 +168,7 @@
     {
       "name": "verify-offline-runtime",
       "command": "node scripts/verify-offline-runtime.js",
-      "durationMs": 434,
+      "durationMs": 341,
       "exitCode": 0,
       "signal": null,
       "status": "ok"
@@ -140,17 +178,18 @@
     "addedFiles": [],
     "removedFiles": [],
     "modifiedFiles": [
-      "content/addon-description-report.json",
       "content/community-content.json",
       "review/description-sync-report.json",
       "review/map-layouts-audit.json",
-      "web/community-content.js"
+      "web/community-content.js",
+      "web/cosmetics.js",
+      "web/data.js"
     ],
     "totals": {
       "added": 0,
       "removed": 0,
-      "modified": 5,
-      "all": 5
+      "modified": 6,
+      "all": 6
     }
   },
   "databaseDescriptionChanges": {
