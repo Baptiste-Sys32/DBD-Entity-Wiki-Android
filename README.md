@@ -1,15 +1,15 @@
 # DBD Entity Wiki Android
 
-The Entity's Wiki is a native, offline-first Dead by Daylight (DBD) companion application for Android. Built with Capacitor, it wraps a high-fidelity web frontend into a native Android container, utilizing local databases to provide rapid access to game perks, survivor/killer items, add-ons, and gameplay guides without requiring an active internet connection.
+The Entity's Wiki as an Android app. Dead by Daylight companion: perks, items, add-ons, guides, all stored on the device, works offline. Same web frontend as the site, bundled into a native shell with Capacitor.
 
 ## Project Structure
 
-* `the-entity-wiki/` - Core application codebase.
-  * `web/` - Web frontend assets bundled into the native application package.
-  * `android/` - Native Capacitor Android project folder.
-* `api/` - Scraping utilities, data archives, and glossary compilers.
-* `assets/` - Shared static assets and game artwork.
+* `the-entity-wiki/` - the app itself: `web/` frontend bundle, `android/` Capacitor project.
+* `api/` - scraping tools and data archives used to refresh content.
+* `assets/` - shared art and icons.
+
+Content flows one way. The website repo is the source of truth and this repo only takes data updates. No UI work happens here.
 
 ## License
 
-This project is licensed under the PolyForm Noncommercial License 1.0.0. See the [LICENSE](LICENSE) file for details.
+PolyForm Noncommercial 1.0.0. See [LICENSE](LICENSE).
