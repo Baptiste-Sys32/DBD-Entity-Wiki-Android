@@ -151,9 +151,9 @@ var CHANGELOG = [
     "version": "5.20.0",
     "date": "March 3, 2026",
     "changes": [
-      "NEW : Full character profile pages — tap any killer or survivor to see their overview, power, perks, and lore in one place",
+      "NEW : Full character profile pages - tap any killer or survivor to see their overview, power, perks, and lore in one place",
       "NEW : Nord colour scheme added to themes",
-      "NEW : Chaos Shuffle locked pick — choose a specific character to play while still randomising perks",
+      "NEW : Chaos Shuffle locked pick - choose a specific character to play while still randomising perks",
       "NEW : Sort characters by release date (oldest/newest)"
     ]
   },
@@ -162,7 +162,7 @@ var CHANGELOG = [
     "date": "March 2, 2026",
     "changes": [
       "FIX : Killer real names now displayed correctly throughout the app",
-      "FIX : Michael Myers rework — updated mechanics and description",
+      "FIX : Michael Myers rework - updated mechanics and description",
       "FIX : Legion ability description corrected",
       "FIX : Perk icons no longer appear tilted/rotated",
       "NEW : Haptic feedback toggle in settings",

@@ -620,7 +620,7 @@ var GLOSSARY = [
     "items": [
       {
         "term": "0K / 1K / 2K / 3K / 4K",
-        "def": "Killer kills 0–4 survivors; 4K is a clean win, 2K often treated as a draw."
+        "def": "Killer kills 0-4 survivors; 4K is a clean win, 2K often treated as a draw."
       },
       {
         "term": "4E / 3E / 2E / 1E / 0E",
