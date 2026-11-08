@@ -648,15 +648,19 @@
       },
       {
         "term": "Abandon",
-        "def": "Leave-trial option when bots ruin the match: the last human Survivor (all others bots), or the Killer (all remaining Survivors bots with at least 1 not Dying). Counts as an MMR draw."
+        "def": "Former label for the last-human Survivor leave-trial option. Since 10.2.1, this option is called Surrender."
       },
       {
         "term": "Surrender",
-        "def": "Leave-trial option when all Survivors are simultaneously in the Dying State. Survivors count as Surrendered; counts as an MMR loss."
+        "def": "The last human Survivor can Surrender when at least one bot remains. This replaces the former Abandon label. The separate all-Survivors-Dying surrender condition also remains."
       },
       {
         "term": "End Trial",
-        "def": "Killer option when all remaining Survivors are bots in the Dying State. Remaining bot Survivors are Sacrificed; MMR follows total match results."
+        "def": "The Killer can End Trial when every remaining Survivor is a bot. Bots no longer need to be in the Dying State (10.2.1)."
+      },
+      {
+        "term": "Lights Out: Stranger Things (2026)",
+        "def": "Limited-time modifier running November 5-12, 2026, announced with patch 10.2.2."
       }
     ]
   },

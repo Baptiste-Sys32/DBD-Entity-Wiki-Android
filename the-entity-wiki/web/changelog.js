@@ -1,6 +1,15 @@
 var CHANGELOG = [
   {
     "version": "5.34.1",
+    "date": "November 8, 2026",
+    "changes": [
+      "UPDATE : Synced Dead by Daylight 10.2.2, with 10.2.1 feature changes and 10.2.2a backend killer adjustments",
+      "UPDATE : Added 38 Halloween and Stranger Things cosmetic records with local images",
+      "FIX : Updated Surrender, End Trial, Void Crystal and killer guide data"
+    ]
+  },
+  {
+    "version": "5.34.1",
     "date": "October 7, 2026",
     "changes": [
       "UPDATE : Synced to Dead by Daylight 10.2.0 mid-chapter patch notes with 58 perk updates, perk renames (Object of Obsession, Sole Survivor), Nier Automata and Rift Academia cosmetics, and new glossary entries",

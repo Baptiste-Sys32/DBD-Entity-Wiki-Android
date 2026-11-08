@@ -148,5 +148,22 @@
       "Exiling a Heretic triggers Zealous for 60 seconds, increasing Divine Light's size, cast duration, and control window",
       "Survivors repent at Shrines of Judgment to remove Heresy or rescue the Exiled, and taunting The Judgment inflicts Heresy"
     ]
+  },
+  "b126576a-cf67-45a5-87e5-2533b9646ebc": {
+    "powerName": "Rites of Judgment",
+    "mechanics": [
+      "Punishment of the Damned reaches 16 meters.",
+      "Rites of Judgment has 8 charges and recharges 0.5 charges per second.",
+      "Entering Rites takes 0.8 seconds; cancelling takes 1.2 seconds.",
+      "Punishment starts after 0.25 seconds; segments appear 0.001 seconds apart and last 0.3 seconds."
+    ]
+  },
+  "4f19458e-d265-4eec-9346-07640367d337": {
+    "powerName": "Playtime's Over",
+    "mechanics": [
+      "Hidey-Ho recharges in 10 seconds.",
+      "Slice and Dice can dash for up to 2 seconds.",
+      "Scampering through a vault takes 0.8 seconds."
+    ]
   }
 }

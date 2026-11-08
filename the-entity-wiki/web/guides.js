@@ -286,14 +286,15 @@ var KILLER_GUIDES = {
   },
   "The Executioner": {
     "powerName": "Rites of Judgment",
-    "tldr": "The Executioner is a 4.6 m/s trail killer who spreads Torment to cage survivors far from hooks. Dodge his 10m shockwave, avoid trails, and rescue cages fast before Final Judgment snowballs.",
-    "powerBlurb": "Rites of Judgment lets him carve glowing trails while slowed to 4.2 m/s, spending 10 charges to paint loops and hook zones. Survivors who step on trails gain Torment and trigger Killer Instinct. His Punishment shockwave reaches 10m through low cover and punishes vaults. Trails last 90s. Tormented downs can be caged across the map, and second stage Tormented downs enable Final Judgment.",
+    "tldr": "The Executioner is a 4.6 m/s trail killer who spreads Torment to cage survivors far from hooks. Dodge his 16m shockwave, avoid trails, and rescue cages fast before Final Judgment snowballs.",
+    "powerBlurb": "Rites of Judgment lets him carve glowing trails while slowed to 4.2 m/s, using an 8-charge gauge to paint loops and hook zones. Survivors who step on trails gain Torment and trigger Killer Instinct. His Punishment shockwave reaches 16m through low cover and punishes vaults. Trails last 90s. Tormented downs can be caged across the map, and second stage Tormented downs enable Final Judgment. Trail energy recharges at 0.5 charges per second. Entering Rites takes 0.8 seconds; cancelling takes 1.2 seconds.",
     "survivorTips": "Watch the ground, not the killer. Loop wide around fresh trails and crouch through them only when forced, since crouch avoids Torment. Bait his shockwave then vault late because it punishes early commits. If Tormented, get cage rescues fast and spread out so one trail line cannot tag two runners. Never greed pallets against a charged blade and track trail glow to plan rotations.",
     "killerTips": "Paint where runners must step: vault landings, pallet arcs, and hook approaches, not random open ground. Zone with Punishment to force trail steps, then M1 the trapped runner. Cage when it denies rescues or saves travel time, otherwise hook for perk value. Use short draws to save charges and hold shockwave for vault commits, then recharge between chases, as of 10.1.1.",
-    "advancedAs": "Open by seeding short trails across shack, main, and the two closest gens, then patrol for first Torment. In chase, drag a line behind you to cut the loop exit while holding Punishment for the vault; survivors who dodge the wave often step on trail. Cage first downs far from grouped survivors to break rescue rhythm and deny flashlight or Dead Hard saves, but hook when Pain Resonance or Pop value wins gens. Run Trail of Torment plus Nowhere to Hide plus Lethal Pursuer for aura chains that make shockwaves easier to land as of 10.1.1. Save at least 4 charges before committing to a loop so you can wave twice.",
+    "advancedAs": "Open by seeding short trails across shack, main, and the two closest gens, then patrol for first Torment. In chase, drag a line behind you to cut the loop exit while holding Punishment for the vault; survivors who dodge the wave often step on trail. Cage first downs far from grouped survivors to break rescue rhythm and deny flashlight or Dead Hard saves, but hook when Pain Resonance or Pop value wins gens. Run Trail of Torment plus Nowhere to Hide plus Lethal Pursuer for aura chains that make shockwaves easier to land as of 10.1.1.",
     "advancedAgainst": "Treat every Executioner loop as two threats: the wave and the paint. Take paths that keep a tall wall between you and him while crossing old trails at crouch where safe. Force the wave early by faking vaults, then commit while his 2.25s cooldown runs. Do not cluster on one side; cages teleport victims across the map and split pressure. If caged, have the free teammate take aggro while another times the rescue, since camping cages wastes his gauge. Mistake is cleansing Torment greedily; you only lose it on cage rescue, so play safe once marked. Pre-drop pallets before Torment lines close exits and rotate to fresh tiles early.",
-    "verifiedPatch": "10.1.1",
+    "verifiedPatch": "10.2.2a",
     "sources": [
+      "https://steamcommunity.com/games/381210/announcements/detail/692024563197805375",
       "https://deadbydaylight.wiki.gg/wiki/The_Executioner",
       "https://www.reddit.com/r/deadbydaylight/comments/1u2tinh/pyramid_head_strategy/",
       "https://www.reddit.com/r/deadbydaylight/comments/1htjzjz/need_help_learning_pyramid_head/"
@@ -497,13 +498,14 @@ var KILLER_GUIDES = {
   "The Good Guy": {
     "powerName": "Playtime's Over",
     "tldr": "Chucky is a tiny stealth killer who goes Undetectable in Hidey-Ho and dashes through pallets with Slice and Dice. Respect his small sightlines, pre-drop early, and never run straight lines in the open.",
-    "powerBlurb": "Playtime's Over runs at 4.4 m/s and enters Hidey-Ho for 14 seconds on a 12-second cooldown, gaining Undetectable plus fake footfalls scattered inside 16 meters of survivors. Slice and Dice sprints 8 m/s for 1.8 seconds with a 0.6-second lunge, and colliding with pallets or windows mid-dash triggers a 1-second Scamper through them. Successful dashes recover in 3 seconds while misses recover in 2.25.",
+    "powerBlurb": "Playtime's Over runs at 4.4 m/s and enters Hidey-Ho for 14 seconds on a 10-second cooldown, gaining Undetectable plus fake footfalls scattered inside 16 meters of survivors. Slice and Dice sprints 8 m/s for 2 seconds with a 0.6-second lunge, and colliding with pallets or windows mid-dash triggers a 0.8-second Scamper through them. Successful dashes recover in 3 seconds while misses recover in 2.25.",
     "survivorTips": "Watch low sightlines and listen for his laugh and tiny footsteps. Pre-drop pallets against the dash instead of holding them, since Scamper punishes greed. Break line of sight before Hidey-Ho arrives, take corners wide, and never straight-line across open ground where 8 m/s catches you. Spread at gens so stealth approaches cannot chain multi-hits, and call his cooldown windows loudly.",
     "killerTips": "Keep Hidey-Ho cycling and approach gens silently from off-angles. Scamper dropped pallets instead of breaking them, then cancel into the lunge early against sidesteppers. Aim dashes where runners will be in half a second, punish straight lines, and use your short camera to hide behind clutter larger killers cannot use. Hit and run across the map rather than committing to one strong tile.",
-    "advancedAs": "Chucky wins by tempo, never long chases. Run a hit-and-run shell with stealth and info such as Monitor with Lethal Pursuer and Alien Instinct, wound one survivor, then carry Hidey-Ho pressure to the next gen while they heal. Angle the camera toward your exit lane before charging Slice and Dice, release early into the lunge against jukers, and scamper every dropped pallet rather than kicking it, and as of 10.1.1 the kit is unchanged: bring Rat Poison or Jump Rope for chase value, use Strobing Light with Pillow to shrink the 32-meter Terror Radius, and practice shack by scamping the window then dashing before runners reach the pallet. Never dash across open maps from max range where one sidestep wastes the 12-second cycle.",
+    "advancedAs": "Chucky wins by tempo, never long chases. Run a hit-and-run shell with stealth and info such as Monitor with Lethal Pursuer and Alien Instinct, wound one survivor, then carry Hidey-Ho pressure to the next gen while they heal. Angle the camera toward your exit lane before charging Slice and Dice, release early into the lunge against jukers, and scamper every dropped pallet rather than kicking it, bring Rat Poison or Jump Rope for chase value, use Strobing Light with Pillow to shrink the 32-meter Terror Radius, and practice shack by scamping the window then dashing before runners reach the pallet. Never dash across open maps from max range where one sidestep wastes the 10-second cycle.",
     "advancedAgainst": "Ignore the fake footsteps and read his real tells: the laugh, the low red stain, and grass movement at knee level, since each survivor only hears up to 2 illusions lasting 10 seconds. Pre-drop shack and jungle gym pallets before he closes inside dash range, then leave instead of vaulting into Scamper follow-ups. Take every corner wide so his limited turn arc cannot clip you, crouch behind tall cover to break his short camera, and never rescue or heal in open lanes. Common mistakes include holding pallets for stuns he slides under, running quietly while Undetectable hides him anyway, and splitting toward him during Hidey-Ho instead of away.",
-    "verifiedPatch": "10.1.1",
+    "verifiedPatch": "10.2.2a",
     "sources": [
+      "https://steamcommunity.com/games/381210/announcements/detail/692024563197805375",
       "https://deadbydaylight.wiki.gg/wiki/The_Good_Guy",
       "https://www.reddit.com/r/DeadByDaylightKillers/comments/1uivndo/chuckythe_good_guy_tips/",
       "https://www.reddit.com/r/DeadByDaylightKillers/comments/1nb3u1g/advice_for_playing_chucky/"
@@ -764,7 +766,7 @@ var KILLER_STATS = {
   },
   "The Blight": {
     "terrorRadius": "32m",
-    "speed": "4.4 m/s",
+    "speed": "4.6 m/s",
     "height": "Average"
   },
   "The Twins": {
@@ -1033,6 +1035,23 @@ var POWER_MECHANICS = {
       "Heretics (survivors with Heresy) suffer special skill checks while repairing and can be sent to the Exile from the Dying State; liberated Exiles respawn at least 32m away with 1s of Divine Light immunity",
       "Exiling a Heretic triggers Zealous for 60 seconds, increasing Divine Light's size, cast duration, and control window",
       "Survivors repent at Shrines of Judgment to remove Heresy or rescue the Exiled, and taunting The Judgment inflicts Heresy"
+    ]
+  },
+  "b126576a-cf67-45a5-87e5-2533b9646ebc": {
+    "powerName": "Rites of Judgment",
+    "mechanics": [
+      "Punishment of the Damned reaches 16 meters.",
+      "Rites of Judgment has 8 charges and recharges 0.5 charges per second.",
+      "Entering Rites takes 0.8 seconds; cancelling takes 1.2 seconds.",
+      "Punishment starts after 0.25 seconds; segments appear 0.001 seconds apart and last 0.3 seconds."
+    ]
+  },
+  "4f19458e-d265-4eec-9346-07640367d337": {
+    "powerName": "Playtime's Over",
+    "mechanics": [
+      "Hidey-Ho recharges in 10 seconds.",
+      "Slice and Dice can dash for up to 2 seconds.",
+      "Scampering through a vault takes 0.8 seconds."
     ]
   }
 };

@@ -1988,7 +1988,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "When everything is going right, you are an inescapable inevitability.\n\nIncreases the duration you are blinded by any means and the duration of pallet stuns by 15%.\n\nIncreases regular vault speed by 15/20/25%.\n\n“Run all you want. I will not be denied.” - Vecna",
       "image": "dbd_images/perks/IconPerks_darkArrogance.png",
-      "descriptionPost95": "You basic-vault Windows 15/20/25% faster. Your missed basic-attack cooldown is 15/20/25% shorter. Whenever you are blinded or Pallet-stunned, the duration is 25% longer."
+      "descriptionPost95": "You basic-vault Windows 15/20/25% faster. All basic-attack cooldowns are 10% shorter, including successful, missed and obstructed attacks. Blindness and Pallet stuns last 25% longer."
     },
     {
       "id": "ce81c2eb-6f00-4be9-aae0-61616aa1c06a",
@@ -5019,7 +5019,7 @@ var DATABASE = {
       "name": "Void Crystal",
       "type": "item",
       "itemType": "firecracker",
-      "description": "Cold to the touch, the crystal vibrates from the force contained within.1 charge.\n\nWhen shattered, the Void Crystal releases thick smoke with an expanding radius of up to 4 meters.Survivors within 6 meters of the smoke do not leave scratch marks.The smoke dissipates 8 seconds after reaching it maximum size.",
+      "description": "Haunted by Daylight 2026 event item. Survivors start with a reusable Void Crystal. Spend 4 Void Energy to create vision-obscuring smoke, or 8 to place it on a non-regressing Generator for remote repair at 0.8 charges per second for 30 seconds. The Crystal returns after repair completes or the Killer destroys it. While deployed, it cannot be used and Void Energy cannot be collected.",
       "role": "survivor",
       "rarity": "common",
       "bloodweb": false,
