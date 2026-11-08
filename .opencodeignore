@@ -1,0 +1,10 @@
+
+# Local credentials and signing material
+.env*
+*.pem
+*.key
+*secret*
+*token*
+auth.json
+credentials
+*.keystore
