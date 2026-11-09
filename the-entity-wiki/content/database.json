@@ -4198,6 +4198,14 @@
       "description": "A neon-drenched downtown nightmare woven from The Trickster's subconscious. Shops, street food stalls, and a nightclub twist together into a surreal performance space where the Entity exposes the fractured memories behind Ji-Woon Hak's fame.",
       "dlc": "all-kill-comeback",
       "image": "assets/maps/trickstersdelusion.png"
+    },
+    {
+      "id": "b1449806-4191-4df6-b122-4dc2158f0138",
+      "name": "Dead Sands",
+      "realm": "Forsaken Boneyard",
+      "description": "An open desert graveyard in Forsaken Boneyard, centered on the Killer Shack rather than the Eyrie. Stone sentinels overlook the site of Carmina Mora's suffering.",
+      "dlc": "Ion",
+      "image": "dbd_images/maps/IconMap_Ice_Level01.png"
     }
   ],
   "realms": [
@@ -4363,7 +4371,6 @@
       "image": "dbd_images/maps/IconMap_Swp_GrimPantry.png",
       "maps": [
         "de355d2e-1a15-4b6c-aea4-0cf8d778c973",
-        "70c50980-678c-4286-9c5c-d98efab39877",
         "63cb0c99-d18b-4148-add1-f0118deb55de"
       ]
     },

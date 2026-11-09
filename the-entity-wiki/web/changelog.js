@@ -1,11 +1,12 @@
 var CHANGELOG = [
   {
     "version": "5.34.1",
-    "date": "November 8, 2026",
+    "date": "November 9, 2026",
     "changes": [
       "UPDATE : Synced Dead by Daylight 10.2.2, with 10.2.1 feature changes and 10.2.2a backend killer adjustments",
       "UPDATE : Added 38 Halloween and Stranger Things cosmetic records with local images",
-      "FIX : Updated Surrender, End Trial, Void Crystal and killer guide data"
+      "FIX : Updated Surrender, End Trial, Void Crystal and killer guide data",
+      "FIX : Restored Dead Sands map coverage and removed a stale Backwater Swamp map reference"
     ]
   },
   {
