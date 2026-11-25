@@ -1,8 +1,8 @@
 {
-  "totalAddons": 946,
+  "totalAddons": 966,
   "counts": {
     "updated": 0,
-    "unchanged": 946,
+    "unchanged": 966,
     "unresolved": 0
   },
   "entries": [
@@ -6627,6 +6627,146 @@
       "name": "Mirror of the Creators",
       "status": "unchanged",
       "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K44_20"
+    },
+    {
+      "id": "addon-addon-k45-01",
+      "internalId": "Addon_K45_01",
+      "name": "Blackened Heart",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_01"
+    },
+    {
+      "id": "addon-addon-k45-02",
+      "internalId": "Addon_K45_02",
+      "name": "Wacky Jacks",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_02"
+    },
+    {
+      "id": "addon-addon-k45-03",
+      "internalId": "Addon_K45_03",
+      "name": "Bottle of Bleach",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_03"
+    },
+    {
+      "id": "addon-addon-k45-04",
+      "internalId": "Addon_K45_04",
+      "name": "Allie's Scalp",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_04"
+    },
+    {
+      "id": "addon-addon-k45-05",
+      "internalId": "Addon_K45_05",
+      "name": "Burnt Wings",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_05"
+    },
+    {
+      "id": "addon-addon-k45-06",
+      "internalId": "Addon_K45_06",
+      "name": "Brooke's Pustule",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_06"
+    },
+    {
+      "id": "addon-addon-k45-07",
+      "internalId": "Addon_K45_07",
+      "name": "Bloodstained Bullet",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_07"
+    },
+    {
+      "id": "addon-addon-k45-08",
+      "internalId": "Addon_K45_08",
+      "name": "Sienna's Flesh",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_08"
+    },
+    {
+      "id": "addon-addon-k45-09",
+      "internalId": "Addon_K45_09",
+      "name": "Shiny Tricycle",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_09"
+    },
+    {
+      "id": "addon-addon-k45-10",
+      "internalId": "Addon_K45_10",
+      "name": "Victoria's Eye",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_10"
+    },
+    {
+      "id": "addon-addon-k45-11",
+      "internalId": "Addon_K45_11",
+      "name": "Dead Opossum",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_11"
+    },
+    {
+      "id": "addon-addon-k45-12",
+      "internalId": "Addon_K45_12",
+      "name": "Candy Head Bowl",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_12"
+    },
+    {
+      "id": "addon-addon-k45-13",
+      "internalId": "Addon_K45_13",
+      "name": "Mike's Phone",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_13"
+    },
+    {
+      "id": "addon-addon-k45-14",
+      "internalId": "Addon_K45_14",
+      "name": "Thornton Salt",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_14"
+    },
+    {
+      "id": "addon-addon-k45-15",
+      "internalId": "Addon_K45_15",
+      "name": "Duct Tape",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_15"
+    },
+    {
+      "id": "addon-addon-k45-16",
+      "internalId": "Addon_K45_16",
+      "name": "Art Crispies",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_16"
+    },
+    {
+      "id": "addon-addon-k45-17",
+      "internalId": "Addon_K45_17",
+      "name": "Explosive Gift",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_17"
+    },
+    {
+      "id": "addon-addon-k45-18",
+      "internalId": "Addon_K45_18",
+      "name": "Jonathan's Skull",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_18"
+    },
+    {
+      "id": "addon-addon-k45-19",
+      "internalId": "Addon_K45_19",
+      "name": "Emily",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_19"
+    },
+    {
+      "id": "addon-addon-k45-20",
+      "internalId": "Addon_K45_20",
+      "name": "The Ninth Circle",
+      "status": "unchanged",
+      "sourceUrl": "https://dbd.tricky.lol/api/addons#Addon_K45_20"
     }
   ]
 }

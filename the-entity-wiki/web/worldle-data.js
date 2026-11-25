@@ -230,6 +230,11 @@ var WORLDLE_DATA = {
       "judgement",
       "divine light",
       "celestial echelon"
+    ],
+    "The Terrifier": [
+      "terrifier",
+      "art",
+      "art the clown"
     ]
   },
   "genders": {
@@ -276,7 +281,8 @@ var WORLDLE_DATA = {
     "The Krasue": "Female",
     "The First": "Male",
     "The Slasher": "Male",
-    "The Judgment": "Other"
+    "The Judgment": "Other",
+    "The Terrifier": "Male"
   },
   "emojiClues": {
     "The Trapper": [
@@ -1420,6 +1426,32 @@ var WORLDLE_DATA = {
           "🌟",
           "⛓️",
           "🕯️"
+        ]
+      }
+    ],
+    "The Terrifier": [
+      {
+        "id": "set-1",
+        "emojis": [
+          "🤡",
+          "🔪",
+          "🎪"
+        ]
+      },
+      {
+        "id": "set-2",
+        "emojis": [
+          "🎈",
+          "🩸",
+          "🧸"
+        ]
+      },
+      {
+        "id": "set-3",
+        "emojis": [
+          "🍿",
+          "🚂",
+          "😱"
         ]
       }
     ]

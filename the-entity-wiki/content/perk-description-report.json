@@ -1,7 +1,7 @@
 {
-  "totalPerks": 321,
+  "totalPerks": 327,
   "counts": {
-    "different": 311,
+    "different": 317,
     "same_as_legacy": 10
   },
   "entries": [
@@ -2571,6 +2571,54 @@
       "status": "same_as_legacy",
       "sourceUrl": "https://dbd.tricky.lol/api/perks#S54P03",
       "sourceKey": "S54P03",
+      "matchType": "name"
+    },
+    {
+      "id": "k45p01-laughingstock",
+      "name": "Laughingstock",
+      "status": "different",
+      "sourceUrl": "https://dbd.tricky.lol/api/perks#K45P01",
+      "sourceKey": "K45P01",
+      "matchType": "name"
+    },
+    {
+      "id": "k45p02-kill-spree",
+      "name": "Kill Spree",
+      "status": "different",
+      "sourceUrl": "https://dbd.tricky.lol/api/perks#K45P02",
+      "sourceKey": "K45P02",
+      "matchType": "name"
+    },
+    {
+      "id": "k45p03-funny-business",
+      "name": "Funny Business",
+      "status": "different",
+      "sourceUrl": "https://dbd.tricky.lol/api/perks#K45P03",
+      "sourceKey": "K45P03",
+      "matchType": "name"
+    },
+    {
+      "id": "s55p01-valkyrie-s-rage",
+      "name": "Valkyrie's Rage",
+      "status": "different",
+      "sourceUrl": "https://dbd.tricky.lol/api/perks#S55P01",
+      "sourceKey": "S55P01",
+      "matchType": "name"
+    },
+    {
+      "id": "s55p02-shared-trauma",
+      "name": "Shared Trauma",
+      "status": "different",
+      "sourceUrl": "https://dbd.tricky.lol/api/perks#S55P02",
+      "sourceKey": "S55P02",
+      "matchType": "name"
+    },
+    {
+      "id": "s55p03-best-gift-ever",
+      "name": "Best Gift Ever",
+      "status": "different",
+      "sourceUrl": "https://dbd.tricky.lol/api/perks#S55P03",
+      "sourceKey": "S55P03",
       "matchType": "name"
     }
   ]

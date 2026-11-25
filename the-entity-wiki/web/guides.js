@@ -883,6 +883,11 @@ var KILLER_STATS = {
     "terrorRadius": "32m",
     "speed": "4.4 m/s",
     "height": "Tall"
+  },
+  "The Terrifier": {
+    "terrorRadius": "32m",
+    "speed": "4.6 m/s",
+    "height": "Average"
   }
 };
 

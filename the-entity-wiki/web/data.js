@@ -400,6 +400,15 @@ var DATABASE = {
       "difficulty": "veryhard",
       "image": "dbd_images/killers/k44_thejudgment_portrait.png",
       "lore": "Recovered Fragments from the Arbiters’ Book of Letters: “Would you be counted among the heretics cleansed from this world? Or do you aspire to prove yourself to Judgment time and again, as we have proved ourselves? Then heed well these words, for their collective wisdom have saved us and, we pray, will save us still each time It returns.” (I Barbarians, ch. 3) “Some of you ask, ‘What was life before Judgment?’ Those old enough to remember dare not tell, but know that the world called Terra Primus was rife with sin and heresy. The faithless built great and terrible monuments to themselves, cities reaching into the sky, ships that pierced the heavens, and unholy machines that reached across worlds. The rulers of Terra Primus elevated themselves as gods, and in their wisdom, the Celestials sent Judgment so that we may see the error of our ways and suffer for it.” (Truths Revealed, ch. 5) “Do not seek to return to the old ways, for the towers and technologies of Terra Primus were heresy.” (Laws from Beyond, ch. 15) “Remember the settlement of Dend. Remember Lucia the Mother, who offered up her babe to Judgment and declared “great Celestial, bear witness to my devotion!” and plunged the knife into her only child. Judgment brought its light upon the people of Dend regardless, as punishment for sacrificing the innocent.” (I Barbarians, ch. 11) “Build only that which allows you to live. Sow only that which is needed to eat. To do more than this is heresy and must be punished.” (Laws from Beyond, ch. 1) “Remember that even the one who built the first shrine to Judgment was burned in Its light. Of all in the encampment, the only one spared was Koenrad the Pious, who pierced his hands upon the shrine.” (I Barbarians, ch. 12) “To worship is to suffer. Do not forget your worship but refrain from overindulging. The extent to which you must suffer is for you to discover. Anything more or less is heresy and must be punished.” (Laws from Beyond, ch. 2) “Some of you ask of the Celestials, saying ‘What is their nature? What is the order of their echelon?’ Know that their nature is unknowable, that their order is the ultimate order. Know that Judgment is the favorite of the echelon, that It represents all that is right and just across all time and all worlds.” (Truths Revealed, ch. 2) “Do not seek answers outside of Judgment, for any deviation from the will of the Gods is heresy and must be punished.” (Laws from Beyond, ch. 5) “Remember Gerhardt the Blind, who tore out his own eyes as testament to the trust he placed in Judgment. Gerhardt proved himself worthy and his death from old age was a gift from Judgment. But remember also those who followed in his example and tore out their own eyes. They were burned in Judgment’s light, as punishment for their bare-faced imitation.” (II Barbarians, ch. 7) “Fear is faith. Fear is love for Judgment. To live a life without fear is heresy, and must be punished.” (Laws from Beyond, ch. 5) “Some of you ask, ‘Why does Stardotter the Deceiver prosper? She builds beyond what is needed and stores food and wealth. She does not worship, she seeks answers in the stars. Why do her repeated heresies go unpunished while we starve and strive to see our siblings, spouses, and children burn in Judgment’s light?’ Know that Stardotter the Deceiver lives so that we may punish her, and all who follow her. This is the greatest test of our worthiness, and Judgment permits us to live so that we may triumph over her.” (Truths Revealed, ch. 3) “Look to your neighbors, and see that they are righteous in word and action. Granting mercy to heretics is itself heresy, and must be punished.” (Laws from Beyond, ch. 8) “Remember Ragnar the Traitor. Once a proud hunter of heretics, she abandoned The Arbiters and sought protection under the shadow of Stardotter the Deceiver. Protection she did not find, for when Judgment returned the following year, Ragnar was destroyed in Its light.” (III Barbarians, ch. 6) “Turn your ears away from those who followed the Deceiver. Ignore tales of black fog or dark shadows. Punish those who would talk of the Deceiver triumphing over Judgment. Engaging with the enemy’s lies is heresy and must be punished.” (Laws from Beyond, ch. 3) “Let these be the last words of The Arbiters. Judgment has not returned in twelve winters, not since It destroyed Stardotter the Deceiver. But even though our God is gone, and the heretics who call themselves Auroran have brought us low, we will never waver in our devotion. Judgment will surely return, and we will be remembered as the ones who remained faithful. It is our grim responsibility, for our children, and for our children’s children, to fight against heresy and create a new world in Judgment’s image.” (Final Testament, ch. 11)"
+    },
+    {
+      "id": "character-k45",
+      "name": "The Terrifier",
+      "realName": "The Terrifier",
+      "power": "The Terrifier is a sadist who has many creative ways to torture his victims.\n\nHis personal perks, Laughingstock, Kill Spree, and Funny Business weaken Survivors as Generators are repaired, add the ability to kill Survivors in the late-game, and introduce an element of surprise when damaging Generators.",
+      "difficulty": "intermediate",
+      "image": "dbd_images/killers/k45_theterrifier_portrait.png",
+      "lore": "It started with grease paint and makeshift weaponry. Though he looked ready for the circus, Art the Clown’s intentions were betrayed by his piercing eyes and toothy smile. This was a killer, sadistic and silent. The coming hours would be a masterclass in human suffering. A hacksaw cut through the flesh and bone of a woman hung upside-down, conscious, screaming as she split in two. Another was skinned alive, her bare chest peeled away, worn by Art as he went on the hunt. And then, Victoria—her face torn and eaten as she lay on cold concrete, the police arriving too late to save her from horrible disfigurement. As the officers trained their guns on Art, he had one last joke to play. He turned to them, gun in mouth, and pulled the trigger. It should have been over. A serial killer's fifteen minutes of fame come to an end. But something brought him back. Something inhuman. A demon. Art's murder spree continued. He soon came upon Sienna Shaw but rather than kill her, he worked at breaking her down. He murdered everyone around her and abducted her younger brother, Jonathan, taking him to the closed fairgrounds. What should have been another two corpses became a battle, with Sienna finally decapitating Art and saving her brother. Art wouldn't die so easily. His demonic companion possessed Victoria and gave birth to Art's reanimated head. As he was reunited with his body, he returned to his hideout and fell into a deep rest for five years. He awoke with the same sadistic urges, within minutes ripping the flesh from a man's head until one ferocious tug tore it completely from its skull. While revenge on Sienna was his goal, Art made sure to enjoy himself along the way. Wielding a chainsaw, he broke up an intimate shower between two students, keeping them alive as he carved up their naked bodies. When he finally came for Sienna, he surprised her with the corpse of her uncle, crucified on the kitchen wall. Tear-streaked and panicked, she ran to check on her cousin but Art intercepted her with a mallet. As he smashed it into her head, a black fog rose at his feet. He saw blood dripping from bodies impaled on meat hooks. Heard the tortured screams of those writhing in agony. And then he saw them—the victims that would never die, that would feel pain again and again. Tortured. Forever. He laughed, silently, unable to compose himself. Each time he straightened up, he saw more of them, stabbed, bludgeoned, burned. His fits of laughter started over again. It was a grand comedy. And he would be the star."
     }
   ],
   "survivors": [
@@ -834,6 +843,14 @@ var DATABASE = {
       "difficulty": "intermediate",
       "image": "dbd_images/survivors/S54_AuroraStardotter_Portrait.png",
       "lore": "Excerpts from The Queen Rylan Book of the Reformed Aurorans: “And so, at the center of Ultracapitalis, the Council decreed that Aurora Stardotter and the captive Searchers would be put to death. They were brought in chains to a grand festival and subjected to Inquisition for the people’s amusement. With bloodied hands, the Council vowed all Searchers would one day be destroyed, just as the First Searcher was destroyed long ago. But as the executions began, a great calamity descended upon Ultracapitalis, and Its name among the Celestials was Judgment. And Judgment said, ‘You who reign over Terra Primus have dared seek the power of the Gods, and you who follow have let them. Thus you have all been judged!’ And from Judgment came a great beam of light that tore the city asunder. The dataplexes and preon streams were eradicated, and the sentio-circuitry of the people fell dormant. The Council was struck down in the burning light, as were children, and mothers, and Searchers alike. From the destruction emerged Aurora, and she beheld ruin where Ultracapitalis had stood. And so, she sought the last of the Searchers, for they had been her family since she renounced mother and father and took on the name of Stardotter.” (Marika's Declaration, 9:14-20) “Along her path lay many dead, some felled by Judgment, others slain by barbarians who fought for land and bread. Seeking shelter within a cave, Aurora discovered eight wretches she had once known as Searchers. She said, ‘Upon your feet, Searchers! Would your souls dim while the stars yet shine? Bring unto me your telereceptor, that I may look upon the cosmos.’ And her keen eye beheld the prophecies of the heavens, and she guided the Searchers to sweet waters and steep hills.” (Sang Legat, 4:10) “With the passing of years, Judgment would return many times over to raze Terra Primus, shattering the land and drying the rivers. Yet by Aurora's gaze, studying the revelations of the stars, the settlement of Stellanatis endured. The tribes of the wastes were less fortunate, and suffering led to greater savagery. All coveted the fruits of Stellanatis, yet none more than the Arbiters who revered Judgment and killed in Its name, not from faith but from craven fear. The Arbiters struck at Stellanatis many times. Some they slew, others they enslaved. Yet Aurora refused to bow to such malice. Through her telereceptor, she foresaw the Arbiters’ schemes in the cosmos and when they next marched to Stellanatis, they found Aurora alone before them and many weapons pointed to their backs. Defeated, they fled to the wastes, for they could not stand against the woman who walked with fate.” (Larichus, 10:1-5) “In time, the tribes of the wastes saw their folly, for they had lost more than they could bear. And so, their leaders came to the gates of Stellanatis, cast down their weapons, and begged Aurora for salvation. And out of great mercy, Aurora welcomed the tribes, and made them as one. The people were filled with faith, and in her name they called themselves Aurorans.” (Transgressions, 5:12) “For many seasons, the land knew peace, until Judgment returned and struck the walls of Stellanatis until there were great hills of dust in their place. Aurora cast herself before the Celestial and said, ‘Deliver these people from your wrath, for it is I they follow. Judge me, for I would climb to the heavens and cleanse the Celestials in a sea of fire.’ In the face of this defiance, Judgment declared, ‘Your people are a rot upon the universe, protected by your hand. Your sentence is exile, and in your absence, your people shall lay waste to all that you have built, and they shall drown in the blood they shed upon their kin.’ And Judgment struck Aurora with blinding light, and in the place she once stood was nothing, and the people fell to their knees and wept for their lost savior. Yet as Aurora’s shout lingered, it brought forth a great cloud of Darkest Shadow. Judgment cried in fear and though It tried to escape, Darkest Shadow took hold and grew until a black tower stood above Stellanatis, and when it drew away, Judgment was no more.” (Kelglen's Declaration, 14:11-15) “The Aurorans rejoiced, for finally they were free from Judgment. They wandered the lands, proclaiming that though Aurora was exiled, they would follow the example of her Darkest Shadow: all who opposed the Aurorans would be consumed by black smoke. First they set the Arbiters upon the flames, and then the unbelievers also, so that Aurora might return to a world made pure. Such is the path of Aurora Stardotter. Such is the path of Darkest Shadow.” (Marika's Declaration, 25:6)"
+    },
+    {
+      "id": "character-s55",
+      "name": "Sienna Shaw",
+      "role": "Survivor",
+      "difficulty": "intermediate",
+      "image": "dbd_images/survivors/S55_SiennaShaw_Portrait.png",
+      "lore": "Sienna Shaw could not remember a day without a dark thought. Not since her father died. One of his drawings was her lone source of comfort. A Valkyrie warrior illustrated in her likeness. She recreated the Valkyrie’s battle armor for a Halloween party, including the sword her father had left her. The night she finished the costume, Sienna dreamed of a garish set. Like an old kid’s show. The host sang a cheerful tune. Drop on by the Clown Cafe! Children frolicked. Art The Clown, the serial killer that once terrorized Miles County, emerged. He reached into his bag of tricks. Next came gunfire. Screams. Gurgling. Dead little hands. Sienna dragged herself across glass. Art aimed his flamethrower. She smelled fuel. Charred skin. The clown grinned. In his eyes was the sickest pleasure. Sienna woke. Her angel wings were ablaze. Yet the sword was unscathed. Shaken but undeterred, she sought replacement wings at the costume shop. As she approached the counter, someone sidled up beside her. It was exactly like her nightmare. The same jumpsuit. The same twisted grin. But Art was dead. It was just a dumbass in a costume. Exactly like the one Jonathan was hellbent on wearing. Jonathan. Her brother's obsession with that maniac was disturbing, but she chalked it up to the grieving process and brushed off his warnings of Art's return. The plan was to meet Allie and Brooke at the venue. Doing her best to ignore the rising dread, Sienna hit the dance floor. It felt good to let loose. Almost too good. She did not feel herself. Something was off. She opened her eyes to a horrid sight. A pale little girl, face contorted with sadistic glee. She left in a panic. On the drive home, Jonathan called. He was stranded at an abandoned carnival. It was there that Art and his demonic accomplice sprung their trap. A brutal battle ensued, ending when Sienna swung her blade clean through the smirking bastard’s neck. Though she emerged victorious, it was Art that struck the deepest wound. Her friends were dead. Her mother was dead. Cruelly. Gruesomely. Maimed with vicious glee. Sienna spent the next five years in a psychiatric facility. Emerging for the holidays, she reunited with her aunt Jessica, uncle Greg, and cousin Gabbie. The facade of normalcy was short lived. Art had returned with a bang. She awoke one night to raised voices. Her aunt and uncle arguing. Their darkened words were so unlike them. Realization dawned as she crept down the stairs. Thud. From the living room. It was Art. Lovingly placing the finishing touches on his decoration. Uncle Greg, decapitated, eviscerated, and crucified. Sienna raced to find Gabbie. Art was faster. His mallet struck her skull with a sickening crunch. A sudden vision overtook her. She was back at The Clown Cafe. There were no children this time. No host singing madly on. Only a man with shattered glasses. Impaled by something hideous, inexplicable. Before him stood a hook, encircled by spiderlike tendrils of black fog. She screamed as the fog crept toward her. In the distance, a playful horn set crows to flight."
     }
   ],
   "perks": [
@@ -1096,7 +1113,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Animals seem to trust you as they often stay calm in your presence.\n\n- Reduces chances of alerting woodland creatures by 100%.\n- Allows you to overcome the urge to scream.\n- Allows you to open chests and cleanse/bless Totems silently, but at 40/35/30% reduced speed.",
       "image": "dbd_images/perks/IconPerks_calmSpirit.png",
-      "descriptionPost95": "You do not scare Crows or scream. You bless and cleanse Totems, and unlock Chests silently and 8/9/10% faster."
+      "descriptionPost95": "You do not scare Crows or scream. You bless and cleanse Totems, and unlock Chests silently, and 23/24/25% faster."
     },
     {
       "id": "48e14117-8981-4d95-8429-3d17e54c13d1",
@@ -1150,7 +1167,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "Unlocks potential in one's aura reading ability.\n\nEach time a generator is completed, Dark Sense activates.\n\nWhile Dark Sense is active, the Killer entering a 24-meter radius around you reveals their aura for 5/7/10 seconds.\n\nOnce the aura's duration expires, Dark Sense deactivates.",
       "image": "dbd_images/perks/IconPerks_darkSense.png",
-      "descriptionPost95": "Whenever a Generator is completed, when the Killer gets within 20m of you, for 13/14/15s: - You see the Aura of Pallets and Windows within 32m. - You see the Auras of other Survivors. - You see the Killer's Aura."
+      "descriptionPost95": "When the trial starts, and after a Generator is completed, you earn 1 Token, up to 5. When the Killer gets within 20m of you, spend 1 Token. Then, for the next 13/14/15s: - You see the Auras of Pallets and Windows within 32m. - You see the Auras of other Survivors. - You see the Killer's Aura."
     },
     {
       "id": "c6f5369e-23a7-4e61-8bf3-b1345ed3c1b2",
@@ -1988,7 +2005,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "When everything is going right, you are an inescapable inevitability.\n\nIncreases the duration you are blinded by any means and the duration of pallet stuns by 15%.\n\nIncreases regular vault speed by 15/20/25%.\n\n“Run all you want. I will not be denied.” - Vecna",
       "image": "dbd_images/perks/IconPerks_darkArrogance.png",
-      "descriptionPost95": "You basic-vault Windows 15/20/25% faster. All basic-attack cooldowns are 10% shorter, including successful, missed and obstructed attacks. Blindness and Pallet stuns last 25% longer."
+      "descriptionPost95": "You basic-vault Windows 15% faster. Your successful basic-attack cooldown is 13/14/15% shorter. Whenever you are blinded or Pallet-stunned the duration is 15% longer."
     },
     {
       "id": "ce81c2eb-6f00-4be9-aae0-61616aa1c06a",
@@ -2105,7 +2122,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "The scent of blood is in the air. Time to feast.\n\nWhenever you hook a Survivor for the first time, gain 1 token, up to a maximum of 4.\n\nWhen you have 4 tokens, all Survivors scream and are inflicted with Exposed for 40/50/60 seconds.\n\nExposed Survivors are downed by basic attacks, even if uninjured.\n\n“Weeping Ginevra’s blood streams/The devil smells the weak.” —Fabbro Barone’s “Ginevra”",
       "image": "dbd_images/perks/IconPerks_Ravenous.png",
-      "descriptionPost95": "The first time you hook each Survivor, you earn 1 Token. For each Token: - Gain 4% Haste while carrying Survivors. - Hook Survivors 4% faster. When you have 4 Tokens, all Survivors: - Scream. - Gain Exposed for 80/85/90s."
+      "descriptionPost95": "The first time you hook each Survivor, you earn 1 Token. For each Token: - Gain 4% Haste while carrying a Survivor. - Hook Survivors 4% faster. When you have 4 Tokens, all Survivors: - Scream. - Gain Exposed for 60/65/70s."
     },
     {
       "id": "db9dc9dd-87a4-4d5f-8752-23dcdde0ae00",
@@ -2231,7 +2248,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "Your fervent care of the hooks found in the basement have aroused The Entity's interest.\n\nAt the start of the trial, 4 random hooks are changed into scourge hooks. You see their auras in white.\n\n- Scourge Hooks grant 10/15/20% faster Entity progression if the Killer is not within 24 meters.\n\nBasement hooks count as Scourge Hooks.",
       "image": "dbd_images/perks/IconPerks_scourgeHookMonstrousShrine.png",
-      "descriptionPost95": "When the trial starts: - 4 random Hooks become Scourge Hooks. - The Basement Hooks become Scourge Hooks. While you are at least 24m away from a Survivor on a Scourge Hook, Generators not being repaired regress at 150/175/200% speed."
+      "descriptionPost95": "When the Trial starts: - 4 random Hooks become Scourge Hooks. - The Basement Hooks become Scourge Hooks. While you are at least 24m away from a Survivor on a Scourge Hook, any Generator that isn't being repaired regresses at 200% speed. When the Survivor is no longer hooked this effect ends in 20/25/30s."
     },
     {
       "id": "8c9bf71f-68ba-456e-bacb-6b5219a761b1",
@@ -3215,7 +3232,7 @@ var DATABASE = {
       "type": "Survivor",
       "description": "You have developed an efficient way to get off hooks.\n\n- Unlocks the ability to attempt to unhook yourself.\n- Grants up to 3 extra escape attempts on the hook.\n- Hook escape attempts have a 2/3/4% increased chance to succeed.",
       "image": "dbd_images/perks/IconPerks_slipperyMeat.png",
-      "descriptionPost95": "Other Survivors unhook you 90/95/100% faster. Whenever you are unhooked, you gain 5% more Haste."
+      "descriptionPost95": "Other Survivors unhook you 65/70/75% faster. Whenever you are unhooked, you gain 7% more Haste."
     },
     {
       "id": "b1658b77-2755-4191-a180-5a56f80a863c",
@@ -3515,7 +3532,7 @@ var DATABASE = {
       "type": "Killer",
       "description": "You have a rudimentary understanding of The Entity's voice.\n\nSporadically hear The Entity's whisper when standing within a 48/40/32 meter range of a Survivor.",
       "image": "dbd_images/perks/IconPerks_whispers.png",
-      "descriptionPost95": "While within 28/26/24m of a Survivor, you randomly hear whispers. While outside of 28/26/24m of a Survivor, you gain 5% Haste."
+      "descriptionPost95": "While within 28/26/24m of a Survivor, you randomly hear whispers. While more than 28/26/24m away from a Survivor, gain 7% Haste."
     },
     {
       "id": "c332140b-588d-4288-a4ea-22f6655460d9",
@@ -3740,6 +3757,60 @@ var DATABASE = {
       "type": "Survivor",
       "description": "While next to a Totem, use Active Ability Button 1 to bless it, creating a unique Boon Totem that combines all your Boons. Generators within the Boon's range: - Regress 50% slower. - Survivors repair them 8/9/10% faster. Survivors within the Boon's range see the Auras of affected Generators.",
       "image": "dbd_images/perks/IconPerks_BoonSteadfast.png"
+    },
+    {
+      "id": "k45p01-laughingstock",
+      "name": "Laughingstock",
+      "owner": "The Terrifier",
+      "type": "Killer",
+      "description": "Survivors within 12m of a completed Generator: - Gain Exhausted. - Gain Oblivious. When they leave this range, the effect ends after 3/4/5s. You see the Auras of completed Generators.",
+      "image": "dbd_images/perks/IconPerks_Laughingstock.png",
+      "descriptionPost95": "Survivors within 12m of a completed Generator: - Gain Exhausted. - Gain Oblivious. When they leave this range, the effect ends after 3/4/5s. You see the Auras of completed Generators."
+    },
+    {
+      "id": "k45p02-kill-spree",
+      "name": "Kill Spree",
+      "owner": "The Terrifier",
+      "type": "Killer",
+      "description": "When all remaining Survivors have 2 Hook States and all Generators are completed, you can kill Survivors. While killing a Survivor, both Exit Gate Switches are blocked. Whenever you finish killing a Survivor, this ends after 12/16/20s.",
+      "image": "dbd_images/perks/IconPerks_KillSpree.png",
+      "descriptionPost95": "When all remaining Survivors have 2 Hook States and all Generators are completed, you can kill Survivors. While killing a Survivor, both Exit Gate Switches are blocked. Whenever you finish killing a Survivor, this ends after 12/16/20s."
+    },
+    {
+      "id": "k45p03-funny-business",
+      "name": "Funny Business",
+      "owner": "The Terrifier",
+      "type": "Killer",
+      "description": "Whenever you damage a Generator, you gain 10% Haste for 10s and one of the following occurs at random: - You retain your 10% Haste for 5s longer. - You get stunned for 2s. - The affected Generator is blocked for 30s. - Confetti! But nothing happens. Cooldown: 60/50/40s. The same effect cannot happen twice in a row.",
+      "image": "dbd_images/perks/IconPerks_FunnyBusiness.png",
+      "descriptionPost95": "Whenever you damage a Generator, you gain 10% Haste for 10s and one of the following occurs at random: - You retain your 10% Haste for 5s longer. - You get stunned for 2s. - The affected Generator is blocked for 30s. - Confetti! But nothing happens. Cooldown: 60/50/40s. The same effect cannot happen twice in a row."
+    },
+    {
+      "id": "s55p01-valkyrie-s-rage",
+      "name": "Valkyrie's Rage",
+      "owner": "Sienna Shaw",
+      "type": "Survivor",
+      "description": "After being chased for 40/35/30s, the next time you Pallet-stun the Killer, they are stunned for 75% longer.",
+      "image": "dbd_images/perks/IconPerks_ValkyriesRage.png",
+      "descriptionPost95": "After being chased for 40/35/30s, the next time you Pallet-stun the Killer, they are stunned for 75% longer."
+    },
+    {
+      "id": "s55p02-shared-trauma",
+      "name": "Shared Trauma",
+      "owner": "Sienna Shaw",
+      "type": "Survivor",
+      "description": "Whenever you take a protection hit, all Survivors within 12m recover from Exhausted while running for 30/35/40s. Within 32m, you see the Auras of Exhausted Survivors.",
+      "image": "dbd_images/perks/IconPerks_SharedTrauma.png",
+      "descriptionPost95": "Whenever you take a protection hit, all Survivors within 12m recover from Exhausted while running for 30/35/40s. Within 32m, you see the Auras of Exhausted Survivors."
+    },
+    {
+      "id": "s55p03-best-gift-ever",
+      "name": "Best Gift Ever",
+      "owner": "Sienna Shaw",
+      "type": "Survivor",
+      "description": "At the start of the trial, you earn 4/5/6 Tokens. The first time you drop an Item of each type, spend 1 Token, then the dropped item is consumed. Then, based on the item's type: - Flashlight: Whenever you stun the Killer, they are also blinded for 2s. - Fog Vial: Whenever you fast-vault, for 5s, your Scratch Marks disappear 50% faster. - Key: You gain +1 rummage on each chest. - Map: Auras you see for a duration last +1s. - Medkit: While healing another Survivor, you also gain healing progress at 25% speed. - Toolbox: You see the Auras of the 3 Generators closest to each other.",
+      "image": "dbd_images/perks/IconPerks_BestGiftEver.png",
+      "descriptionPost95": "At the start of the trial, you earn 4/5/6 Tokens. The first time you drop an Item of each type, spend 1 Token, then the dropped item is consumed. Then, based on the item's type: - Flashlight: Whenever you stun the Killer, they are also blinded for 2s. - Fog Vial: Whenever you fast-vault, for 5s, your Scratch Marks disappear 50% faster. - Key: You gain +1 rummage on each chest. - Map: Auras you see for a duration last +1s. - Medkit: While healing another Survivor, you also gain healing progress at 25% speed. - Toolbox: You see the Auras of the 3 Generators closest to each other."
     }
   ],
   "maps": [
@@ -4206,6 +4277,14 @@ var DATABASE = {
       "description": "An open desert graveyard in Forsaken Boneyard, centered on the Killer Shack rather than the Eyrie. Stone sentinels overlook the site of Carmina Mora's suffering.",
       "dlc": "Ion",
       "image": "dbd_images/maps/IconMap_Ice_Level01.png"
+    },
+    {
+      "id": "7857aa27-84ee-46cf-85ab-91f94084937b",
+      "name": "Hartshorne Mall",
+      "realm": "The Subdivisions",
+      "description": "A shopping mall in The Subdivisions, inspired by Dwight Fairfield's childhood trauma. Dwight lost his parents here at the age of five, behind a door marked 'Employees Only'.",
+      "dlc": "Waffle",
+      "image": "dbd_images/maps/hartshorne_mall.png"
     }
   ],
   "realms": [
@@ -4405,6 +4484,14 @@ var DATABASE = {
       "image": "assets/maps/sleeplessdistrict.png",
       "maps": [
         "tricksters-delusion-map"
+      ]
+    },
+    {
+      "id": "b5dbf97c-80ec-4e31-aef5-6fc0a7d2b4ee",
+      "name": "The Subdivisions",
+      "image": "dbd_images/maps/subdivisions_realm.png",
+      "maps": [
+        "7857aa27-84ee-46cf-85ab-91f94084937b"
       ]
     }
   ],
@@ -5708,6 +5795,19 @@ var DATABASE = {
       "bloodweb": false,
       "event": null,
       "image": "dbd_images/powers/the_judgment_power.png"
+    },
+    {
+      "id": "poweritem-item-k45power",
+      "internalId": "Item_K45Power",
+      "name": "Bag of Toys",
+      "type": "power",
+      "itemType": null,
+      "description": "Power: Bag of Toys Hold the Ability button to open your Bag of Toys and select one of two random Toys. The Bag of Toys enters a cooldown state and cannot be opened again until it expires. Special Items: Toys Toys damage healthy Survivors and inflict injured Survivors with a Torture effect. Hold the Power button to ready a Toy and tap the Attack button to use it. Each Toy is single-use. Acid Bottle: Throw Acid Bottles at Survivors or create Acid Puddles. Causes the Acid Torture effect. Flail: Perform a sweeping attack that can strike over certain obstacles. Causes the Flayed Torture effect. Handgun: Fire a bullet. Causes the Gunshot Torture effect. Flamethrower: Shoot a stream of fire that can inflame Pallets, Windows, and Generators. Causes the Burning Torture effect. Bike Horn: Reveal Survivors with Killer Instinct and apply Oblivious for X seconds. Reset the timer on any active Torture effects. A Survivor afflicted with a Torture effect is downed when struck by a different Torture effect. They are also afflicted with the Terrified status effect. Special Action: Taunt Press the Ability button to Taunt. Taunting a Terrified Survivor who is hooked or downed grants 1 point of Deadliness to all Toys. This removes the Survivor's Terrified status effect. Deadliness When a Toy applies the Torture status effect, it gains one point of Deadliness. Upon reaching maximum Deadliness, the Toy can down injured Survivors. When the Bike Horn reaches maximum Deadliness it will interrupt any Survivors repairing a Generator or healing, and instantly regress their progress.",
+      "role": "killer",
+      "rarity": "common",
+      "bloodweb": false,
+      "event": null,
+      "image": "dbd_images/powers/the_terrifier_power.png"
     }
   ],
   "offerings": [
@@ -22799,6 +22899,326 @@ var DATABASE = {
       "rarity": "visceral",
       "bloodweb": true,
       "image": "dbd_images/addons/iconaddon_mirrorofthecreators.png"
+    },
+    {
+      "id": "addon-addon-k45-01",
+      "internalId": "Addon_K45_01",
+      "name": "Blackened Heart",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "A still-beating heart, dark and crawling with worms. After Taunting a Terrified Survivor, the next time you down a Survivor with a Toy, that Toy gains 1 extra Deadliness point.",
+      "role": "killer",
+      "rarity": "common",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_blackenedheart.png"
+    },
+    {
+      "id": "addon-addon-k45-02",
+      "internalId": "Addon_K45_02",
+      "name": "Wacky Jacks",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "110% of your recommended daily intake of sugar. The amount of Deadliness required for a Toy to reach Maximum Deadliness will not exceed 5 points.",
+      "role": "killer",
+      "rarity": "veryrare",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_wackyjacks.png"
+    },
+    {
+      "id": "addon-addon-k45-03",
+      "internalId": "Addon_K45_03",
+      "name": "Bottle of Bleach",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "Causes agonizing pain when applied to wounds. And kills 99.9% of household bacteria! Decreases Torture 's decay rate by 15%.",
+      "role": "killer",
+      "rarity": "common",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_bottleofbleach.png"
+    },
+    {
+      "id": "addon-addon-k45-04",
+      "internalId": "Addon_K45_04",
+      "name": "Allie's Scalp",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "The most horrifying moments start with a simple cut. Once per trial, downing a Tortured Survivor with a basic-attack applies Terrified.",
+      "role": "killer",
+      "rarity": "common",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_alliesscalp.png"
+    },
+    {
+      "id": "addon-addon-k45-05",
+      "internalId": "Addon_K45_05",
+      "name": "Burnt Wings",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "Everything Sienna held dear went up in flames. Increases the duration of Flames by 5 seconds. When you Torture a Survivor, the Bag of Toys is guaranteed to contain the Flamethrower on the next search.",
+      "role": "killer",
+      "rarity": "uncommon",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_burntwings.png"
+    },
+    {
+      "id": "addon-addon-k45-06",
+      "internalId": "Addon_K45_06",
+      "name": "Brooke's Pustule",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "A weeping blister that bubbled as acid ate through Brooke's face. Increases the size of the Acid Puddle by up to 100% based on the distance the Acid falls, reaching its maximum after falling 6 meters. When you Torture a Survivor, the Bag of Toys is guaranteed to contain the Acid Bottle on the next search.",
+      "role": "killer",
+      "rarity": "uncommon",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_brookspustule.png"
+    },
+    {
+      "id": "addon-addon-k45-07",
+      "internalId": "Addon_K45_07",
+      "name": "Bloodstained Bullet",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "A bloody bullet that was lodged in Tara's corpse. Shooting a Survivor with the Handgun from farther than 16m grants 10% Haste for 10 seconds. When you Torture a Survivor, the Bag of Toys is guaranteed to contain the Handgun on the next search.",
+      "role": "killer",
+      "rarity": "uncommon",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_bloodstainedbullet.png"
+    },
+    {
+      "id": "addon-addon-k45-08",
+      "internalId": "Addon_K45_08",
+      "name": "Sienna's Flesh",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "A strip of skin torn from Sienna during a brutal beating. Increases the Flail 's maximum reach by 20%. When you Torture a Survivor, the Bag of Toys is guaranteed to contain the Flail on the next search.",
+      "role": "killer",
+      "rarity": "uncommon",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_siennasflesh.png"
+    },
+    {
+      "id": "addon-addon-k45-09",
+      "internalId": "Addon_K45_09",
+      "name": "Shiny Tricycle",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "Three wheels means you'll maintain your balance on the bloodiest of floors. When multiple Survivors are detected by the Bike Horn, reveal the Aura of all other Survivors for 5 seconds. When you Torture a Survivor, the Bag of Toys is guaranteed to contain the Bike Horn on the next search.",
+      "role": "killer",
+      "rarity": "uncommon",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_shinytricycle.png"
+    },
+    {
+      "id": "addon-addon-k45-10",
+      "internalId": "Addon_K45_10",
+      "name": "Victoria's Eye",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "It's a bit digested but otherwise still good. Directly hitting a Survivor with Fire or Acid reveals their Aura for 5 seconds.",
+      "role": "killer",
+      "rarity": "rare",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_victoriaseye.png"
+    },
+    {
+      "id": "addon-addon-k45-11",
+      "internalId": "Addon_K45_11",
+      "name": "Dead Opossum",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "A lifeless carcass that still holds plenty of entertainment value. Hitting a healthy Survivor with the Handgun or Flail causes all other Survivors within 24m to scream and reveal their location for 3 seconds.",
+      "role": "killer",
+      "rarity": "rare",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_deadopossum.png"
+    },
+    {
+      "id": "addon-addon-k45-12",
+      "internalId": "Addon_K45_12",
+      "name": "Candy Head Bowl",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "Dig deep into Mom's skull and grab a treat. When a Survivor is detected with the Bike Horn, reset the Bag of Toys ' cooldown.",
+      "role": "killer",
+      "rarity": "rare",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_candyheadbowl.png"
+    },
+    {
+      "id": "addon-addon-k45-13",
+      "internalId": "Addon_K45_13",
+      "name": "Mike's Phone",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "It's busted, just like Mike's head. Hitting a non-regressing Generator with a Toy special-breaks it.",
+      "role": "killer",
+      "rarity": "common",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_mikesphone.png"
+    },
+    {
+      "id": "addon-addon-k45-14",
+      "internalId": "Addon_K45_14",
+      "name": "Thornton Salt",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "This calls for more than a pinch. While injured Survivors are Tortured, they gain Mangled and Hemorrhage. These effects linger for 40 seconds after Torture is removed.",
+      "role": "killer",
+      "rarity": "rare",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_thorntonsalt.png"
+    },
+    {
+      "id": "addon-addon-k45-15",
+      "internalId": "Addon_K45_15",
+      "name": "Duct Tape",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "Made for restraining victims but could probably be used to keep things in place. Equipping a Toy within 0.5 seconds of opening the Bag of Toys reduces its cooldown by 4 seconds.",
+      "role": "killer",
+      "rarity": "visceral",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_ducttape.png"
+    },
+    {
+      "id": "addon-addon-k45-16",
+      "internalId": "Addon_K45_16",
+      "name": "Art Crispies",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "A surprise in every box! Whenever you Torture a Survivor, you both gain a random amount of Haste between 5% and 15% for 5 seconds.",
+      "role": "killer",
+      "rarity": "veryrare",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_artcrispies.png"
+    },
+    {
+      "id": "addon-addon-k45-17",
+      "internalId": "Addon_K45_17",
+      "name": "Explosive Gift",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "A disarmingly joyful gift that's sure to be a blast. For each Toy with maximum Deadliness, reduce your Terror Radius by 12%.",
+      "role": "killer",
+      "rarity": "veryrare",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_explosivegift.png"
+    },
+    {
+      "id": "addon-addon-k45-18",
+      "internalId": "Addon_K45_18",
+      "name": "Jonathan's Skull",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "The bespectacled skull of Sienna's brother. Hilarious! Damaging or Torturing a Survivor with a Toy grants a Token, up to 5. Taunting spends all Tokens then, if at least 1 Token was spent, reveals the Auras of all Survivors within 10 meters plus 5 meters per Token for 6 seconds.",
+      "role": "killer",
+      "rarity": "veryrare",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_jonathansskull.png"
+    },
+    {
+      "id": "addon-addon-k45-19",
+      "internalId": "Addon_K45_19",
+      "name": "Emily",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "A small porcelain doll that must be wondering where Mommy went. Toys available in the Bag of Toys appear in a set order: Bike Horn, Handgun, Flamethrower, Flail, Acid Bottle.",
+      "role": "killer",
+      "rarity": "rare",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_emily.png"
+    },
+    {
+      "id": "addon-addon-k45-20",
+      "internalId": "Addon_K45_20",
+      "name": "The Ninth Circle",
+      "type": "poweraddon",
+      "itemType": null,
+      "parents": [
+        "Item_K45Power"
+      ],
+      "killerName": "The Terrifier",
+      "description": "Sadistic, creepy, and shockingly gory. What kind of person would be interested in this? Each time you Taunt a Terrified Survivor for the first time, gain a Token, up to 4. When the Exit Gates are powered, if you have 4 Tokens, reduce the cooldown of the Bag of Toys to 1 second.",
+      "role": "killer",
+      "rarity": "visceral",
+      "bloodweb": true,
+      "image": "dbd_images/addons/iconaddon_theninthcircle.png"
     }
   ]
 };

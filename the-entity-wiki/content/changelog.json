@@ -1,5 +1,14 @@
 [
   {
+    "version": "5.35.0",
+    "date": "November 25, 2026",
+    "changes": [
+      "UPDATE : Synced Dead by Daylight 10.3.0 Terrifier chapter: new Killer The Terrifier, new Survivor Sienna Shaw, new map Hartshorne Mall in new realm The Subdivisions, 6 new perks, Bag of Toys power with 20 addons",
+      "UPDATE : Applied 10.3.0 perk reworks: Dark Sense token system, Calm Spirit, Dark Arrogance, Scourge Hook: Monstrous Shrine, Ravenous, Slippery Meat and Whispers",
+      "NOTE : Hartshorne Mall ships without overhead layouts; no layout source covers the new map yet"
+    ]
+  },
+  {
     "version": "5.34.1",
     "date": "November 9, 2026",
     "changes": [
