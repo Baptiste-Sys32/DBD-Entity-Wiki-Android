@@ -165,5 +165,17 @@
       "Slice and Dice can dash for up to 2 seconds.",
       "Scampering through a vault takes 0.8 seconds."
     ]
+  },
+  "the_terrifier_950": {
+    "powerName": "Bag of Toys",
+    "mechanics": [
+      "Hold the Secondary Power button to open the Bag of Toys and choose 1 of 2 random Toys, starting a 10 second cooldown",
+      "The 5 single-use Toys (Acid Bottle, Flamethrower, Handgun, Flail, Bike Horn) damage healthy Survivors and inflict Torture on injured Survivors for 40 seconds",
+      "A Tortured Survivor struck by a different Toy is downed, while the same Toy only resets the timer",
+      "Each Torture inflicted grants that Toy 1 Deadliness up to 3; max-Deadliness Toys injure and Torture healthy Survivors and down injured ones",
+      "Taunting a Terrified Survivor within 6 metres, or hooking one, grants every Toy 1 Deadliness and removes Terrified",
+      "Downing a second-stage Survivor with a max-Deadliness Toy opens a 15 second kill window",
+      "The Bike Horn detects Survivors and inflicts Oblivious, the Handgun fires a 120 metre hitscan shot, and the Flail strikes over short obstacles"
+    ]
   }
 }

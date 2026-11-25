@@ -1,15 +1,23 @@
 Cosmetics Audit
-Generated: 2026-09-12T10:18:48.195Z
+Generated: 2026-11-25T13:22:21.023Z
 Blocked cosmetics: 0
-Ready cosmetics: 4357
-Character Swaps: 112
-Cosmetics: 4245
+Ready cosmetics: 4425
+Character Swaps: 120
+Cosmetics: 4305
 
 Blocked entries: 0
 
-Portrait exceptions: 5
+Portrait exceptions: 13
 - The Artist -> Lilith | official-portrait-exception
+- The Dredge -> Belial | official-portrait-exception
 - The Huntress -> Anniversary Eddie | official-portrait-exception
+- The Legion -> Emil | official-portrait-exception
+- The Nurse -> Mephisto | official-portrait-exception
 - The Spirit -> Bubble Head Nurse | official-portrait-exception
+- David King -> Barbarian | official-portrait-exception
 - Dwight Fairfield -> Scooby-Doo | official-portrait-exception
+- Feng Min -> 2B | official-portrait-exception
 - Rick Grimes -> Negan Smith | official-portrait-exception
+- Taurie Cain -> Necromancer | official-portrait-exception
+- Yui Kimura -> A2 | official-portrait-exception
+- Zarina Kassir -> Sorceress | official-portrait-exception

@@ -1531,6 +1531,37 @@
         }
       ],
       "maps": []
+    },
+    {
+      "id": "terrifier",
+      "name": "Terrifier",
+      "type": "chapter",
+      "chapterNumber": 42,
+      "date": "2026-11-24",
+      "displayDate": "November 24, 2026",
+      "description": "The licensed Terrifier chapter bringing Art the Clown to Dead by Daylight as The Terrifier, alongside final-girl Survivor Sienna Shaw and the Hartshorne Mall map in the new Subdivisions Realm. Released alongside the 10.3.0 patch.",
+      "killers": [
+        {
+          "id": "the-terrifier",
+          "name": "The Terrifier",
+          "realName": "Art the Clown",
+          "fogEntry": "A silent clown in grease paint and a garbage bag, Art turned murder into performance across Miles County, surviving every death through inhuman resurrection. He toys with victims, mutilates with glee, and never makes a sound. The Entity gave him an endless stage and an audience that cannot leave.",
+          "licensed": true
+        }
+      ],
+      "survivors": [
+        {
+          "id": "sienna-shaw",
+          "name": "Sienna Shaw",
+          "fogEntry": "Haunted by nightmares of Art the Clown since her father's death, Sienna Shaw sewed herself a Valkyrie costume for Halloween, sword and all. When the dream bled into the waking world and came for her family, she stood her ground. The Entity took her mid-defiance."
+        }
+      ],
+      "maps": [
+        {
+          "name": "Hartshorne Mall",
+          "realm": "The Subdivisions"
+        }
+      ]
     }
   ]
 }
